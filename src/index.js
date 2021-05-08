@@ -2,23 +2,24 @@ import Phaser from "phaser";
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./components/App.jsx";
-import playGame from "./phaser/scene";
+import PlatformerScene from "./phaser/platformer-scene";
 
 //console.log(App);
 
 export const config = {
   type: Phaser.AUTO,
-  parent: "phaser",
-  width: 1000,
-  height: 800,
-  pixelArt: true,
+  width: 800,
+  height: 600,
+  parent: "game-container",
+  pixelArt: false,
+  backgroundColor: "#1d212d",
+  scene: PlatformerScene,
   physics: {
     default: "arcade",
     arcade: {
-      gravity: { y: 20000}  
+      gravity: { y: 1000 }
     }
-  },
-  scene: playGame
+  }
 };
 
 const game = new Phaser.Game(config);
