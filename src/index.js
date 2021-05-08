@@ -11,8 +11,12 @@ export const config = {
   parent: "phaser",
   width: 1000,
   height: 800,
+  pixelArt: true,
   physics: {
-    default: 'matter'
+    default: "arcade",
+    arcade: {
+      gravity: { y: 20000}  
+    }
   },
   scene: playGame
 };
