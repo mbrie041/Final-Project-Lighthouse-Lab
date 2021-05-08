@@ -9,8 +9,11 @@ import playGame from "./phaser/scene";
 export const config = {
   type: Phaser.AUTO,
   parent: "phaser",
-  width: 800,
-  height: 600,
+  width: 1000,
+  height: 800,
+  physics: {
+    default: 'matter'
+  },
   scene: playGame
 };
 
