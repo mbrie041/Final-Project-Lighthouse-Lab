@@ -1,19 +1,9 @@
 import Phaser from "phaser";
 import Player from "./player.js";
 
-let groundLayer;
-
-const portalCallback = (player, tile, thisScene, data) => {
-  const layer = tile.layer.name; 
-
-  if (layer === 'Level_2_door') {
-    thisScene.scene.start('LevelTwoScene')
-    thisScene.scene.stop('PlatformerScene')
-  }
-}
-export default class PlatformerScene extends Phaser.Scene {
+export default class LevelTwoScene extends Phaser.Scene {
   constructor() {
-    super("PlatformerScene");
+    super("LevelTwoScene");
   }
   preload() {
     this.load.spritesheet(
@@ -32,10 +22,9 @@ export default class PlatformerScene extends Phaser.Scene {
     );
     this.load.tilemapTiledJSON(
       "map",
-      "src/assets/tilemaps/platformer-simple.json"
+      "src/assets/tilemaps/platformer-simple2.json"
     );
   }
-
   create() {
     const map = this.make.tilemap({ key: "map" });
     const tiles = map.addTilesetImage(
@@ -44,13 +33,8 @@ export default class PlatformerScene extends Phaser.Scene {
     );
 
     map.createDynamicLayer("Background", tiles);
-    const levelTwoDoor = map.createLayer("Level_2_door", tiles, 0, 0);
     this.groundLayer = map.createDynamicLayer("Ground", tiles);
     map.createDynamicLayer("Foreground", tiles);
-
-    // Instantiate a player instance at the location of the "Spawn Point" object in the Tiled map.
-    // Note: instead of storing the player in a global variable, it's stored as a property of the
-    // scene.
     const spawnPoint = map.findObject(
       "Objects",
       obj => obj.name === "Spawn Point"
@@ -74,16 +58,7 @@ export default class PlatformerScene extends Phaser.Scene {
         backgroundColor: "#ffffff"
       })
       .setScrollFactor(0);
-    
-      levelTwoDoor.setCollisionBetween(1, 2000)
-
-      this.physics.add.collider(this.player, levelTwoDoor, (player, tile) => { 
-      console.log("You hit the door!")
-      // portalCallback(player, tile, this, data);
-    });
   }
-  
-
   update(time, delta) {
     // Allow the player to respond to key presses and move itself
     this.player.update();
@@ -93,4 +68,4 @@ export default class PlatformerScene extends Phaser.Scene {
       this.scene.restart();
     }
   }
-}
+};

@@ -3,6 +3,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./components/App.jsx";
 import PlatformerScene from "./phaser/platformer-scene";
+import LevelTwoScene from "./phaser/leveltwo-scene"
 
 //console.log(App);
 
@@ -13,7 +14,10 @@ export const config = {
   parent: "game-container",
   pixelArt: false,
   backgroundColor: "#1d212d",
-  scene: PlatformerScene,
+  scene: [ 
+    PlatformerScene,
+    LevelTwoScene 
+  ],
   physics: {
     default: "arcade",
     arcade: {
