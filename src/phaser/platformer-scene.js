@@ -2,15 +2,8 @@ import Phaser from "phaser";
 import Player from "./player.js";
 
 let groundLayer;
+let zone;
 
-const portalCallback = (player, tile, thisScene, data) => {
-  const layer = tile.layer.name; 
-
-  if (layer === 'Level_2_door') {
-    thisScene.scene.start('LevelTwoScene')
-    thisScene.scene.stop('PlatformerScene')
-  }
-}
 export default class PlatformerScene extends Phaser.Scene {
   constructor() {
     super("PlatformerScene");
@@ -23,7 +16,7 @@ export default class PlatformerScene extends Phaser.Scene {
         frameWidth: 32,
         frameHeight: 32,
         margin: 1,
-        spacing: 2
+        spacing: 2,
       }
     );
     this.load.image(
@@ -48,12 +41,25 @@ export default class PlatformerScene extends Phaser.Scene {
     this.groundLayer = map.createDynamicLayer("Ground", tiles);
     map.createDynamicLayer("Foreground", tiles);
 
+    //Bring finish point in from Json file
+    const finishPoint = map.findObject(
+      "Objects",
+      (obj) => obj.name === "Finish Point"
+    );
+
+    //Set finish zone values in level
+    zone = this.add
+      .zone(finishPoint.x, finishPoint.y)
+      .setSize(finishPoint.width, finishPoint.height);
+    this.physics.world.enable(zone);
+    zone.body.setAllowGravity(false);
+    zone.body.moves = false;
     // Instantiate a player instance at the location of the "Spawn Point" object in the Tiled map.
     // Note: instead of storing the player in a global variable, it's stored as a property of the
     // scene.
     const spawnPoint = map.findObject(
       "Objects",
-      obj => obj.name === "Spawn Point"
+      (obj) => obj.name === "Spawn Point"
     );
     this.player = new Player(this, spawnPoint.x, spawnPoint.y);
 
@@ -71,18 +77,20 @@ export default class PlatformerScene extends Phaser.Scene {
         font: "18px monospace",
         fill: "#000000",
         padding: { x: 20, y: 10 },
-        backgroundColor: "#ffffff"
+        backgroundColor: "#ffffff",
       })
       .setScrollFactor(0);
-    
-      levelTwoDoor.setCollisionBetween(1, 2000)
 
-      this.physics.add.collider(this.player, levelTwoDoor, (player, tile) => { 
-      console.log("You hit the door!")
+    levelTwoDoor.setCollisionByProperty({ collides: true });
+
+    this.physics.add.overlap(this.player.sprite, zone, () => {
+      this.physics.world.disable(zone);
+      console.log("You hit the door!");
+      this.scene.start('LevelTwoScene')
+      this.scene.stop('PlatformerScene')
       // portalCallback(player, tile, this, data);
     });
   }
-  
 
   update(time, delta) {
     // Allow the player to respond to key presses and move itself

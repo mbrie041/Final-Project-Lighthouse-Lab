@@ -1,5 +1,13 @@
 { "backgroundcolor":"#1d212d",
  "compressionlevel":-1,
+ "editorsettings":
+    {
+     "export":
+        {
+         "format":"json",
+         "target":"platformer-simple2.json"
+        }
+    },
  "height":20,
  "infinite":false,
  "layers":[
@@ -10,7 +18,7 @@
          "name":"Background",
          "opacity":1,
          "type":"tilelayer",
-         "visible":false,
+         "visible":true,
          "width":40,
          "x":0,
          "y":0
@@ -34,7 +42,7 @@
          "name":"Foreground",
          "opacity":1,
          "type":"tilelayer",
-         "visible":false,
+         "visible":true,
          "width":40,
          "x":0,
          "y":0

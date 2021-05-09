@@ -145,13 +145,13 @@
   </tile>
   <tile id="23">
    <properties>
-    <property name="collides" type="bool" value="false"/>
+    <property name="collides" type="bool" value="true"/>
     <property name="isSpike" type="bool" value="false"/>
    </properties>
   </tile>
   <tile id="24">
    <properties>
-    <property name="collides" type="bool" value="false"/>
+    <property name="collides" type="bool" value="true"/>
     <property name="isSpike" type="bool" value="false"/>
    </properties>
   </tile>
@@ -337,13 +337,13 @@
   </tile>
   <tile id="55">
    <properties>
-    <property name="collides" type="bool" value="false"/>
+    <property name="collides" type="bool" value="true"/>
     <property name="isSpike" type="bool" value="false"/>
    </properties>
   </tile>
   <tile id="56">
    <properties>
-    <property name="collides" type="bool" value="false"/>
+    <property name="collides" type="bool" value="true"/>
     <property name="isSpike" type="bool" value="false"/>
    </properties>
   </tile>
@@ -6229,7 +6229,7 @@
   <object id="1" name="Spawn Point" x="160" y="192">
    <point/>
   </object>
-  <object id="6" name="Level Two Door" x="1162.24" y="201.383">
+  <object id="6" name="Level Two Door" x="1139.74" y="223.383">
    <point/>
   </object>
  </objectgroup>

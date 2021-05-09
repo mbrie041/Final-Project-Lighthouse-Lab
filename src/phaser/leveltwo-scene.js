@@ -21,12 +21,13 @@ export default class LevelTwoScene extends Phaser.Scene {
       "src/assets/tilesets/0x72-industrial-tileset-32px-extruded.png"
     );
     this.load.tilemapTiledJSON(
-      "map",
+      "level2Map",
       "src/assets/tilemaps/platformer-simple2.json"
     );
   }
   create() {
-    const map = this.make.tilemap({ key: "map" });
+    console.log("we are actually here")
+    const map = this.make.tilemap({ key: "level2Map" });
     const tiles = map.addTilesetImage(
       "0x72-industrial-tileset-32px-extruded",
       "tiles"

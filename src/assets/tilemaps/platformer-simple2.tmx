@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="40" height="20" tilewidth="32" tileheight="32" infinite="0" backgroundcolor="#1d212d" nextlayerid="5" nextobjectid="6">
+ <editorsettings>
+  <export target="platformer-simple2.json" format="json"/>
+ </editorsettings>
  <tileset firstgid="1" name="0x72-industrial-tileset-32px-extruded" tilewidth="32" tileheight="32" spacing="2" margin="1" tilecount="1024" columns="32">
   <image source="../tilesets/0x72-industrial-tileset-32px-extruded.png" width="1088" height="1088"/>
   <tile id="0">
@@ -6150,7 +6153,7 @@
    </properties>
   </tile>
  </tileset>
- <layer id="1" name="Background" width="40" height="20" visible="0">
+ <layer id="1" name="Background" width="40" height="20">
   <data encoding="csv">
 0,0,0,0,23,0,0,23,0,0,97,23,0,0,0,0,0,23,0,0,0,97,0,0,0,0,0,23,0,0,0,0,0,23,0,0,0,0,23,0,
 0,0,0,0,23,0,0,23,0,0,97,23,0,0,0,0,0,23,0,0,0,97,0,0,0,0,0,23,0,0,0,0,0,23,0,0,0,0,23,0,
@@ -6198,7 +6201,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,54
 </data>
  </layer>
- <layer id="3" name="Foreground" width="40" height="20" visible="0">
+ <layer id="3" name="Foreground" width="40" height="20">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,97,0,0,0,0,0,0,0,9,0,0,0,0,0,97,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,97,0,0,0,0,0,0,0,9,0,0,0,0,0,97,0,0,0,0,0,0,0,0,0,0,
