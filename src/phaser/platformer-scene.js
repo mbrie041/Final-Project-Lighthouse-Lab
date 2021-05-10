@@ -85,28 +85,28 @@ export default class PlatformerScene extends Phaser.Scene {
       this.cameras.main.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
       
       // Help text that has a "fixed" position on the screen
-      this.add
-      .text(16, 16, "Arrow keys or WASD to move & jump", {
-        font: "18px monospace",
-        fill: "#000000",
-        padding: { x: 20, y: 10 },
-        backgroundColor: "#ffffff",
-      })
-      .setScrollFactor(0);
+      // this.add
+      // .text(16, 16, "Arrow keys or WASD to move & jump", {
+      //   font: "18px monospace",
+      //   fill: "#000000",
+      //   padding: { x: 20, y: 10 },
+      //   backgroundColor: "#ffffff",
+      // })
+      // .setScrollFactor(0);
      
 
       //create score text
       scoreText = this.add
-        .text(600, 550, 'Score: 0', { 
-          fontSize: '32px', 
+        .text(20, 0, 'Score: 0', { 
+          fontSize: '16px', 
           fill: '#ffffff' 
       }) 
       .setScrollFactor(0);
 
       //timer text
       timeText = this.add
-        .text(50, 550,'', {
-          fontSize: '32px', 
+        .text(250, 0,'', {
+          fontSize: '16px', 
           fill: '#ffffff' 
         })
         .setScrollFactor(0);
