@@ -43,7 +43,7 @@ export default class PlatformerScene extends Phaser.Scene {
     );
 
     map.createDynamicLayer("Background", tiles);
-    const levelTwoDoor = map.createLayer("Level_2_door", tiles, 0, 0);
+    // const levelTwoDoor = map.createLayer("Level_2_door", tiles, 0, 0);
     this.groundLayer = map.createDynamicLayer("Ground", tiles);
     map.createDynamicLayer("Foreground", tiles);
 
@@ -100,7 +100,7 @@ export default class PlatformerScene extends Phaser.Scene {
       }) 
       .setScrollFactor(0);
       
-    levelTwoDoor.setCollisionByProperty({ collides: true });
+    // levelTwoDoor.setCollisionByProperty({ collides: true });
 
     this.physics.add.overlap(player.sprite, zone, () => {
       this.physics.world.disable(zone);
