@@ -7,6 +7,8 @@ let pancake;
 let player;
 let score = 0;
 let scoreText;
+let timeText;
+let elapsedTime;
 
 
 export default class PlatformerScene extends Phaser.Scene {
@@ -39,13 +41,12 @@ export default class PlatformerScene extends Phaser.Scene {
   }
 
   create() {
-  
-
     const map = this.make.tilemap({ key: "map" });
     const tiles = map.addTilesetImage(
       "0x72-industrial-tileset-32px-extruded",
       "tiles"
     );
+
 
     map.createDynamicLayer("Background", tiles);
     const levelTwoDoor = map.createLayer("Level_2_door", tiles, 0, 0);
@@ -104,6 +105,14 @@ export default class PlatformerScene extends Phaser.Scene {
           fill: '#ffffff' 
       }) 
       .setScrollFactor(0);
+
+      //timer text
+      timeText = this.add
+        .text(50, 550,'Time', {
+          fontSize: '32px', 
+          fill: '#ffffff' 
+        })
+        .setScrollFactor(0);
       
     levelTwoDoor.setCollisionByProperty({ collides: true });
 
@@ -146,12 +155,12 @@ export default class PlatformerScene extends Phaser.Scene {
       player.destroy();
       this.scene.restart();
     }
+    
+    displayTimeElapsed(time)
 
   }
 
 }; 
-
-
 
 
 
@@ -162,3 +171,21 @@ function collectItem (player, item) {
   score += 10;
   scoreText.setText('Score: ' + score);
 }
+
+//get the current elapsed time (rounded down the nearest second) and then convert that into minutes and seconds to display on-screen as text.
+
+function displayTimeElapsed(time) {
+  let elapsedTime = time * .001;
+  let min = Math.floor(elapsedTime / 60);
+  let sec = (elapsedTime % 60);
+
+  if (min < 10) {
+      min = '0' + min;
+  }
+  if (sec < 10) {
+      sec = '0' + sec;
+  }
+  timeText.setText('Time ' + min + ':' + sec);
+} 
+
+
