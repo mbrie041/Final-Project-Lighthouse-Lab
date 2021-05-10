@@ -8,6 +8,7 @@ let player;
 let score = 0;
 let scoreText;
 
+
 export default class PlatformerScene extends Phaser.Scene {
   constructor() {
     super("PlatformerScene");
@@ -38,6 +39,7 @@ export default class PlatformerScene extends Phaser.Scene {
   }
 
   create() {
+  
 
     const map = this.make.tilemap({ key: "map" });
     const tiles = map.addTilesetImage(
@@ -133,6 +135,7 @@ export default class PlatformerScene extends Phaser.Scene {
 
     this.physics.add.overlap(player.sprite, pancake, collectItem, null);
 
+    // this.add.text('Elapsed seconds: ' + this.game.time.totalElapsedSeconds(), 32, 32);
   }
   
   update(time, delta) {
@@ -143,8 +146,12 @@ export default class PlatformerScene extends Phaser.Scene {
       player.destroy();
       this.scene.restart();
     }
+
   }
+
 }; 
+
+
 
 
 
