@@ -4,23 +4,25 @@ import ReactDOM from "react-dom";
 import App from "./components/App.jsx";
 import PlatformerScene from "./phaser/platformer-scene";
 import LevelTwoScene from "./phaser/leveltwo-scene"
-
+import LevelOneScene from "./phaser/levelone-scene"
 //console.log(App);
 
 export const config = {
   type: Phaser.AUTO,
-  width: 800,
-  height: 600,
+  width: 400,
+  height: 260,
   parent: "game-container",
-  pixelArt: false,
+  pixelArt: true,
   backgroundColor: "#1d212d",
   scene: [ 
     PlatformerScene,
+    LevelOneScene,
     LevelTwoScene 
   ],
   physics: {
     default: "arcade",
     arcade: {
+      debug: true,
       gravity: { y: 1000 }
     }
   }
