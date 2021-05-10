@@ -1,27 +1,15 @@
 import Phaser from "phaser";
 import Player from "./player.js";
 
-
-
 let scoreText;
 let timeText;
 let pancake;
 let player;
 
-
-
-
 export default class LevelTwoScene extends Phaser.Scene {
   constructor() {
     super("LevelTwoScene");
   }
-
-  init(data) {
-    // console.log('init', data);
-    // this.score = data.score
-    // this.elaspedTime = data.time
-  }
-
   preload() {
     this.load.spritesheet(
       "player",
