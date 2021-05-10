@@ -14,15 +14,10 @@ export default class PlatformerScene extends Phaser.Scene {
     super("PlatformerScene");
   }
   preload() {
-    this.load.spritesheet(
+    this.load.atlas(
       "player",
-      "src/assets/spritesheets/0x72-industrial-player-32px-extruded.png",
-      {
-        frameWidth: 32,
-        frameHeight: 32,
-        margin: 1,
-        spacing: 2,
-      }
+      "src/assets/spritesheets/Agent_Mike.png",
+      "src/assets/spritesheets/Agent_Mike.json"
     );
     this.load.image(
       "tiles",

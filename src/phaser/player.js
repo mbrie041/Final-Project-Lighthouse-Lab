@@ -13,13 +13,13 @@ export default class Player {
     const anims = scene.anims;
     anims.create({
       key: "player-idle",
-      frames: anims.generateFrameNumbers("player", { start: 0, end: 3 }),
+      frames: anims.generateFrameNames("player", { prefix: "MikeRight-Idle", suffix: '.png', start: 1, end: 2}),
       frameRate: 3,
       repeat: -1
     });
     anims.create({
       key: "player-run",
-      frames: anims.generateFrameNumbers("player", { start: 8, end: 15 }),
+      frames: anims.generateFrameNames("player", { prefix: "Mike-Right", suffix: '.png',  start: 1, end: 6}),
       frameRate: 12,
       repeat: -1
     });
