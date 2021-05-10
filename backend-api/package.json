@@ -1,0 +1,23 @@
+{
+  "name": "backend-api",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www",
+    "local": "./node_modules/.bin/nodemon -L --ignore public/",
+    "db:reset": "node ./db/reset.js"
+  },
+  "dependencies": {
+    "cookie-parser": "~1.4.4",
+    "cors": "^2.8.5",
+    "debug": "~2.6.9",
+    "express": "~4.16.1",
+    "morgan": "~1.9.1",
+    "pg": "^8.6.0",
+    "pg-native": "^3.0.0"
+  },
+  "devDependencies": {
+    "dotenv": "^9.0.1",
+    "nodemon": "^2.0.7"
+  }
+}
