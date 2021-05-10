@@ -117,7 +117,7 @@ export default class PlatformerScene extends Phaser.Scene {
     pancake = this.physics.add.group({
       key:'pancake',
       repeat: 11,
-      setXY: {x: 400, y:1, stepX: 200}
+      setXY: {x: 400, y:0, stepX: 150}
     });
 
    //set bounce when items are initially dropped 
@@ -150,8 +150,8 @@ export default class PlatformerScene extends Phaser.Scene {
 
 function collectItem (player, item) {
   console.log("COLLISION WITH ITEM!")
-  item.disableBody('pancake','pancake')
+  item.disableBody(`${item}`,`${item}`)
 
-  score +=10;
+  score += 10;
   scoreText.setText('Score: ' + score);
 }
