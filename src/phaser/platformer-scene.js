@@ -177,7 +177,7 @@ function collectItem (player, item) {
 function displayTimeElapsed(time) {
   let elapsedTime = time * .001;
   let min = Math.floor(elapsedTime / 60);
-  let sec = (elapsedTime % 60);
+  let sec = (elapsedTime % 60).toFixed(2);
 
   if (min < 10) {
       min = '0' + min;
