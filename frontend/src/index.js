@@ -9,15 +9,15 @@ import LevelOneScene from "./phaser/levelone-scene"
 
 export const config = {
   type: Phaser.AUTO,
-  width: 400,
-  height: 260,
+  width: 500,
+  height: 500,
   parent: "game-container",
   pixelArt: true,
   backgroundColor: "#1d212d",
-  scene: [ 
+  scene: [
     PlatformerScene,
     LevelOneScene,
-    LevelTwoScene 
+    LevelTwoScene
   ],
   physics: {
     default: "arcade",
