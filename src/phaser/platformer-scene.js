@@ -1,18 +1,22 @@
 import Phaser from "phaser";
 import Player from "./player.js";
 
+
 let groundLayer;
 let zone;
 let pancake;
 let player;
-let score = 0;
+global.score = 0;
 let scoreText;
+let timeText;
+global.elapsedTime;
 
 
 export default class PlatformerScene extends Phaser.Scene {
   constructor() {
     super("PlatformerScene");
   }
+  
   preload() {
     this.load.atlas(
       "player",
@@ -34,13 +38,12 @@ export default class PlatformerScene extends Phaser.Scene {
   }
 
   create() {
-  
-
     const map = this.make.tilemap({ key: "map" });
     const tiles = map.addTilesetImage(
       "0x72-industrial-tileset-32px-extruded",
       "tiles"
     );
+
 
     map.createDynamicLayer("Background", tiles);
     // const levelTwoDoor = map.createLayer("Level_2_door", tiles, 0, 0);
@@ -94,11 +97,19 @@ export default class PlatformerScene extends Phaser.Scene {
 
       //create score text
       scoreText = this.add
-        .text(600, 550, 'score: 0', { 
+        .text(600, 550, 'Score: 0', { 
           fontSize: '32px', 
           fill: '#ffffff' 
       }) 
       .setScrollFactor(0);
+
+      //timer text
+      timeText = this.add
+        .text(50, 550,'', {
+          fontSize: '32px', 
+          fill: '#ffffff' 
+        })
+        .setScrollFactor(0);
       
     // levelTwoDoor.setCollisionByProperty({ collides: true });
 
@@ -141,19 +152,39 @@ export default class PlatformerScene extends Phaser.Scene {
       player.destroy();
       this.scene.restart();
     }
+    
+    displayTimeElapsed(time)
 
   }
 
 }; 
 
-
-
-
-
 function collectItem (player, item) {
   console.log("COLLISION WITH ITEM!")
   item.disableBody(`${item}`,`${item}`)
 
-  score += 10;
-  scoreText.setText('Score: ' + score);
+  global.score += 10;
+  scoreText.setText('Score: ' + global.score);
 }
+
+
+
+
+//get the current elapsed time then convert that into minutes and seconds to display on-screen as text.
+  //how to reset time when gameover?
+  //delay timer when prompted to start game?
+function displayTimeElapsed(time) {
+  global.elapsedTime = time * .001;
+  let min = Math.floor(global.elapsedTime / 60);
+  let sec = (global.elapsedTime % 60).toFixed(2);
+
+  if (min < 10) {
+      min = '0' + min;
+  }
+  if (sec < 10) {
+      sec = '0' + sec;
+  }
+  timeText.setText('Time: ' + min + ':' + sec);
+} 
+
+
