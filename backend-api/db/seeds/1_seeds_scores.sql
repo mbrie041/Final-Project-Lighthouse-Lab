@@ -1,5 +1,5 @@
 INSERT INTO
-scores(score)
+scores(name, score)
 VALUES
-  (100),
-  (50);
+  ('Mario', 100),
+  ('Bowser', 50);
