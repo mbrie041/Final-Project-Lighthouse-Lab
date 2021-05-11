@@ -20,7 +20,10 @@ module.exports = ({
     /* GET scores listing. */
     router.get('/', (req, res) => {
         getScores()
-            .then((scores) => console.log('Get request getScores =', scores))
+            .then((scores) => {
+                console.log('Get request getScores =', scores);
+                res.json(scores)
+            })
             .catch((err) => res.json({
                 error: err.message
             }));
