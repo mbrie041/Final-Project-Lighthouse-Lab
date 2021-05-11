@@ -1,6 +1,9 @@
 import Phaser from "phaser";
 import Player from "./player.js";
 import Robot from "./robot1.js";
+const alive = "alive";
+const dead = "dead";
+let state = alive;
 
 export default class LevelOneScene extends Phaser.Scene {
   constructor() {
@@ -47,7 +50,9 @@ export default class LevelOneScene extends Phaser.Scene {
   }
 
   create() {
-    console.log("This is in sequence")
+    state = alive;
+
+    console.log("This is in sequence");
     const map = this.make.tilemap({ key: "level1map" });
     const groundTiles = map.addTilesetImage(
       "Gray_Tile_Terrain (16 x 16)",
@@ -106,8 +111,7 @@ export default class LevelOneScene extends Phaser.Scene {
           enemy.destroy();
         } else {
           // any other way to collide on an enemy will restart the game
-          player.destroy()
-          this.scene.restart();
+          state = dead;
         }
       },
       null,
@@ -116,14 +120,17 @@ export default class LevelOneScene extends Phaser.Scene {
   }
   update(time, delta) {
     // Allow the player to respond to key presses and move itself
-    this.player.update();
 
-    if (this.player.sprite.y > this.groundLayer.height) {
+    if (state === dead) {
       this.player.destroy();
       this.scene.restart();
+    } else {
+      //state is alive
+      this.player.update();
+
+      if (this.player.sprite.y > this.groundLayer.height) {
+        state = dead;
+      }
     }
-
-    // handling collision between enemy and hero
-
   }
 }
