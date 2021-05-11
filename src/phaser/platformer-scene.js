@@ -17,7 +17,7 @@ export default class PlatformerScene extends Phaser.Scene {
     this.load.atlas(
       "player",
       "src/assets/spritesheets/Agent_Mike.png",
-      "src/assets/spritesheets/Agent_Mike.json"
+      "src/assets/spritesheets/Agent_Mike.json",
     );
     this.load.image(
       "tiles",

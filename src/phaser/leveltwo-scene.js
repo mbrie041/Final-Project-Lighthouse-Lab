@@ -1,6 +1,7 @@
 import Phaser from "phaser";
 import Player from "./player.js";
 
+
 export default class LevelTwoScene extends Phaser.Scene {
   constructor() {
     super("LevelTwoScene");
@@ -15,6 +16,11 @@ export default class LevelTwoScene extends Phaser.Scene {
         margin: 1,
         spacing: 2
       }
+    );
+    this.load.atlas(
+      "robot",
+      "src/assets/spritesheets/Robot.png",
+      "src/assets/spritesheets/Robot.json",
     );
     this.load.image(
       "tiles",
@@ -40,12 +46,17 @@ export default class LevelTwoScene extends Phaser.Scene {
       "Objects",
       obj => obj.name === "Spawn Point"
     );
+    const robotSpawn = map.findObject(
+      "Enemies",
+      obj => obj.name === "Robot1"
+    );
     this.player = new Player(this, spawnPoint.x, spawnPoint.y);
-
+    this.robot1 = new Robot(this, robotSpawn.x, robotSpawn.y);
     // Collide the player against the ground layer - here we are grabbing the sprite property from
     // the player (since the Player class is not a Phaser.Sprite).
     this.groundLayer.setCollisionByProperty({ collides: true });
     this.physics.world.addCollider(this.player.sprite, this.groundLayer);
+    this.physics.world.addCollider(this.robot1.sprite, this.groundLayer);
 
     this.cameras.main.startFollow(this.player.sprite);
     this.cameras.main.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
