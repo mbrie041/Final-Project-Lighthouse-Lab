@@ -1,0 +1,17 @@
+.navbar {
+  height: 80px;
+  display:flex;
+  justify-content: space-between;
+  padding: 0.5rem calc((100vw - 1200px) /2);
+  z-index: 1;
+  position: relative;
+  align-items: center;
+
+  &__logo {
+    color: red;
+  }
+
+  &__links{
+    color: red;
+  }
+}

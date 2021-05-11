@@ -1,4 +1,5 @@
 import React from "react";
+import "./LeaderboardScore.scss"
 
 export default function LeaderboardScore(props) {
   // console.log('props (leaderboardscore.jsx) = ', props)

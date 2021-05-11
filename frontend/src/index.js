@@ -5,13 +5,16 @@ import App from "./components/App.jsx";
 import PlatformerScene from "./phaser/platformer-scene";
 import LevelTwoScene from "./phaser/leveltwo-scene"
 import LevelOneScene from "./phaser/levelone-scene"
+import "./styles/index.scss"
 //console.log(App);
+
+let canvas = document.querySelector('canvas')
 
 export const config = {
   type: Phaser.AUTO,
-  width: 500,
+  width: 800,
   height: 500,
-  parent: "game-container",
+  parent: "phaser",
   pixelArt: true,
   backgroundColor: "#1d212d",
   scene: [
@@ -29,6 +32,7 @@ export const config = {
 };
 
 const game = new Phaser.Game(config);
+console.log(config)
 
 ReactDOM.render(
   <App />,

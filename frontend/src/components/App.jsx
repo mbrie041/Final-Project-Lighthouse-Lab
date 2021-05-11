@@ -1,11 +1,11 @@
 import React from "react";
 import Leaderboard from "./Leaderboard.jsx";
+import "./App.scss"
 
 export default class App extends React.Component {
 	render() {
 		return (
-			<div className="app" style={{ textAlign: "center" }}>
-				<h1>Hello World</h1>
+			<div className="app">
 				<Leaderboard />
 			</div>
 		);
