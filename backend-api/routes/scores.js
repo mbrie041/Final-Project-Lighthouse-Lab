@@ -32,8 +32,8 @@ module.exports = ({
     router.post('/', (req, res) => {
 
         console.log('Post to / req.body = ', req.body);
-        const { score } = req.body;
-        return addScore(score)
+        const { name, score } = req.body;
+        return addScore(name, score)
             .then(dbres => res.json('score!'))
             .catch(err => res.json({
                 error: err.message
