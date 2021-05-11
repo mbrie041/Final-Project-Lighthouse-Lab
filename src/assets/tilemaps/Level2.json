@@ -110,6 +110,34 @@
                  "width":0,
                  "x":17.3333333333333,
                  "y":194
+                }, 
+                {
+                 "height":208,
+                 "id":7,
+                 "name":"LeftWall",
+                 "properties":[
+                        {
+                         "name":"collides",
+                         "type":"bool",
+                         "value":true
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":2,
+                 "x":1.5,
+                 "y":0.166666666666671
+                }, 
+                {
+                 "height":208,
+                 "id":8,
+                 "name":"RightWall",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":2,
+                 "x":2062,
+                 "y":0.5
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -139,8 +167,8 @@
          "x":0,
          "y":0
         }],
- "nextlayerid":12,
- "nextobjectid":4,
+ "nextlayerid":13,
+ "nextobjectid":9,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.6.0",

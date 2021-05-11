@@ -42,10 +42,10 @@ export default class PlatformerScene extends Phaser.Scene {
       "tiles"
     );
 
-    map.createDynamicLayer("Background", tiles);
+    map.createLayer("Background", tiles);
     // const levelTwoDoor = map.createLayer("Level_2_door", tiles, 0, 0);
-    this.groundLayer = map.createDynamicLayer("Ground", tiles);
-    map.createDynamicLayer("Foreground", tiles);
+    this.groundLayer = map.createLayer("Ground", tiles);
+    map.createLayer("Foreground", tiles);
 
     //add static pancake image and double the scale
     // this.add.image(400, 208,'pancake').setScale(2);

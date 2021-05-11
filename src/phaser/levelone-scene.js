@@ -4,6 +4,7 @@ import Robot from "./robot1.js";
 const alive = "alive";
 const dead = "dead";
 let state = alive;
+let zone;
 
 export default class LevelOneScene extends Phaser.Scene {
   constructor() {
@@ -82,26 +83,45 @@ export default class LevelOneScene extends Phaser.Scene {
       "Objects",
       (obj) => obj.name === "Spawn Point"
     );
+    const leftWall = map.findObject(
+      "Objects",
+      (obj) => obj.name === "LeftWall"
+    );
+
+    zone = this.add
+      .zone(leftWall.x, leftWall.y)
+      .setSize(leftWall.width, leftWall.height);
+    this.physics.world.enable(zone);
+    zone.body.setAllowGravity(false);
+    zone.body.moves = false;
+
+    const rightWall = map.findObject(
+      "Objects",
+      (obj) => obj.name === "RightWall"
+    );
     const robotSpawn = map.findObject(
       "Enemies",
       (obj) => obj.name === "Robot1"
     );
     this.player = new Player(this, spawnPoint.x, spawnPoint.y);
     this.robot1 = new Robot(this, robotSpawn.x, robotSpawn.y);
-
+ 
     // Collide the player against the ground layer - here we are grabbing the sprite property from
     // the player (since the Player class is not a Phaser.Sprite).
     this.scaffoldingLayer.setCollisionByProperty({ collides: true });
     this.groundLayer.setCollisionByProperty({ collides: true });
     this.physics.world.addCollider(this.player.sprite, this.scaffoldingLayer);
-
     this.physics.world.addCollider(this.robot1.sprite, this.groundLayer);
-
     this.physics.world.addCollider(this.player.sprite, this.groundLayer);
+
+    
+    this.player.sprite.body.collideWorldBounds = true;
+    this.physics.world.setBoundsCollision(true, true, true, false)
+    this.physics.world.setBounds(0, 0, map.widthInPixels, map.heightInPixels)
 
     this.cameras.main.startFollow(this.player.sprite);
     this.cameras.main.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
-
+    // this.cameras.main.setZoom(1,2)
     this.physics.add.collider(
       this.player.sprite,
       this.robot1.sprite,
