@@ -30,7 +30,7 @@ const wss = new WebSocket.Server({ server });
 
 wss.on("connection", socket => {
   console.log("A client connected.");
-  socket.send("Welcome New Client!");
+  // socket.send("Welcome New Client!");
 
   // socket.onmessage = event => {
   //   console.log(`Message Received event.data: ${event.data}`);
@@ -44,12 +44,13 @@ wss.on("connection", socket => {
 
 /* Define updateLeaderboard function */
 
-function updateLeaderboard(name, score) {
+function updateLeaderboard(id, name, score) {
   wss.clients.forEach(function eachClient(client) {
     if (client.readyState === WebSocket.OPEN) {
       client.send(
         JSON.stringify({
           type: "UPDATE_LEADERBOARD",
+          id,
           name,
           score
         })

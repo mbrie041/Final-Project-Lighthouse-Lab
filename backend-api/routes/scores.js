@@ -35,7 +35,8 @@ module.exports = ({
         const { name, score } = req.body;
         return addScore(name, score)
             .then(dbres => {
-                updateLeaderboard(name, score);
+                console.log(dbres);
+                updateLeaderboard(dbres.id, dbres.name, dbres.score);
                 res.json('score!')
             })
             .catch(err => res.json({
