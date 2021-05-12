@@ -6,7 +6,7 @@ import "./App.scss"
 export default class App extends React.Component {
 	render() {
 		return (
-			<div striped bordered hover variant="dark" className="app">
+			<div className="app">
 				<Leaderboard />
 			</div>
 		);
