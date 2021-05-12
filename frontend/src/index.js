@@ -9,8 +9,8 @@ import LevelOneScene from "./phaser/levelone-scene"
 
 export const config = {
   type: Phaser.AUTO,
-  width: 500,
-  height: 500,
+  width: 400,
+  height: 260,
   parent: "game-container",
   pixelArt: true,
   backgroundColor: "#1d212d",
