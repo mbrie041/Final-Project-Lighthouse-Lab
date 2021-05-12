@@ -1,3 +1,19 @@
+@import "~bootstrap/scss/bootstrap";
+
 .app {
-  display: flex;
+  border: solid black;
+  border-radius: 20px;
+  padding: 1em;
+  overflow: scroll;
+  height: 500px;
+  width: 500px;
+
+  ul {
+    padding: .5em;
+    list-style-type: none;
+  }
+
+  .leaderboard-title{
+    
+  }
 }

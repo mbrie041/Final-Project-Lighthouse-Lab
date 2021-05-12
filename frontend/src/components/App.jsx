@@ -1,11 +1,12 @@
 import React from "react";
 import Leaderboard from "./Leaderboard.jsx";
+import "./App.scss"
+import {Table} from 'react-bootstrap';
 
 export default class App extends React.Component {
 	render() {
 		return (
-			<div className="app" style={{ textAlign: "center" }}>
-				<h1>Hello World</h1>
+			<div striped bordered hover variant="dark" className="app">
 				<Leaderboard />
 			</div>
 		);

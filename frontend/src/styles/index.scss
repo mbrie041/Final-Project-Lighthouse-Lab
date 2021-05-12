@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+@import 'navbar';
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Press Start 2P', cursive;
+  font-size: .6em;
+  background-color: #ffffff;
+  // background-image: url('cave.png');
+  // background-repeat: no-repeat;
+  // background-size: cover;
+
+}
+
+.container {
+  padding-top: 15em;
+}
+
+
+#phaser {
+  border: solid white;
+  border-radius: 5px;
+ 
+} 
+
+.instructions {
+  margin: 2em;
+}
+
+.main-container {
+    margin-top: 70px;
+    display: flex;
+    justify-content: space-evenly;
+    padding-top: 10em;
+  
+    .root {
+
+    }
+}

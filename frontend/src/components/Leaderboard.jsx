@@ -18,7 +18,7 @@ export default function Leaderboard() {
 
   return (
     <div className="leaderboard">
-      <h2>Leaderboard</h2>
+      <h2 className="leaderboard-title">Leaderboard</h2>
       <LeaderboardScoreList scores={state} />
     </div>
   );
