@@ -1,7 +1,7 @@
 import Phaser from "phaser";
 import Player from "./player.js";
 // global.score = 0;
-// let score = 0;
+global.score = 30;
 
 
 export default class InformationScene extends Phaser.Scene {
@@ -38,7 +38,8 @@ export default class InformationScene extends Phaser.Scene {
     this.returnKey.on("down", event => {
       let name = this.nameInput.getChildByName("name");
       if (name.value != "") {
-        // this.message.setText("Hello, " + name.value);
+
+        this.message.setText("Hello, " + name.value);
         // post score and username to database
         fetch('http://localhost:3001/api/scores', {
           'method': 'POST',

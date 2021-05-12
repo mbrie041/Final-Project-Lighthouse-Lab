@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import LeaderboardScoreList from "./LeaderboardScoreList.jsx";
 
-export default function Leaderboard() {
+export default function Leaderboard(props) {
   const [state, setState] = useState([]);
-
+  console.log('props from leaderboard.jsx', props)
   useEffect(() => {
     const getScores = axios.get('http://localhost:3001/api/scores');
 

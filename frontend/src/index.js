@@ -12,8 +12,8 @@ let canvas = document.querySelector('canvas')
 
 export const config = {
   type: Phaser.AUTO,
-  width: 400,
-  height: 260,
+  width: 1000,
+  height: 500,
   parent: "phaser",
   pixelArt: true,
   backgroundColor: "#1d212d",
@@ -21,10 +21,10 @@ export const config = {
     createContainer: true
   },
   scene: [
+    InformationScene,
     PlatformerScene,
     LevelOneScene,
-    LevelTwoScene,
-    InformationScene
+    LevelTwoScene
   ],
   physics: {
     default: "arcade",
@@ -57,6 +57,7 @@ console.log(config)
 // } else {
 //   console.error("Geolocation is not supported by this browser!");
 // }
+
 
 
 ReactDOM.render(
