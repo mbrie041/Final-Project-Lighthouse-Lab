@@ -1,18 +1,23 @@
 import Phaser from "phaser";
 import Player from "./player.js";
 
+
 let groundLayer;
 let zone;
 let pancake;
 let player;
-let score = 0;
+global.score = 0;
 let scoreText;
+let timeText;
+global.elapsedTime;
+let submitButton;
 
 
 export default class PlatformerScene extends Phaser.Scene {
   constructor() {
     super("PlatformerScene");
   }
+
   preload() {
     this.load.atlas(
       "player",
@@ -30,12 +35,10 @@ export default class PlatformerScene extends Phaser.Scene {
     this.load.image(
       "pancake",
       "src/assets/images/Pancake_Stack (16 x 16).png"
-      );
+    );
   }
 
   create() {
-  
-
     const map = this.make.tilemap({ key: "map" });
     const tiles = map.addTilesetImage(
       "0x72-industrial-tileset-32px-extruded",
@@ -69,37 +72,65 @@ export default class PlatformerScene extends Phaser.Scene {
     const spawnPoint = map.findObject(
       "Objects",
       (obj) => obj.name === "Spawn Point"
-      );
-      player = new Player(this, spawnPoint.x, spawnPoint.y);
-      
-      
-      // Collide the player against the ground layer - here we are grabbing the sprite property from
-      // the player (since the Player class is not a Phaser.Sprite).
-      this.groundLayer.setCollisionByProperty({ collides: true });
-      this.physics.world.addCollider(player.sprite, this.groundLayer);
-      
-      this.cameras.main.startFollow(player.sprite);
-      this.cameras.main.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
-      
-      // Help text that has a "fixed" position on the screen
-      this.add
-      .text(16, 16, "Arrow keys or WASD to move & jump", {
-        font: "18px monospace",
-        fill: "#000000",
-        padding: { x: 20, y: 10 },
-        backgroundColor: "#ffffff",
+    );
+    player = new Player(this, spawnPoint.x, spawnPoint.y);
+
+
+    // Collide the player against the ground layer - here we are grabbing the sprite property from
+    // the player (since the Player class is not a Phaser.Sprite).
+    this.groundLayer.setCollisionByProperty({ collides: true });
+    this.physics.world.addCollider(player.sprite, this.groundLayer);
+
+    this.cameras.main.startFollow(player.sprite);
+    this.cameras.main.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
+
+    // Help text that has a "fixed" position on the screen
+    // this.add
+    // .text(16, 16, "Arrow keys or WASD to move & jump", {
+    //   font: "18px monospace",
+    //   fill: "#000000",
+    //   padding: { x: 20, y: 10 },
+    //   backgroundColor: "#ffffff",
+    // })
+    // .setScrollFactor(0);
+
+
+    //create score text
+    scoreText = this.add
+      .text(20, 0, 'Score: 0', {
+        fontSize: '16px',
+        fill: '#ffffff'
       })
       .setScrollFactor(0);
-     
 
-      //create score text
-      scoreText = this.add
-        .text(600, 550, 'score: 0', { 
-          fontSize: '32px', 
-          fill: '#ffffff' 
-      }) 
+    //timer text
+    timeText = this.add
+      .text(250, 0, '', {
+        fontSize: '16px',
+        fill: '#ffffff'
+      })
       .setScrollFactor(0);
-      
+
+    // create submit button
+    this.submitButton = this.add.text(150, 0, "SUBMIT", { fontSize: '16px', color: '#ffffff' });
+    this.submitButton.setInteractive();
+    this.submitButton.on("pointerdown", () => {
+      fetch('http://localhost:3001/api/scores', {
+        'method': 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        'body': JSON.stringify({ score })
+      })
+        .then(response => response.json())
+        .then(data => {
+          console.log('Success:', data);
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+        });
+    });
+
     // levelTwoDoor.setCollisionByProperty({ collides: true });
 
     this.physics.add.overlap(player.sprite, zone, () => {
@@ -112,17 +143,17 @@ export default class PlatformerScene extends Phaser.Scene {
 
     //populate pancake group and populates it. Repeats x amount of times and spreads them stepX apart
     pancake = this.physics.add.group({
-      key:'pancake',
+      key: 'pancake',
       repeat: 11,
-      setXY: {x: 400, y:0, stepX: 150}
+      setXY: { x: 400, y: 0, stepX: 150 }
     });
 
-   //set bounce when items are initially dropped 
+    //set bounce when items are initially dropped 
     pancake.children.iterate(function (child) {
 
       child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.6));
 
-  });
+    });
 
 
     //pancakes will collide with ground layer to keep them from falling off page
@@ -132,28 +163,48 @@ export default class PlatformerScene extends Phaser.Scene {
 
     // this.add.text('Elapsed seconds: ' + this.game.time.totalElapsedSeconds(), 32, 32);
   }
-  
+
   update(time, delta) {
     // Allow the player to respond to key presses and move itself
     player.update();
-    
+
     if (player.sprite.y > this.groundLayer.height) {
       player.destroy();
       this.scene.restart();
     }
 
+    displayTimeElapsed(time)
+
   }
 
-}; 
+};
 
-
-
-
-
-function collectItem (player, item) {
+function collectItem(player, item) {
   console.log("COLLISION WITH ITEM!")
-  item.disableBody(`${item}`,`${item}`)
+  item.disableBody(`${item}`, `${item}`)
 
-  score += 10;
-  scoreText.setText('Score: ' + score);
+  global.score += 10;
+  scoreText.setText('Score: ' + global.score);
 }
+
+
+
+
+//get the current elapsed time then convert that into minutes and seconds to display on-screen as text.
+//how to reset time when gameover?
+//delay timer when prompted to start game?
+function displayTimeElapsed(time) {
+  global.elapsedTime = time * .001;
+  let min = Math.floor(global.elapsedTime / 60);
+  let sec = (global.elapsedTime % 60).toFixed(2);
+
+  if (min < 10) {
+    min = '0' + min;
+  }
+  if (sec < 10) {
+    sec = '0' + sec;
+  }
+  timeText.setText('Time: ' + min + ':' + sec);
+}
+
+

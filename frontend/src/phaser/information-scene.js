@@ -2,9 +2,9 @@ import Phaser from "phaser";
 import Player from "./player.js";
 
 
-export default class LevelTwoScene extends Phaser.Scene {
+export default class InformationScene extends Phaser.Scene {
   constructor() {
-    super("LevelTwoScene");
+    super("InformationScene");
   }
   preload() {
     this.load.spritesheet(
