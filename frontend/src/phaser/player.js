@@ -43,6 +43,7 @@ export default class Player {
   }
 
   update() {
+
     const keys = this.keys;
     const sprite = this.sprite;
     const onGround = sprite.body.blocked.down;
@@ -77,6 +78,7 @@ export default class Player {
   }
 
   destroy() {
+    console.log("Player is destroyed")
     this.sprite.destroy();
   }
 }
