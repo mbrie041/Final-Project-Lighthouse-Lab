@@ -10,23 +10,30 @@
 
 body {
   font-family: 'Press Start 2P', cursive;
-  border: solid green;
-  background-color: honeydew;
+  font-size: .6em;
+  background-color: #ffffff;
+  // background-image: url('cave.png');
+  // background-repeat: no-repeat;
+  // background-size: cover;
+
 }
 
 
-
 #phaser {
-  border: solid black;
+  border: solid white;
   border-radius: 5px;
 } 
+
+.instructions {
+  margin: 2em;
+}
 
 .main-container {
     margin-top: 70px;
     display: flex;
-    justify-content: right;
-    padding-top: 2em;
-    background-color: honeydew;
+    justify-content: space-evenly;
+    padding-top: 10em;
+  
     .root {
 
     }

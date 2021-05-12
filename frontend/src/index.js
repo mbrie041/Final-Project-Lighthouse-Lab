@@ -12,7 +12,7 @@ let canvas = document.querySelector('canvas')
 
 export const config = {
   type: Phaser.AUTO,
-  width: 800,
+  width: 500,
   height: 500,
   parent: "phaser",
   pixelArt: true,
