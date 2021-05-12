@@ -6,6 +6,9 @@ export default class InformationScene extends Phaser.Scene {
   constructor() {
     super("InformationScene");
   }
+  init(data) {
+    this.location = data.location;
+  }
   preload() {
     this.load.html("form", "src/assets/form.html");
     // this.load.spritesheet(
@@ -38,12 +41,21 @@ export default class InformationScene extends Phaser.Scene {
       fontStyle: "bold"
     }).setOrigin(0.5);
 
+    // Display GEO location data
+    this.locationText = this.add.text(200, 300,
+      `[${this.location.coordinates[1]}, ${this.location.coordinates[0]}]`,
+      {
+        color: "#FFFFFF",
+        fontSize: 20
+      }
+    ).setOrigin(0.5);
+
     this.returnKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ENTER);
 
     this.returnKey.on("down", event => {
       let name = this.nameInput.getChildByName("name");
       if (name.value != "") {
-        this.message.setText("Hello, " + name.value);
+        // this.message.setText("Hello, " + name.value);
         // name.value = "";
 
         // post score and username to database
