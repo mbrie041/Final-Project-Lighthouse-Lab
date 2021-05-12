@@ -3,20 +3,14 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./components/App.jsx";
 import PlatformerScene from "./phaser/platformer-scene";
-import LevelTwoScene from "./phaser/leveltwo-scene"
-import LevelOneScene from "./phaser/levelone-scene"
+import LevelTwoScene from "./phaser/leveltwo-scene";
+import LevelOneScene from "./phaser/levelone-scene";
 import InformationScene from "./phaser/information-scene";
-//console.log(App);
 
 export const config = {
   type: Phaser.AUTO,
-<<<<<<< HEAD
-  width: 1000,
-  height: 1000,
-=======
   width: 400,
   height: 260,
->>>>>>> main
   parent: "game-container",
   pixelArt: true,
   backgroundColor: "#1d212d",
@@ -24,10 +18,10 @@ export const config = {
     createContainer: true
   },
   scene: [
-    // PlatformerScene,
-    InformationScene,
+    PlatformerScene,
     LevelOneScene,
-    LevelTwoScene
+    LevelTwoScene,
+    InformationScene
   ],
   physics: {
     default: "arcade",
@@ -38,26 +32,27 @@ export const config = {
   }
 };
 
-if (navigator.geolocation) {
-  navigator.geolocation.getCurrentPosition(position => {
-    if (!position.coords || !position.coords.longitude) {
-      position.coords.latitude = 0;
-      position.coords.longitude = 0;
-    }
-    const game = new Phaser.Game(config);
-    game.scene.start("InformationScene", {
-      location: {
-        type: "Point",
-        coordinates: [
-          parseFloat(position.coords.longitude.toFixed(1)),
-          parseFloat(position.coords.latitude.toFixed(1))
-        ]
-      }
-    })
-  });
-} else {
-  console.error("Geolocation is not supported by this browser!");
-}
+const game = new Phaser.Game(config);
+
+// if (navigator.geolocation) {
+//   navigator.geolocation.getCurrentPosition(position => {
+//     if (!position.coords || !position.coords.longitude) {
+//       position.coords.latitude = 0;
+//       position.coords.longitude = 0;
+//     }
+//     game.scene.start("PlatformerScene", {
+//       location: {
+//         type: "Point",
+//         coordinates: [
+//           parseFloat(position.coords.longitude.toFixed(1)),
+//           parseFloat(position.coords.latitude.toFixed(1))
+//         ]
+//       }
+//     })
+//   });
+// } else {
+//   console.error("Geolocation is not supported by this browser!");
+// }
 
 
 ReactDOM.render(

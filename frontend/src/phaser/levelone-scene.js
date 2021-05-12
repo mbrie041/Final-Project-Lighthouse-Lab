@@ -112,7 +112,7 @@ export default class LevelOneScene extends Phaser.Scene {
     );
     this.player = new Player(this, spawnPoint.x, spawnPoint.y);
     this.robot1 = new Robot(this, robotSpawn.x, robotSpawn.y);
- 
+
     // Collide the player against the ground layer - here we are grabbing the sprite property from
     // the player (since the Player class is not a Phaser.Sprite).
     this.scaffoldingLayer.setCollisionByProperty({ collides: true });
@@ -121,7 +121,7 @@ export default class LevelOneScene extends Phaser.Scene {
     this.physics.world.addCollider(this.robot1.sprite, this.groundLayer);
     this.physics.world.addCollider(this.player.sprite, this.groundLayer);
 
-    
+
     this.player.sprite.body.collideWorldBounds = true;
     this.physics.world.setBoundsCollision(true, true, true, false)
     this.physics.world.setBounds(0, 0, map.widthInPixels, map.heightInPixels)
@@ -146,38 +146,38 @@ export default class LevelOneScene extends Phaser.Scene {
     );
 
     scoreText = this.add
-      .text(20, 0, `Score: ${global.score}`, { 
-        fontSize: '16px', 
-        fill: '#ffffff' 
-    }) 
-    .setScrollFactor(0);
+      .text(20, 0, `Score: ${global.score}`, {
+        fontSize: '16px',
+        fill: '#ffffff'
+      })
+      .setScrollFactor(0);
 
-     //timer text
+    //timer text
     timeText = this.add
-     .text(250, 0,`Time: ${global.elaspedTime}`, {
-       fontSize: '16px', 
-       fill: '#ffffff' 
-     })
-     .setScrollFactor(0);
+      .text(250, 0, `Time: ${global.elaspedTime}`, {
+        fontSize: '16px',
+        fill: '#ffffff'
+      })
+      .setScrollFactor(0);
 
-          //populate pancake group and populates it. Repeats x amount of times and spreads them stepX apart
+    //populate pancake group and populates it. Repeats x amount of times and spreads them stepX apart
     pancake = this.physics.add.group({
-      key:'pancake',
+      key: 'pancake',
       repeat: 20,
-      setXY: {x: 400, y:0, stepX: 100}
+      setXY: { x: 400, y: 0, stepX: 100 }
     });
 
-   //set bounce when items are initially dropped 
+    //set bounce when items are initially dropped 
     pancake.children.iterate(function (child) {
 
       child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.6));
 
-       //pancakes will collide with ground layer to keep them from falling off page
-       
-      });
-      this.physics.add.collider(pancake, this.groundLayer && this.scaffoldingLayer);
-  
-      this.physics.add.overlap(this.player.sprite, pancake, collectItem, null);
+      //pancakes will collide with ground layer to keep them from falling off page
+
+    });
+    this.physics.add.collider(pancake, this.groundLayer && this.scaffoldingLayer);
+
+    this.physics.add.overlap(this.player.sprite, pancake, collectItem, null);
 
     // Help text that has a "fixed" position on the screen
     // this.add
@@ -209,9 +209,9 @@ export default class LevelOneScene extends Phaser.Scene {
 };
 
 
-function collectItem (player, item) {
+function collectItem(player, item) {
   console.log("COLLISION WITH ITEM!")
-  item.disableBody(`${item}`,`${item}`)
+  item.disableBody(`${item}`, `${item}`)
   global.score += 10;
   scoreText.setText('Score: ' + global.score);
 }
@@ -223,10 +223,10 @@ function displayTimeElapsed(time) {
   let sec = (global.elapsedTime % 60).toFixed(2);
 
   if (min < 10) {
-      min = '0' + min;
+    min = '0' + min;
   }
   if (sec < 10) {
-      sec = '0' + sec;
+    sec = '0' + sec;
   }
   timeText.setText('Time: ' + min + ':' + sec);
-} 
+}
