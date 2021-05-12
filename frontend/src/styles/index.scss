@@ -11,7 +11,8 @@
 body {
   font-family: 'Press Start 2P', cursive;
   font-size: .6em;
-  background-color: #ffffff;
+  background-color: #200826;
+  color: white;
   // background-image: url('cave.png');
   // background-repeat: no-repeat;
   // background-size: cover;
@@ -19,18 +20,36 @@ body {
 }
 
 .container {
-  padding-top: 15em;
+  padding-top: 9em;
 }
 
 
 #phaser {
-  border: solid white;
-  border-radius: 5px;
- 
+  width: 800px;
+  height: 520px;
 } 
 
-.instructions {
-  margin: 2em;
+canvas{
+  border: rgb(207, 203, 203) solid;
+  border-radius: 10px;
+  display:block;
+  margin: 0;
+  width: 800px;
+  height: 520px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+
+#instructions {
+  border: rgb(207, 203, 203) solid;
+  font-size: 2em;
+  border-radius: 10px;
+  padding: 2em;
+  height: 300px;
+  width: 400px;
 }
 
 .main-container {
@@ -38,8 +57,17 @@ body {
     display: flex;
     justify-content: space-evenly;
     padding-top: 10em;
+    overflow: scroll;
   
     .root {
 
     }
+}
+
+
+
+
+.col-sm-6 {
+  margin-top: 2em;
+  padding-left: 10em;
 }

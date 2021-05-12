@@ -8,8 +8,6 @@ import LevelOneScene from "./phaser/levelone-scene";
 import InformationScene from "./phaser/information-scene";
 import "./styles/index.scss"
 
-let canvas = document.querySelector('canvas')
-
 export const config = {
   type: Phaser.AUTO,
   width: 400,
@@ -58,6 +56,33 @@ console.log(config)
 //   console.error("Geolocation is not supported by this browser!");
 // }
 
+function resize() {
+  var canvas = document.querySelector("phaser");
+  var windowWidth = window.innerWidth;
+  var windowHeight = window.innerHeight;
+  var windowRatio = windowWidth / windowHeight;
+  var gameRatio = game.config.width / game.config.height;
+  if(windowRatio < gameRatio){
+      canvas.style.width = windowWidth + "px";
+      canvas.style.height = (windowWidth / gameRatio) + "px";
+  }
+  else{
+      canvas.style.width = (windowHeight * gameRatio) + "px";
+      canvas.style.height = windowHeight + "px";
+  }
+}
+
+window.onload = function(){
+  var gameConfig = {
+      type: Phaser.CANVAS,
+      width: gameOptions.gameWidth,
+      height: gameOptions.gameHeight,
+      scene: [playGame]
+  };
+  var game = new Phaser.Game(gameConfig);
+  resize();
+  window.addEventListener("resize", resize, false);
+}
 
 ReactDOM.render(
   <App />,

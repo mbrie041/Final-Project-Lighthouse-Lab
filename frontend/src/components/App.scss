@@ -1,12 +1,27 @@
 @import "~bootstrap/scss/bootstrap";
 
+.app::-webkit-scrollbar{
+  width: .7em;
+  height: 1em;
+}
+
+.app::-webkit-scrollbar-thumb {
+  background-color: rgb(103, 91, 103);
+}
+
+.app::-webkit-resixer{
+  height: 5em;
+}
+
 .app {
-  border: solid black;
-  border-radius: 20px;
-  padding: 1em;
+  padding: 2em;
+  height: 300px;
+  width: 400px;
+  border: rgb(207, 203, 203) solid;
+  border-radius: 10px;
   overflow: scroll;
-  height: 500px;
-  width: 500px;
+  
+
 
   ul {
     padding: .5em;
