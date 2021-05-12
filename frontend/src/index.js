@@ -10,8 +10,13 @@ import InformationScene from "./phaser/information-scene";
 
 export const config = {
   type: Phaser.AUTO,
+<<<<<<< HEAD
   width: 1000,
   height: 1000,
+=======
+  width: 400,
+  height: 260,
+>>>>>>> main
   parent: "game-container",
   pixelArt: true,
   backgroundColor: "#1d212d",
