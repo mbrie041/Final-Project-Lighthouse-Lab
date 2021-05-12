@@ -4,26 +4,13 @@ import "./App.scss"
 import { Table } from 'react-bootstrap';
 
 function App() {
-	const [webSocket, setWebSocket] = useState();
+	const [newScore, setNewScore] = useState({});
 
-	useEffect(() => {
-		const socket = new WebSocket('ws://localhost:3001');
-		socket.addEventListener('open', function (event) {
-			console.log("connected to server");
-		});
 
-		socket.addEventListener('message', function (event) {
-			console.log("message from server ", event.data);
-		});
-
-		setWebSocket(socket);
-
-		return () => socket.close();
-	}, [])
 
 	return (
 		<div striped bordered hover variant="dark" className="app">
-			<Leaderboard webSocket={webSocket} />
+			<Leaderboard newScore={newScore} />
 		</div>
 	);
 }
