@@ -1,9 +1,12 @@
 import Phaser from "phaser";
 import Player from "./player.js";
 import Robot from "./robot1.js";
+import enemyCreator from "./helpers/enemy-creator.js";
 const alive = "alive";
 const dead = "dead";
-let state = alive;
+
+const gameOver = "game over";
+
 let zone;
 
 let scoreText;
@@ -13,8 +16,9 @@ let pancake;
 export default class LevelOneScene extends Phaser.Scene {
   constructor() {
     super("LevelOneScene");
+    this.state = alive;
+    this.robotArray = [];
   }
-  robotArray = [];
   preload() {
     this.load.atlas(
       "player",
@@ -60,9 +64,7 @@ export default class LevelOneScene extends Phaser.Scene {
   }
 
   create() {
-    state = alive;
-
-    console.log("This is in sequence");
+    this.state = alive;
 
     const map = this.make.tilemap({ key: "level1map" });
     const invisibleTiles = map.addTilesetImage(
@@ -106,55 +108,59 @@ export default class LevelOneScene extends Phaser.Scene {
     // );
     this.player = new Player(this, spawnPoint.x, spawnPoint.y);
     // this.robot1 = new Robot(this, robotSpawn.x, robotSpawn.y);
+    const passedArray = [this.enemyWalls, this.scaffoldingLayer]
 
-    for (let obj of map.getObjectLayer("Enemies").objects) {
-      switch (obj.name) {
-        case "Robot1":
-          const collsionArray = [this.enemyWalls, this.scaffoldingLayer];
-          const robot = new Robot(this, obj.x, obj.y);
-          this.robotArray.push(robot);
-          robot.sprite.setFlipX(false);
-          robot.sprite.anims.play("robot-walk", true);
-          robot.sprite.body.collideWorldBounds = true;
+//     const enemyCreator = (collisionArray, givenMap, givenGroundLayer) => {
 
-          for (let wall of collsionArray) {
-            this.physics.world.addCollider(robot.sprite, wall, (sprite) => {
-              if (sprite.body.touching.right || sprite.body.blocked.right) {
-                sprite.setFlipX(true);
-                sprite.anims.play("robot-walk", true);
-                sprite.setVelocityX(-10); // turn left
-              } else if (
-                sprite.body.touching.left ||
-                sprite.body.blocked.left
-              ) {
-                sprite.setFlipX(false);
-                sprite.anims.play("robot-walk", true);
-                sprite.setVelocityX(10); // turn right
-              }
-            });
-          }
-          this.physics.world.addCollider(robot.sprite, this.groundLayer);
+//       for (let obj of givenMap.getObjectLayer("Enemies").objects) {
+//         switch (obj.name) {
+//           case "Robot1":
+// ;
+//             const robot = new Robot(this, obj.x, obj.y);
+//             this.robotArray.push(robot);
+//             robot.sprite.setFlipX(false);
+//             robot.sprite.anims.play("robot-walk", true);
+//             robot.sprite.body.collideWorldBounds = true;
 
-          this.physics.add.collider(
-            this.player.sprite,
-            robot.sprite,
-            function (player, enemy) {
-              if (enemy.body.touching.up && player.body.touching.down) {
-                // destroy the enemy
-                enemy.destroy();
-              } else {
-                // any other way to collide on an enemy will restart the game
-                state = dead;
-              }
-            },
-            null,
-            this
-          );
+//             for (let wall of collisionArray) {
+//               this.physics.world.addCollider(robot.sprite, wall, (sprite) => {
+//                 if (sprite.body.touching.right || sprite.body.blocked.right) {
+//                   sprite.setFlipX(true);
+//                   sprite.anims.play("robot-walk", true);
+//                   sprite.setVelocityX(-10); // turn left
+//                 } else if (
+//                   sprite.body.touching.left ||
+//                   sprite.body.blocked.left
+//                 ) {
+//                   sprite.setFlipX(false);
+//                   sprite.anims.play("robot-walk", true);
+//                   sprite.setVelocityX(10); // turn right
+//                 }
+//               });
+//             }
+//             this.physics.world.addCollider(robot.sprite, givenGroundLayer);
 
-          break;
-      }
-    }
+//             this.physics.add.collider(
+//               this.player.sprite,
+//               robot.sprite,
+//               function (player, enemy) {
+//                 if (enemy.body.touching.up && player.body.touching.down) {
+//                   // destroy the enemy
+//                   enemy.destroy();
+//                 } else {
+//                   // any other way to collide on an enemy will restart the game
+//                   state = dead;
+//                 }
+//               },
+//               null,
+//               this
+//             );
 
+//             break;
+//         }
+//       }
+//     };
+    enemyCreator(this, passedArray, map, this.groundLayer)
     // Collide the player against the ground layer - here we are grabbing the sprite property from
     // the player (since the Player class is not a Phaser.Sprite).
     this.scaffoldingLayer.setCollisionByProperty({ collides: true });
@@ -228,7 +234,7 @@ export default class LevelOneScene extends Phaser.Scene {
   update(time, delta) {
     // Allow the player to respond to key presses and move itself
 
-    if (state === dead) {
+    if (this.state === dead) {
       this.player.destroy();
       this.scene.restart();
     } else {
@@ -238,7 +244,7 @@ export default class LevelOneScene extends Phaser.Scene {
         robot.update();
       }
       if (this.player.sprite.y > this.groundLayer.height) {
-        state = dead;
+        this.state = dead;
       }
     }
     displayTimeElapsed(time);
