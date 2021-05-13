@@ -34,7 +34,7 @@ export default class GameOverScene extends Phaser.Scene {
 
     // Display Timer
     this.add
-      .text(250, 0, `Time: ${global.elaspedTime}`, {
+      .text(250, 0, `Time: ${global.finalTimer}`, {
         fontSize: "16px",
         fill: "#ffffff",
       })
@@ -70,6 +70,9 @@ export default class GameOverScene extends Phaser.Scene {
           .then(response => response.json())
           .then(data => {
             console.log('Success:', data);
+            global.life = 3;
+            this.scene.start('PlatformerScene', { score: score, life: life });
+            this.scene.stop('GameOverScene');
           })
           .catch((error) => {
             console.error('Error:', error);
