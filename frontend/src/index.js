@@ -5,8 +5,8 @@ import App from "./components/App.jsx";
 import PlatformerScene from "./phaser/platformer-scene";
 import LevelTwoScene from "./phaser/leveltwo-scene";
 import LevelOneScene from "./phaser/levelone-scene";
-import InformationScene from "./phaser/information-scene";
 import "./styles/index.scss"
+import GameOverScene from "./phaser/gameover-scene";
 
 export const config = {
   type: Phaser.AUTO,
@@ -22,7 +22,7 @@ export const config = {
     PlatformerScene,
     LevelOneScene,
     LevelTwoScene,
-    InformationScene
+    GameOverScene
   ],
   physics: {
     default: "arcade",
@@ -33,9 +33,7 @@ export const config = {
   }
 };
 
-
 const game = new Phaser.Game(config);
-console.log(config)
 
 // if (navigator.geolocation) {
 //   navigator.geolocation.getCurrentPosition(position => {
