@@ -2,7 +2,7 @@ import Phaser from "phaser";
 
 
 export default class Robot {
-  constructor(scene, x, y) {
+  constructor(speed, scene, x, y) {
     this.scene = scene;
 
     const anims = scene.anims;
@@ -23,7 +23,7 @@ export default class Robot {
       .sprite(x, y, "robot", 0)
       // .setDrag(1000, 0)
       // .setMaxVelocity(300, 400);
-    this.sprite.setVelocityX(10);
+    this.sprite.setVelocityX(speed);
     
   }
   update() {

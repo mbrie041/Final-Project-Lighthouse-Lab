@@ -5,10 +5,6 @@ import enemyCreator from "./helpers/enemy-creator.js";
 const alive = "alive";
 const dead = "dead";
 
-const gameOver = "game over";
-
-let zone;
-
 let scoreText;
 let timeText;
 let pancake;
@@ -16,10 +12,11 @@ let pancake;
 export default class LevelOneScene extends Phaser.Scene {
   constructor() {
     super("LevelOneScene");
-    this.state = alive;
-    this.robotArray = [];
+    this.state = alive;//sets up state machine
+    this.enemyArray = [];//holds all the enemies created through the enemyCreator function
   }
   preload() {
+    //load sprite sheets for level characters
     this.load.atlas(
       "player",
       "src/assets/spritesheets/Agent_Mike.png",
@@ -30,6 +27,8 @@ export default class LevelOneScene extends Phaser.Scene {
       "src/assets/spritesheets/Robot.png",
       "src/assets/spritesheets/Robot.json"
     );
+
+    //load tileset images for layers
     this.load.image(
       "groundTiles",
       "src/assets/tilesets/Gray_Tile_Terrain (16 x 16).png"
@@ -59,14 +58,22 @@ export default class LevelOneScene extends Phaser.Scene {
       "invisibleWalls",
       "src/assets/tilesets/Blocks (16 x 16).png"
     );
+
+    //load map from Json file
     this.load.tilemapTiledJSON("level1map", "src/assets/tilemaps/Level2.json");
+
+    //placeholer for score increasing item
     this.load.image("pancake", "src/assets/images/Pancake_Stack (16 x 16).png");
   }
 
   create() {
+    //sets state machine 
     this.state = alive;
 
+    //stores level map
     const map = this.make.tilemap({ key: "level1map" });
+
+    //store values for tiles that require collision
     const invisibleTiles = map.addTilesetImage(
       "Blocks (16 x 16)",
       "invisibleWalls"
@@ -85,7 +92,7 @@ export default class LevelOneScene extends Phaser.Scene {
       "exitDoorTiles"
     );
 
-    // map.createLayer("Ground", groundTiles)
+    //create layers from tiled names
     map.createLayer("Background", scaffoldingTiles);
     map.createLayer("LightPosts", scaffoldingTiles);
     map.createLayer("Hillside", scaffoldingTiles);
@@ -94,107 +101,49 @@ export default class LevelOneScene extends Phaser.Scene {
     this.enemyWalls = map.createLayer("InvisibleWalls", invisibleTiles);
     this.enemyWalls.visible = false;
     this.scaffoldingLayer = map.createLayer("Scaffolding", scaffoldingTiles);
-
     this.groundLayer = map.createLayer("Ground", groundTiles);
-
+    
+    //set up player start point
     const spawnPoint = map.findObject(
       "Objects",
       (obj) => obj.name === "Spawn Point"
     );
 
-    // const robotSpawn = map.findObject(
-    //   "Enemies",
-    //   (obj) => obj.name === "Robot1"
-    // );
+    //Initialize player and start them at spawn point.
     this.player = new Player(this, spawnPoint.x, spawnPoint.y);
-    // this.robot1 = new Robot(this, robotSpawn.x, robotSpawn.y);
-    const passedArray = [this.enemyWalls, this.scaffoldingLayer]
+    
+    //Array containing walls that the enemies needs to collide with
+    const collisionArray = [this.enemyWalls, this.scaffoldingLayer];
 
-//     const enemyCreator = (collisionArray, givenMap, givenGroundLayer) => {
+    enemyCreator(
+      "Enemies",
+      "robot-walk",
+      Robot,
+      "Robot1",
+      this,
+      collisionArray,
+      map,
+      this.groundLayer,
+      50
+    );
 
-//       for (let obj of givenMap.getObjectLayer("Enemies").objects) {
-//         switch (obj.name) {
-//           case "Robot1":
-// ;
-//             const robot = new Robot(this, obj.x, obj.y);
-//             this.robotArray.push(robot);
-//             robot.sprite.setFlipX(false);
-//             robot.sprite.anims.play("robot-walk", true);
-//             robot.sprite.body.collideWorldBounds = true;
-
-//             for (let wall of collisionArray) {
-//               this.physics.world.addCollider(robot.sprite, wall, (sprite) => {
-//                 if (sprite.body.touching.right || sprite.body.blocked.right) {
-//                   sprite.setFlipX(true);
-//                   sprite.anims.play("robot-walk", true);
-//                   sprite.setVelocityX(-10); // turn left
-//                 } else if (
-//                   sprite.body.touching.left ||
-//                   sprite.body.blocked.left
-//                 ) {
-//                   sprite.setFlipX(false);
-//                   sprite.anims.play("robot-walk", true);
-//                   sprite.setVelocityX(10); // turn right
-//                 }
-//               });
-//             }
-//             this.physics.world.addCollider(robot.sprite, givenGroundLayer);
-
-//             this.physics.add.collider(
-//               this.player.sprite,
-//               robot.sprite,
-//               function (player, enemy) {
-//                 if (enemy.body.touching.up && player.body.touching.down) {
-//                   // destroy the enemy
-//                   enemy.destroy();
-//                 } else {
-//                   // any other way to collide on an enemy will restart the game
-//                   state = dead;
-//                 }
-//               },
-//               null,
-//               this
-//             );
-
-//             break;
-//         }
-//       }
-//     };
-    enemyCreator(this, passedArray, map, this.groundLayer)
-    // Collide the player against the ground layer - here we are grabbing the sprite property from
-    // the player (since the Player class is not a Phaser.Sprite).
+    //set up collision for the level
     this.scaffoldingLayer.setCollisionByProperty({ collides: true });
     this.groundLayer.setCollisionByProperty({ collides: true });
     this.enemyWalls.setCollisionByProperty({ collides: true });
-    this.physics.world.addCollider(this.player.sprite, this.scaffoldingLayer);
-    // this.physics.world.addCollider(this.robot1.sprite, this.groundLayer);
-    this.physics.world.addCollider(this.player.sprite, this.groundLayer);
-
-    this.player.sprite.body.collideWorldBounds = true;
     this.physics.world.setBoundsCollision(true, true, true, false);
     this.physics.world.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
 
+    //sets up collision for the player
+    this.physics.world.addCollider(this.player.sprite, this.scaffoldingLayer);
+    this.physics.world.addCollider(this.player.sprite, this.groundLayer);
+    this.player.sprite.body.collideWorldBounds = true;
+
+    //set up camera to have bounds on the level and follow the player
     this.cameras.main.startFollow(this.player.sprite);
     this.cameras.main.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
-    // this.cameras.main.setZoom(1,2)
-    // this.physics.world.addCollider(this.robot1.sprite, this.enemyWalls);
 
-    // this.physics.add.collider(
-    //   this.player.sprite,
-    //   this.robot1.sprite,
-    //   function (player, enemy) {
-    //     if (enemy.body.touching.up && player.body.touching.down) {
-    //       // destroy the enemy
-    //       enemy.destroy();
-    //     } else {
-    //       // any other way to collide on an enemy will restart the game
-    //       state = dead;
-    //     }
-    //   },
-    //   null,
-    //   this
-    // );
-
+    //creates score text at the top of the screen
     scoreText = this.add
       .text(20, 0, `Score: ${global.score}`, {
         fontSize: "16px",
@@ -202,7 +151,7 @@ export default class LevelOneScene extends Phaser.Scene {
       })
       .setScrollFactor(0);
 
-    //timer text
+    //timer text at the top of the screen
     timeText = this.add
       .text(250, 0, `Time: ${global.elaspedTime}`, {
         fontSize: "16px",
@@ -220,29 +169,31 @@ export default class LevelOneScene extends Phaser.Scene {
     //set bounce when items are initially dropped
     pancake.children.iterate(function (child) {
       child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.6));
-
-      //pancakes will collide with ground layer to keep them from falling off page
     });
+    
+    //pancakes will collide with ground layer to keep them from falling off page
     this.physics.add.collider(
       pancake,
       this.groundLayer && this.scaffoldingLayer
     );
-
+    //collects on player and pancake overlap
     this.physics.add.overlap(this.player.sprite, pancake, collectItem, null);
   }
 
   update(time, delta) {
-    // Allow the player to respond to key presses and move itself
 
+    //state update check
     if (this.state === dead) {
       this.player.destroy();
       this.scene.restart();
     } else {
-      //state is alive
+      //calls the player update on alive
       this.player.update();
-      for (let robot of this.robotArray) {
-        robot.update();
+      //calls the update on every enemy created and stored in enemyArray
+      for (let enemy of this.enemyArray) {
+        enemy.update();
       }
+      //changes state to dead if a player falls down a hole
       if (this.player.sprite.y > this.groundLayer.height) {
         this.state = dead;
       }

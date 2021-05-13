@@ -1,39 +1,49 @@
 import Robot from "../robot1.js";
 const dead = "dead";
+//Function that creates enemies
+//Takes the following params:
+//1. (String) Name of the object layer that the enemies are on from tiled
+//2. (String) Name of the movment annimation from the enemy sprite your generating
+//3. (Constructor) The enemy constructor you're passing in
+//4. (String) The name of the object in the objectlayer JSON file
+//5. (this) The scene 
+//6. (Array) An array containing the layers you want the sprite to collide with (not including the ground layer)
+//7. (Variable) The tile map
+//8. (Variable) The ground layer
+//*Remember you need an enemyArray declared in your constructor to store enemy sprites for update */
+export default function enemyCreator(objectLayerName, annimationName, enemyName, objName, scene, collisionArray, givenMap, givenGroundLayer, enemySpeed) {
 
-export default function enemyCreator(scene,collisionArray, givenMap, givenGroundLayer) {
-
-  for (let obj of givenMap.getObjectLayer("Enemies").objects) {
+  for (let obj of givenMap.getObjectLayer(objectLayerName).objects) {
     switch (obj.name) {
-      case "Robot1":
-;
-        const robot = new Robot(scene, obj.x, obj.y);
-        scene.robotArray.push(robot);
-        robot.sprite.setFlipX(false);
-        robot.sprite.anims.play("robot-walk", true);
-        robot.sprite.body.collideWorldBounds = true;
+      case objName:
+
+        const createdEnemy = new enemyName(enemySpeed,scene, obj.x, obj.y);
+        scene.enemyArray.push(createdEnemy);
+        createdEnemy.sprite.setFlipX(false);
+        createdEnemy.sprite.anims.play(annimationName, true);
+        createdEnemy.sprite.body.collideWorldBounds = true;
 
         for (let wall of collisionArray) {
-          scene.physics.world.addCollider(robot.sprite, wall, (sprite) => {
+          scene.physics.world.addCollider(createdEnemy.sprite, wall, (sprite) => {
             if (sprite.body.touching.right || sprite.body.blocked.right) {
               sprite.setFlipX(true);
-              sprite.anims.play("robot-walk", true);
-              sprite.setVelocityX(-10); // turn left
+              sprite.anims.play(annimationName, true);
+              sprite.setVelocityX(-enemySpeed); // turn left
             } else if (
               sprite.body.touching.left ||
               sprite.body.blocked.left
             ) {
               sprite.setFlipX(false);
-              sprite.anims.play("robot-walk", true);
-              sprite.setVelocityX(10); // turn right
+              sprite.anims.play(annimationName, true);
+              sprite.setVelocityX(enemySpeed); // turn right
             }
           });
         }
-        scene.physics.world.addCollider(robot.sprite, givenGroundLayer);
+        scene.physics.world.addCollider(createdEnemy.sprite, givenGroundLayer);
 
         scene.physics.add.collider(
           scene.player.sprite,
-          robot.sprite,
+          createdEnemy.sprite,
           function (player, enemy) {
             if (enemy.body.touching.up && player.body.touching.down) {
               // destroy the enemy
