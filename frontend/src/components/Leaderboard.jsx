@@ -18,8 +18,8 @@ export default function Leaderboard() {
 
 
   return (
-    <div id="leaderboard">
-      <h2 class="leaderboard-title">Leaderboard</h2>
+    <div className="leaderboard">
+      <h2 className="leaderboard-title">Leaderboard</h2>
       <LeaderboardScoreList scores={state} />
     </div>
   );
