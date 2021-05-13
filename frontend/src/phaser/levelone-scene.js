@@ -190,19 +190,21 @@ export default class LevelOneScene extends Phaser.Scene {
     // );
 
     scoreText = this.add
-      .text(20, 0, `Score: ${global.score}`, {
-        fontSize: "16px",
-        fill: "#ffffff",
-      })
-      .setScrollFactor(0);
+    .text(20, 5, 'Score: 0', {
+      fontSize: '10px',
+      fill: '#ffffff',
+      fontFamily: ' "Press Start 2P" '
+    })
+    .setScrollFactor(0);
 
-    //timer text
-    timeText = this.add
-      .text(250, 0, `Time: ${global.elaspedTime}`, {
-        fontSize: "16px",
-        fill: "#ffffff",
-      })
-      .setScrollFactor(0);
+  //timer text
+  timeText = this.add
+    .text(240, 5, '', {
+      fontSize: '10px',
+      fill: '#ffffff',
+      fontFamily: ' "Press Start 2P" '
+    })
+    .setScrollFactor(0);
 
     //populate pancake group and populates it. Repeats x amount of times and spreads them stepX apart
     pancake = this.physics.add.group({

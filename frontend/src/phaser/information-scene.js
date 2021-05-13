@@ -25,13 +25,13 @@ export default class InformationScene extends Phaser.Scene {
     }).setOrigin(0.5);
 
     // Display GEO location data
-    this.locationText = this.add.text(200, 300,
-      `[${this.location.coordinates[1]}, ${this.location.coordinates[0]}]`,
-      {
-        color: "#FFFFFF",
-        fontSize: 20
-      }
-    ).setOrigin(0.5);
+    // this.locationText = this.add.text(200, 300,
+    //   `[${this.location.coordinates[1]}, ${this.location.coordinates[0]}]`,
+    //   {
+    //     color: "#FFFFFF",
+    //     fontSize: 20
+    //   }
+    // ).setOrigin(0.5);
 
     this.returnKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ENTER);
 

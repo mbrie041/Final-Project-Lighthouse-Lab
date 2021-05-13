@@ -97,17 +97,19 @@ export default class PlatformerScene extends Phaser.Scene {
 
     //create score text
     scoreText = this.add
-      .text(20, 0, 'Score: 0', {
-        fontSize: '16px',
-        fill: '#ffffff'
+      .text(20, 5, 'Score: 0', {
+        fontSize: '10px',
+        fill: '#ffffff',
+        fontFamily: ' "Press Start 2P" '
       })
       .setScrollFactor(0);
 
     //timer text
     timeText = this.add
-      .text(250, 0, '', {
-        fontSize: '16px',
-        fill: '#ffffff'
+      .text(240, 5, '', {
+        fontSize: '10px',
+        fill: '#ffffff',
+        fontFamily: ' "Press Start 2P" '
       })
       .setScrollFactor(0);
 
