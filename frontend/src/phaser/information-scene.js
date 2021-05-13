@@ -4,9 +4,9 @@ import Player from "./player.js";
 // global.score = 99;
 
 
-export default class InformationScene extends Phaser.Scene {
+export default class GameOverScene extends Phaser.Scene {
   constructor() {
-    super("InformationScene");
+    super("GameOverScene");
   }
   init(data) {
     this.location = data.location;
@@ -15,23 +15,33 @@ export default class InformationScene extends Phaser.Scene {
     this.load.html("form", "src/assets/form.html");
   }
   create() {
-    console.log("Information Scene")
+    console.log("GameOver Scene")
 
-    this.nameInput = this.add.dom(640, 360).createFromCache("form");
-    this.message = this.add.text(640, 250, "Hello, --", {
+    // Display Score
+
+    this.add
+      .text(20, 0, `Score: ${global.score}`, {
+        fontSize: "16px",
+        fill: "#ffffff",
+      })
+      .setScrollFactor(0);
+
+    this.nameInput = this.add.dom(200, 150).createFromCache("form");
+    this.message = this.add.text(30, 50, "GAME OVER! \n\nENTER YOUR NAME\nPRESS RETURN TO CONITNUE", {
       color: "#FFFFFF",
-      fontSize: 60,
-      fontStyle: "bold"
-    }).setOrigin(0.5);
+      fontSize: "14px",
+      fontStyle: "bold",
+      align: "center"
+    }).setOrigin(0);
 
     // Display GEO location data
-    this.locationText = this.add.text(200, 300,
-      `[${this.location.coordinates[1]}, ${this.location.coordinates[0]}]`,
-      {
-        color: "#FFFFFF",
-        fontSize: 20
-      }
-    ).setOrigin(0.5);
+    // this.locationText = this.add.text(200, 300,
+    //   `[${this.location.coordinates[1]}, ${this.location.coordinates[0]}]`,
+    //   {
+    //     color: "#FFFFFF",
+    //     fontSize: 20
+    //   }
+    // ).setOrigin(0.5);
 
     this.returnKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ENTER);
 
@@ -39,14 +49,14 @@ export default class InformationScene extends Phaser.Scene {
 
       let name = this.nameInput.getChildByName("name");
       if (name.value != "") {
-        this.message.setText("Hello, " + name.value);
+        // this.message.setText("Hello, " + name.value);
         // post score and username to database
         fetch('http://localhost:3001/api/scores', {
           'method': 'POST',
           headers: {
             'Content-Type': 'application/json'
           },
-          'body': JSON.stringify({ 'score': 50, 'name': name.value })
+          'body': JSON.stringify({ 'score': global.score, 'name': name.value })
         })
           .then(response => response.json())
           .then(data => {
