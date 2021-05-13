@@ -102,7 +102,7 @@ export default class LevelOneScene extends Phaser.Scene {
     this.enemyWalls.visible = false;
     this.scaffoldingLayer = map.createLayer("Scaffolding", scaffoldingTiles);
     this.groundLayer = map.createLayer("Ground", groundTiles);
-    
+
     //set up player start point
     const spawnPoint = map.findObject(
       "Objects",
@@ -111,7 +111,7 @@ export default class LevelOneScene extends Phaser.Scene {
 
     //Initialize player and start them at spawn point.
     this.player = new Player(this, spawnPoint.x, spawnPoint.y);
-    
+
     //Array containing walls that the enemies needs to collide with
     const collisionArray = [this.enemyWalls, this.scaffoldingLayer];
 
@@ -151,6 +151,14 @@ export default class LevelOneScene extends Phaser.Scene {
       })
       .setScrollFactor(0);
 
+    // Life text at the top of the screen
+    const lifeText = this.add
+      .text(150, 0, `Life: ${global.life}`, {
+        fontSize: "16px",
+        fill: "#ffffff",
+      })
+      .setScrollFactor(0);
+
     //timer text at the top of the screen
     timeText = this.add
       .text(250, 0, `Time: ${global.elaspedTime}`, {
@@ -170,7 +178,7 @@ export default class LevelOneScene extends Phaser.Scene {
     pancake.children.iterate(function (child) {
       child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.6));
     });
-    
+
     //pancakes will collide with ground layer to keep them from falling off page
     this.physics.add.collider(
       pancake,
@@ -185,7 +193,14 @@ export default class LevelOneScene extends Phaser.Scene {
     //state update check
     if (this.state === dead) {
       this.player.destroy();
-      this.scene.restart();
+      global.life -= 1;
+      if (global.life === 0) {
+        this.scene.start('GameOverScene', { score: score, life: life })
+        // this.scene.start('InformationScene')
+        this.scene.stop('LevelOneScene')
+      } else {
+        this.scene.restart();
+      }
     } else {
       //calls the player update on alive
       this.player.update();

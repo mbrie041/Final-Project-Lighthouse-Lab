@@ -10,7 +10,7 @@ global.score = 0;
 let scoreText;
 let timeText;
 global.elapsedTime;
-
+global.life = 3;
 
 
 export default class PlatformerScene extends Phaser.Scene {
@@ -136,7 +136,7 @@ export default class PlatformerScene extends Phaser.Scene {
     this.physics.add.overlap(player.sprite, zone, () => {
       this.physics.world.disable(zone);
       console.log("You hit the door!");
-      this.scene.start('LevelOneScene', { score: score })
+      this.scene.start('LevelOneScene', { score: score, life: life })
       // this.scene.start('InformationScene')
       this.scene.stop('PlatformerScene')
       // portalCallback(player, tile, this, data);
