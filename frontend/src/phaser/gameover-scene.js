@@ -24,7 +24,15 @@ export default class GameOverScene extends Phaser.Scene {
         fill: "#ffffff",
       })
       .setScrollFactor(0);
+    // Display Life
+    this.add
+      .text(150, 0, `Life: ${global.life}`, {
+        fontSize: "16px",
+        fill: "#ffffff",
+      })
+      .setScrollFactor(0);
 
+    // Display Timer
     this.add
       .text(250, 0, `Time: ${global.elaspedTime}`, {
         fontSize: "16px",
@@ -42,18 +50,8 @@ export default class GameOverScene extends Phaser.Scene {
     this.message = this.add.text(130, 150, "ENTER YOUR NAME\n\n\n\nPRESS RETURN TO CONITNUE", {
       color: "#FFFFFF",
       fontSize: "10px",
-      // fontStyle: "bold",
       align: "center"
     }).setOrigin(0);
-
-    // Display GEO location data
-    // this.locationText = this.add.text(200, 300,
-    //   `[${this.location.coordinates[1]}, ${this.location.coordinates[0]}]`,
-    //   {
-    //     color: "#FFFFFF",
-    //     fontSize: 20
-    //   }
-    // ).setOrigin(0.5);
 
     this.returnKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ENTER);
 
@@ -61,7 +59,6 @@ export default class GameOverScene extends Phaser.Scene {
 
       let name = this.nameInput.getChildByName("name");
       if (name.value != "") {
-        // this.message.setText("Hello, " + name.value);
         // post score and username to database
         fetch('http://localhost:3001/api/scores', {
           'method': 'POST',
@@ -79,32 +76,5 @@ export default class GameOverScene extends Phaser.Scene {
           });
       }
     });
-
-    // create submit button
-    // this.submitButton = this.add
-    //   .text(150, 0, "SUBMIT", {
-    //     font: "18px monospace",
-    //     fill: "#000000",
-    //     padding: { x: 20, y: 10 },
-    //     backgroundColor: "#ffffff"
-    //   }).setScrollFactor(0);
-
-    // this.submitButton.setInteractive();
-    // this.submitButton.on("pointerdown", () => {
-    //   fetch('http://localhost:3001/api/scores', {
-    //     'method': 'POST',
-    //     headers: {
-    //       'Content-Type': 'application/json'
-    //     },
-    //     'body': JSON.stringify({ score })
-    //   })
-    //     .then(response => response.json())
-    //     .then(data => {
-    //       console.log('Success:', data);
-    //     })
-    //     .catch((error) => {
-    //       console.error('Error:', error);
-    //     });
-    // });
   }
 };
