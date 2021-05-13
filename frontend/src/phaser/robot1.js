@@ -1,26 +1,33 @@
 import Phaser from "phaser";
+let runChildUpdate
 
 export default class Robot {
   constructor(scene, x, y) {
+    runChildUpdate = true
     this.scene = scene;
 
     const anims = scene.anims;
 
     anims.create({
       key: "robot-walk",
-      frames: anims.generateFrameNames("robot", { prefix: "Robot-walk", suffix: '.png',  start: 1, end: 4}),
+      frames: anims.generateFrameNames("robot", {
+        prefix: "Robot-walk",
+        suffix: ".png",
+        start: 1,
+        end: 4,
+      }),
       frameRate: 12,
-      repeat: -1
+      repeat: -1,
     });
 
     this.sprite = scene.physics.add
-    .sprite(x, y, "robot", 0)
-    .setDrag(1000, 0)
-    .setMaxVelocity(300, 400);
+      .sprite(x, y, "robot", 0)
+      // .setDrag(1000, 0)
+      // .setMaxVelocity(300, 400);
+    this.sprite.setVelocityX(10);
   }
   update() {
-    const sprite = this.sprite;
-    sprite.body.blocked.down
+
   }
   destroy() {
     this.sprite.destroy();
