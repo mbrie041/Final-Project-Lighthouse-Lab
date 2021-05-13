@@ -20,7 +20,7 @@ export const config = {
     createContainer: true
   },
   scene: [
-    // IntroScene,
+    IntroScene,
     PlatformerScene,
     LevelOneScene,
     LevelTwoScene,

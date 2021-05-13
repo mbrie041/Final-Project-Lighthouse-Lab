@@ -9,17 +9,14 @@ export default class IntroScene extends Phaser.Scene {
   constructor() {
     super("IntroScene");
   }
-  init(data) {
-    this.location = data.location;
-  }
+  
   preload() {
     this.load.image("lighthouseIntro", "src/assets/images/lighthouse-intro.png");
     this.load.image("lighthouseColor", "src/assets/images/lighthouseColor.png");
   
   }
-  create() {
+  create(data) {
    this.cameras.main.fadeIn(5000);
-  //  this.cameras.main.setBounds(0, 0, lighthouse.widthInPixels, lighthouse.heightInPixels);
   let lighthouse = this.add.image(0, 0, "lighthouseIntro").setOrigin(0, 0)
 
 
@@ -42,7 +39,16 @@ export default class IntroScene extends Phaser.Scene {
     //   fontFamily: ' "Press Start 2P" '
     // }).setOrigin(0,0);
 
-  
+    this.start = this.add.text(150, 150, 'Start', {
+      fontSize: '20px',
+      fill: '#ffffff',
+      fontFamily: ' "Press Start 2P" ',
+      }).setOrigin(0,0);
 
+      this.start.setInteractive()
+
+      this.start.on('pointerdown', () => {
+        this.scene.start("LevelOneScene");
+      })
   }
 };
