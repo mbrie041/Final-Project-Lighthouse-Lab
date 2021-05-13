@@ -1,19 +1,16 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import LeaderboardScoreList from "./LeaderboardScoreList.jsx";
-import NewScore from "./NewScore.jsx";
 
-export default function Leaderboard(props) {
+export default function Leaderboard() {
   const [scores, setScores] = useState([]);
-  const { name, score } = props.newScore;
 
   useEffect(() => {
     const getScores = axios.get('http://localhost:3001/api/scores');
 
     getScores
       .then(response => {
-        setScores([...response.data, { name, score }]);
-        console.log(scores);
+        setScores([...response.data]);
       });
   }, []);
 
@@ -39,6 +36,7 @@ export default function Leaderboard(props) {
   return (
     <div className="leaderboard">
       <h2 className="leaderboard-title">Leaderboard</h2>
+      {/* {scoreObj.name && (<LeaderboardScoreList scores={scores} />)} */}
       <LeaderboardScoreList scores={scores} />
     </div>
   );
