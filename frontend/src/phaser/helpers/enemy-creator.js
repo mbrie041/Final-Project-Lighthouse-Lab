@@ -6,41 +6,58 @@ const dead = "dead";
 //2. (String) Name of the movment annimation from the enemy sprite your generating
 //3. (Constructor) The enemy constructor you're passing in
 //4. (String) The name of the object in the objectlayer JSON file
-//5. (this) The scene 
+//5. (this) The scene
 //6. (Array) An array containing the layers you want the sprite to collide with (not including the ground layer)
 //7. (Variable) The tile map
 //8. (Variable) The ground layer
 //*Remember you need an enemyArray declared in your constructor to store enemy sprites for update */
-export default function enemyCreator(objectLayerName, annimationName, enemyName, objName, scene, collisionArray, givenMap, givenGroundLayer, enemySpeed) {
-
+export default function enemyCreator(
+  objectLayerName,
+  annimationName,
+  enemyName,
+  objName,
+  scene,
+  collisionArray,
+  givenMap,
+  givenGroundLayer,
+  enemySpeed
+) {
+  //Iterates through an array of objects create from the tilemaps JSON file
   for (let obj of givenMap.getObjectLayer(objectLayerName).objects) {
+    //switches based on the objects given name
     switch (obj.name) {
       case objName:
-
-        const createdEnemy = new enemyName(enemySpeed,scene, obj.x, obj.y);
+        //set up the initial enemy sprite and stores them in the levels enemy array
+        const createdEnemy = new enemyName(enemySpeed, scene, obj.x, obj.y);
         scene.enemyArray.push(createdEnemy);
         createdEnemy.sprite.setFlipX(false);
         createdEnemy.sprite.anims.play(annimationName, true);
         createdEnemy.sprite.body.collideWorldBounds = true;
 
+        //sets up collision for the sprite and when to reverse direction
         for (let wall of collisionArray) {
-          scene.physics.world.addCollider(createdEnemy.sprite, wall, (sprite) => {
-            if (sprite.body.touching.right || sprite.body.blocked.right) {
-              sprite.setFlipX(true);
-              sprite.anims.play(annimationName, true);
-              sprite.setVelocityX(-enemySpeed); // turn left
-            } else if (
-              sprite.body.touching.left ||
-              sprite.body.blocked.left
-            ) {
-              sprite.setFlipX(false);
-              sprite.anims.play(annimationName, true);
-              sprite.setVelocityX(enemySpeed); // turn right
+          scene.physics.world.addCollider(
+            createdEnemy.sprite,
+            wall,
+            (sprite) => {
+              if (sprite.body.touching.right || sprite.body.blocked.right) {
+                sprite.setFlipX(true);
+                sprite.anims.play(annimationName, true);
+                sprite.setVelocityX(-enemySpeed); // turn left
+              } else if (
+                sprite.body.touching.left ||
+                sprite.body.blocked.left
+              ) {
+                sprite.setFlipX(false);
+                sprite.anims.play(annimationName, true);
+                sprite.setVelocityX(enemySpeed); // turn right
+              }
             }
-          });
+          );
         }
-        scene.physics.world.addCollider(createdEnemy.sprite, givenGroundLayer);
 
+        //sets up world and player collision for the sprite
+        scene.physics.world.addCollider(createdEnemy.sprite, givenGroundLayer);
         scene.physics.add.collider(
           scene.player.sprite,
           createdEnemy.sprite,
@@ -49,7 +66,7 @@ export default function enemyCreator(objectLayerName, annimationName, enemyName,
               // destroy the enemy
               enemy.destroy();
             } else {
-              // any other way to collide on an enemy will restart the game
+              // any other way to collide on an enemy will kill the player
               scene.state = dead;
             }
           },
@@ -60,4 +77,4 @@ export default function enemyCreator(objectLayerName, annimationName, enemyName,
         break;
     }
   }
-};
+}
