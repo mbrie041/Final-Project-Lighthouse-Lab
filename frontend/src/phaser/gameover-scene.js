@@ -18,7 +18,6 @@ export default class GameOverScene extends Phaser.Scene {
     console.log("GameOver Scene")
 
     // Display Score
-
     this.add
       .text(20, 0, `Score: ${global.score}`, {
         fontSize: "16px",
@@ -26,11 +25,24 @@ export default class GameOverScene extends Phaser.Scene {
       })
       .setScrollFactor(0);
 
-    this.nameInput = this.add.dom(200, 150).createFromCache("form");
-    this.message = this.add.text(30, 50, "GAME OVER! \n\nENTER YOUR NAME\nPRESS RETURN TO CONITNUE", {
+    this.add
+      .text(250, 0, `Time: ${global.elaspedTime}`, {
+        fontSize: "16px",
+        fill: "#ffffff",
+      })
+      .setScrollFactor(0);
+
+    this.nameInput = this.add.dom(410, 340).createFromCache("form");
+    this.message = this.add.text(130, 100, "GAME OVER!", {
       color: "#FFFFFF",
-      fontSize: "14px",
+      fontSize: "25px",
       fontStyle: "bold",
+      align: "center"
+    }).setOrigin(0);
+    this.message = this.add.text(130, 150, "ENTER YOUR NAME\n\n\n\nPRESS RETURN TO CONITNUE", {
+      color: "#FFFFFF",
+      fontSize: "10px",
+      // fontStyle: "bold",
       align: "center"
     }).setOrigin(0);
 
