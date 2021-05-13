@@ -15,7 +15,7 @@ const router = express.Router();
 module.exports = ({
     getScores,
     addScore
-}) => {
+}, updateLeaderboard) => {
     // module.exports = () => {
     /* GET scores listing. */
     router.get('/', (req, res) => {
@@ -34,7 +34,11 @@ module.exports = ({
         console.log('Post to / req.body = ', req.body);
         const { name, score } = req.body;
         return addScore(name, score)
-            .then(dbres => res.json('score!'))
+            .then(dbres => {
+                console.log(dbres);
+                updateLeaderboard(dbres.id, dbres.name, dbres.score);
+                res.json('score!')
+            })
             .catch(err => res.json({
                 error: err.message
             }));

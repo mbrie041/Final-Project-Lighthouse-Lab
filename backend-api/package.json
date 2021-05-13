@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www",
+    "start": "node ./bin/server",
     "local": "./node_modules/.bin/nodemon -L --ignore public/",
     "db:reset": "node ./db/reset.js"
   },
@@ -14,7 +14,8 @@
     "express": "~4.16.1",
     "morgan": "~1.9.1",
     "pg": "^8.6.0",
-    "pg-native": "^3.0.0"
+    "pg-native": "^3.0.0",
+    "ws": "^7.4.5"
   },
   "devDependencies": {
     "dotenv": "^9.0.1",

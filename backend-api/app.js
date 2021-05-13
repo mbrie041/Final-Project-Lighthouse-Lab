@@ -9,17 +9,21 @@ const dbHelpers = require('./helpers/dbHelpers')(db);
 var indexRouter = require('./routes/index');
 var scoresRouter = require('./routes/scores');
 
-var app = express();
+function application(actions = { updateLeaderboard: () => { } }) {
+  var app = express();
 
-app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(Cors());
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+  app.use(logger('dev'));
+  app.use(express.json());
+  app.use(express.urlencoded({ extended: false }));
+  app.use(Cors());
+  app.use(cookieParser());
+  app.use(express.static(path.join(__dirname, 'public')));
 
+  app.use('/', indexRouter);
+  // app.use('/users', usersRouter);
+  app.use('/api/scores', scoresRouter(dbHelpers, actions.updateLeaderboard));
 
-app.use('/', indexRouter);
-// app.use('/users', usersRouter);
-app.use('/api/scores', scoresRouter(dbHelpers));
-module.exports = app;
+  return app;
+}
+
+module.exports = application;

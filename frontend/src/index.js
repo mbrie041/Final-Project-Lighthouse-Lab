@@ -33,6 +33,7 @@ export const config = {
   }
 };
 
+
 const game = new Phaser.Game(config);
 console.log(config)
 
@@ -42,7 +43,7 @@ console.log(config)
 //       position.coords.latitude = 0;
 //       position.coords.longitude = 0;
 //     }
-//     game.scene.start("PlatformerScene", {
+//     game.scene.start("InformationScene", {
 //       location: {
 //         type: "Point",
 //         coordinates: [
@@ -83,6 +84,7 @@ window.onload = function(){
   resize();
   window.addEventListener("resize", resize, false);
 }
+
 
 ReactDOM.render(
   <App />,
