@@ -21,7 +21,30 @@
   border-radius: 10px;
   overflow: scroll;
   background-color: #2e2935;
+  // text-align: center;
+  .leaderboard-title{
+    font-size: 2em;
+    text-align: center;
+  }
   
+  .leaderboard {
+    margin-left: 8em;
+    margin-top: 2em;
+    
+    thead {
+      font-size: 1.5em;
+    }
+    .board-results {
+      
+
+      .scores {
+        padding: 1em;
+      }
+
+    
+    }
+
+  }
 
 
   ul {
@@ -29,7 +52,5 @@
     list-style-type: none;
   }
 
-  .leaderboard-title{
-    font-size: 2em;
-  }
+  
 }

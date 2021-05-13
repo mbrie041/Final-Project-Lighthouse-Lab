@@ -1,3 +1,10 @@
+import Phaser from "phaser";
+
+let introText = `blah blah blah blah 
+blah blah blah blah blah blah blah blah 
+blah blah blah 
+ `;
+
 export default class IntroScene extends Phaser.Scene {
   constructor() {
     super("IntroScene");
@@ -6,44 +13,36 @@ export default class IntroScene extends Phaser.Scene {
     this.location = data.location;
   }
   preload() {
-    this.load.html("form", "src/assets/form.html");
+    this.load.image("lighthouseIntro", "src/assets/images/lighthouse-intro.png");
+    this.load.image("lighthouseColor", "src/assets/images/lighthouseColor.png");
+  
   }
   create() {
-    console.log("Information Scene")
+   this.cameras.main.fadeIn(5000);
+  //  this.cameras.main.setBounds(0, 0, lighthouse.widthInPixels, lighthouse.heightInPixels);
+  let lighthouse = this.add.image(0, 0, "lighthouseIntro").setOrigin(0, 0)
 
-    this.nameInput = this.add.dom(640, 360).createFromCache("form");
-    this.message = this.add.text(640, 250, "Hello, --", {
-      color: "#FFFFFF",
-      fontSize: 60,
-      fontStyle: "bold"
-    }).setOrigin(0.5);
 
-    
+  let image = this.add.image(this.cameras.main.width / 2, this.cameras.main.height / 2, 'lighthouseIntro')
+  let scaleX = this.cameras.main.width / image.width
+  let scaleY = this.cameras.main.height / image.height
+  let scale = Math.max(scaleX, scaleY)
+  image.setScale(scale).setScrollFactor(0)
 
-    this.returnKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ENTER);
+    this.logo = this.add.text(30, 50, 'Lighthouse Labs', {
+      fontSize: '20px',
+      fill: '#ffffff',
+      fontFamily: ' "Press Start 2P" ',
+      
+    }).setOrigin(0,0);
 
-    this.returnKey.on("down", event => {
+    // this.introText = this.add.text(0, 100, introText, {
+    //   fontSize: '10px',
+    //   fill: '#ffffff',
+    //   fontFamily: ' "Press Start 2P" '
+    // }).setOrigin(0,0);
 
-      let name = this.nameInput.getChildByName("name");
-      if (name.value != "") {
-        this.message.setText("Hello, " + name.value);
-        // post score and username to database
-        fetch('http://localhost:3001/api/scores', {
-          'method': 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          'body': JSON.stringify({ 'score': 50, 'name': name.value })
-        })
-          .then(response => response.json())
-          .then(data => {
-            console.log('Success:', data);
-          })
-          .catch((error) => {
-            console.error('Error:', error);
-          });
-      }
-    });
+  
 
   }
 };

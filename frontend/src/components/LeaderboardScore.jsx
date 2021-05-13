@@ -9,9 +9,9 @@ export default function LeaderboardScore(props) {
     //   <li>Score: {props.score}</li>
     // </ul>
 
-    <tr>
-      <td>{props.name}</td>
-      <td>{props.score}</td>
+    <tr class = "board-results">
+      <td class= "gamer">{props.name}</td>
+      <td class = "scores">{props.score}</td>
     </tr>
 
 

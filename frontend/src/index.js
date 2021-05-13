@@ -6,6 +6,7 @@ import PlatformerScene from "./phaser/platformer-scene";
 import LevelTwoScene from "./phaser/leveltwo-scene";
 import LevelOneScene from "./phaser/levelone-scene";
 import InformationScene from "./phaser/information-scene";
+import IntroScene from "./phaser/_intro-scene";
 import "./styles/index.scss"
 
 export const config = {
@@ -19,7 +20,7 @@ export const config = {
     createContainer: true
   },
   scene: [
-    // IntroScene,
+    IntroScene,
     PlatformerScene,
     LevelOneScene,
     LevelTwoScene,

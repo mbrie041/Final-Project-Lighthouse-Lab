@@ -36,10 +36,10 @@ export default function Leaderboard() {
 
   return (
     <>
-      <h2 className="leaderboard-title">Leaderboard</h2>
+    <h2 className="leaderboard-title">Leaderboard</h2>
     <table className="leaderboard">
       <thead>
-        <tr>
+          <tr>
           <th>gamer</th>
           <th>score</th>
           </tr>
