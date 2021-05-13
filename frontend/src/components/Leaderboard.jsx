@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import LeaderboardScoreList from "./LeaderboardScoreList.jsx";
-import "./Leaderboard.scss"
+
 
 export default function Leaderboard() {
   const [scores, setScores] = useState([]);
@@ -35,11 +35,21 @@ export default function Leaderboard() {
   }, [])
 
   return (
-    <div className="leaderboard">
+    <>
       <h2 className="leaderboard-title">Leaderboard</h2>
+    <table className="leaderboard">
+      <thead>
+        <tr>
+          <th>gamer</th>
+          <th>score</th>
+          </tr>
+      </thead>
+      <tbody>
+        <LeaderboardScoreList scores={scores} />
+      </tbody>
       {/* {scoreObj.name && (<LeaderboardScoreList scores={scores} />)} */}
-      <LeaderboardScoreList scores={scores} />
-    </div>
+    </table>
+    </>
   );
 }
 

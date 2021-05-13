@@ -19,6 +19,7 @@ export const config = {
     createContainer: true
   },
   scene: [
+    // IntroScene,
     PlatformerScene,
     LevelOneScene,
     LevelTwoScene,
