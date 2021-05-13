@@ -12,8 +12,8 @@ let canvas = document.querySelector('canvas')
 
 export const config = {
   type: Phaser.AUTO,
-  width: 1000,
-  height: 500,
+  width: 400,
+  height: 260,
   parent: "phaser",
   pixelArt: true,
   backgroundColor: "#1d212d",
@@ -21,10 +21,10 @@ export const config = {
     createContainer: true
   },
   scene: [
-    InformationScene,
     PlatformerScene,
     LevelOneScene,
-    LevelTwoScene
+    LevelTwoScene,
+    InformationScene
   ],
   physics: {
     default: "arcade",
@@ -35,6 +35,7 @@ export const config = {
   }
 };
 
+
 const game = new Phaser.Game(config);
 console.log(config)
 
@@ -44,7 +45,7 @@ console.log(config)
 //       position.coords.latitude = 0;
 //       position.coords.longitude = 0;
 //     }
-//     game.scene.start("PlatformerScene", {
+//     game.scene.start("InformationScene", {
 //       location: {
 //         type: "Point",
 //         coordinates: [
