@@ -80,6 +80,8 @@ export default class GameOverScene extends Phaser.Scene {
           .then(data => {
             console.log('Success:', data);
             global.life = 3;
+            global.score = 0;
+            global.time = 0;
             this.scene.start('PlatformerScene');
             this.scene.stop('GameOverScene');
           })
