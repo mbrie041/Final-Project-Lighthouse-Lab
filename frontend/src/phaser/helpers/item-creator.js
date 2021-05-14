@@ -1,7 +1,7 @@
-export default function itemCreator(objects, item, collectCallback, physics, layerArray, player) {
+export default function createItem(objects, item, collectCallback, physics, layerArray, player) {
     // const objects = map.getObjectLayer("Gems").objects;
     const newArray = [...objects];
-    newItemGroup = physics.add.group({
+    const newItemGroup = physics.add.group({
       key: item,
       repeat: newArray.length - 1,
       setXY: { x: 400, y: 0, stepX: 100 },
