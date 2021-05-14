@@ -175,8 +175,7 @@ export default class LevelOneScene extends Phaser.Scene {
     
     //pancakes will collide with ground layer to keep them from falling off page
     this.physics.add.collider(
-      pancake,
-      this.groundLayer && this.scaffoldingLayer
+      pancake, this.groundLayer
     );
     //collects on player and pancake overlap
     this.physics.add.overlap(this.player.sprite, pancake, collectItem, null);

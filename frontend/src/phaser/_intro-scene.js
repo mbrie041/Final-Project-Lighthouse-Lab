@@ -16,7 +16,7 @@ export default class IntroScene extends Phaser.Scene {
   
   }
   create(data) {
-   this.cameras.main.fadeIn(5000);
+   this.cameras.main.fadeIn(3000);
   let lighthouse = this.add.image(0, 0, "lighthouseIntro").setOrigin(0, 0)
 
 
