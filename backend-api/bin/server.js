@@ -52,7 +52,8 @@ function updateLeaderboard(id, name, score) {
           type: "UPDATE_LEADERBOARD",
           id,
           name,
-          score
+          score,
+          time
         })
       );
     }
