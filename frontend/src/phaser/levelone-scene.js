@@ -35,6 +35,11 @@ export default class LevelOneScene extends Phaser.Scene {
       "src/assets/spritesheets/Python.png",
       "src/assets/spritesheets/Python.json"
     );
+    this.load.atlas(
+      "smoke",
+      "src/assets/spritesheets/Smoke.png",
+      "src/assets/spritesheets/Smoke.json"
+    );
 
     //load tileset images for layers
     this.load.image(
@@ -132,7 +137,8 @@ export default class LevelOneScene extends Phaser.Scene {
         this,
         collisionArray,
         this.groundLayer,
-        50
+        50,
+        "robot-hurt"
       )
     );
     this.enemyArray.concat(
@@ -143,7 +149,8 @@ export default class LevelOneScene extends Phaser.Scene {
         this,
         collisionArray,
         this.groundLayer,
-        50
+        50,
+        "python-hurt"
       )
     );
     //set up collision for the level

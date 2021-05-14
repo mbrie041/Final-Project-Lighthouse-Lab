@@ -26,7 +26,7 @@ export default class Player {
     anims.create({
       key: "player-falling",
       frames: anims.generateFrameNames("player", { prefix: "Mike-Falling", suffix: '.png',  start: 1, end: 3}),
-      frameRate: 8,
+      frameRate: 12,
       repeat: -1
     });
 

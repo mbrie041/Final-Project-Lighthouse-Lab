@@ -27,7 +27,7 @@ export default class Robot {
         end: 2,
       }),
       frameRate: 12,
-      repeat: 8,
+      repeat: -1,
     });
 
     this.sprite = scene.physics.add

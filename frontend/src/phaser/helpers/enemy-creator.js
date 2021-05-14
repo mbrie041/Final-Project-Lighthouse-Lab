@@ -19,7 +19,8 @@ export default function enemyCreator(
   scene,
   collisionArray,
   givenGroundLayer,
-  enemySpeed
+  enemySpeed,
+  deathAnnimationName
 ) {
   const enemyArray = [];
   //Iterates through an array of objects create from the tilemaps JSON file
@@ -27,46 +28,55 @@ export default function enemyCreator(
     //switches based on the objects given name
 
     //set up the initial enemy sprite and stores them in the levels enemy array
-    const createdEnemy = new enemyName(enemySpeed, scene, obj.x, obj.y);
-    enemyArray.push(createdEnemy);
-    createdEnemy.sprite.setFlipX(false);
-    createdEnemy.sprite.anims.play(annimationName, true);
-    createdEnemy.sprite.body.collideWorldBounds = true;
+    createEnemy(enemyName, enemySpeed, scene, obj, enemyArray, annimationName, collisionArray, givenGroundLayer, deathAnnimationName);
+  }
+  return enemyArray;
+}
+function createEnemy(enemyName, enemySpeed, scene, obj, enemyArray, annimationName, collisionArray, givenGroundLayer, deathAnnimationName) {
+  let alive = true
+  const createdEnemy = new enemyName(enemySpeed, scene, obj.x, obj.y);
+  enemyArray.push(createdEnemy);
+  createdEnemy.sprite.setFlipX(false);
+  createdEnemy.sprite.anims.play(annimationName, true);
+  createdEnemy.sprite.body.collideWorldBounds = true;
 
-    //sets up collision for the sprite and when to reverse direction
-    for (let wall of collisionArray) {
-      scene.physics.world.addCollider(createdEnemy.sprite, wall, (sprite) => {
-        if (sprite.body.touching.right || sprite.body.blocked.right) {
-          sprite.setFlipX(true);
-          sprite.anims.play(annimationName, true);
-          sprite.setVelocityX(-enemySpeed); // turn left
-        } else if (sprite.body.touching.left || sprite.body.blocked.left) {
-          sprite.setFlipX(false);
-          sprite.anims.play(annimationName, true);
-          sprite.setVelocityX(enemySpeed); // turn right
-        }
-      });
-    }
+  //sets up collision for the sprite and when to reverse direction
+  for (let wall of collisionArray) {
+    scene.physics.world.addCollider(createdEnemy.sprite, wall, (sprite) => {
+      if (sprite.body.touching.right || sprite.body.blocked.right) {
+        sprite.setFlipX(true);
+        sprite.anims.play(annimationName, true);
+        sprite.setVelocityX(-enemySpeed); // turn left
+      } else if (sprite.body.touching.left || sprite.body.blocked.left) {
+        sprite.setFlipX(false);
+        sprite.anims.play(annimationName, true);
+        sprite.setVelocityX(enemySpeed); // turn right
+      }
+    });
+  }
 
-    //sets up world and player collision for the sprite
-    scene.physics.world.addCollider(createdEnemy.sprite, givenGroundLayer);
-    scene.physics.add.collider(
-      scene.player.sprite,
-      createdEnemy.sprite,
-      function (player, enemy) {
+  //sets up world and player collision for the sprite
+  let collider = scene.physics.world.addCollider(createdEnemy.sprite, givenGroundLayer);
+  scene.physics.add.collider(
+    scene.player.sprite,
+    createdEnemy.sprite,
+    (player, enemy) => {
+      if(alive){
         if (enemy.body.touching.up && player.body.touching.down) {
+          alive = false;
           // destroy the enemy
-          enemy.anims.play("robot-hurt", false)
-          enemy.anims.play('anims complete', () => enemy.destroy())
-          ;
+          // enemy.body.collideWorldBounds = false;
+          scene.physics.world.removeCollider(collider)
+          enemy.setVelocityX(0)
+          enemy.anims.play(deathAnnimationName, () => enemy.destroy());
         } else {
           // any other way to collide on an enemy will kill the player
           scene.state = dead;
         }
-      },
-      null,
-      scene
-    );
-  }
-  return enemyArray;
+      }
+    },
+    null,
+    scene
+  );
 }
+
