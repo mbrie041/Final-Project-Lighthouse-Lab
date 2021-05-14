@@ -1,4 +1,5 @@
 import Robot from "../robot1.js";
+import Phaser from "phaser";
 const dead = "dead";
 //Function that creates enemies
 //Takes the following params:
@@ -12,69 +13,58 @@ const dead = "dead";
 //8. (Variable) The ground layer
 //*Remember you need an enemyArray declared in your constructor to store enemy sprites for update */
 export default function enemyCreator(
-  objectLayerName,
+  objects,
   annimationName,
   enemyName,
-  objName,
   scene,
   collisionArray,
-  givenMap,
   givenGroundLayer,
   enemySpeed
 ) {
+  const enemyArray = [];
   //Iterates through an array of objects create from the tilemaps JSON file
-  for (let obj of givenMap.getObjectLayer(objectLayerName).objects) {
+  for (let obj of objects) {
     //switches based on the objects given name
-    switch (obj.name) {
-      case objName:
-        //set up the initial enemy sprite and stores them in the levels enemy array
-        const createdEnemy = new enemyName(enemySpeed, scene, obj.x, obj.y);
-        scene.enemyArray.push(createdEnemy);
-        createdEnemy.sprite.setFlipX(false);
-        createdEnemy.sprite.anims.play(annimationName, true);
-        createdEnemy.sprite.body.collideWorldBounds = true;
 
-        //sets up collision for the sprite and when to reverse direction
-        for (let wall of collisionArray) {
-          scene.physics.world.addCollider(
-            createdEnemy.sprite,
-            wall,
-            (sprite) => {
-              if (sprite.body.touching.right || sprite.body.blocked.right) {
-                sprite.setFlipX(true);
-                sprite.anims.play(annimationName, true);
-                sprite.setVelocityX(-enemySpeed); // turn left
-              } else if (
-                sprite.body.touching.left ||
-                sprite.body.blocked.left
-              ) {
-                sprite.setFlipX(false);
-                sprite.anims.play(annimationName, true);
-                sprite.setVelocityX(enemySpeed); // turn right
-              }
-            }
-          );
+    //set up the initial enemy sprite and stores them in the levels enemy array
+    const createdEnemy = new enemyName(enemySpeed, scene, obj.x, obj.y);
+    enemyArray.push(createdEnemy);
+    createdEnemy.sprite.setFlipX(false);
+    createdEnemy.sprite.anims.play(annimationName, true);
+    createdEnemy.sprite.body.collideWorldBounds = true;
+
+    //sets up collision for the sprite and when to reverse direction
+    for (let wall of collisionArray) {
+      scene.physics.world.addCollider(createdEnemy.sprite, wall, (sprite) => {
+        if (sprite.body.touching.right || sprite.body.blocked.right) {
+          sprite.setFlipX(true);
+          sprite.anims.play(annimationName, true);
+          sprite.setVelocityX(-enemySpeed); // turn left
+        } else if (sprite.body.touching.left || sprite.body.blocked.left) {
+          sprite.setFlipX(false);
+          sprite.anims.play(annimationName, true);
+          sprite.setVelocityX(enemySpeed); // turn right
         }
-
-        //sets up world and player collision for the sprite
-        scene.physics.world.addCollider(createdEnemy.sprite, givenGroundLayer);
-        scene.physics.add.collider(
-          scene.player.sprite,
-          createdEnemy.sprite,
-          function (player, enemy) {
-            if (enemy.body.touching.up && player.body.touching.down) {
-              // destroy the enemy
-              enemy.destroy();
-            } else {
-              // any other way to collide on an enemy will kill the player
-              scene.state = dead;
-            }
-          },
-          null,
-          scene
-        );
-
-        break;
+      });
     }
+
+    //sets up world and player collision for the sprite
+    scene.physics.world.addCollider(createdEnemy.sprite, givenGroundLayer);
+    scene.physics.add.collider(
+      scene.player.sprite,
+      createdEnemy.sprite,
+      function (player, enemy) {
+        if (enemy.body.touching.up && player.body.touching.down) {
+          // destroy the enemy
+          enemy.destroy();
+        } else {
+          // any other way to collide on an enemy will kill the player
+          scene.state = dead;
+        }
+      },
+      null,
+      scene
+    );
   }
+  return enemyArray;
 }

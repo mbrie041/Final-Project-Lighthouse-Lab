@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="129" height="16" tilewidth="16" tileheight="16" infinite="0" nextlayerid="15" nextobjectid="13">
+<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="129" height="16" tilewidth="16" tileheight="16" infinite="0" nextlayerid="16" nextobjectid="19">
  <editorsettings>
   <export target="Level2.json" format="json"/>
  </editorsettings>
@@ -3077,6 +3077,13 @@
   <object id="1" name="Spawn Point" x="17.3333" y="194">
    <point/>
   </object>
+ </objectgroup>
+ <objectgroup id="15" name="Gems">
+  <object id="13" name="gemSpawn" x="275" y="149"/>
+  <object id="15" name="gemSpawn" x="451.5" y="133.5"/>
+  <object id="16" name="gemSpawn" x="584.5" y="149"/>
+  <object id="17" name="gemSpawn" x="431" y="108"/>
+  <object id="18" name="gemSpawn" x="570" y="147.5"/>
  </objectgroup>
  <objectgroup id="11" name="Enemies">
   <object id="3" name="Robot1" x="104" y="196.5"/>
