@@ -164,14 +164,14 @@ export default class LevelOneScene extends Phaser.Scene {
     const item = "pancake";
     const layerArray = [this.groundLayer, this.scaffoldingLayer];
     const physics = this.physics;
-    const player = this.player.sprite;
+    const playerSprite = this.player.sprite;
     createItem(
       map.getObjectLayer("Gems").objects,
       item,
       collectItem,
       physics,
       layerArray,
-      player
+      playerSprite
     );
   }
 
