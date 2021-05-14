@@ -120,8 +120,74 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":17.3333333333333,
+                 "x":17.3333,
                  "y":194
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "id":15,
+         "name":"Gems",
+         "objects":[
+                {
+                 "height":0,
+                 "id":13,
+                 "name":"gemSpawn",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":275,
+                 "y":149
+                }, 
+                {
+                 "height":0,
+                 "id":15,
+                 "name":"gemSpawn",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":451.5,
+                 "y":133.5
+                }, 
+                {
+                 "height":0,
+                 "id":16,
+                 "name":"gemSpawn",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":584.5,
+                 "y":149
+                }, 
+                {
+                 "height":0,
+                 "id":17,
+                 "name":"gemSpawn",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":431,
+                 "y":108
+                }, 
+                {
+                 "height":0,
+                 "id":18,
+                 "name":"gemSpawn",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":570,
+                 "y":147.5
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -153,8 +219,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":411.333333333333,
-                 "y":133.833333333333
+                 "x":411.333,
+                 "y":133.833
                 }, 
                 {
                  "height":0,
@@ -164,7 +230,7 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":250.333333333333,
+                 "x":250.333,
                  "y":150.5
                 }],
          "opacity":1,
@@ -173,8 +239,8 @@
          "x":0,
          "y":0
         }],
- "nextlayerid":15,
- "nextobjectid":13,
+ "nextlayerid":16,
+ "nextobjectid":19,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.6.0",

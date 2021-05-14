@@ -1,19 +1,21 @@
 import Phaser from "phaser";
 import Player from "./player.js";
 import Robot from "./robot1.js";
+// import Pancake from "./currency.js";
 import enemyCreator from "./helpers/enemy-creator.js";
+import createItem from "./helpers/item-creator";
 const alive = "alive";
 const dead = "dead";
 
 let scoreText;
 let timeText;
-let pancake;
+let newItemGroup;
 
 export default class LevelOneScene extends Phaser.Scene {
   constructor() {
     super("LevelOneScene");
-    this.state = alive;//sets up state machine
-    this.enemyArray = [];//holds all the enemies created through the enemyCreator function
+    this.state = alive; //sets up state machine
+    this.enemyArray = []; //holds all the enemies created through the enemyCreator function
   }
   preload() {
     //load sprite sheets for level characters
@@ -67,7 +69,7 @@ export default class LevelOneScene extends Phaser.Scene {
   }
 
   create() {
-    //sets state machine 
+    //sets state machine
     this.state = alive;
 
     //stores level map
@@ -114,17 +116,17 @@ export default class LevelOneScene extends Phaser.Scene {
 
     //Array containing walls that the enemies needs to collide with
     const collisionArray = [this.enemyWalls, this.scaffoldingLayer];
-
-    enemyCreator(
-      "Enemies",
-      "robot-walk",
-      Robot,
-      "Robot1",
-      this,
-      collisionArray,
-      map,
-      this.groundLayer,
-      50
+    const objects = map.getObjectLayer("Enemies").objects.filter((obj) => obj.name === "Robot1");
+    this.enemyArray.concat(
+      enemyCreator(
+        objects,
+        "robot-walk",
+        Robot,
+        this,
+        collisionArray,
+        this.groundLayer,
+        50
+      )
     );
 
     //set up collision for the level
@@ -167,29 +169,22 @@ export default class LevelOneScene extends Phaser.Scene {
       })
       .setScrollFactor(0);
 
-    //populate pancake group and populates it. Repeats x amount of times and spreads them stepX apart
-    pancake = this.physics.add.group({
-      key: "pancake",
-      repeat: 20,
-      setXY: { x: 400, y: 0, stepX: 100 },
-    });
-
-    //set bounce when items are initially dropped
-    pancake.children.iterate(function (child) {
-      child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.6));
-    });
-
-    //pancakes will collide with ground layer to keep them from falling off page
-    this.physics.add.collider(
-      pancake,
-      this.groundLayer && this.scaffoldingLayer
+    const item = "pancake";
+    const layerArray = [this.groundLayer, this.scaffoldingLayer];
+    const physics = this.physics;
+    const playerSprite = this.player.sprite;
+    createItem(
+      map.getObjectLayer("Gems").objects,
+      item,
+      collectItem,
+      physics,
+      layerArray,
+      playerSprite
     );
-    //collects on player and pancake overlap
-    this.physics.add.overlap(this.player.sprite, pancake, collectItem, null);
   }
 
-  update(time, delta) {
 
+  update(time, delta) {
     //state update check
     if (this.state === dead) {
       this.player.destroy();
