@@ -2,7 +2,7 @@ import Phaser from "phaser";
 import Player from "./characters/player.js";
 import Robot from "./characters/robot1.js";
 import Python from "./characters/python.js";
-// import Pancake from "./currency.js";
+import Bat from "./characters/bat.js";
 import enemyCreator from "./helpers/enemy-creator.js";
 import createItem from "./helpers/item-creator";
 const alive = "alive";
@@ -36,9 +36,9 @@ export default class LevelOneScene extends Phaser.Scene {
       "src/assets/spritesheets/Python.json"
     );
     this.load.atlas(
-      "smoke",
-      "src/assets/spritesheets/Smoke.png",
-      "src/assets/spritesheets/Smoke.json"
+      "bat",
+      "src/assets/spritesheets/Bat.png",
+      "src/assets/spritesheets/Bat.json"
     );
 
     //load tileset images for layers
@@ -126,9 +126,10 @@ export default class LevelOneScene extends Phaser.Scene {
     this.player = new Player(this, spawnPoint.x, spawnPoint.y);
 
     //Array containing walls that the enemies needs to collide with
-    const collisionArray = [this.enemyWalls, this.scaffoldingLayer];
+    const collisionArray = [this.enemyWalls, this.scaffoldingLayer, this.groundLayer];
     const objects1 = map.getObjectLayer("Enemies").objects.filter((obj)=>obj.name === "Robot1");
     const objects2 = map.getObjectLayer("Enemies").objects.filter((obj)=>obj.name === "Python");
+    const objects3 = map.getObjectLayer("Enemies").objects.filter((obj)=>obj.name === "Bat");
     this.enemyArray.concat(
       enemyCreator(
         objects1,
@@ -136,7 +137,6 @@ export default class LevelOneScene extends Phaser.Scene {
         Robot,
         this,
         collisionArray,
-        this.groundLayer,
         50,
         "robot-hurt"
       )
@@ -148,9 +148,19 @@ export default class LevelOneScene extends Phaser.Scene {
         Python,
         this,
         collisionArray,
-        this.groundLayer,
         50,
         "python-hurt"
+      )
+    );
+    this.enemyArray.concat(
+      enemyCreator(
+        objects3,
+        "bat-fly",
+        Bat,
+        this,
+        collisionArray,
+        50,
+        "bat-hurt"
       )
     );
     //set up collision for the level

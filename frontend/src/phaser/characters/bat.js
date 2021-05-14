@@ -1,38 +1,39 @@
 import Phaser from "phaser";
 
 
-export default class Python {
+export default class Bat {
   constructor(speed, scene, x, y) {
     this.scene = scene;
 
     const anims = scene.anims;
 
     anims.create({
-      key: "python-walk",
-      frames: anims.generateFrameNames("python", {
-        prefix: "python-walk",
+      key: "bat-fly",
+      frames: anims.generateFrameNames("bat", {
+        prefix: "Bat",
         suffix: ".png",
         start: 1,
-        end: 3,
+        end: 10,
       }),
-      frameRate: 12,
+      frameRate: 16,
       repeat: -1,
     });
 
     anims.create({
-      key: "python-hurt",
-      frames: anims.generateFrameNames("python", {
-        prefix: "python-walk",
+      key: "bat-hurt",
+      frames: anims.generateFrameNames("bat", {
+        prefix: "Bat",
         suffix: ".png",
         start: 1,
         end: 3,
       }),
-      frameRate: 40,
+      frameRate: 30,
       repeat: -1,
     });
 
     this.sprite = scene.physics.add
-      .sprite(x, y, "python", 0)
+      .sprite(x, y, "bat", 0)
+      this.sprite.body.setAllowGravity(false)
       // .setDrag(1000, 0)
       // .setMaxVelocity(300, 400);
     this.sprite.setVelocityX(speed);
