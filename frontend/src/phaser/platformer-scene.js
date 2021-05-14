@@ -111,26 +111,6 @@ export default class PlatformerScene extends Phaser.Scene {
       })
       .setScrollFactor(0);
 
-    // create submit button
-    this.submitButton = this.add.text(150, 0, "SUBMIT", { fontSize: '16px', color: '#ffffff' });
-    this.submitButton.setInteractive();
-    this.submitButton.on("pointerdown", () => {
-      fetch('http://localhost:3001/api/scores', {
-        'method': 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        'body': JSON.stringify({ score })
-      })
-        .then(response => response.json())
-        .then(data => {
-          console.log('Success:', data);
-        })
-        .catch((error) => {
-          console.error('Error:', error);
-        });
-    });
-
     // levelTwoDoor.setCollisionByProperty({ collides: true });
 
     this.physics.add.overlap(player.sprite, zone, () => {

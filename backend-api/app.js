@@ -7,7 +7,7 @@ const db = require('./db');
 const dbHelpers = require('./helpers/dbHelpers')(db);
 
 var indexRouter = require('./routes/index');
-var scoresRouter = require('./routes/scores');
+var scoresRouter = require('./routes/stats');
 
 function application(actions = { updateLeaderboard: () => { } }) {
   var app = express();
@@ -21,7 +21,7 @@ function application(actions = { updateLeaderboard: () => { } }) {
 
   app.use('/', indexRouter);
   // app.use('/users', usersRouter);
-  app.use('/api/scores', scoresRouter(dbHelpers, actions.updateLeaderboard));
+  app.use('/api/stats', scoresRouter(dbHelpers, actions.updateLeaderboard));
 
   return app;
 }

@@ -8,9 +8,9 @@ export default class GameOverScene extends Phaser.Scene {
   constructor() {
     super("GameOverScene");
   }
-  init(data) {
-    this.location = data.location;
-  }
+  // init(data) {
+  //   this.location = data.location;
+  // }
   preload() {
     this.load.html("form", "src/assets/form.html");
   }
@@ -52,6 +52,15 @@ export default class GameOverScene extends Phaser.Scene {
       fontSize: "10px",
       align: "center"
     }).setOrigin(0);
+    // Display GEO location data
+    // this.locationText = this.add.text(200, 300,
+    // `[${this.location.coordinates[1]}, ${this.location.coordinates[0]}]`,
+    // {
+    // color: "#FFFFFF",
+    // fontSize: 20
+    // }
+    // ).setOrigin(0.5);
+    console.log(`geolocation data = [${global.latitude}, ${global.longitude}]`);
 
     this.returnKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ENTER);
 
@@ -60,18 +69,18 @@ export default class GameOverScene extends Phaser.Scene {
       let name = this.nameInput.getChildByName("name");
       if (name.value != "") {
         // post score and username to database
-        fetch('http://localhost:3001/api/scores', {
+        fetch('http://localhost:3001/api/stats', {
           'method': 'POST',
           headers: {
             'Content-Type': 'application/json'
           },
-          'body': JSON.stringify({ 'score': global.score, 'name': name.value })
+          'body': JSON.stringify({ 'score': global.score, 'name': name.value, 'time': global.finalTimer, 'geolocation': global.latitude })
         })
           .then(response => response.json())
           .then(data => {
             console.log('Success:', data);
             global.life = 3;
-            this.scene.start('PlatformerScene', { score: score, life: life });
+            this.scene.start('PlatformerScene');
             this.scene.stop('GameOverScene');
           })
           .catch((error) => {

@@ -10,7 +10,7 @@ module.exports = ({
     router.get('/', (req, res) => {
         getStats()
             .then((stats) => {
-                console.log('Get request getScores =', stats);
+                console.log('Get request getStats =', stats);
                 res.json(stats)
             })
             .catch((err) => res.json({

@@ -4,14 +4,14 @@ import LeaderboardScoreList from "./LeaderboardScoreList.jsx";
 import "./Leaderboard.scss"
 
 export default function Leaderboard() {
-  const [scores, setScores] = useState([]);
+  const [stats, setStats] = useState([]);
 
   useEffect(() => {
-    const getScores = axios.get('http://localhost:3001/api/scores');
+    const getStats = axios.get('http://localhost:3001/api/stats');
 
-    getScores
+    getStats
       .then(response => {
-        setScores([...response.data]);
+        setStats([...response.data]);
       });
   }, []);
 
@@ -23,11 +23,11 @@ export default function Leaderboard() {
 
     socket.addEventListener('message', function (event) {
 
-      const scoreObj = JSON.parse(event.data);
-      console.log("message from server ", scoreObj);
+      const statsObj = JSON.parse(event.data);
+      console.log("message from server ", statsObj);
 
-      if (scoreObj.type === "UPDATE_LEADERBOARD") {
-        setScores(prev => [...prev, scoreObj]);
+      if (statsObj.type === "UPDATE_LEADERBOARD") {
+        setStats(prev => [...prev, statsObj]);
       }
 
     });
@@ -37,8 +37,7 @@ export default function Leaderboard() {
   return (
     <div className="leaderboard">
       <h2 className="leaderboard-title">Leaderboard</h2>
-      {/* {scoreObj.name && (<LeaderboardScoreList scores={scores} />)} */}
-      <LeaderboardScoreList scores={scores} />
+      <LeaderboardScoreList stats={stats} />
     </div>
   );
 }
