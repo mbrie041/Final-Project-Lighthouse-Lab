@@ -1,5 +1,5 @@
 INSERT INTO
-scores(name, score)
+scores(score, time, user_id)
 VALUES
-  ('Mario', 100),
-  ('Bowser', 50);
+  (50, '02:03:55', 1),
+  (80, '03:12:21', 2);

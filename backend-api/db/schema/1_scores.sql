@@ -1,6 +1,7 @@
 DROP TABLE IF EXISTS scores CASCADE;
 CREATE TABLE scores(
     id SERIAL PRIMARY KEY NOT NULL,
-    name VARCHAR,
-    score INTEGER
+    score INTEGER,
+    time VARCHAR,
+    user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE
 );
