@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="129" height="16" tilewidth="16" tileheight="16" infinite="0" nextlayerid="16" nextobjectid="19">
+<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="129" height="16" tilewidth="16" tileheight="16" infinite="0" nextlayerid="18" nextobjectid="20">
  <editorsettings>
-  <export format="json"/>
+  <export target="Level2.json" format="json"/>
  </editorsettings>
  <tileset firstgid="1" name="Gray_Tile_Terrain (16 x 16)" tilewidth="16" tileheight="16" tilecount="726" columns="33">
   <image source="../tilesets/Gray_Tile_Terrain (16 x 16).png" width="528" height="352"/>
@@ -3089,5 +3089,6 @@
   <object id="3" name="Robot1" x="104" y="196.5"/>
   <object id="11" name="Robot1" x="411.333" y="133.833"/>
   <object id="12" name="Robot1" x="250.333" y="150.5"/>
+  <object id="19" name="Python" x="167.5" y="197"/>
  </objectgroup>
 </map>

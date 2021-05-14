@@ -1,6 +1,7 @@
 import Phaser from "phaser";
-import Player from "./player.js";
-import Robot from "./robot1.js";
+import Player from "./characters/player.js";
+import Robot from "./characters/robot1.js";
+import Python from "./characters/python.js";
 // import Pancake from "./currency.js";
 import enemyCreator from "./helpers/enemy-creator.js";
 import createItem from "./helpers/item-creator";
@@ -28,6 +29,11 @@ export default class LevelOneScene extends Phaser.Scene {
       "robot",
       "src/assets/spritesheets/Robot.png",
       "src/assets/spritesheets/Robot.json"
+    );
+    this.load.atlas(
+      "python",
+      "src/assets/spritesheets/Python.png",
+      "src/assets/spritesheets/Python.json"
     );
 
     //load tileset images for layers
@@ -116,10 +122,11 @@ export default class LevelOneScene extends Phaser.Scene {
 
     //Array containing walls that the enemies needs to collide with
     const collisionArray = [this.enemyWalls, this.scaffoldingLayer];
-    const objects = map.getObjectLayer("Enemies").objects.filter((obj)=>obj.name === "Robot1");
+    const objects1 = map.getObjectLayer("Enemies").objects.filter((obj)=>obj.name === "Robot1");
+    const objects2 = map.getObjectLayer("Enemies").objects.filter((obj)=>obj.name === "Python");
     this.enemyArray.concat(
       enemyCreator(
-        objects,
+        objects1,
         "robot-walk",
         Robot,
         this,
@@ -128,7 +135,17 @@ export default class LevelOneScene extends Phaser.Scene {
         50
       )
     );
-
+    this.enemyArray.concat(
+      enemyCreator(
+        objects2,
+        "python-walk",
+        Python,
+        this,
+        collisionArray,
+        this.groundLayer,
+        50
+      )
+    );
     //set up collision for the level
     this.scaffoldingLayer.setCollisionByProperty({ collides: true });
     this.groundLayer.setCollisionByProperty({ collides: true });

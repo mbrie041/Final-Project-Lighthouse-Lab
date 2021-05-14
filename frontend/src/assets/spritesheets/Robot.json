@@ -1,12 +1,20 @@
 {"frames": [
 
 {
-	"filename": "Robot-hurt.png",
+	"filename": "Robot-hurt1.png",
 	"frame": {"x":0,"y":0,"w":21,"h":18},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":21,"h":18},
 	"sourceSize": {"w":21,"h":18}
+},
+{
+	"filename": "Robot-hurt2.png",
+	"frame": {"x":21,"y":0,"w":19,"h":18},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":19,"h":18},
+	"sourceSize": {"w":19,"h":18}
 },
 {
 	"filename": "Robot-walk1.png",

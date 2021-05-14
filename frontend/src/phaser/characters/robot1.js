@@ -18,6 +18,17 @@ export default class Robot {
       frameRate: 12,
       repeat: -1,
     });
+    anims.create({
+      key: "robot-hurt",
+      frames: anims.generateFrameNames("robot", {
+        prefix: "Robot-hurt",
+        suffix: ".png",
+        start: 1,
+        end: 2,
+      }),
+      frameRate: 12,
+      repeat: 8,
+    });
 
     this.sprite = scene.physics.add
       .sprite(x, y, "robot", 0)

@@ -1,4 +1,4 @@
-import Robot from "../robot1.js";
+import Robot from "../characters/robot1.js";
 import Phaser from "phaser";
 const dead = "dead";
 //Function that creates enemies
@@ -56,7 +56,9 @@ export default function enemyCreator(
       function (player, enemy) {
         if (enemy.body.touching.up && player.body.touching.down) {
           // destroy the enemy
-          enemy.destroy();
+          enemy.anims.play("robot-hurt", false)
+          enemy.anims.play('anims complete', () => enemy.destroy())
+          ;
         } else {
           // any other way to collide on an enemy will kill the player
           scene.state = dead;

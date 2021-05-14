@@ -1,5 +1,5 @@
 import Phaser from "phaser";
-import Player from "./player.js";
+import Player from "./characters/player.js";
 
 
 

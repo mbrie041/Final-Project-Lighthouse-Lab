@@ -3,7 +3,8 @@
     {
      "export":
         {
-         "format":"json"
+         "format":"json",
+         "target":"Level2.json"
         }
     },
  "height":16,
@@ -231,6 +232,17 @@
                  "width":0,
                  "x":250.333,
                  "y":150.5
+                }, 
+                {
+                 "height":0,
+                 "id":19,
+                 "name":"Python",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":167.5,
+                 "y":197
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -238,8 +250,8 @@
          "x":0,
          "y":0
         }],
- "nextlayerid":16,
- "nextobjectid":19,
+ "nextlayerid":18,
+ "nextobjectid":20,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.6.0",
