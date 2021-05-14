@@ -13,6 +13,7 @@ export default function createItem(objects, item, collectCallback, physics, laye
       child.x = loadedData.x;
       child.y = loadedData.y;
       child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.6));
+      child.body.setAllowGravity(false)
     });
     //pancakes will collide with ground layer to keep them from falling off page
     for (let layer of layerArray) {

@@ -3,8 +3,7 @@
     {
      "export":
         {
-         "format":"json",
-         "target":"Level2.json"
+         "format":"json"
         }
     },
  "height":16,
@@ -153,8 +152,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":451.5,
-                 "y":133.5
+                 "x":452.5,
+                 "y":134
                 }, 
                 {
                  "height":0,

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="129" height="16" tilewidth="16" tileheight="16" infinite="0" nextlayerid="16" nextobjectid="19">
  <editorsettings>
-  <export target="Level2.json" format="json"/>
+  <export format="json"/>
  </editorsettings>
  <tileset firstgid="1" name="Gray_Tile_Terrain (16 x 16)" tilewidth="16" tileheight="16" tilecount="726" columns="33">
   <image source="../tilesets/Gray_Tile_Terrain (16 x 16).png" width="528" height="352"/>
@@ -3080,7 +3080,7 @@
  </objectgroup>
  <objectgroup id="15" name="Gems">
   <object id="13" name="gemSpawn" x="275" y="149"/>
-  <object id="15" name="gemSpawn" x="451.5" y="133.5"/>
+  <object id="15" name="gemSpawn" x="452.5" y="134"/>
   <object id="16" name="gemSpawn" x="584.5" y="149"/>
   <object id="17" name="gemSpawn" x="431" y="108"/>
   <object id="18" name="gemSpawn" x="570" y="147.5"/>
