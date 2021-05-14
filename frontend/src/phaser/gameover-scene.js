@@ -67,7 +67,8 @@ export default class GameOverScene extends Phaser.Scene {
     this.returnKey.on("down", event => {
 
       let name = this.nameInput.getChildByName("name");
-      if (name.value != "") {
+      if (name.value != "" && global.aboutToChange === 1) {
+        global.aboutToChange = 0;
         // post score and username to database
         fetch('http://localhost:3001/api/stats', {
           'method': 'POST',
