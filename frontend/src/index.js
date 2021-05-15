@@ -16,6 +16,7 @@ export const config = {
   height: 260,
   parent: "phaser",
   pixelArt: true,
+  roundPixels: true,
   backgroundColor: "#1d212d",
   dom: {
     createContainer: true
@@ -30,7 +31,7 @@ export const config = {
   physics: {
     default: "arcade",
     arcade: {
-      debug: true,
+      debug: false,
       gravity: { y: 1000 }
     }
   }

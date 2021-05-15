@@ -1,15 +1,16 @@
 import Phaser from "phaser";
-import Player from "./player.js";
-import Robot from "./robot1.js";
-// import Pancake from "./currency.js";
+import Player from "./characters/player.js";
+import Robot from "./characters/robot1.js";
+import Python from "./characters/python.js";
+import Bat from "./characters/bat.js";
 import enemyCreator from "./helpers/enemy-creator.js";
 import createItem from "./helpers/item-creator";
 const alive = "alive";
 const dead = "dead";
+const transitioning = "transitioning";
 
 let scoreText;
 let timeText;
-let newItemGroup;
 
 export default class LevelOneScene extends Phaser.Scene {
   constructor() {
@@ -28,6 +29,16 @@ export default class LevelOneScene extends Phaser.Scene {
       "robot",
       "src/assets/spritesheets/Robot.png",
       "src/assets/spritesheets/Robot.json"
+    );
+    this.load.atlas(
+      "python",
+      "src/assets/spritesheets/Python.png",
+      "src/assets/spritesheets/Python.json"
+    );
+    this.load.atlas(
+      "bat",
+      "src/assets/spritesheets/Bat.png",
+      "src/assets/spritesheets/Bat.json"
     );
 
     //load tileset images for layers
@@ -65,12 +76,13 @@ export default class LevelOneScene extends Phaser.Scene {
     this.load.tilemapTiledJSON("level1map", "src/assets/tilemaps/Level2.json");
 
     //placeholer for score increasing item
-    this.load.image("pancake", "src/assets/images/Pancake_Stack (16 x 16).png");
+    this.load.image("gem", "src/assets/images/gem.png");
   }
 
   create() {
     //sets state machine
     this.state = alive;
+    this.cameras.main.fadeIn(1000);
 
     //stores level map
     const map = this.make.tilemap({ key: "level1map" });
@@ -115,17 +127,52 @@ export default class LevelOneScene extends Phaser.Scene {
     this.player = new Player(this, spawnPoint.x, spawnPoint.y);
 
     //Array containing walls that the enemies needs to collide with
-    const collisionArray = [this.enemyWalls, this.scaffoldingLayer];
-    const objects = map.getObjectLayer("Enemies").objects.filter((obj) => obj.name === "Robot1");
+    const collisionArray = [
+      this.enemyWalls,
+      this.scaffoldingLayer,
+      this.groundLayer,
+    ];
+    const objects1 = map
+      .getObjectLayer("Enemies")
+      .objects.filter((obj) => obj.name === "Robot1");
+    const objects2 = map
+      .getObjectLayer("Enemies")
+      .objects.filter((obj) => obj.name === "Python");
+    const objects3 = map
+      .getObjectLayer("Enemies")
+      .objects.filter((obj) => obj.name === "Bat");
+    //Enemy creating function calls
     this.enemyArray.concat(
       enemyCreator(
-        objects,
+        objects1,
         "robot-walk",
         Robot,
         this,
         collisionArray,
-        this.groundLayer,
-        50
+        50,
+        "robot-hurt"
+      )
+    );
+    this.enemyArray.concat(
+      enemyCreator(
+        objects2,
+        "python-walk",
+        Python,
+        this,
+        collisionArray,
+        50,
+        "python-hurt"
+      )
+    );
+    this.enemyArray.concat(
+      enemyCreator(
+        objects3,
+        "bat-fly",
+        Bat,
+        this,
+        collisionArray,
+        50,
+        "bat-hurt"
       )
     );
 
@@ -137,22 +184,29 @@ export default class LevelOneScene extends Phaser.Scene {
     this.physics.world.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
 
     //sets up collision for the player
-    this.physics.world.addCollider(this.player.sprite, this.scaffoldingLayer);
-    this.physics.world.addCollider(this.player.sprite, this.groundLayer);
+    const scaffoldingCollider = this.physics.world.addCollider(
+      this.player.sprite,
+      this.scaffoldingLayer
+    );
+    const groundCollider = this.physics.world.addCollider(
+      this.player.sprite,
+      this.groundLayer
+    );
     this.player.sprite.body.collideWorldBounds = true;
 
     //set up camera to have bounds on the level and follow the player
-    this.cameras.main.startFollow(this.player.sprite);
     this.cameras.main.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
+    this.cameraDolly = new Phaser.Geom.Point(this.player.x, this.player.y);
+    this.cameras.main.startFollow(this.cameraDolly);
 
     //creates score text at the top of the screen
     scoreText = this.add
-    .text(20, 5, 'Score: 0', {
-      fontSize: "10px",
-      fill: "#ffffff",
-      fontFamily: ' "Press Start 2P" ',
-    })
-    .setScrollFactor(0);
+      .text(20, 5, "Score: 0", {
+        fontSize: "10px",
+        fill: "#ffffff",
+        fontFamily: ' "Press Start 2P" ',
+      })
+      .setScrollFactor(0);
 
     // Life text at the top of the screen
     const lifeText = this.add
@@ -168,11 +222,11 @@ export default class LevelOneScene extends Phaser.Scene {
       .text(250, 5, `Time: ${global.elaspedTime}`, {
         fontSize: "10px",
         fill: "#ffffff",
-        fontFamily: ' "Press Start 2P" '
+        fontFamily: ' "Press Start 2P" ',
       })
       .setScrollFactor(0);
 
-    const item = "pancake";
+    const item = "gem";
     const layerArray = [this.groundLayer, this.scaffoldingLayer];
     const physics = this.physics;
     const playerSprite = this.player.sprite;
@@ -186,12 +240,19 @@ export default class LevelOneScene extends Phaser.Scene {
     );
   }
 
-
   update(time, delta) {
+    this.cameraDolly.x = Math.floor(this.player.sprite.x);
+    this.cameraDolly.y = Math.floor(this.player.sprite.y);
+
     //state update check
     if (this.state === dead) {
-      this.player.destroy();
+      this.cameras.main.fadeOut(3000);
       global.life -= 1;
+      this.player.sprite.setFlipY(true);
+      this.player.sprite.setVelocityX(0);
+      this.player.sprite.anims.play("player-death")
+      this.player.sprite.on(Phaser.Animations.Events.ANIMATION_COMPLETE,()=>this.player.destroy())
+
       if (global.life === 0) {
         global.finalTimer = global.elapsedTime;
         //format timer
@@ -205,12 +266,21 @@ export default class LevelOneScene extends Phaser.Scene {
         }
         global.finalTimer =`${min}:${sec}`
         global.aboutToChange = 1;
-        this.scene.start('GameOverScene');
-        this.scene.stop('LevelOneScene');
+        this.cameras.main.once("camerafadeoutcomplete", () => {
+          this.scene.start("GameOverScene");
+          this.scene.stop("LevelOneScene");
+        });
       } else {
-        this.scene.restart();
+        this.cameras.main.once("camerafadeoutcomplete", () => {
+          this.scene.restart();
+        });
       }
-    } else {
+
+      this.state = transitioning;
+    } else if (this.state === transitioning) {
+
+      // console.log("we're transitioning")
+    } else if (this.state === alive) {
       //calls the player update on alive
       this.player.update();
       //calls the update on every enemy created and stored in enemyArray
