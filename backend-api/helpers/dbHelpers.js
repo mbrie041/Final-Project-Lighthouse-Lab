@@ -1,7 +1,7 @@
 module.exports = (db) => {
-  const getScores = () => {
+  const getStats = () => {
     const query = {
-      text: 'SELECT * FROM scores ORDER BY score DESC LIMIT 5',
+      text: 'SELECT * FROM game_stats ORDER BY score DESC LIMIT 5',
     };
 
     return db
@@ -10,17 +10,15 @@ module.exports = (db) => {
       .catch((err) => err);
   };
 
-  const addScore = (name, score) => {
+  const addStats = (name, score, time, geolocation) => {
     const query = {
-      text: `INSERT INTO scores (name, score) VALUES ($1, $2) RETURNING *`,
-      values: [name, score]
+      text: `INSERT INTO game_stats (name, score, time, geolocation) VALUES ($1, $2, $3, $4) RETURNING *`,
+      values: [name, score, time, geolocation]
     }
 
-    console.log('score =', score);
-    console.log('name=', name);
     return db.query(query)
       .then(result => result.rows[0])
       .catch(err => err);
   }
-  return { getScores, addScore };
+  return { getStats, addStats };
 };

@@ -1,5 +1,5 @@
 .navbar {
-  z-index: 1;
+  z-index: 100;
   align-items: center;
   background-color: #2e2935;
   color: #ffffff;
@@ -8,5 +8,12 @@
     color: white;
   }
 
-}
+  button {
+    color: white;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    background: none;
 
+  }
+}

@@ -81,20 +81,22 @@ export default class LevelTwoScene extends Phaser.Scene {
       })
       .setScrollFactor(0);
 
-    scoreText = this.add
-      .text(600, 550, `Score: ${global.score}`, { 
-        fontSize: '32px', 
-        fill: '#ffffff' 
-    }) 
-    .setScrollFactor(0);
+      scoreText = this.add
+      .text(20, 5, 'Score: 0', {
+        fontSize: '10px',
+        fill: '#ffffff',
+        fontFamily: ' "Press Start 2P" '
+      })
+      .setScrollFactor(0);
 
-     //timer text
+    //timer text
     timeText = this.add
-     .text(50, 550,`Time: ${global.elaspedTime}`, {
-       fontSize: '32px', 
-       fill: '#ffffff' 
-     })
-     .setScrollFactor(0);
+      .text(240, 5, '', {
+        fontSize: '10px',
+        fill: '#ffffff',
+        fontFamily: ' "Press Start 2P" '
+      })
+      .setScrollFactor(0);
 
 
      //populate pancake group and populates it. Repeats x amount of times and spreads them stepX apart
