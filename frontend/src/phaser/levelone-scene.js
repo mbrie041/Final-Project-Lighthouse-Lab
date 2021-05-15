@@ -7,6 +7,7 @@ import enemyCreator from "./helpers/enemy-creator.js";
 import createItem from "./helpers/item-creator";
 const alive = "alive";
 const dead = "dead";
+const transitioning = "transitioning";
 
 let scoreText;
 let timeText;
@@ -81,6 +82,7 @@ export default class LevelOneScene extends Phaser.Scene {
   create() {
     //sets state machine
     this.state = alive;
+    this.cameras.main.fadeIn(1000);
 
     //stores level map
     const map = this.make.tilemap({ key: "level1map" });
@@ -125,10 +127,20 @@ export default class LevelOneScene extends Phaser.Scene {
     this.player = new Player(this, spawnPoint.x, spawnPoint.y);
 
     //Array containing walls that the enemies needs to collide with
-    const collisionArray = [this.enemyWalls, this.scaffoldingLayer, this.groundLayer];
-    const objects1 = map.getObjectLayer("Enemies").objects.filter((obj)=>obj.name === "Robot1");
-    const objects2 = map.getObjectLayer("Enemies").objects.filter((obj)=>obj.name === "Python");
-    const objects3 = map.getObjectLayer("Enemies").objects.filter((obj)=>obj.name === "Bat");
+    const collisionArray = [
+      this.enemyWalls,
+      this.scaffoldingLayer,
+      this.groundLayer,
+    ];
+    const objects1 = map
+      .getObjectLayer("Enemies")
+      .objects.filter((obj) => obj.name === "Robot1");
+    const objects2 = map
+      .getObjectLayer("Enemies")
+      .objects.filter((obj) => obj.name === "Python");
+    const objects3 = map
+      .getObjectLayer("Enemies")
+      .objects.filter((obj) => obj.name === "Bat");
     //Enemy creating function calls
     this.enemyArray.concat(
       enemyCreator(
@@ -163,7 +175,7 @@ export default class LevelOneScene extends Phaser.Scene {
         "bat-hurt"
       )
     );
-    
+
     //set up collision for the level
     this.scaffoldingLayer.setCollisionByProperty({ collides: true });
     this.groundLayer.setCollisionByProperty({ collides: true });
@@ -172,8 +184,8 @@ export default class LevelOneScene extends Phaser.Scene {
     this.physics.world.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
 
     //sets up collision for the player
-    this.physics.world.addCollider(this.player.sprite, this.scaffoldingLayer);
-    this.physics.world.addCollider(this.player.sprite, this.groundLayer);
+    const scaffoldingCollider = this.physics.world.addCollider(this.player.sprite, this.scaffoldingLayer);
+    const groundCollider = this.physics.world.addCollider(this.player.sprite, this.groundLayer);
     this.player.sprite.body.collideWorldBounds = true;
 
     //set up camera to have bounds on the level and follow the player
@@ -210,13 +222,20 @@ export default class LevelOneScene extends Phaser.Scene {
     );
   }
 
-
   update(time, delta) {
     //state update check
     if (this.state === dead) {
-      this.player.destroy();
-      this.scene.restart();
-    } else {
+      this.cameras.main.fadeOut(3000);
+      this.player.sprite.anims.play("player-death", () => destroy());
+      this.cameras.main.once("camerafadeoutcomplete", () => {
+        this.scene.restart();
+      });
+      this.state = transitioning;
+    } else if (this.state === transitioning) {
+      this.player.sprite.setFlipY(true);
+      this.player.sprite.setVelocityX(0);
+      // console.log("we're transitioning")
+    } else if (this.state === alive) {
       //calls the player update on alive
       this.player.update();
       //calls the update on every enemy created and stored in enemyArray
@@ -236,6 +255,10 @@ function collectItem(player, item) {
   console.log("COLLISION WITH ITEM!");
   item.disableBody(`${item}`, `${item}`);
   global.score += 10;
+  scoreText.setText("Score: " + global.score);
+}
+
+function enemyScore(){
   scoreText.setText("Score: " + global.score);
 }
 

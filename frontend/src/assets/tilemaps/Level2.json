@@ -135,15 +135,15 @@
          "name":"Gems",
          "objects":[
                 {
-                 "height":5.76679478260869,
+                 "height":5.76679,
                  "id":34,
                  "name":"gemSpawn",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":3.84190086956519,
-                 "x":280.079049565217,
-                 "y":154.13834173913
+                 "width":3.8419,
+                 "x":272,
+                 "y":144
                 }, 
                 {
                  "height":5.76679,
@@ -153,8 +153,8 @@
                  "type":"",
                  "visible":true,
                  "width":3.8419,
-                 "x":264.07905,
-                 "y":154.203561521739
+                 "x":256,
+                 "y":144
                 }, 
                 {
                  "height":5.76679,
@@ -164,8 +164,8 @@
                  "type":"",
                  "visible":true,
                  "width":3.8419,
-                 "x":248.12252826087,
-                 "y":154.247039782609
+                 "x":240,
+                 "y":144
                 }, 
                 {
                  "height":5.76679,
@@ -175,8 +175,8 @@
                  "type":"",
                  "visible":true,
                  "width":3.8419,
-                 "x":599.574095454545,
-                 "y":154.096195909091
+                 "x":592,
+                 "y":144
                 }, 
                 {
                  "height":5.76679,
@@ -186,8 +186,8 @@
                  "type":"",
                  "visible":true,
                  "width":3.8419,
-                 "x":583.511595454545,
-                 "y":154.037195909091
+                 "x":576,
+                 "y":144
                 }, 
                 {
                  "height":5.76679,
@@ -197,8 +197,8 @@
                  "type":"",
                  "visible":true,
                  "width":3.8419,
-                 "x":567.555595454545,
-                 "y":154.080195909091
+                 "x":560,
+                 "y":144
                 }, 
                 {
                  "height":5.76679,
@@ -208,8 +208,8 @@
                  "type":"",
                  "visible":true,
                  "width":3.8419,
-                 "x":680.05705,
-                 "y":105.971195909091
+                 "x":672,
+                 "y":96
                 }, 
                 {
                  "height":5.76679,
@@ -219,8 +219,8 @@
                  "type":"",
                  "visible":true,
                  "width":3.8419,
-                 "x":664.05705,
-                 "y":106.037195909091
+                 "x":656,
+                 "y":96
                 }, 
                 {
                  "height":5.76679,
@@ -230,8 +230,8 @@
                  "type":"",
                  "visible":true,
                  "width":3.8419,
-                 "x":648.10105,
-                 "y":106.080195909091
+                 "x":640,
+                 "y":96
                 }, 
                 {
                  "height":5.76679,
@@ -241,8 +241,8 @@
                  "type":"",
                  "visible":true,
                  "width":3.8419,
-                 "x":711.715413636364,
-                 "y":105.810877727273
+                 "x":704,
+                 "y":96
                 }, 
                 {
                  "height":5.76679,
@@ -252,8 +252,437 @@
                  "type":"",
                  "visible":true,
                  "width":3.8419,
-                 "x":695.715413636364,
-                 "y":105.876877727273
+                 "x":688,
+                 "y":96
+                }, 
+                {
+                 "height":5.76679,
+                 "id":58,
+                 "name":"gemSpawn",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":3.8419,
+                 "x":288,
+                 "y":144
+                }, 
+                {
+                 "height":5.76679,
+                 "id":59,
+                 "name":"gemSpawn",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":3.8419,
+                 "x":608,
+                 "y":144
+                }, 
+                {
+                 "height":5.76679,
+                 "id":60,
+                 "name":"gemSpawn",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":3.8419,
+                 "x":720,
+                 "y":96
+                }, 
+                {
+                 "height":5.76679,
+                 "id":61,
+                 "name":"gemSpawn",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":3.8419,
+                 "x":896,
+                 "y":128
+                }, 
+                {
+                 "height":5.76679,
+                 "id":65,
+                 "name":"gemSpawn",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":3.8419,
+                 "x":912,
+                 "y":128
+                }, 
+                {
+                 "height":5.76679,
+                 "id":66,
+                 "name":"gemSpawn",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":3.8419,
+                 "x":928,
+                 "y":192
+                }, 
+                {
+                 "height":5.76679,
+                 "id":67,
+                 "name":"gemSpawn",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":3.8419,
+                 "x":960,
+                 "y":192
+                }, 
+                {
+                 "height":5.76679,
+                 "id":68,
+                 "name":"gemSpawn",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":3.8419,
+                 "x":944,
+                 "y":192
+                }, 
+                {
+                 "height":5.76679,
+                 "id":69,
+                 "name":"gemSpawn",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":3.8419,
+                 "x":976,
+                 "y":192
+                }, 
+                {
+                 "height":5.76679,
+                 "id":70,
+                 "name":"gemSpawn",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":3.8419,
+                 "x":992,
+                 "y":192
+                }, 
+                {
+                 "height":5.76679,
+                 "id":71,
+                 "name":"gemSpawn",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":3.8419,
+                 "x":1008,
+                 "y":192
+                }, 
+                {
+                 "height":5.76679,
+                 "id":72,
+                 "name":"gemSpawn",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":3.8419,
+                 "x":1024,
+                 "y":192
+                }, 
+                {
+                 "height":5.76679,
+                 "id":73,
+                 "name":"gemSpawn",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":3.8419,
+                 "x":1040,
+                 "y":192
+                }, 
+                {
+                 "height":5.76679,
+                 "id":74,
+                 "name":"gemSpawn",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":3.8419,
+                 "x":1360,
+                 "y":192
+                }, 
+                {
+                 "height":5.76679,
+                 "id":75,
+                 "name":"gemSpawn",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":3.8419,
+                 "x":1376,
+                 "y":192
+                }, 
+                {
+                 "height":5.76679,
+                 "id":76,
+                 "name":"gemSpawn",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":3.8419,
+                 "x":1392,
+                 "y":192
+                }, 
+                {
+                 "height":5.76679,
+                 "id":77,
+                 "name":"gemSpawn",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":3.8419,
+                 "x":1408,
+                 "y":192
+                }, 
+                {
+                 "height":5.76679,
+                 "id":78,
+                 "name":"gemSpawn",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":3.8419,
+                 "x":1424,
+                 "y":192
+                }, 
+                {
+                 "height":5.76679,
+                 "id":79,
+                 "name":"gemSpawn",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":3.8419,
+                 "x":1440,
+                 "y":192
+                }, 
+                {
+                 "height":5.76679,
+                 "id":80,
+                 "name":"gemSpawn",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":3.8419,
+                 "x":1456,
+                 "y":192
+                }, 
+                {
+                 "height":5.76679,
+                 "id":81,
+                 "name":"gemSpawn",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":3.8419,
+                 "x":1360,
+                 "y":128
+                }, 
+                {
+                 "height":5.76679,
+                 "id":82,
+                 "name":"gemSpawn",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":3.8419,
+                 "x":1408,
+                 "y":128
+                }, 
+                {
+                 "height":5.76679,
+                 "id":83,
+                 "name":"gemSpawn",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":3.8419,
+                 "x":1456,
+                 "y":128
+                }, 
+                {
+                 "height":5.76679,
+                 "id":84,
+                 "name":"gemSpawn",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":3.8419,
+                 "x":1376,
+                 "y":128
+                }, 
+                {
+                 "height":5.76679,
+                 "id":85,
+                 "name":"gemSpawn",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":3.8419,
+                 "x":1424,
+                 "y":128
+                }, 
+                {
+                 "height":5.76679,
+                 "id":86,
+                 "name":"gemSpawn",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":3.8419,
+                 "x":1472,
+                 "y":128
+                }, 
+                {
+                 "height":5.76679,
+                 "id":87,
+                 "name":"gemSpawn",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":3.8419,
+                 "x":1184,
+                 "y":80
+                }, 
+                {
+                 "height":5.76679,
+                 "id":88,
+                 "name":"gemSpawn",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":3.8419,
+                 "x":1200,
+                 "y":80
+                }, 
+                {
+                 "height":5.76679,
+                 "id":89,
+                 "name":"gemSpawn",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":3.8419,
+                 "x":1168,
+                 "y":80
+                }, 
+                {
+                 "height":5.76679,
+                 "id":90,
+                 "name":"gemSpawn",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":3.8419,
+                 "x":1216,
+                 "y":80
+                }, 
+                {
+                 "height":5.76679,
+                 "id":91,
+                 "name":"gemSpawn",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":3.8419,
+                 "x":1920,
+                 "y":96
+                }, 
+                {
+                 "height":5.76679,
+                 "id":92,
+                 "name":"gemSpawn",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":3.8419,
+                 "x":1936,
+                 "y":96
+                }, 
+                {
+                 "height":5.76679,
+                 "id":93,
+                 "name":"gemSpawn",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":3.8419,
+                 "x":1952,
+                 "y":96
+                }, 
+                {
+                 "height":5.76679,
+                 "id":94,
+                 "name":"gemSpawn",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":3.8419,
+                 "x":1920,
+                 "y":80
+                }, 
+                {
+                 "height":5.76679,
+                 "id":95,
+                 "name":"gemSpawn",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":3.8419,
+                 "x":1936,
+                 "y":80
+                }, 
+                {
+                 "height":5.76679,
+                 "id":96,
+                 "name":"gemSpawn",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":3.8419,
+                 "x":1952,
+                 "y":80
+                }, 
+                {
+                 "height":5.76679,
+                 "id":97,
+                 "name":"gemSpawn",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":3.8419,
+                 "x":1696,
+                 "y":192
+                }, 
+                {
+                 "height":5.76679,
+                 "id":98,
+                 "name":"gemSpawn",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":3.8419,
+                 "x":1712,
+                 "y":192
+                }, 
+                {
+                 "height":5.76679,
+                 "id":99,
+                 "name":"gemSpawn",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":3.8419,
+                 "x":1728,
+                 "y":192
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -318,8 +747,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":885,
-                 "y":198.5
+                 "x":896,
+                 "y":192
                 }, 
                 {
                  "height":0,
@@ -395,8 +824,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":478.333333333333,
-                 "y":123.333333333333
+                 "x":478.333,
+                 "y":123.333
                 }, 
                 {
                  "height":0,
@@ -406,8 +835,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":744.666666666667,
-                 "y":109.666666666667
+                 "x":744.667,
+                 "y":109.667
                 }, 
                 {
                  "height":0,
@@ -417,8 +846,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":1116.66666666667,
-                 "y":103.666666666667
+                 "x":1116.67,
+                 "y":103.667
                 }, 
                 {
                  "height":0,
@@ -428,8 +857,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":1238.66666666667,
-                 "y":106.333333333333
+                 "x":1238.67,
+                 "y":106.333
                 }, 
                 {
                  "height":0,
@@ -439,8 +868,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":1506.33333333333,
-                 "y":107.333333333333
+                 "x":1506.33,
+                 "y":107.333
                 }, 
                 {
                  "height":0,
@@ -450,8 +879,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":1669.33333333333,
-                 "y":108.666666666667
+                 "x":1669.33,
+                 "y":108.667
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -460,7 +889,7 @@
          "y":0
         }],
  "nextlayerid":18,
- "nextobjectid":58,
+ "nextobjectid":100,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.6.0",

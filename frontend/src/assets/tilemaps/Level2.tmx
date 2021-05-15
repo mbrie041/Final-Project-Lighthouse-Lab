@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="129" height="16" tilewidth="16" tileheight="16" infinite="0" nextlayerid="18" nextobjectid="58">
+<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="129" height="16" tilewidth="16" tileheight="16" infinite="0" nextlayerid="18" nextobjectid="100">
  <editorsettings>
   <export target="Level2.json" format="json"/>
  </editorsettings>
@@ -3079,24 +3079,63 @@
   </object>
  </objectgroup>
  <objectgroup id="15" name="Gems">
-  <object id="34" name="gemSpawn" x="280.079" y="154.138" width="3.8419" height="5.76679"/>
-  <object id="36" name="gemSpawn" x="264.079" y="154.204" width="3.8419" height="5.76679"/>
-  <object id="37" name="gemSpawn" x="248.123" y="154.247" width="3.8419" height="5.76679"/>
-  <object id="41" name="gemSpawn" x="599.574" y="154.096" width="3.8419" height="5.76679"/>
-  <object id="42" name="gemSpawn" x="583.512" y="154.037" width="3.8419" height="5.76679"/>
-  <object id="43" name="gemSpawn" x="567.556" y="154.08" width="3.8419" height="5.76679"/>
-  <object id="47" name="gemSpawn" x="680.057" y="105.971" width="3.8419" height="5.76679"/>
-  <object id="48" name="gemSpawn" x="664.057" y="106.037" width="3.8419" height="5.76679"/>
-  <object id="49" name="gemSpawn" x="648.101" y="106.08" width="3.8419" height="5.76679"/>
-  <object id="50" name="gemSpawn" x="711.715" y="105.811" width="3.8419" height="5.76679"/>
-  <object id="51" name="gemSpawn" x="695.715" y="105.877" width="3.8419" height="5.76679"/>
+  <object id="34" name="gemSpawn" x="272" y="144" width="3.8419" height="5.76679"/>
+  <object id="36" name="gemSpawn" x="256" y="144" width="3.8419" height="5.76679"/>
+  <object id="37" name="gemSpawn" x="240" y="144" width="3.8419" height="5.76679"/>
+  <object id="41" name="gemSpawn" x="592" y="144" width="3.8419" height="5.76679"/>
+  <object id="42" name="gemSpawn" x="576" y="144" width="3.8419" height="5.76679"/>
+  <object id="43" name="gemSpawn" x="560" y="144" width="3.8419" height="5.76679"/>
+  <object id="47" name="gemSpawn" x="672" y="96" width="3.8419" height="5.76679"/>
+  <object id="48" name="gemSpawn" x="656" y="96" width="3.8419" height="5.76679"/>
+  <object id="49" name="gemSpawn" x="640" y="96" width="3.8419" height="5.76679"/>
+  <object id="50" name="gemSpawn" x="704" y="96" width="3.8419" height="5.76679"/>
+  <object id="51" name="gemSpawn" x="688" y="96" width="3.8419" height="5.76679"/>
+  <object id="58" name="gemSpawn" x="288" y="144" width="3.8419" height="5.76679"/>
+  <object id="59" name="gemSpawn" x="608" y="144" width="3.8419" height="5.76679"/>
+  <object id="60" name="gemSpawn" x="720" y="96" width="3.8419" height="5.76679"/>
+  <object id="61" name="gemSpawn" x="896" y="128" width="3.8419" height="5.76679"/>
+  <object id="65" name="gemSpawn" x="912" y="128" width="3.8419" height="5.76679"/>
+  <object id="66" name="gemSpawn" x="928" y="192" width="3.8419" height="5.76679"/>
+  <object id="67" name="gemSpawn" x="960" y="192" width="3.8419" height="5.76679"/>
+  <object id="68" name="gemSpawn" x="944" y="192" width="3.8419" height="5.76679"/>
+  <object id="69" name="gemSpawn" x="976" y="192" width="3.8419" height="5.76679"/>
+  <object id="70" name="gemSpawn" x="992" y="192" width="3.8419" height="5.76679"/>
+  <object id="71" name="gemSpawn" x="1008" y="192" width="3.8419" height="5.76679"/>
+  <object id="72" name="gemSpawn" x="1024" y="192" width="3.8419" height="5.76679"/>
+  <object id="73" name="gemSpawn" x="1040" y="192" width="3.8419" height="5.76679"/>
+  <object id="74" name="gemSpawn" x="1360" y="192" width="3.8419" height="5.76679"/>
+  <object id="75" name="gemSpawn" x="1376" y="192" width="3.8419" height="5.76679"/>
+  <object id="76" name="gemSpawn" x="1392" y="192" width="3.8419" height="5.76679"/>
+  <object id="77" name="gemSpawn" x="1408" y="192" width="3.8419" height="5.76679"/>
+  <object id="78" name="gemSpawn" x="1424" y="192" width="3.8419" height="5.76679"/>
+  <object id="79" name="gemSpawn" x="1440" y="192" width="3.8419" height="5.76679"/>
+  <object id="80" name="gemSpawn" x="1456" y="192" width="3.8419" height="5.76679"/>
+  <object id="81" name="gemSpawn" x="1360" y="128" width="3.8419" height="5.76679"/>
+  <object id="82" name="gemSpawn" x="1408" y="128" width="3.8419" height="5.76679"/>
+  <object id="83" name="gemSpawn" x="1456" y="128" width="3.8419" height="5.76679"/>
+  <object id="84" name="gemSpawn" x="1376" y="128" width="3.8419" height="5.76679"/>
+  <object id="85" name="gemSpawn" x="1424" y="128" width="3.8419" height="5.76679"/>
+  <object id="86" name="gemSpawn" x="1472" y="128" width="3.8419" height="5.76679"/>
+  <object id="87" name="gemSpawn" x="1184" y="80" width="3.8419" height="5.76679"/>
+  <object id="88" name="gemSpawn" x="1200" y="80" width="3.8419" height="5.76679"/>
+  <object id="89" name="gemSpawn" x="1168" y="80" width="3.8419" height="5.76679"/>
+  <object id="90" name="gemSpawn" x="1216" y="80" width="3.8419" height="5.76679"/>
+  <object id="91" name="gemSpawn" x="1920" y="96" width="3.8419" height="5.76679"/>
+  <object id="92" name="gemSpawn" x="1936" y="96" width="3.8419" height="5.76679"/>
+  <object id="93" name="gemSpawn" x="1952" y="96" width="3.8419" height="5.76679"/>
+  <object id="94" name="gemSpawn" x="1920" y="80" width="3.8419" height="5.76679"/>
+  <object id="95" name="gemSpawn" x="1936" y="80" width="3.8419" height="5.76679"/>
+  <object id="96" name="gemSpawn" x="1952" y="80" width="3.8419" height="5.76679"/>
+  <object id="97" name="gemSpawn" x="1696" y="192" width="3.8419" height="5.76679"/>
+  <object id="98" name="gemSpawn" x="1712" y="192" width="3.8419" height="5.76679"/>
+  <object id="99" name="gemSpawn" x="1728" y="192" width="3.8419" height="5.76679"/>
  </objectgroup>
  <objectgroup id="11" name="Enemies">
   <object id="11" name="Robot1" x="654.333" y="198.333"/>
   <object id="19" name="Python" x="433.5" y="198"/>
   <object id="20" name="Bat" x="359.5" y="158.5"/>
   <object id="21" name="Python" x="537" y="199"/>
-  <object id="22" name="Python" x="885" y="198.5"/>
+  <object id="22" name="Python" x="896" y="192"/>
   <object id="23" name="Python" x="1015" y="198.5"/>
   <object id="24" name="Python" x="1255.5" y="198.5"/>
   <object id="25" name="Python" x="1430.5" y="198"/>

@@ -29,6 +29,12 @@ export default class Player {
       frameRate: 12,
       repeat: -1
     });
+    anims.create({
+      key: "player-death",
+      frames: anims.generateFrameNames("player", { prefix: "Mike-Falling", suffix: '.png',  start: 1, end: 3}),
+      frameRate: 20,
+      repeat: 1
+    });
 
 
     // Create the physics-based sprite that we will move around and animate

@@ -1,6 +1,7 @@
 import Robot from "../characters/robot1.js";
 import Phaser from "phaser";
 const dead = "dead";
+const alive = "alive";
 //Function that creates enemies
 //Takes the following params:
 //1. (String) Name of the object layer that the enemies are on from tiled
@@ -46,7 +47,7 @@ function createEnemy(
   collisionArray,
   deathAnnimationName
 ) {
-  let alive = true;
+  let aliveCheck = true;
   const createdEnemy = new enemyName(enemySpeed, scene, obj.x, obj.y);
   enemyArray.push(createdEnemy);
   createdEnemy.sprite.setFlipX(false);
@@ -75,17 +76,20 @@ function createEnemy(
     scene.player.sprite,
     createdEnemy.sprite,
     (player, enemy) => {
-      if (alive) {
+      if (aliveCheck) {
         if (enemy.body.touching.up && player.body.touching.down) {
-          alive = false;
+          aliveCheck = false;
           createdEnemy.sprite.body.setAllowGravity(true);
           for (let c of colliderArray) {
             scene.physics.world.removeCollider(c);
           }
+          enemy.setFlipY(true);
           enemy.setVelocityX(0);
           enemy.anims.play(deathAnnimationName, () => enemy.destroy());
         } else {
-          scene.state = dead;
+          if (scene.state === alive) {
+            scene.state = dead;
+          }
         }
       }
     },
