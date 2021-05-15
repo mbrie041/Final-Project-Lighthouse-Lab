@@ -116,7 +116,7 @@ export default class LevelOneScene extends Phaser.Scene {
 
     //Array containing walls that the enemies needs to collide with
     const collisionArray = [this.enemyWalls, this.scaffoldingLayer];
-    const objects = map.getObjectLayer("Enemies").objects.filter((obj)=>obj.name === "Robot1");
+    const objects = map.getObjectLayer("Enemies").objects.filter((obj) => obj.name === "Robot1");
     this.enemyArray.concat(
       enemyCreator(
         objects,
@@ -154,6 +154,14 @@ export default class LevelOneScene extends Phaser.Scene {
     })
     .setScrollFactor(0);
 
+    // Life text at the top of the screen
+    const lifeText = this.add
+      .text(150, 0, `Life: ${global.life}`, {
+        fontSize: "16px",
+        fill: "#ffffff",
+      })
+      .setScrollFactor(0);
+
     //timer text at the top of the screen
     timeText = this.add
       .text(250, 5, `Time: ${global.elaspedTime}`, {
@@ -182,7 +190,15 @@ export default class LevelOneScene extends Phaser.Scene {
     //state update check
     if (this.state === dead) {
       this.player.destroy();
-      this.scene.restart();
+      global.life -= 1;
+      if (global.life === 0) {
+        global.finalTimer = global.elapsedTime;
+        global.aboutToChange = 1;
+        this.scene.start('GameOverScene');
+        this.scene.stop('LevelOneScene');
+      } else {
+        this.scene.restart();
+      }
     } else {
       //calls the player update on alive
       this.player.update();

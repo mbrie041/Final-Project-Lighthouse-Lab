@@ -2,7 +2,7 @@ import React from "react";
 
 
 export default function LeaderboardScore(props) {
-  // console.log('props (leaderboardscore.jsx) = ', props)
+  console.log('props (leaderboardscore.jsx) = ', props)
   return (
     // <ul>
     //   <li>Gamer: {props.name}</li>
@@ -12,6 +12,7 @@ export default function LeaderboardScore(props) {
     <tr class = "board-results">
       <td class= "gamer">{props.name}</td>
       <td class = "scores">{props.score}</td>
+      <td class = "time">{props.time}</td>
     </tr>
 
 
