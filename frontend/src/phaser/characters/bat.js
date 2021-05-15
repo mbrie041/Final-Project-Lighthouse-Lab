@@ -28,7 +28,7 @@ export default class Bat {
         end: 3,
       }),
       frameRate: 30,
-      repeat: -1,
+      repeat: 3,
     });
 
     this.sprite = scene.physics.add

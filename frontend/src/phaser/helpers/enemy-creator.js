@@ -85,7 +85,8 @@ function createEnemy(
           }
           enemy.setFlipY(true);
           enemy.setVelocityX(0);
-          enemy.anims.play(deathAnnimationName, () => enemy.destroy());
+          enemy.anims.play(deathAnnimationName)
+          enemy.on(Phaser.Animations.Events.ANIMATION_COMPLETE,()=>enemy.destroy());
         } else {
           if (scene.state === alive) {
             scene.state = dead;

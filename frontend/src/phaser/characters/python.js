@@ -28,7 +28,7 @@ export default class Python {
         end: 3,
       }),
       frameRate: 40,
-      repeat: -1,
+      repeat: 3,
     });
 
     this.sprite = scene.physics.add
