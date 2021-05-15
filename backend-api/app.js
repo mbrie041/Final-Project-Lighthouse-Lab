@@ -6,10 +6,9 @@ const Cors = require("cors");
 const db = require('./db');
 const dbHelpers = require('./helpers/dbHelpers')(db);
 
-var indexRouter = require('./routes/index');
 var scoresRouter = require('./routes/stats');
 
-function application(actions = { updateLeaderboard: () => { } }) {
+function createNewApplication() {
   var app = express();
 
   app.use(logger('dev'));
@@ -19,11 +18,39 @@ function application(actions = { updateLeaderboard: () => { } }) {
   app.use(cookieParser());
   app.use(express.static(path.join(__dirname, 'public')));
 
-  app.use('/', indexRouter);
-  // app.use('/users', usersRouter);
-  app.use('/api/stats', scoresRouter(dbHelpers, actions.updateLeaderboard));
-
   return app;
 }
 
-module.exports = application;
+const statsApp = function (actions) {
+  const statsApp = createNewApplication('scoreApp');
+  statsApp.use('/api/stats', scoresRouter(dbHelpers, actions.updateLeaderboard));
+
+  return statsApp;
+}
+
+const chatApp = createNewApplication('chatApp');
+
+module.exports = {
+  statsApp,
+  chatApp
+};
+
+
+// function application(actions = { updateLeaderboard: () => { } }) {
+//   var app = express();
+
+//   app.use(logger('dev'));
+//   app.use(express.json());
+//   app.use(express.urlencoded({ extended: false }));
+//   app.use(Cors());
+//   app.use(cookieParser());
+//   app.use(express.static(path.join(__dirname, 'public')));
+
+//   // app.use('/', indexRouter);
+//   // app.use('/users', usersRouter);
+//   app.use('/api/stats', scoresRouter(dbHelpers, actions.updateLeaderboard));
+
+//   return app;
+// }
+
+// module.exports = application;
