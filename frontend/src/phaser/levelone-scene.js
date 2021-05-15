@@ -10,7 +10,6 @@ const dead = "dead";
 
 let scoreText;
 let timeText;
-let newItemGroup;
 
 export default class LevelOneScene extends Phaser.Scene {
   constructor() {
@@ -76,7 +75,7 @@ export default class LevelOneScene extends Phaser.Scene {
     this.load.tilemapTiledJSON("level1map", "src/assets/tilemaps/Level2.json");
 
     //placeholer for score increasing item
-    this.load.image("pancake", "src/assets/images/Pancake_Stack (16 x 16).png");
+    this.load.image("gem", "src/assets/images/gem.png");
   }
 
   create() {
@@ -130,6 +129,7 @@ export default class LevelOneScene extends Phaser.Scene {
     const objects1 = map.getObjectLayer("Enemies").objects.filter((obj)=>obj.name === "Robot1");
     const objects2 = map.getObjectLayer("Enemies").objects.filter((obj)=>obj.name === "Python");
     const objects3 = map.getObjectLayer("Enemies").objects.filter((obj)=>obj.name === "Bat");
+    //Enemy creating function calls
     this.enemyArray.concat(
       enemyCreator(
         objects1,
@@ -163,6 +163,7 @@ export default class LevelOneScene extends Phaser.Scene {
         "bat-hurt"
       )
     );
+    
     //set up collision for the level
     this.scaffoldingLayer.setCollisionByProperty({ collides: true });
     this.groundLayer.setCollisionByProperty({ collides: true });
@@ -195,7 +196,7 @@ export default class LevelOneScene extends Phaser.Scene {
       })
       .setScrollFactor(0);
 
-    const item = "pancake";
+    const item = "gem";
     const layerArray = [this.groundLayer, this.scaffoldingLayer];
     const physics = this.physics;
     const playerSprite = this.player.sprite;
