@@ -16,11 +16,12 @@ const server = http.createServer(chatApp);
 const WebSocket = require("ws");
 const wss = new WebSocket.Server({ server });
 
-/**
- * 
- */
 const chatHistory = [];
-const msgTypes = {
+const chatMessageType = {
+  message: 'message',
+  newUser: 'newUser'
+};
+const eventTypes = {
   fullChatHistory: 'fullChatHistory',
   newMessage: 'newMessage',
   newUser: 'newUser'
@@ -33,11 +34,11 @@ wss.on("connection", socket => {
     console.log(`Message Received: ${JSON.stringify(event.data)}`);
     const data = JSON.parse(event.data);
     switch (data.type) {
-      case msgTypes.newMessage:
+      case eventTypes.newMessage:
         handleNewMessage(data.message);
         break;
-      case msgTypes.newUser:
-        handleNewUser(data.user);
+      case eventTypes.newUser:
+        handleNewUser(socket, data.user);
         break;
       default:
         console.log(`Unknown message type: ${data.type}`);
@@ -47,8 +48,10 @@ wss.on("connection", socket => {
 
 function handleNewConnection(socket) {
   const msg = {
-    type: msgTypes.fullChatHistory,
-    chatHistory
+    type: eventTypes.fullChatHistory,
+    eventData: {
+      chatHistory
+    }
   };
 
   console.log(`A new client connected, sending chat history ${JSON.stringify(msg)}`);
@@ -60,8 +63,10 @@ function handleNewMessage(message) {
   console.log(`Updated Chat History: \n${JSON.stringify(chatHistory)}`);
 
   const newMsgData = {
-    type: msgTypes.newMessage,
-    message: message
+    type: eventTypes.newMessage,
+    eventData: {
+      message
+    }
   };
 
   console.log(`Broadcasting new message: ${JSON.stringify(newMsgData)}`);
@@ -72,16 +77,32 @@ function handleNewMessage(message) {
   });
 }
 
-function handleNewUser(user) {
+function handleNewUser(socket, user) {
   const newUserData = {
-    type: msgTypes.newUser,
-    user
+    type: eventTypes.newUser,
+    eventData: {
+      user
+    }
   };
+  console.log(`Sending acknowledgement of new user: ${JSON.stringify(user)}`);
+  socket.send(JSON.stringify(newUserData));
 
-  console.log(`Broadcasting new user: ${JSON.stringify(newUserData)}`);
+  const newUserMsg = {
+    type: chatMessageType.newUser,
+    user: user
+  };
+  chatHistory.push(newUserMsg);
+
+  const newUserMessageData = {
+    type: eventTypes.newMessage,
+    eventData: {
+      message: newUserMsg
+    }
+  };
+  console.log(`Broadcasting new user joined: ${JSON.stringify(newUserData)}`);
   wss.clients.forEach(function each(client) {
     if (client.readyState === WebSocket.OPEN) {
-      client.send(JSON.stringify(newUserData));
+      client.send(JSON.stringify(newUserMessageData));
     }
   });
 }
