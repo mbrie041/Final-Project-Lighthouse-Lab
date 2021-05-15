@@ -20,7 +20,7 @@ export default function enemyCreator(
   scene,
   collisionArray,
   enemySpeed,
-  deathAnnimationName
+  deathAnnimationName,
 ) {
   const enemyArray = [];
   for (let obj of objects) {
@@ -47,7 +47,7 @@ function createEnemy(
   collisionArray,
   deathAnnimationName
 ) {
-  let aliveCheck = true;
+  let enemyAlive = true;
   const createdEnemy = new enemyName(enemySpeed, scene, obj.x, obj.y);
   enemyArray.push(createdEnemy);
   createdEnemy.sprite.setFlipX(false);
@@ -76,9 +76,9 @@ function createEnemy(
     scene.player.sprite,
     createdEnemy.sprite,
     (player, enemy) => {
-      if (aliveCheck) {
+      if (enemyAlive) {
         if (enemy.body.touching.up && player.body.touching.down) {
-          aliveCheck = false;
+          enemyAlive = false;
           createdEnemy.sprite.body.setAllowGravity(true);
           for (let c of colliderArray) {
             scene.physics.world.removeCollider(c);

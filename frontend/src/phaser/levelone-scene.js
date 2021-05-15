@@ -189,8 +189,9 @@ export default class LevelOneScene extends Phaser.Scene {
     this.player.sprite.body.collideWorldBounds = true;
 
     //set up camera to have bounds on the level and follow the player
-    this.cameras.main.startFollow(this.player.sprite);
     this.cameras.main.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
+    this.cameraDolly = new Phaser.Geom.Point(this.player.x, this.player.y);
+    this.cameras.main.startFollow(this.cameraDolly);
 
     //creates score text at the top of the screen
     scoreText = this.add
@@ -223,6 +224,9 @@ export default class LevelOneScene extends Phaser.Scene {
   }
 
   update(time, delta) {
+    this.cameraDolly.x = Math.floor(this.player.sprite.x);
+    this.cameraDolly.y = Math.floor(this.player.sprite.y);
+
     //state update check
     if (this.state === dead) {
       this.cameras.main.fadeOut(3000);
@@ -255,10 +259,6 @@ function collectItem(player, item) {
   console.log("COLLISION WITH ITEM!");
   item.disableBody(`${item}`, `${item}`);
   global.score += 10;
-  scoreText.setText("Score: " + global.score);
-}
-
-function enemyScore(){
   scoreText.setText("Score: " + global.score);
 }
 

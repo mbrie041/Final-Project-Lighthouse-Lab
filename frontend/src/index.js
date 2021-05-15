@@ -14,6 +14,7 @@ export const config = {
   height: 260,
   parent: "phaser",
   pixelArt: true,
+  roundPixels: true,
   backgroundColor: "#1d212d",
   dom: {
     createContainer: true
