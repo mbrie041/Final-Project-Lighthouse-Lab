@@ -194,6 +194,16 @@ export default class LevelOneScene extends Phaser.Scene {
       global.life -= 1;
       if (global.life === 0) {
         global.finalTimer = global.elapsedTime;
+        //format timer
+        let min = Math.floor(global.finalTimer / 60);
+        let sec = (global.finalTimer % 60).toFixed(2);
+        if (min < 10) {
+          min = '0' + min;
+        }
+        if (sec < 10) {
+          sec = '0' + sec;
+        }
+        global.finalTimer =`${min}:${sec}`
         global.aboutToChange = 1;
         this.scene.start('GameOverScene');
         this.scene.stop('LevelOneScene');

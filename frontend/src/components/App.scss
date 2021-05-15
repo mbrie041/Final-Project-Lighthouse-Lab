@@ -23,12 +23,11 @@
   background-color: #2e2935;
   .leaderboard-title{
     font-size: 3em;
-    // text-align: center;
   }
   
   .leaderboard {
-    // margin-left: 7em;
-    margin-top: 2em;
+    margin-left: 7em;
+ 
     
     thead {
       font-size: 2em;
@@ -40,7 +39,6 @@
         padding: 1.2em;
       }
 
-    
     }
 
   }
@@ -54,3 +52,11 @@
   
 }
 
+
+tbody, td, tfoot, th, thead, tr {
+  padding: 1.5em;
+}
+
+div.col-sm-6 {
+  align-items: center;
+}

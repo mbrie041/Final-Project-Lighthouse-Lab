@@ -35,6 +35,7 @@ export default class GameOverScene extends Phaser.Scene {
       .setScrollFactor(0);
 
     // Display Timer
+  
     this.add
       .text(250, 5, `Time: ${global.finalTimer}`, {
         fontSize: "10px",
@@ -42,7 +43,7 @@ export default class GameOverScene extends Phaser.Scene {
         fontFamily: ' "Press Start 2P" '
       })
       .setScrollFactor(0);
-
+  
     this.nameInput = this.add.dom(410, 340).createFromCache("form");
     this.message = this.add.text(130, 100, "GAME OVER!", {
       color: "#FFFFFF",
@@ -96,3 +97,18 @@ export default class GameOverScene extends Phaser.Scene {
     });
   }
 };
+
+
+function displayTimeElapsed(time) {
+  global.elapsedTime = time * 0.001;
+  let min = Math.floor(global.elapsedTime / 60);
+  let sec = (global.elapsedTime % 60).toFixed(2);
+
+  if (min < 10) {
+    min = "0" + min;
+  }
+  if (sec < 10) {
+    sec = "0" + sec;
+  }
+  timeText.setText("Time: " + min + ":" + sec);
+}
