@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/server",
+    "start": "node ./bin/servers",
     "local": "./node_modules/.bin/nodemon -L --ignore public/",
     "db:reset": "node ./db/reset.js"
   },
