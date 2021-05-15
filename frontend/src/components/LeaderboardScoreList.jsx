@@ -3,10 +3,10 @@ import LeaderboardScore from "./LeaderboardScore.jsx";
 
 export default function LeaderboardScoreList(props) {
 
-  const { scores } = props;
-  console.log('props.scores', scores);
-  return scores.map(score => {
-    return <LeaderboardScore key={score.id} {...score} />
+  const { stats } = props;
+  console.log('props.stats', stats);
+  return stats.map(stat => {
+    return <LeaderboardScore key={stat.id} {...stat} />
   });
 
 };

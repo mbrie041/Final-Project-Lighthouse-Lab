@@ -1,28 +1,17 @@
-// var express = require('express');
-// var router = express.Router();
-
-// /* GET users listing. */
-// router.get('/', function(req, res, next) {
-//   res.send('respond with a resource');
-// });
-
-// module.exports = router;
-
 const express = require('express');
 const router = express.Router();
-// const { getScores, addScore } = require('../helpers/dbHelpers');
 
 module.exports = ({
-    getScores,
-    addScore
+    getStats,
+    addStats
 }, updateLeaderboard) => {
     // module.exports = () => {
     /* GET scores listing. */
     router.get('/', (req, res) => {
-        getScores()
-            .then((scores) => {
-                console.log('Get request getScores =', scores);
-                res.json(scores)
+        getStats()
+            .then((stats) => {
+                console.log('Get request getStats =', stats);
+                res.json(stats)
             })
             .catch((err) => res.json({
                 error: err.message
@@ -32,11 +21,11 @@ module.exports = ({
     router.post('/', (req, res) => {
 
         console.log('Post to / req.body = ', req.body);
-        const { name, score } = req.body;
-        return addScore(name, score)
+        const { name, score, time, geolocation } = req.body;
+        return addStats(name, score, time, geolocation)
             .then(dbres => {
                 console.log(dbres);
-                updateLeaderboard(dbres.id, dbres.name, dbres.score);
+                updateLeaderboard(dbres.id, dbres.name, dbres.score, dbres.time);
                 res.json('score!')
             })
             .catch(err => res.json({

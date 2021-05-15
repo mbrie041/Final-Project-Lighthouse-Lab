@@ -23,21 +23,31 @@ body {
 #phaser {
   width: 800px;
   height: 520px;
+  position: relative;
 } 
 
-canvas{
+#phaser > div, canvas {
   border: rgb(207, 203, 203) solid;
   border-radius: 10px;
   display:block;
   margin: 0;
-  width: 800px;
-  height: 520px;
+  width: 800px !important;
+  height: 520px !important;
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%) !important;
+  // z-index: 0;
 }
 
+#phaser > div, #phaser > div > div {
+  z-index: 99 !important;
+}
+
+canvas {
+  z-index: 0;
+  transform-origin: 50% 50%;
+}
 #instructions {
   border: rgb(207, 203, 203) solid;
   background-color: #2e2935;

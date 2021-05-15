@@ -8,6 +8,7 @@ import LevelOneScene from "./phaser/levelone-scene";
 import InformationScene from "./phaser/information-scene";
 import IntroScene from "./phaser/_intro-scene";
 import "./styles/index.scss"
+import GameOverScene from "./phaser/gameover-scene";
 
 export const config = {
   type: Phaser.AUTO,
@@ -24,7 +25,7 @@ export const config = {
     PlatformerScene,
     LevelOneScene,
     LevelTwoScene,
-    InformationScene
+    GameOverScene
   ],
   physics: {
     default: "arcade",
@@ -35,29 +36,29 @@ export const config = {
   }
 };
 
-
 const game = new Phaser.Game(config);
-console.log(config)
 
-// if (navigator.geolocation) {
-//   navigator.geolocation.getCurrentPosition(position => {
-//     if (!position.coords || !position.coords.longitude) {
-//       position.coords.latitude = 0;
-//       position.coords.longitude = 0;
-//     }
-//     game.scene.start("InformationScene", {
-//       location: {
-//         type: "Point",
-//         coordinates: [
-//           parseFloat(position.coords.longitude.toFixed(1)),
-//           parseFloat(position.coords.latitude.toFixed(1))
-//         ]
-//       }
-//     })
-//   });
-// } else {
-//   console.error("Geolocation is not supported by this browser!");
-// }
+if (navigator.geolocation) {
+  navigator.geolocation.getCurrentPosition(position => {
+    if (!position.coords || !position.coords.longitude) {
+      position.coords.latitude = 0;
+      position.coords.longitude = 0;
+    }
+    global.latitude = parseFloat(position.coords.longitude.toFixed(1));
+    global.longitude = parseFloat(position.coords.latitude.toFixed(1));
+    //   game.scene.start("PlatformerScene", {
+    //     location: {
+    //       type: "Point",
+    //       coordinates: [
+    //         parseFloat(position.coords.longitude.toFixed(1)),
+    //         parseFloat(position.coords.latitude.toFixed(1))
+    //       ]
+    //     }
+    //   })
+  });
+} else {
+  console.error("Geolocation is not supported by this browser!");
+}
 
 ReactDOM.render(
   <App />,

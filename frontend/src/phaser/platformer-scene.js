@@ -10,7 +10,7 @@ global.score = 0;
 let scoreText;
 let timeText;
 global.elapsedTime;
-
+global.life = 3;
 
 
 export default class PlatformerScene extends Phaser.Scene {
@@ -113,32 +113,12 @@ export default class PlatformerScene extends Phaser.Scene {
       })
       .setScrollFactor(0);
 
-    // create submit button
-    this.submitButton = this.add.text(150, 0, "SUBMIT", { fontSize: '16px', color: '#ffffff' });
-    this.submitButton.setInteractive();
-    this.submitButton.on("pointerdown", () => {
-      fetch('http://localhost:3001/api/scores', {
-        'method': 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        'body': JSON.stringify({ score })
-      })
-        .then(response => response.json())
-        .then(data => {
-          console.log('Success:', data);
-        })
-        .catch((error) => {
-          console.error('Error:', error);
-        });
-    });
-
     // levelTwoDoor.setCollisionByProperty({ collides: true });
 
     this.physics.add.overlap(player.sprite, zone, () => {
       this.physics.world.disable(zone);
       console.log("You hit the door!");
-      this.scene.start('LevelOneScene', { score: score })
+      this.scene.start('LevelOneScene', { score: score, life: life })
       // this.scene.start('InformationScene')
       this.scene.stop('PlatformerScene')
       // portalCallback(player, tile, this, data);
