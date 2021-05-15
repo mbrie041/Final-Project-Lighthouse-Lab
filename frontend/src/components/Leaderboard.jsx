@@ -37,10 +37,11 @@ export default function Leaderboard() {
 
   return (
     <>
-    <h2 className="leaderboard-title">High Scores!</h2>
-    <table className="leaderboard">
+    <h2 className="leaderboard-title">High Scores</h2>
+    <table class="css-serial">
       <thead>
           <tr>
+          <th>rank</th>
           <th>name</th>
           <th>score</th>
           <th>time</th>
