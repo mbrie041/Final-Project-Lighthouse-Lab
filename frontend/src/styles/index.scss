@@ -1,6 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
 @import 'navbar';
+@import 'about';
+@import 'table';
+
+.css-serial {
+  counter-reset: serial-number;  /* Set the serial number counter to 0 */
+}
+
+.css-serial td:first-child:before {
+  counter-increment: serial-number;  /* Increment the serial number counter */
+  content: counter(serial-number);  /* Display the counter */
+}
 
 * {
   box-sizing: border-box;
@@ -8,11 +19,21 @@
   padding: 0;
 }
 
+.main-body {
+  background-repeat: no-repeat;
+  background-size:cover;
+  background-position: top;
+  background-image: url("../assets/images/lighthouse-intro.png");
+  height: 100%;
+  
+}
 body {
-  font-family: 'Press Start 2P', cursive;
+  font-family: 'Press Start 2P', sans-serif;
   font-size: .6em;
   background-color: #19061e;
   color: white;
+
+  // background-image: url("../assets/images/lighthouseColor.png");
 }
 
 .container {
@@ -64,3 +85,6 @@ canvas {
   margin-top: 3em;
   padding-left: 9em;
 }
+
+
+

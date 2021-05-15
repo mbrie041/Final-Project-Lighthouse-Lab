@@ -5,6 +5,8 @@ import App from "./components/App.jsx";
 import PlatformerScene from "./phaser/platformer-scene";
 import LevelTwoScene from "./phaser/leveltwo-scene";
 import LevelOneScene from "./phaser/levelone-scene";
+import InformationScene from "./phaser/information-scene";
+import IntroScene from "./phaser/_intro-scene";
 import "./styles/index.scss"
 import GameOverScene from "./phaser/gameover-scene";
 
@@ -19,6 +21,7 @@ export const config = {
     createContainer: true
   },
   scene: [
+    IntroScene,
     PlatformerScene,
     LevelOneScene,
     LevelTwoScene,
@@ -61,3 +64,4 @@ ReactDOM.render(
   <App />,
   document.getElementById("root") || document.createElement("div")
 );
+

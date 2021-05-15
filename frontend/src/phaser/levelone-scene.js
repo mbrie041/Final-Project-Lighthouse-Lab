@@ -147,25 +147,28 @@ export default class LevelOneScene extends Phaser.Scene {
 
     //creates score text at the top of the screen
     scoreText = this.add
-      .text(20, 0, `Score: ${global.score}`, {
-        fontSize: "16px",
-        fill: "#ffffff",
-      })
-      .setScrollFactor(0);
+    .text(20, 5, 'Score: 0', {
+      fontSize: "10px",
+      fill: "#ffffff",
+      fontFamily: ' "Press Start 2P" ',
+    })
+    .setScrollFactor(0);
 
     // Life text at the top of the screen
     const lifeText = this.add
-      .text(150, 0, `Life: ${global.life}`, {
-        fontSize: "16px",
+      .text(150, 5, `Life: ${global.life}`, {
+        fontSize: "10px",
         fill: "#ffffff",
+        fontFamily: ' "Press Start 2P" ',
       })
       .setScrollFactor(0);
 
     //timer text at the top of the screen
     timeText = this.add
-      .text(250, 0, `Time: ${global.elaspedTime}`, {
-        fontSize: "16px",
+      .text(250, 5, `Time: ${global.elaspedTime}`, {
+        fontSize: "10px",
         fill: "#ffffff",
+        fontFamily: ' "Press Start 2P" '
       })
       .setScrollFactor(0);
 

@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import LeaderboardScoreList from "./LeaderboardScoreList.jsx";
-import "./Leaderboard.scss"
+import {Table} from 'react-bootstrap';
+
 
 export default function Leaderboard() {
   const [stats, setStats] = useState([]);
@@ -35,10 +36,23 @@ export default function Leaderboard() {
   }, [])
 
   return (
-    <div className="leaderboard">
-      <h2 className="leaderboard-title">Leaderboard</h2>
-      <LeaderboardScoreList stats={stats} />
-    </div>
+    <>
+    <h2 className="leaderboard-title">High Scores</h2>
+    <table class="css-serial">
+      <thead>
+          <tr>
+          <th>rank</th>
+          <th>name</th>
+          <th>score</th>
+          <th>time</th>
+          </tr>
+      </thead>
+      <tbody>
+        <LeaderboardScoreList stats={stats} />
+      </tbody>
+    </table>
+    </>
+    
   );
 }
 

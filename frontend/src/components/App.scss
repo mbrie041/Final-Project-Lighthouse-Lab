@@ -14,14 +14,36 @@
 }
 
 .app {
-  padding: 2em;
+  padding: 2em 0 0 3em;
   height: 300px;
   width: 400px;
   border: rgb(207, 203, 203) solid;
   border-radius: 10px;
   overflow: scroll;
   background-color: #2e2935;
+  .leaderboard-title{
+    font-size: 3em;
+    // text-align: center;
+  }
   
+  .leaderboard {
+    // margin-left: 7em;
+    margin-top: 2em;
+    
+    thead {
+      font-size: 2em;
+    }
+    .board-results {
+      font-size: 1em;
+
+      .scores {
+        padding: 1.2em;
+      }
+
+    
+    }
+
+  }
 
 
   ul {
@@ -29,7 +51,6 @@
     list-style-type: none;
   }
 
-  .leaderboard-title{
-    font-size: 2em;
-  }
+  
 }
+

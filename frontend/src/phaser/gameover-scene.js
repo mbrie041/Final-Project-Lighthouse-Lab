@@ -19,24 +19,27 @@ export default class GameOverScene extends Phaser.Scene {
 
     // Display Score
     this.add
-      .text(20, 0, `Score: ${global.score}`, {
-        fontSize: "16px",
+      .text(20, 5, `Score: ${global.score}`, {
+        fontSize: "10px",
         fill: "#ffffff",
+        fontFamily: ' "Press Start 2P" '
       })
       .setScrollFactor(0);
     // Display Life
     this.add
-      .text(150, 0, `Life: ${global.life}`, {
-        fontSize: "16px",
+      .text(150, 5, `Life: ${global.life}`, {
+        fontSize: "10px",
         fill: "#ffffff",
+        fontFamily: ' "Press Start 2P" '
       })
       .setScrollFactor(0);
 
     // Display Timer
     this.add
-      .text(250, 0, `Time: ${global.finalTimer}`, {
-        fontSize: "16px",
+      .text(250, 5, `Time: ${global.finalTimer}`, {
+        fontSize: "10px",
         fill: "#ffffff",
+        fontFamily: ' "Press Start 2P" '
       })
       .setScrollFactor(0);
 
