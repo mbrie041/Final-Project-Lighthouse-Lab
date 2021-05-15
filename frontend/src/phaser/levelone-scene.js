@@ -5,6 +5,7 @@ import Python from "./characters/python.js";
 import Bat from "./characters/bat.js";
 import enemyCreator from "./helpers/enemy-creator.js";
 import createItem from "./helpers/item-creator";
+import { collectItem, displayTimeElapsed } from "./helpers/dataHelpers"
 const alive = "alive";
 const dead = "dead";
 const transitioning = "transitioning";
@@ -286,23 +287,23 @@ export default class LevelOneScene extends Phaser.Scene {
   }
 }
 
-function collectItem(player, item) {
-  console.log("COLLISION WITH ITEM!");
-  item.disableBody(`${item}`, `${item}`);
-  global.score += 10;
-  scoreText.setText("Score: " + global.score);
-}
+// function collectItem(player, item) {
+//   console.log("COLLISION WITH ITEM!");
+//   item.disableBody(`${item}`, `${item}`);
+//   global.score += 10;
+//   scoreText.setText("Score: " + global.score);
+// }
 
-function displayTimeElapsed(time) {
-  global.elapsedTime = time * 0.001;
-  let min = Math.floor(global.elapsedTime / 60);
-  let sec = (global.elapsedTime % 60).toFixed(2);
+// function displayTimeElapsed(time) {
+//   global.elapsedTime = time * 0.001;
+//   let min = Math.floor(global.elapsedTime / 60);
+//   let sec = (global.elapsedTime % 60).toFixed(2);
 
-  if (min < 10) {
-    min = "0" + min;
-  }
-  if (sec < 10) {
-    sec = "0" + sec;
-  }
-  timeText.setText("Time: " + min + ":" + sec);
-}
+//   if (min < 10) {
+//     min = "0" + min;
+//   }
+//   if (sec < 10) {
+//     sec = "0" + sec;
+//   }
+//   timeText.setText("Time: " + min + ":" + sec);
+// }
