@@ -21,6 +21,7 @@
 
   .leaderboard {
     border: white solid;
+    background-color: rgba(50, 43, 50, 0.791);
   }
 
   .leaderboard-title{
@@ -62,6 +63,8 @@ div.col-sm-6 {
 .chatbox {
   width: 50%;
   border: solid white;
+  background-color: rgba(50, 43, 50, 0.791);
+
   ::-webkit-scrollbar{
     width: .7em;
     height: 1em;
