@@ -4,14 +4,6 @@
 @import 'about';
 @import 'table';
 
-.css-serial {
-  counter-reset: serial-number;  /* Set the serial number counter to 0 */
-}
-
-.css-serial td:first-child:before {
-  counter-increment: serial-number;  /* Increment the serial number counter */
-  content: counter(serial-number);  /* Display the counter */
-}
 
 * {
   box-sizing: border-box;
@@ -32,7 +24,7 @@ body {
   font-size: .6em;
   background-color: #19061e;
   color: white;
-
+  
   // background-image: url("../assets/images/lighthouseColor.png");
 }
 
@@ -69,16 +61,8 @@ canvas {
   transform-origin: 50% 50%;
 }
 #instructions {
-  border: rgb(207, 203, 203) solid;
-  background-color: #2e2935;
-  font-size: 2em;
-  border-radius: 10px;
-  padding: 1em 1em 1em 1em;
-  height: 300px;
-  width: 400px;
-  .story {
-    font-size: .5em;
-  }
+  margin-left: 30%;
+
 }
 
 .col-sm-6 {
@@ -86,6 +70,14 @@ canvas {
   padding-left: 9em;
 }
 
+.css-serial {
+  counter-reset: serial-number;  /* Set the serial number counter to 0 */
+}
+
+.css-serial td:first-child:before {
+  counter-increment: serial-number;  /* Increment the serial number counter */
+  content: counter(serial-number);  /* Display the counter */
+}
 
 
 // Small devices (landscape phones, 576px and up)

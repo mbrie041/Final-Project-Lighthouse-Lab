@@ -37,6 +37,7 @@ export default function Leaderboard() {
 
   return (
     <>
+    <div class="leaderboard">
     <h2 className="leaderboard-title">High Scores</h2>
     <table class="css-serial">
       <thead>
@@ -51,6 +52,7 @@ export default function Leaderboard() {
         <LeaderboardScoreList stats={stats} />
       </tbody>
     </table>
+    </div>
     </>
     
   );

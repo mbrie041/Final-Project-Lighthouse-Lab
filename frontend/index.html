@@ -8,7 +8,7 @@
 		<link rel="stylesheet" href="./styles/">
 		<script defer src="scripts.js"></script>
 	</head>
-	<body onload="console.log('Loaded!')">
+	<body style="overflow-x:hidden">
 		<nav class="navbar fixed-top navbar-expand-sm">
 			<div class="container-fluid">
 				<a class="navbar-brand" href="#">
@@ -20,9 +20,9 @@
 					</button>
 					<div id="navbarNavAltMarkup">
 						<div class="navbar-nav">
-							<a class="nav-link active" aria-current="page" href="#">Home</a>
+							<!-- <a class="nav-link active" aria-current="page" href="#">Home</a> -->
 							<button data-modal-target="#popup" class="nav-link">About</button>
-							<a class="nav-link" href="#">Login</a>
+							<!-- <a class="nav-link" href="#">Login</a> -->
 						</div>
 					</div>
 				</div>
@@ -77,17 +77,13 @@
 				<div class="row justify-content-center">
 					<div class="col-sm-12" id="phaser">
 					</div>
+					<div id="instructions" class="col-sm-12">
+						<p> move - ⬅ ⬆ ⮕ ⬇</p>
+					</div>
 					<div class="col-sm-6">
-						<section id="instructions">
-							<p> move - ⬅ ⬆ ⮕ ⬇</p>
-							<p> jump - w </p>
-						<p class="story">Can you make it onto the leaderboard? Jump on your enemies and collect items to increase your score! </p>
-					</section>
 				</div>
-				<div class="col-sm-6">
+				<div class="col-sm-12">
 					<section id="root"></section> 
-				</div>
-				<div class="col-sm-6">
 				</div>
 			</div>
 		</div>

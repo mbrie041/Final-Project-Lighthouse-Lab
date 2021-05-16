@@ -145,12 +145,14 @@ export default function Chatroom() {
   }
 
   return (
-    <div className="chatroom">
-      <h2>chatbox</h2>
+    <div className="chatbox">
+      <p class="chat-title">chatbox</p>
       <div id='chat-transcript'>
         {renderChatHistory()}
       </div>
+      <div class="input-box">
       {renderInputBox()}
+      </div>
     </div>
   )
 }
