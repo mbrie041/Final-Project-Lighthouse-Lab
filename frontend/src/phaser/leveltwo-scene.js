@@ -43,7 +43,7 @@ export default class LevelTwoScene extends Phaser.Scene {
 
     //load tileset images for layers
     this.load.image(
-      "groundTiles",
+      "greyTiles",
       "src/assets/tilesets/Gray_Tile_Terrain (16 x 16).png"
     );
     this.load.image(
@@ -51,29 +51,17 @@ export default class LevelTwoScene extends Phaser.Scene {
       "src/assets/tilesets/Scaffolding_and_BG_Parts (16 x 16).png"
     );
     this.load.image("exitSignTiles", "src/assets/tilesets/prop pack.png");
-    this.load.image(
-      "exitDoorTiles",
-      "src/assets/tilesets/House (Outside And Inside) Tileset.png"
-    );
-    this.load.image(
-      "hillTiles",
-      "src/assets/tilesets/Scaffolding_and_BG_Parts (16 x 16).png"
-    );
-    this.load.image(
-      "lightTiles",
-      "src/assets/tilesets/Scaffolding_and_BG_Parts (16 x 16).png"
-    );
-    this.load.image(
-      "backgroundTiles",
-      "src/assets/tilesets/Scaffolding_and_BG_Parts (16 x 16).png"
-    );
+    // this.load.image(
+    //   "exitDoorTiles",
+    //   "src/assets/tilesets/House (Outside And Inside) Tileset.png"
+    // );
     this.load.image(
       "invisibleWalls",
       "src/assets/tilesets/Blocks (16 x 16).png"
     );
 
     //load map from Json file
-    this.load.tilemapTiledJSON("level1map", "src/assets/tilemaps/Level2.json");
+    this.load.tilemapTiledJSON("level2map", "src/assets/tilemaps/Level2.json");
 
     //placeholer for score increasing item
     this.load.image("gem", "src/assets/images/gem.png");
@@ -85,7 +73,7 @@ export default class LevelTwoScene extends Phaser.Scene {
     this.cameras.main.fadeIn(1000);
 
     //stores level map
-    const map = this.make.tilemap({ key: "level1map" });
+    const map = this.make.tilemap({ key: "level2map" });
 
     //store values for tiles that require collision
     const invisibleTiles = map.addTilesetImage(
@@ -94,7 +82,7 @@ export default class LevelTwoScene extends Phaser.Scene {
     );
     const groundTiles = map.addTilesetImage(
       "Gray_Tile_Terrain (16 x 16)",
-      "groundTiles"
+      "greyTiles"
     );
     const scaffoldingTiles = map.addTilesetImage(
       "Scaffolding_and_BG_Parts (16 x 16)",
