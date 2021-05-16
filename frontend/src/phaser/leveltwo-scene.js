@@ -19,52 +19,7 @@ export default class LevelTwoScene extends Phaser.Scene {
     this.enemyArray = []; //holds all the enemies created through the enemyCreator function
   }
   preload() {
-    //load sprite sheets for level characters
-    this.load.atlas(
-      "player",
-      "src/assets/spritesheets/Agent_Mike.png",
-      "src/assets/spritesheets/Agent_Mike.json"
-    );
-    this.load.atlas(
-      "robot",
-      "src/assets/spritesheets/Robot.png",
-      "src/assets/spritesheets/Robot.json"
-    );
-    this.load.atlas(
-      "python",
-      "src/assets/spritesheets/Python.png",
-      "src/assets/spritesheets/Python.json"
-    );
-    this.load.atlas(
-      "bat",
-      "src/assets/spritesheets/Bat.png",
-      "src/assets/spritesheets/Bat.json"
-    );
 
-    //load tileset images for layers
-    this.load.image(
-      "greyTiles",
-      "src/assets/tilesets/Gray_Tile_Terrain (16 x 16).png"
-    );
-    this.load.image(
-      "scaffoldingTiles",
-      "src/assets/tilesets/Scaffolding_and_BG_Parts (16 x 16).png"
-    );
-    this.load.image("exitSignTiles", "src/assets/tilesets/prop pack.png");
-    // this.load.image(
-    //   "exitDoorTiles",
-    //   "src/assets/tilesets/House (Outside And Inside) Tileset.png"
-    // );
-    this.load.image(
-      "invisibleWalls",
-      "src/assets/tilesets/Blocks (16 x 16).png"
-    );
-
-    //load map from Json file
-    this.load.tilemapTiledJSON("level2map", "src/assets/tilemaps/Level2.json");
-
-    //placeholer for score increasing item
-    this.load.image("gem", "src/assets/images/gem.png");
   }
 
   create() {
@@ -88,7 +43,7 @@ export default class LevelTwoScene extends Phaser.Scene {
       "Scaffolding_and_BG_Parts (16 x 16)",
       "scaffoldingTiles"
     );
-    const exitSignTiles = map.addTilesetImage("prop pack", "exitSignTiles");
+    const exitSignTiles = map.addTilesetImage("prop pack", "labTiles");
     const exitDoorTiles = map.addTilesetImage(
       "House (Outside And Inside) Tileset",
       "exitDoorTiles"

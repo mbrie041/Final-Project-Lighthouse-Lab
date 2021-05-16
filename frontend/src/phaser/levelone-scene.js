@@ -26,67 +26,7 @@ export default class LevelOneScene extends Phaser.Scene {
     this.enemyArray = []; //holds all the enemies created through the enemyCreator function
   }
   preload() {
-    //load sprite sheets for level characters
-    this.load.atlas(
-      "player",
-      "src/assets/spritesheets/Agent_Mike.png",
-      "src/assets/spritesheets/Agent_Mike.json"
-    );
-    this.load.atlas(
-      "robot",
-      "src/assets/spritesheets/Robot.png",
-      "src/assets/spritesheets/Robot.json"
-    );
-    this.load.atlas(
-      "python",
-      "src/assets/spritesheets/Python.png",
-      "src/assets/spritesheets/Python.json"
-    );
-    this.load.atlas(
-      "bat",
-      "src/assets/spritesheets/Bat.png",
-      "src/assets/spritesheets/Bat.json"
-    );
-    this.load.atlas(
-      "monitor",
-      "src/assets/spritesheets/Monitor.png",
-      "src/assets/spritesheets/Monitor.json"
-    );
-
-    //load tileset images for layers
-    this.load.image(
-      "groundTiles",
-      "src/assets/tilesets/prop pack.png"
-    );
-    this.load.image(
-      "exitDoorTiles",
-      "src/assets/tilesets/House (Outside And Inside) Tileset.png"
-    );
-    this.load.image(
-      "accesoriesTiles",
-      "src/assets/tilesets/prop pack.png"
-    );
-    this.load.image(
-      "ceilingTiles",
-      "src/assets/tilesets/prop pack.png"
-    );
-    this.load.image(
-      "windowTiles",
-      "src/assets/tilesets/background-tiles.png"
-    );
-
-    this.load.image("backgroundTiles", "src/assets/tilesets/0x72-industrial-tileset-32px-extruded.png");
-
-    this.load.image(
-      "invisibleWalls",
-      "src/assets/tilesets/Blocks (16 x 16).png"
-    );
-
-    //load map from Json file
-    this.load.tilemapTiledJSON("level1map", "src/assets/tilemaps/Level1.json");
-
-    //placeholer for score increasing item
-    this.load.image("gem", "src/assets/images/gem.png");
+    //moved everything to Intro Scenes preload 
   }
 
   create() {
@@ -104,14 +44,14 @@ export default class LevelOneScene extends Phaser.Scene {
     );
     const groundTiles = map.addTilesetImage(
       "prop pack",
-      "groundTiles"
+      "labTiles"
     );
     const exitDoorTiles = map.addTilesetImage(
       "House (Outside And Inside) Tileset",
       "exitDoorTiles"
     );
     const windowTiles = map.addTilesetImage("background-tiles","windowTiles");
-    const backgroundTiles = map.addTilesetImage("0x72-industrial-tileset-32px-extruded","backgroundTiles");
+    const backgroundTiles = map.addTilesetImage("0x72-industrial-tileset-32px-extruded","darkIndustrialTiles");
 
 
     //create layers from tiled names
