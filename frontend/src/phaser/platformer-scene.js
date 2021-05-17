@@ -97,7 +97,7 @@ export default class PlatformerScene extends Phaser.Scene {
 
     //create score text
     scoreText = this.add
-      .text(20, 5, 'Score: 0', {
+      .text(20, 5, `Score: ${global.score}`, {
         fontSize: '10px',
         fill: '#ffffff',
         fontFamily: ' "Press Start 2P" '

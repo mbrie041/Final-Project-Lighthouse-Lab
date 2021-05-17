@@ -132,7 +132,7 @@ export default class LevelThreeScene extends Phaser.Scene {
 
     //creates score text at the top of the screen
     scoreText = this.add
-      .text(20, 5, "Score: 0", {
+      .text(20, 5, `Score: ${global.score}`, {
         fontSize: "10px",
         fill: "#ffffff",
         fontFamily: ' "Press Start 2P" ',

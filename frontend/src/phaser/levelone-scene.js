@@ -15,8 +15,8 @@ let zone;
 global.score = 0;
 let scoreText;
 let timeText;
-global.elapsedTime;
 global.life = 999;
+global.elapsedTime;
 
 export default class LevelOneScene extends Phaser.Scene {
   constructor() {
@@ -27,8 +27,10 @@ export default class LevelOneScene extends Phaser.Scene {
   preload() {
     //moved everything to Intro Scenes preload
   }
-
+  
   create() {
+
+   
     //sets state machine
     this.state = alive;
     this.cameras.main.fadeIn(1000);
@@ -149,7 +151,7 @@ export default class LevelOneScene extends Phaser.Scene {
 
     //creates score text at the top of the screen
     scoreText = this.add
-      .text(20, 5, "Score: 0", {
+      .text(20, 5, `Score: ${global.score}`, {
         fontSize: "10px",
         fill: "#ffffff",
         fontFamily: ' "Press Start 2P" ',
@@ -189,6 +191,7 @@ export default class LevelOneScene extends Phaser.Scene {
   }
 
   update(time, delta) {
+
     this.cameraDolly.x = Math.floor(this.player.sprite.x);
     this.cameraDolly.y = Math.floor(this.player.sprite.y);
 
@@ -241,6 +244,7 @@ export default class LevelOneScene extends Phaser.Scene {
         this.state = dead;
       }
     }
+    
     displayTimeElapsed(time);
   }
 }
