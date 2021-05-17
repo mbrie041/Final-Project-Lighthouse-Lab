@@ -1,9 +1,5 @@
 import Phaser from "phaser";
 
-let introText = `blah blah blah blah 
-blah blah blah blah blah blah blah blah 
-blah blah blah 
- `;
 
 export default class IntroScene extends Phaser.Scene {
   constructor() {
@@ -148,12 +144,6 @@ export default class IntroScene extends Phaser.Scene {
         fontFamily: ' "Press Start 2P" ',
       })
       .setOrigin(0, 0);
-      
-      // this.introText = this.add.text(0, 100, introText, {
-        //   fontSize: '10px',
-        //   fill: '#ffffff',
-        //   fontFamily: ' "Press Start 2P" '
-        // }).setOrigin(0,0);
         
         this.start = this.add
         .text(150, 150, "Start", {

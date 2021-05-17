@@ -1,9 +1,6 @@
-let text = `blah blah blah blah 
-blah blah blah blah blah blah blah blah 
-blah blah blah 
- `;
+import Phaser from "phaser";
 
- export default class TransitionL1Scene extends Phaser.Scene {
+export default class TransitionL1Scene extends Phaser.Scene {
   constructor() {
     super("TransitionL1Scene");
   }
@@ -11,23 +8,33 @@ blah blah blah
   preload() {
 
   }
+
+  typewriteText(text) {
+    const length = text.length
+    let i = 0
+    this.time.addEvent({
+      callback: () => {
+        this.label.text += text[i]
+          ++i
+      },
+      repeat: length - 1,
+      delay: 50
+    })
+  }
+
+  typewriteTextWrapped(text) {
+	const lines = this.label.getWrappedText(text)
+	const wrappedText = lines.join('\n')
+
+	this.typewriteText(wrappedText)
+}
+
   create(data) {
-      
+
     this.cameras.main.fadeIn(3000);
-      
-    this.text = this.add.text(0, 100, text, {
-          fontSize: '10px',
-          fill: '#ffffff',
-          fontFamily: ' "Press Start 2P" '
-        }).setOrigin(0,0);
 
-        
-        this.text.setInteractive();
-        this.text.on("pointerdown", () => {
-          this.scene.start("LevelOneScene");
-        });
+    this.label = this.add.text(50, 50, '').setWordWrapWidth(300)
 
-
-      }
-    }
-    
+    this.typewriteText('blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah ')
+  }
+}
