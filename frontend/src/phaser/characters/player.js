@@ -13,25 +13,25 @@ export default class Player {
     const anims = scene.anims;
     anims.create({
       key: "player-idle",
-      frames: anims.generateFrameNames("player", { prefix: "Mike-idle", suffix: '.png', start: 1, end: 2}),
+      frames: anims.generateFrameNames("player", { prefix: "Mike-idle", suffix: '.png', start: 1, end: 2 }),
       frameRate: 3,
       repeat: -1
     });
     anims.create({
       key: "player-run",
-      frames: anims.generateFrameNames("player", { prefix: "Mike-Right", suffix: '.png',  start: 1, end: 6}),
+      frames: anims.generateFrameNames("player", { prefix: "Mike-Right", suffix: '.png', start: 1, end: 6 }),
       frameRate: 12,
       repeat: -1
     });
     anims.create({
       key: "player-falling",
-      frames: anims.generateFrameNames("player", { prefix: "Mike-Falling", suffix: '.png',  start: 1, end: 3}),
+      frames: anims.generateFrameNames("player", { prefix: "Mike-Falling", suffix: '.png', start: 1, end: 3 }),
       frameRate: 12,
       repeat: -1
     });
     anims.create({
       key: "player-death",
-      frames: anims.generateFrameNames("player", { prefix: "Mike-Falling", suffix: '.png',  start: 1, end: 3}),
+      frames: anims.generateFrameNames("player", { prefix: "Mike-Falling", suffix: '.png', start: 1, end: 3 }),
       frameRate: 20,
       repeat: 1
     });
@@ -44,11 +44,12 @@ export default class Player {
       .setMaxVelocity(300, 400);
 
     // Track the arrow keys & WASD
-    const { LEFT, RIGHT, UP, W, A, D } = Phaser.Input.Keyboard.KeyCodes;
+    const { LEFT, RIGHT, UP, SPACE, W, A, D } = Phaser.Input.Keyboard.KeyCodes;
     this.keys = scene.input.keyboard.addKeys({
       left: LEFT,
       right: RIGHT,
       up: UP,
+      SPACE: SPACE,
       w: W,
       a: A,
       d: D
@@ -76,7 +77,7 @@ export default class Player {
     }
 
     // Only allow the player to jump if they are on the ground
-    if (onGround && (keys.up.isDown || keys.w.isDown)) {
+    if (onGround && (keys.up.isDown || keys.w.isDown || keys.SPACE.isDown)) {
       sprite.setVelocityY(-500);
     }
 

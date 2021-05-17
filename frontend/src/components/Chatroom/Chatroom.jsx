@@ -1,6 +1,6 @@
 import React from "react";
-import { useState, useEffect } from "react"; // refactor out afterwards
-import { game } from "../../index";
+import { useState, useEffect, useRef } from "react"; // refactor out afterwards
+// import { game } from "../index";
 
 const userKeyInStorage = 'lighthouse-laboratory-user';
 const chatMessageType = {
@@ -19,8 +19,13 @@ const generateRandomColor = () => {
   //random color will be freshly served
 }
 
-export default function Chatroom() {
+// const messagesEndRef = useRef(null);
+// const scrollToBottom = () => {
+//   messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+// };
+// useEffect(scrollToBottom, [message]);
 
+export default function Chatroom() {
   /** TODO: need to make sure the below function only called once */
   const getUserFromStorage = () => {
     window.localStorage.removeItem(userKeyInStorage, null);
@@ -134,27 +139,29 @@ export default function Chatroom() {
   };
 
   const renderInputBox = () => {
-    const onBlurHandler = () => {
-      console.log('onBlur in input ');
-      game.input.keyboard.enabled = true;
-    }
+    // const onBlurHandler = () => {
+    //   console.log('onBlur in input ');
+    //   console.log(game);
+    //   // game.input.keyboard.enabled = true;
+    // }
 
-    const onFocusHandler = () => {
-      console.log('onFocus in input ');
-      game.input.keyboard.enabled = false;
-    }
+    // const onFocusHandler = () => {
+    //   console.log('onFocue in input ');
+    //   console.log(game);
+    //   // game.input.keyboard.enabled = false;
+    // }
 
     if (user) {
       return (<input type='text'
         placeholder='Hit enter to send message.'
-        onBlur={onBlurHandler}
-        onFocus={onFocusHandler}
+        // onBlur={onBlurHandler}
+        // onFocus={onFocusHandler}
         onKeyPress={messageInputEnterHandler} />);
     } else {
       return (<input type='text'
         placeholder='Enter you name to chat.'
-        onBlur={onBlurHandler}
-        onFocus={onFocusHandler}
+        // onBlur={onBlurHandler}
+        // onFocus={onFocusHandler}
         onKeyPress={userInputEnterHandler} />);
     }
   }
