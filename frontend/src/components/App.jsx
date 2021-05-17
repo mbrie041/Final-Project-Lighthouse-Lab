@@ -10,7 +10,7 @@ function App() {
 	return (
 
 		<div className="app">
-			<Leaderboard class="table" />
+			<Leaderboard className="table" />
 			<Chatroom />
 		</div>
 	);

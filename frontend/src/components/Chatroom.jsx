@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useEffect } from "react"; // refactor out afterwards
+import { useState, useEffect, useRef } from "react"; // refactor out afterwards
 import { game } from "../index";
 
 const userKeyInStorage = 'lighthouse-laboratory-user';
@@ -19,8 +19,13 @@ const generateRandomColor = () => {
   //random color will be freshly served
 }
 
-export default function Chatroom() {
+// const messagesEndRef = useRef(null);
+// const scrollToBottom = () => {
+//   messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+// };
+// useEffect(scrollToBottom, [message]);
 
+export default function Chatroom() {
   /** TODO: need to make sure the below function only called once */
   const getUserFromStorage = () => {
     window.localStorage.removeItem(userKeyInStorage, null);
