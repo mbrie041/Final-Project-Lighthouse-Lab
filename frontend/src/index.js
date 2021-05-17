@@ -36,7 +36,15 @@ export const config = {
   }
 };
 
-export const game = new Phaser.Game(config);
+const game = new Phaser.Game(config);
+
+$("#phaser").mouseenter(function () {
+  game.input.keyboard.enabled = true;
+});
+
+$("#phaser").mouseleave(function () {
+  game.input.keyboard.enabled = false;
+});
 
 ReactDOM.render(
   <App />,
