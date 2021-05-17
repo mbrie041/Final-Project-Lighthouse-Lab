@@ -9,7 +9,7 @@ export default function Leaderboard() {
 
   return (
     <>
-      <div class="leaderboard">
+      <div className="leaderboard">
         <h2 className="leaderboard-title">High Scores</h2>
         <table className="css-serial">
           <thead>
