@@ -9,6 +9,7 @@ const alive = "alive";
 const dead = "dead";
 const transitioning = "transitioning";
 
+let zone
 let scoreText;
 let timeText;
 

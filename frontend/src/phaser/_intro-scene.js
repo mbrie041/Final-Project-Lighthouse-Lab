@@ -45,6 +45,11 @@ export default class IntroScene extends Phaser.Scene {
       "src/assets/spritesheets/Monitor.png",
       "src/assets/spritesheets/Monitor.json"
     );
+    this.load.atlas(
+      "roach",
+      "src/assets/spritesheets/Roach.png",
+      "src/assets/spritesheets/Roach.json"
+    );
     //images for level one scene
     //load tileset images for layers
     this.load.image("labTiles", "src/assets/tilesets/prop pack.png");

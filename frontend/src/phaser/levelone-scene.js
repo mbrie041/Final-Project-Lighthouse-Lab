@@ -16,7 +16,7 @@ global.score = 0;
 let scoreText;
 let timeText;
 global.elapsedTime;
-global.life = 3;
+global.life = 999;
 
 export default class LevelOneScene extends Phaser.Scene {
   constructor() {
