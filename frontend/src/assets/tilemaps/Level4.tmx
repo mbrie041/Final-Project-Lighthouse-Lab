@@ -1153,7 +1153,7 @@
   <object id="6" name="Tweeter" x="928" y="64" width="16" height="16"/>
   <object id="7" name="Tweeter" x="1136" y="64" width="16" height="16"/>
   <object id="9" name="Tweeter" x="1216" y="32" width="16" height="16"/>
-  <object id="11" name="Tweeter" x="1552" y="64" width="16" height="16"/>
-  <object id="12" name="Tweeter" x="1616" y="64" width="16" height="16"/>
+  <object id="11" name="Tweeter" x="1472" y="112" width="16" height="16"/>
+  <object id="12" name="Tweeter" x="1648" y="112" width="16" height="16"/>
  </objectgroup>
 </map>

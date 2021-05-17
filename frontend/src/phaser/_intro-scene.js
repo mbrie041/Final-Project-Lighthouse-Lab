@@ -93,9 +93,9 @@ export default class IntroScene extends Phaser.Scene {
     //load map from Json file
     this.load.tilemapTiledJSON("level1map", "src/assets/tilemaps/Level1.json");
 
-    //placeholer for score increasing item
+    //score increasing items
     this.load.image("gem", "src/assets/images/gem.png");
-
+    this.load.image("ruby", "src/assets/images/ruby.png");
     //images for level two scene
 
     //load tileset images for layers

@@ -170,7 +170,7 @@ export default class LevelFourScene extends Phaser.Scene {
       })
       .setScrollFactor(0);
 
-    const item = "gem";
+    const item = "ruby";
     const layerArray = [this.groundLayer];
     const physics = this.physics;
     const playerSprite = this.player.sprite;
