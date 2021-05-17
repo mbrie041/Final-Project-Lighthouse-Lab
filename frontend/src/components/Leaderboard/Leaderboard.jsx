@@ -9,20 +9,22 @@ export default function Leaderboard() {
 
   return (
     <>
-      <h2 className="leaderboard-title">High Scores</h2>
-      <table className="css-serial">
-        <thead>
-          <tr>
-            <th>rank</th>
-            <th>name</th>
-            <th>score</th>
-            <th>time</th>
-          </tr>
-        </thead>
-        <tbody>
-          <LeaderboardScoreList stats={state.stats} />
-        </tbody>
-      </table>
+      <div class="leaderboard">
+        <h2 className="leaderboard-title">High Scores</h2>
+        <table className="css-serial">
+          <thead>
+            <tr>
+              <th>rank</th>
+              <th>name</th>
+              <th>score</th>
+              <th>time</th>
+            </tr>
+          </thead>
+          <tbody>
+            <LeaderboardScoreList stats={state.stats} />
+          </tbody>
+        </table>
+      </div>
     </>
   );
 }
