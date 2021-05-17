@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="129" height="16" tilewidth="16" tileheight="16" infinite="0" nextlayerid="20" nextobjectid="6">
+<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="129" height="16" tilewidth="16" tileheight="16" infinite="0" nextlayerid="20" nextobjectid="14">
  <editorsettings>
   <export target="Level3.json" format="json"/>
  </editorsettings>
@@ -516,9 +516,14 @@
   <object id="5" name="Finish Point" x="2032" y="176" width="30.5" height="40"/>
  </objectgroup>
  <objectgroup id="17" name="Gems">
-  <object id="3" name="gemSpawn" x="96" y="176" width="3.8419" height="5.76679"/>
+  <object id="8" name="gemSpawn" x="112" y="176" width="3.8419" height="5.76679"/>
+  <object id="9" name="gemSpawn" x="128" y="176" width="3.8419" height="5.76679"/>
+  <object id="11" name="gemSpawn" x="192" y="144" width="3.8419" height="5.76679"/>
+  <object id="12" name="gemSpawn" x="208" y="144" width="3.8419" height="5.76679"/>
  </objectgroup>
  <objectgroup id="16" name="Enemies">
-  <object id="2" name="Roach" x="192" y="144" width="16" height="16"/>
+  <object id="2" name="JumpRoach" x="624" y="128" width="16" height="16"/>
+  <object id="6" name="Roach" x="528" y="96" width="16" height="16"/>
+  <object id="7" name="JumpRoach" x="208" y="144" width="16" height="16"/>
  </objectgroup>
 </map>

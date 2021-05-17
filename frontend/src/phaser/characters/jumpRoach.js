@@ -1,6 +1,6 @@
 import Phaser from "phaser";
 
-export default class Roach {
+export default class JumpRoach {
   constructor(speed, scene, x, y) {
     this.scene = scene;
 
@@ -30,7 +30,7 @@ export default class Roach {
     });
 
     this.sprite = scene.physics.add.sprite(x, y, "roach", 0).setFlipX(true);
-    this.sprite.setVelocityX(speed);
+    this.sprite.setVelocityY(speed);
   }
   update() {}
   destroy() {

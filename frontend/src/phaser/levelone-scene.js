@@ -1,9 +1,7 @@
 import Phaser from "phaser";
 import Player from "./characters/player.js";
 import Robot from "./characters/robot1.js";
-import Python from "./characters/python.js";
 import Monitor from "./characters/monitor";
-import Bat from "./characters/bat.js";
 import enemyCreator from "./helpers/enemy-creator.js";
 import createItem from "./helpers/item-creator";
 // import { collectItem, displayTimeElapsed } from "./helpers/dataHelpers"
@@ -96,28 +94,6 @@ export default class LevelOneScene extends Phaser.Scene {
       .objects.filter((obj) => obj.name === "Monitor");
 
     //Enemy creating function calls
-    this.enemyArray.concat(
-      enemyCreator(
-        objects1,
-        "robot-walk",
-        Robot,
-        this,
-        collisionArray,
-        50,
-        "robot-hurt"
-      )
-    );
-    this.enemyArray.concat(
-      enemyCreator(
-        objects2,
-        "monitor-walk",
-        Monitor,
-        this,
-        collisionArray,
-        50,
-        "monitor-hurt"
-      )
-    );
 
     //set up collision for the level
     this.groundLayer.setCollisionByProperty({ collides: true });
@@ -186,6 +162,29 @@ export default class LevelOneScene extends Phaser.Scene {
       layerArray,
       playerSprite
     );
+
+    this.enemyArray.concat(
+      enemyCreator(
+        objects1,
+        "robot-walk",
+        Robot,
+        this,
+        collisionArray,
+        50,
+        "robot-hurt"
+      )
+    );
+    this.enemyArray.concat(
+      enemyCreator(
+        objects2,
+        "monitor-walk",
+        Monitor,
+        this,
+        collisionArray,
+        50,
+        "monitor-hurt"
+      )
+    );
   }
 
   update(time, delta) {
@@ -209,12 +208,12 @@ export default class LevelOneScene extends Phaser.Scene {
         let min = Math.floor(global.finalTimer / 60);
         let sec = (global.finalTimer % 60).toFixed(2);
         if (min < 10) {
-          min = '0' + min;
+          min = "0" + min;
         }
         if (sec < 10) {
-          sec = '0' + sec;
+          sec = "0" + sec;
         }
-        global.finalTimer =`${min}:${sec}`
+        global.finalTimer = `${min}:${sec}`;
         global.aboutToChange = 1;
         this.cameras.main.once("camerafadeoutcomplete", () => {
           this.scene.start("GameOverScene");

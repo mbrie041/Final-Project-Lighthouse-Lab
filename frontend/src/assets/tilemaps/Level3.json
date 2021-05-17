@@ -195,14 +195,47 @@
          "objects":[
                 {
                  "height":5.76679,
-                 "id":3,
+                 "id":8,
                  "name":"gemSpawn",
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":3.8419,
-                 "x":96,
+                 "x":112,
                  "y":176
+                }, 
+                {
+                 "height":5.76679,
+                 "id":9,
+                 "name":"gemSpawn",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":3.8419,
+                 "x":128,
+                 "y":176
+                }, 
+                {
+                 "height":5.76679,
+                 "id":11,
+                 "name":"gemSpawn",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":3.8419,
+                 "x":192,
+                 "y":144
+                }, 
+                {
+                 "height":5.76679,
+                 "id":12,
+                 "name":"gemSpawn",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":3.8419,
+                 "x":208,
+                 "y":144
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -218,12 +251,34 @@
                 {
                  "height":16,
                  "id":2,
+                 "name":"JumpRoach",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":624,
+                 "y":128
+                }, 
+                {
+                 "height":16,
+                 "id":6,
                  "name":"Roach",
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":16,
-                 "x":192,
+                 "x":528,
+                 "y":96
+                }, 
+                {
+                 "height":16,
+                 "id":7,
+                 "name":"JumpRoach",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":208,
                  "y":144
                 }],
          "opacity":1,
@@ -233,7 +288,7 @@
          "y":0
         }],
  "nextlayerid":20,
- "nextobjectid":6,
+ "nextobjectid":14,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.6.0",

@@ -1,7 +1,9 @@
 import Phaser from "phaser";
 import Player from "./characters/player.js";
+import JumpRoach from "./characters/jumpRoach.js";
 import Roach from "./characters/roach.js";
 import enemyCreator from "./helpers/enemy-creator.js";
+import jumpEnemyCreator from "./helpers/jump-enemy-creator.js";
 import createItem from "./helpers/item-creator";
 // import { collectItem, displayTimeElapsed } from "./helpers/dataHelpers"
 const alive = "alive";
@@ -88,12 +90,26 @@ export default class LevelThreeScene extends Phaser.Scene {
     const collisionArray = [this.enemyWalls, this.groundLayer];
     const objects1 = map
       .getObjectLayer("Enemies")
+      .objects.filter((obj) => obj.name === "JumpRoach");
+      const objects2 = map
+      .getObjectLayer("Enemies")
       .objects.filter((obj) => obj.name === "Roach");
 
     //Enemy creating function calls
     this.enemyArray.concat(
-      enemyCreator(
+      jumpEnemyCreator(
         objects1,
+        "roach-jump",
+        JumpRoach,
+        this,
+        collisionArray,
+        250,
+        "roach-hurt"
+      )
+    );
+    this.enemyArray.concat(
+      enemyCreator(
+        objects2,
         "roach-jump",
         Roach,
         this,
@@ -102,7 +118,6 @@ export default class LevelThreeScene extends Phaser.Scene {
         "roach-hurt"
       )
     );
-
     //set up collision for the level
     this.groundLayer.setCollisionByProperty({ collides: true });
     this.enemyWalls.setCollisionByProperty({ collides: true });
