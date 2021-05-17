@@ -168,6 +168,7 @@ export default class IntroScene extends Phaser.Scene {
         this.start.setInteractive();
         
         this.start.on("pointerdown", () => {
+          this.time.destroy();
           this.scene.start("LevelOneScene");
         });
 
