@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react"; // refactor out afterwards
-import { game } from "../index";
+import { game } from "../../index";
 
 const userKeyInStorage = 'lighthouse-laboratory-user';
 const chatMessageType = {
@@ -136,13 +136,11 @@ export default function Chatroom() {
   const renderInputBox = () => {
     const onBlurHandler = () => {
       console.log('onBlur in input ');
-      console.log(game);
       game.input.keyboard.enabled = true;
     }
 
     const onFocusHandler = () => {
-      console.log('onFocue in input ');
-      console.log(game);
+      console.log('onFocus in input ');
       game.input.keyboard.enabled = false;
     }
 
