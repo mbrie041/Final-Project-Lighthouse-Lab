@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import Leaderboard from "./Leaderboard.jsx";
-import Chatroom from "./Chatroom.jsx";
+import Leaderboard from "./Leaderboard/Leaderboard.jsx";
+import Chatroom from "./Chatroom/Chatroom.jsx";
 import { Table } from 'react-bootstrap';
 import "./App.scss"
 

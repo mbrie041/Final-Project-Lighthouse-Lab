@@ -1,6 +1,8 @@
 import React from "react";
 import { useState, useEffect, useRef } from "react"; // refactor out afterwards
-// import { game } from "../index";
+// import { generateRandomColor, getUserFromStorage } from "../../helpers/chatroomHelpers";
+// import { state, messageInputEnterHandler, userInputEnterHandler } from "../../hooks/useApplicationData";
+import useApplicationData from "../../hooks/useApplicationData";
 
 const userKeyInStorage = 'lighthouse-laboratory-user';
 const chatMessageType = {
@@ -12,6 +14,9 @@ const eventTypes = {
   newMessage: 'newMessage',
   newUser: 'newUser'
 };
+// const { state, messageInputEnterHandler, userInputEnterHandler } = useApplicationData();
+// const { user, message, chatHistory, weConn } = state;
+// console.log(state)
 
 const generateRandomColor = () => {
   var randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
@@ -22,7 +27,7 @@ const generateRandomColor = () => {
 // const messagesEndRef = useRef(null);
 // const scrollToBottom = () => {
 //   messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
-// };
+// };9
 // useEffect(scrollToBottom, [message]);
 
 export default function Chatroom() {
@@ -31,10 +36,10 @@ export default function Chatroom() {
     window.localStorage.removeItem(userKeyInStorage, null);
     const user = window.localStorage.getItem(userKeyInStorage);
     if (user) {
-      console.log(`Existing user found in storage: ${user}`);
+      // console.log(`Existing user found in storage: ${user}`);
       return JSON.parse(user);
     } else {
-      console.log('No user found from storage.');
+      // console.log('No user found from storage.');
       return user;
     }
   }
@@ -54,18 +59,18 @@ export default function Chatroom() {
 
     ws.addEventListener('message', function (event) {
       const data = JSON.parse(event.data);
-      console.log('data ', data);
+      // console.log('data ', data);
       switch (data.type) {
         case eventTypes.newMessage:
-          console.log(`Received new message: ${JSON.stringify(data.eventData.message)}`);
+          // console.log(`Received new message: ${JSON.stringify(data.eventData.message)}`);
           setChatHistory(prevChatHistory => [...prevChatHistory, data.eventData.message]);
           break;
         case eventTypes.fullChatHistory:
-          console.log(`Received full chat history: ${data.eventData.chatHistory}`);
+          // console.log(`Received full chat history: ${data.eventData.chatHistory}`);
           setChatHistory(data.eventData.chatHistory);
           break;
         case eventTypes.newUser:
-          console.log(`TODO: New user created, saving to storage: ${JSON.stringify(data.eventData.user)}`);
+          // console.log(`TODO: New user created, saving to storage: ${JSON.stringify(data.eventData.user)}`);
           window.localStorage.setItem(userKeyInStorage, JSON.stringify(data.eventData.user));
           break;
         default:
@@ -104,7 +109,7 @@ export default function Chatroom() {
   const messageInputEnterHandler = (event) => {
     if (event.charCode === 13) {
       const msg = event.target.value;
-      console.log(`Sending message: ${msg}`);
+      // console.log(`Sending message: ${msg}`);
       setMessage(msg);
       event.target.value = '';
     }
@@ -115,7 +120,7 @@ export default function Chatroom() {
       const userName = event.target.value;
       if (userName.length < 0) return;
 
-      console.log(`Creating user: ${userName}`);
+      // console.log(`Creating user: ${userName}`);
       setUser({
         name: userName,
         color: generateRandomColor()
@@ -139,29 +144,13 @@ export default function Chatroom() {
   };
 
   const renderInputBox = () => {
-    // const onBlurHandler = () => {
-    //   console.log('onBlur in input ');
-    //   console.log(game);
-    //   // game.input.keyboard.enabled = true;
-    // }
-
-    // const onFocusHandler = () => {
-    //   console.log('onFocue in input ');
-    //   console.log(game);
-    //   // game.input.keyboard.enabled = false;
-    // }
-
     if (user) {
       return (<input type='text'
         placeholder='Hit enter to send message.'
-        // onBlur={onBlurHandler}
-        // onFocus={onFocusHandler}
         onKeyPress={messageInputEnterHandler} />);
     } else {
       return (<input type='text'
         placeholder='Enter you name to chat.'
-        // onBlur={onBlurHandler}
-        // onFocus={onFocusHandler}
         onKeyPress={userInputEnterHandler} />);
     }
   }
