@@ -18,7 +18,7 @@ export default class TransitionL1Scene extends Phaser.Scene {
           ++i
       },
       repeat: length - 1,
-      delay: 50
+      delay: 30
     })
   }
 
@@ -33,8 +33,17 @@ export default class TransitionL1Scene extends Phaser.Scene {
 
     this.cameras.main.fadeIn(3000);
 
+    //set x/y coordinates of text and max width in px
     this.label = this.add.text(50, 50, '').setWordWrapWidth(300)
 
     this.typewriteText('blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah ')
+    
+    this.label.setInteractive();
+    
+    this.label.on("pointerdown", () => {
+      this.scene.start("LevelOneScene");
+    });
+    
   }
+
 }

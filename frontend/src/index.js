@@ -26,7 +26,6 @@ export const config = {
   scene: [
     IntroScene,
     TransitionL1Scene,
-    PlatformerScene,
     LevelOneScene,
     LevelTwoScene,
     LevelThreeScene,
