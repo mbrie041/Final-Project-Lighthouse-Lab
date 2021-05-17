@@ -132,7 +132,7 @@ export default class LevelThreeScene extends Phaser.Scene {
 
     //creates score text at the top of the screen
     scoreText = this.add
-      .text(20, 5, "Score: 0", {
+      .text(20, 5, `Score: ${global.score}`, {
         fontSize: "10px",
         fill: "#ffffff",
         fontFamily: ' "Press Start 2P" ',
@@ -228,7 +228,8 @@ function collectItem(player, item) {
 function displayTimeElapsed(time) {
   global.elapsedTime = time * 0.001;
   let min = Math.floor(global.elapsedTime / 60);
-  let sec = (global.elapsedTime % 60).toFixed(2);
+  let sec = (global.elapsedTime % 60).toFixed(0);
+  let mili = (((global.elapsedTime % 60) % 1) * 100).toFixed(0);
 
   if (min < 10) {
     min = "0" + min;
@@ -236,5 +237,8 @@ function displayTimeElapsed(time) {
   if (sec < 10) {
     sec = "0" + sec;
   }
-  timeText.setText("Time: " + min + ":" + sec);
+  if (mili < 10) {
+    mili = "0" + mili;
+  }
+  timeText.setText("Time: " + min + ":" + sec + ":" + mili);
 }

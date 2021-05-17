@@ -1,9 +1,5 @@
 import Phaser from "phaser";
 
-let introText = `blah blah blah blah 
-blah blah blah blah blah blah blah blah 
-blah blah blah 
- `;
 
 export default class IntroScene extends Phaser.Scene {
   constructor() {
@@ -117,54 +113,51 @@ export default class IntroScene extends Phaser.Scene {
     this.load.image(
       "farNightSky",
       "src/assets/tilesets/Night Far.png"
-    );
-    this.load.image(
-      "moonNightSky",
-      "src/assets/tilesets/NightSky.png"
-    );
-       //load map from Json file
-       this.load.tilemapTiledJSON("level3map", "src/assets/tilemaps/Level3.json");
-  }
-  create(data) {
+      );
+      this.load.image(
+        "moonNightSky",
+        "src/assets/tilesets/NightSky.png"
+        );
+        //load map from Json file
+        this.load.tilemapTiledJSON("level3map", "src/assets/tilemaps/Level3.json");
+      }
+      create(data) {
+      
     this.cameras.main.fadeIn(3000);
     let lighthouse = this.add.image(0, 0, "lighthouseIntro").setOrigin(0, 0);
+
 
     let image = this.add.image(
       this.cameras.main.width / 2,
       this.cameras.main.height / 2,
       "lighthouseIntro"
-    );
-    let scaleX = this.cameras.main.width / image.width;
-    let scaleY = this.cameras.main.height / image.height;
-    let scale = Math.max(scaleX, scaleY);
-    image.setScale(scale).setScrollFactor(0);
-
-    this.logo = this.add
+      );
+      let scaleX = this.cameras.main.width / image.width;
+      let scaleY = this.cameras.main.height / image.height;
+      let scale = Math.max(scaleX, scaleY);
+      image.setScale(scale).setScrollFactor(0);
+      
+      this.logo = this.add
       .text(30, 50, "Lighthouse Labs", {
         fontSize: "20px",
         fill: "#ffffff",
         fontFamily: ' "Press Start 2P" ',
       })
       .setOrigin(0, 0);
-
-    // this.introText = this.add.text(0, 100, introText, {
-    //   fontSize: '10px',
-    //   fill: '#ffffff',
-    //   fontFamily: ' "Press Start 2P" '
-    // }).setOrigin(0,0);
-
-    this.start = this.add
-      .text(150, 150, "Start", {
-        fontSize: "20px",
-        fill: "#ffffff",
-        fontFamily: ' "Press Start 2P" ',
-      })
-      .setOrigin(0, 0);
-
-    this.start.setInteractive();
-
-    this.start.on("pointerdown", () => {
-      this.scene.start("LevelOneScene");
-    });
-  }
-}
+        
+        this.start = this.add
+        .text(150, 150, "Start", {
+          fontSize: "20px",
+          fill: "#ffffff",
+          fontFamily: ' "Press Start 2P" ',
+        })
+        .setOrigin(0, 0);
+        
+        this.start.setInteractive();
+        
+        this.start.on("pointerdown", () => {
+          this.scene.start("TransitionL1Scene");
+        });
+      }
+    }
+    
