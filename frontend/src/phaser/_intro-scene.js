@@ -22,8 +22,8 @@ export default class IntroScene extends Phaser.Scene {
     //load sprite sheets for level characters
     this.load.atlas(
       "player",
-      "src/assets/spritesheets/Agent_Mike.png",
-      "src/assets/spritesheets/Agent_Mike.json"
+      "src/assets/spritesheets/Tommy.png",
+      "src/assets/spritesheets/Tommy.json"
     );
     this.load.atlas(
       "robot",

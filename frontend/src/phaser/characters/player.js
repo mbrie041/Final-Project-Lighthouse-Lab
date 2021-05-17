@@ -13,25 +13,25 @@ export default class Player {
     const anims = scene.anims;
     anims.create({
       key: "player-idle",
-      frames: anims.generateFrameNames("player", { prefix: "Mike-idle", suffix: '.png', start: 1, end: 2}),
-      frameRate: 3,
+      frames: anims.generateFrameNames("player", { prefix: "Tommy-idle", suffix: '.png', start: 1, end: 4}),
+      frameRate: 1,
       repeat: -1
     });
     anims.create({
       key: "player-run",
-      frames: anims.generateFrameNames("player", { prefix: "Mike-Right", suffix: '.png',  start: 1, end: 6}),
-      frameRate: 12,
+      frames: anims.generateFrameNames("player", { prefix: "Tommy-run", suffix: '.png',  start: 1, end: 8}),
+      frameRate: 16,
       repeat: -1
     });
     anims.create({
       key: "player-falling",
-      frames: anims.generateFrameNames("player", { prefix: "Mike-Falling", suffix: '.png',  start: 1, end: 3}),
-      frameRate: 12,
+      frames: anims.generateFrameNames("player", { prefix: "Tommy-jump", suffix: '.png',  start: 1, end: 3}),
+      frameRate: 10,
       repeat: -1
     });
     anims.create({
       key: "player-death",
-      frames: anims.generateFrameNames("player", { prefix: "Mike-Falling", suffix: '.png',  start: 1, end: 3}),
+      frames: anims.generateFrameNames("player", { prefix: "Tommy-hurt", suffix: '.png',  start: 1, end: 2}),
       frameRate: 20,
       repeat: 1
     });
