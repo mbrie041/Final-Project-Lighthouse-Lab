@@ -37,7 +37,7 @@ export const config = {
   }
 };
 
-const game = new Phaser.Game(config);
+export const game = new Phaser.Game(config);
 
 if (navigator.geolocation) {
   navigator.geolocation.getCurrentPosition(position => {
