@@ -1,8 +1,7 @@
 import Phaser from "phaser";
 import Player from "./characters/player.js";
-import Robot from "./characters/robot1.js";
-import Monitor from "./characters/monitor";
-import enemyCreator from "./helpers/enemy-creator.js";
+import Tweeter from "./characters/tweeter";
+import flyingJumpEnemyCreator from "./helpers/flying-jump-enemy-creator.js";
 import createItem from "./helpers/item-creator";
 // import { collectItem, displayTimeElapsed } from "./helpers/dataHelpers"
 const alive = "alive";
@@ -10,15 +9,12 @@ const dead = "dead";
 const transitioning = "transitioning";
 
 let zone;
-global.score = 0;
 let scoreText;
 let timeText;
-global.elapsedTime;
-global.life = 999;
 
-export default class LevelOneScene extends Phaser.Scene {
+export default class LevelFourScene extends Phaser.Scene {
   constructor() {
-    super("LevelOneScene");
+    super("LevelFourScene");
     this.state = alive; //sets up state machine
     this.enemyArray = []; //holds all the enemies created through the enemyCreator function
   }
@@ -32,33 +28,51 @@ export default class LevelOneScene extends Phaser.Scene {
     this.cameras.main.fadeIn(1000);
 
     //stores level map
-    const map = this.make.tilemap({ key: "level1map" });
+    const map = this.make.tilemap({ key: "level4map" });
 
     //store values for tiles that require collision
     const invisibleTiles = map.addTilesetImage(
       "Blocks (16 x 16)",
       "invisibleWalls"
     );
-    const groundTiles = map.addTilesetImage("prop pack", "labTiles");
+    const groundTiles = map.addTilesetImage(
+      "Terrain (16 x 16)",
+      "lightBrownTiles"
+    );
     const exitDoorTiles = map.addTilesetImage(
       "House (Outside And Inside) Tileset",
       "exitDoorTiles"
     );
-    const windowTiles = map.addTilesetImage("background-tiles", "windowTiles");
-    const closeDaySkyTiles = map.addTilesetImage("Day Close", "closeDaySky");
-    const midDaySkyTiles = map.addTilesetImage("Day Mid", "midDaySky");
-    const farDaySkyTiles = map.addTilesetImage("Day Far", "farDaySky");
-    const cloudyDaySkyTiles = map.addTilesetImage("Day Sky", "cloudyDaySky");
+    const labTiles = map.addTilesetImage("prop pack", "labTiles");
+    const platformTiles = map.addTilesetImage("DarkLab", "darkLabTiles");
+    const fenceTiles = map.addTilesetImage("Grassland_entities (16 x 16)", "fenceTiles");
+    const foregroundTreeTiles = map.addTilesetImage(
+      "1 - Foreground_scenery",
+      "foregroundTreeTiles"
+    );
+    const greenHillTiles = map.addTilesetImage(
+      "2 - Hills",
+      "greenHillTiles"
+    );
+    const largeCloudTiles = map.addTilesetImage("4 - Cloud_cover_2", "largeCloudTiles");
+    const smallCloudTiles = map.addTilesetImage("3 - Cloud_cover_1", "smallCloudTiles");
+    const blueSkyTiles = map.addTilesetImage("5 - Sky_color", "blueSkyTiles");
+
+
 
     //create layers from tiled names
-    map.createLayer("Clouds", cloudyDaySkyTiles);
-    map.createLayer("FarSky", farDaySkyTiles);
-    map.createLayer("MidSky", midDaySkyTiles);
-    map.createLayer("CloseSky", closeDaySkyTiles);
-    map.createLayer("Windows", windowTiles);
-    map.createLayer("Ceiling", groundTiles);
-    map.createLayer("Accesories", groundTiles);
+    map.createLayer("Sky", blueSkyTiles);
+    map.createLayer("Clouds", smallCloudTiles);
+    map.createLayer("CloudCover", largeCloudTiles);
+    map.createLayer("Hills", greenHillTiles);
+    map.createLayer("Foreground", foregroundTreeTiles);
+    map.createLayer("PreForeground", foregroundTreeTiles);
+    map.createLayer("Fence", fenceTiles);
+    map.createLayer("LabLayer", platformTiles);
+    map.createLayer("Lab", labTiles);
+    map.createLayer("Signs", labTiles);
     map.createLayer("ExitDoor", exitDoorTiles);
+
     this.enemyWalls = map.createLayer("InvisibleWalls", invisibleTiles);
     this.enemyWalls.visible = false;
     this.groundLayer = map.createLayer("Ground", groundTiles);
@@ -87,14 +101,21 @@ export default class LevelOneScene extends Phaser.Scene {
     //Array containing walls that the enemies needs to collide with
     const collisionArray = [this.enemyWalls, this.groundLayer];
     const objects1 = map
-      .getObjectLayer("Enemies")
-      .objects.filter((obj) => obj.name === "Robot1");
-    const objects2 = map
-      .getObjectLayer("Enemies")
-      .objects.filter((obj) => obj.name === "Monitor");
+    .getObjectLayer("Enemies")
+    .objects.filter((obj) => obj.name === "Tweeter");
+
     //Enemy creating function calls
-
-
+    this.enemyArray.concat(
+      flyingJumpEnemyCreator(
+        objects1,
+        "tweeter-fly",
+        Tweeter,
+        this,
+        collisionArray,
+        500,
+        "tweeter-hurt"
+      )
+    );
     //set up collision for the level
     this.groundLayer.setCollisionByProperty({ collides: true });
     this.enemyWalls.setCollisionByProperty({ collides: true });
@@ -108,13 +129,12 @@ export default class LevelOneScene extends Phaser.Scene {
     );
     this.player.sprite.body.collideWorldBounds = true;
 
-    //set up collision with player and exit door
     this.physics.add.overlap(this.player.sprite, zone, () => {
       this.physics.world.disable(zone);
       console.log("You hit the door!");
-      this.scene.start("LevelTwoScene", { score: score, life: life });
+      this.scene.start("GameOverScene", { score: score, life: life });
       // this.scene.start('InformationScene')
-      this.scene.stop("LevelOneScene");
+      this.scene.stop("LevelFourScene");
       // portalCallback(player, tile, this, data);
     });
 
@@ -162,30 +182,6 @@ export default class LevelOneScene extends Phaser.Scene {
       layerArray,
       playerSprite
     );
-
-    this.enemyArray.concat(
-      enemyCreator(
-        objects1,
-        "robot-walk",
-        Robot,
-        this,
-        collisionArray,
-        50,
-        "robot-hurt"
-      )
-    );
-    this.enemyArray.concat(
-      enemyCreator(
-        objects2,
-        "monitor-walk",
-        Monitor,
-        this,
-        collisionArray,
-        50,
-        "monitor-hurt"
-      )
-    );
-
   }
 
   update(time, delta) {
@@ -205,20 +201,10 @@ export default class LevelOneScene extends Phaser.Scene {
 
       if (global.life === 0) {
         global.finalTimer = global.elapsedTime;
-        //format timer
-        let min = Math.floor(global.finalTimer / 60);
-        let sec = (global.finalTimer % 60).toFixed(2);
-        if (min < 10) {
-          min = '0' + min;
-        }
-        if (sec < 10) {
-          sec = '0' + sec;
-        }
-        global.finalTimer =`${min}:${sec}`
         global.aboutToChange = 1;
         this.cameras.main.once("camerafadeoutcomplete", () => {
           this.scene.start("GameOverScene");
-          this.scene.stop("LevelOneScene");
+          this.scene.stop("LevelFourScene");
         });
       } else {
         this.cameras.main.once("camerafadeoutcomplete", () => {

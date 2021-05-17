@@ -13,7 +13,7 @@ const alive = "alive";
 //7. (Variable) The tile map
 //8. (Variable) The ground layer
 //*Remember you need an enemyArray declared in your constructor to store enemy sprites for update */
-export default function jumpEnemyCreator(
+export default function flyingJumpEnemyCreator(
   objects,
   annimationName,
   enemyName,
@@ -51,6 +51,7 @@ function createEnemy(
   const createdEnemy = new enemyName(enemySpeed, scene, obj.x, obj.y);
   enemyArray.push(createdEnemy);
   createdEnemy.sprite.setVelocityY(-500)
+  createdEnemy.sprite.setVelocityX(-enemySpeed/10)
   createdEnemy.sprite.anims.play(annimationName, true);
   createdEnemy.sprite.body.collideWorldBounds = true;
 
@@ -60,11 +61,18 @@ function createEnemy(
     colliderArray.push(
       scene.physics.world.addCollider(createdEnemy.sprite, wall, (sprite) => {
         if (sprite.body.blocked.down) {
-          sprite.setFlipX(true);
           sprite.anims.play(annimationName, true);
           sprite.setVelocityY(-enemySpeed);
-        } 
-      })
+        } else if (sprite.body.touching.right || sprite.body.blocked.right) {
+          sprite.setFlipX(false);
+          sprite.anims.play(annimationName, true);
+          sprite.setVelocityX(-enemySpeed/10);
+      } else if (sprite.body.touching.left || sprite.body.blocked.left) {
+        sprite.setFlipX(true);
+        sprite.anims.play(annimationName, true);
+        sprite.setVelocityX(enemySpeed/10);
+      }
+    })
     );
   }
 

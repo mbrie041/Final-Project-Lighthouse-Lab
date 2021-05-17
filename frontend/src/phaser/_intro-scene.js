@@ -50,6 +50,11 @@ export default class IntroScene extends Phaser.Scene {
       "src/assets/spritesheets/Roach.png",
       "src/assets/spritesheets/Roach.json"
     );
+    this.load.atlas(
+      "tweeter",
+      "src/assets/spritesheets/Tweeter.png",
+      "src/assets/spritesheets/Tweeter.json"
+    );
     //images for level one scene
     //load tileset images for layers
     this.load.image("labTiles", "src/assets/tilesets/prop pack.png");
@@ -124,6 +129,38 @@ export default class IntroScene extends Phaser.Scene {
     );
        //load map from Json file
        this.load.tilemapTiledJSON("level3map", "src/assets/tilemaps/Level3.json");
+    //images for level four scene
+    this.load.image(
+      "lightBrownTiles",
+      "src/assets/tilesets/Terrain (16 x 16).png"
+    );
+    this.load.image(
+      "fenceTiles",
+      "src/assets/tilesets/Grassland_entities (16 x 16).png"
+    );
+    this.load.image(
+      "foregroundTreeTiles",
+      "src/assets/tilesets/1 - Foreground_scenery.png"
+    );
+    this.load.image(
+      "greenHillTiles",
+      "src/assets/tilesets/2 - Hills.png"
+    );
+    this.load.image(
+      "largeCloudTiles",
+      "src/assets/tilesets/4 - Cloud_cover_2.png"
+    );
+    this.load.image(
+      "smallCloudTiles",
+      "src/assets/tilesets/3 - Cloud_cover_1.png"
+    );
+    this.load.image(
+      "blueSkyTiles",
+      "src/assets/tilesets/5 - Sky_color.png"
+    );
+
+    this.load.tilemapTiledJSON("level4map", "src/assets/tilemaps/Level4.json");
+
   }
   create(data) {
     this.cameras.main.fadeIn(3000);
