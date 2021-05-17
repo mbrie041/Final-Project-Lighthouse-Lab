@@ -19,9 +19,9 @@ global.elapsedTime;
 global.life = 3;
 
 
-export default class LevelOneScene extends Phaser.Scene {
+export default class LevelThreeScene extends Phaser.Scene {
   constructor() {
-    super("LevelOneScene");
+    super("LevelThreeScene");
     this.state = alive; //sets up state machine
     this.enemyArray = []; //holds all the enemies created through the enemyCreator function
   }
@@ -51,20 +51,11 @@ export default class LevelOneScene extends Phaser.Scene {
       "exitDoorTiles"
     );
     const windowTiles = map.addTilesetImage("background-tiles","windowTiles");
-    const closeDaySkyTiles = map.addTilesetImage("Day Close","closeDaySky");
-    const midDaySkyTiles = map.addTilesetImage("Day Mid","midDaySky");
-    const farDaySkyTiles = map.addTilesetImage("Day Far","farDaySky");
-    const cloudyDaySkyTiles = map.addTilesetImage("Day Sky","cloudyDaySky");
-
+    const backgroundTiles = map.addTilesetImage("0x72-industrial-tileset-32px-extruded","darkIndustrialTiles");
 
 
     //create layers from tiled names
-    map.createLayer("Clouds", cloudyDaySkyTiles);
-    map.createLayer("FarSky", farDaySkyTiles);
-    map.createLayer("MidSky", midDaySkyTiles);
-    map.createLayer("CloseSky", closeDaySkyTiles);
-
-
+    map.createLayer("Background", backgroundTiles);
     map.createLayer("Windows", windowTiles);
     map.createLayer("Ceiling", groundTiles);
     map.createLayer("Accesories", groundTiles);
@@ -147,9 +138,9 @@ export default class LevelOneScene extends Phaser.Scene {
     this.physics.add.overlap(this.player.sprite, zone, () => {
       this.physics.world.disable(zone);
       console.log("You hit the door!");
-      this.scene.start('LevelTwoScene', { score: score, life: life })
+      this.scene.start('LevelFourScene', { score: score, life: life })
       // this.scene.start('InformationScene')
-      this.scene.stop('LevelOneScene')
+      this.scene.stop('LevelThreeScene')
       // portalCallback(player, tile, this, data);
     });
 
@@ -218,7 +209,7 @@ export default class LevelOneScene extends Phaser.Scene {
         global.aboutToChange = 1;
         this.cameras.main.once("camerafadeoutcomplete", () => {
           this.scene.start("GameOverScene");
-          this.scene.stop("LevelOneScene");
+          this.scene.stop("LevelThreeScene");
         });
       } else {
         this.cameras.main.once("camerafadeoutcomplete", () => {

@@ -64,7 +64,22 @@ export default class IntroScene extends Phaser.Scene {
       "invisibleWalls",
       "src/assets/tilesets/Blocks (16 x 16).png"
     );
-
+    this.load.image(
+      "closeDaySky",
+      "src/assets/tilesets/Day Close.png"
+    );
+    this.load.image(
+      "midDaySky",
+      "src/assets/tilesets/Day Mid.png"
+    );
+    this.load.image(
+      "farDaySky",
+      "src/assets/tilesets/Day Far.png"
+    );
+    this.load.image(
+      "cloudyDaySky",
+      "src/assets/tilesets/Day Far.png"
+    );
     //load map from Json file
     this.load.tilemapTiledJSON("level1map", "src/assets/tilemaps/Level1.json");
 
