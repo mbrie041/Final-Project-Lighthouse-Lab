@@ -1,7 +1,8 @@
 import Phaser from "phaser";
-import React from "react";
+import React, { Fragment } from "react";
 import ReactDOM from "react-dom";
 import App from "./components/App.jsx";
+import Nav from "./components/Nav.jsx";
 import PlatformerScene from "./phaser/platformer-scene";
 import LevelThreeScene from "./phaser/levelthree-scene";
 import LevelTwoScene from "./phaser/leveltwo-scene";
@@ -9,6 +10,7 @@ import LevelOneScene from "./phaser/levelone-scene";
 import IntroScene from "./phaser/_intro-scene";
 import "./styles/index.scss"
 import GameOverScene from "./phaser/gameover-scene";
+
 
 export const config = {
   type: Phaser.AUTO,
@@ -49,7 +51,14 @@ $("#phaser").mouseleave(function () {
 });
 
 ReactDOM.render(
+  <Nav />,
+  document.getElementById("nav") || document.createElement("div")
+);
+
+ReactDOM.render(
+
   <App />,
   document.getElementById("root") || document.createElement("div")
+
 );
 
