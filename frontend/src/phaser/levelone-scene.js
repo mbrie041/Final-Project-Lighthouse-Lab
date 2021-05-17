@@ -2,15 +2,22 @@ import Phaser from "phaser";
 import Player from "./characters/player.js";
 import Robot from "./characters/robot1.js";
 import Python from "./characters/python.js";
+import Monitor from "./characters/monitor";
 import Bat from "./characters/bat.js";
 import enemyCreator from "./helpers/enemy-creator.js";
 import createItem from "./helpers/item-creator";
+// import { collectItem, displayTimeElapsed } from "./helpers/dataHelpers"
 const alive = "alive";
 const dead = "dead";
 const transitioning = "transitioning";
 
+let zone;
+global.score = 0;
 let scoreText;
 let timeText;
+global.elapsedTime;
+global.life = 3;
+
 
 export default class LevelOneScene extends Phaser.Scene {
   constructor() {
@@ -19,64 +26,7 @@ export default class LevelOneScene extends Phaser.Scene {
     this.enemyArray = []; //holds all the enemies created through the enemyCreator function
   }
   preload() {
-    //load sprite sheets for level characters
-    this.load.atlas(
-      "player",
-      "src/assets/spritesheets/Agent_Mike.png",
-      "src/assets/spritesheets/Agent_Mike.json"
-    );
-    this.load.atlas(
-      "robot",
-      "src/assets/spritesheets/Robot.png",
-      "src/assets/spritesheets/Robot.json"
-    );
-    this.load.atlas(
-      "python",
-      "src/assets/spritesheets/Python.png",
-      "src/assets/spritesheets/Python.json"
-    );
-    this.load.atlas(
-      "bat",
-      "src/assets/spritesheets/Bat.png",
-      "src/assets/spritesheets/Bat.json"
-    );
-
-    //load tileset images for layers
-    this.load.image(
-      "groundTiles",
-      "src/assets/tilesets/Gray_Tile_Terrain (16 x 16).png"
-    );
-    this.load.image(
-      "scaffoldingTiles",
-      "src/assets/tilesets/Scaffolding_and_BG_Parts (16 x 16).png"
-    );
-    this.load.image("exitSignTiles", "src/assets/tilesets/prop pack.png");
-    this.load.image(
-      "exitDoorTiles",
-      "src/assets/tilesets/House (Outside And Inside) Tileset.png"
-    );
-    this.load.image(
-      "hillTiles",
-      "src/assets/tilesets/Scaffolding_and_BG_Parts (16 x 16).png"
-    );
-    this.load.image(
-      "lightTiles",
-      "src/assets/tilesets/Scaffolding_and_BG_Parts (16 x 16).png"
-    );
-    this.load.image(
-      "backgroundTiles",
-      "src/assets/tilesets/Scaffolding_and_BG_Parts (16 x 16).png"
-    );
-    this.load.image(
-      "invisibleWalls",
-      "src/assets/tilesets/Blocks (16 x 16).png"
-    );
-
-    //load map from Json file
-    this.load.tilemapTiledJSON("level1map", "src/assets/tilemaps/Level2.json");
-
-    //placeholer for score increasing item
-    this.load.image("gem", "src/assets/images/gem.png");
+    //moved everything to Intro Scenes preload 
   }
 
   create() {
@@ -93,28 +43,25 @@ export default class LevelOneScene extends Phaser.Scene {
       "invisibleWalls"
     );
     const groundTiles = map.addTilesetImage(
-      "Gray_Tile_Terrain (16 x 16)",
-      "groundTiles"
+      "prop pack",
+      "labTiles"
     );
-    const scaffoldingTiles = map.addTilesetImage(
-      "Scaffolding_and_BG_Parts (16 x 16)",
-      "scaffoldingTiles"
-    );
-    const exitSignTiles = map.addTilesetImage("prop pack", "exitSignTiles");
     const exitDoorTiles = map.addTilesetImage(
       "House (Outside And Inside) Tileset",
       "exitDoorTiles"
     );
+    const windowTiles = map.addTilesetImage("background-tiles","windowTiles");
+    const backgroundTiles = map.addTilesetImage("0x72-industrial-tileset-32px-extruded","darkIndustrialTiles");
+
 
     //create layers from tiled names
-    map.createLayer("Background", scaffoldingTiles);
-    map.createLayer("LightPosts", scaffoldingTiles);
-    map.createLayer("Hillside", scaffoldingTiles);
+    map.createLayer("Background", backgroundTiles);
+    map.createLayer("Windows", windowTiles);
+    map.createLayer("Ceiling", groundTiles);
+    map.createLayer("Accesories", groundTiles);
     map.createLayer("ExitDoor", exitDoorTiles);
-    map.createLayer("ExitSign", exitSignTiles);
     this.enemyWalls = map.createLayer("InvisibleWalls", invisibleTiles);
     this.enemyWalls.visible = false;
-    this.scaffoldingLayer = map.createLayer("Scaffolding", scaffoldingTiles);
     this.groundLayer = map.createLayer("Ground", groundTiles);
 
     //set up player start point
@@ -123,13 +70,24 @@ export default class LevelOneScene extends Phaser.Scene {
       (obj) => obj.name === "Spawn Point"
     );
 
+        //Bring finish point in from Json file
+        const finishPoint = map.findObject(
+          "Objects",
+          (obj) => obj.name === "Finish Point"
+        );
+        zone = this.add
+        .zone(finishPoint.x, finishPoint.y)
+        .setSize(finishPoint.width, finishPoint.height);
+      this.physics.world.enable(zone);
+      zone.body.setAllowGravity(false);
+      zone.body.moves = false;
+
     //Initialize player and start them at spawn point.
     this.player = new Player(this, spawnPoint.x, spawnPoint.y);
 
     //Array containing walls that the enemies needs to collide with
     const collisionArray = [
       this.enemyWalls,
-      this.scaffoldingLayer,
       this.groundLayer,
     ];
     const objects1 = map
@@ -137,10 +95,8 @@ export default class LevelOneScene extends Phaser.Scene {
       .objects.filter((obj) => obj.name === "Robot1");
     const objects2 = map
       .getObjectLayer("Enemies")
-      .objects.filter((obj) => obj.name === "Python");
-    const objects3 = map
-      .getObjectLayer("Enemies")
-      .objects.filter((obj) => obj.name === "Bat");
+      .objects.filter((obj) => obj.name === "Monitor");
+
     //Enemy creating function calls
     this.enemyArray.concat(
       enemyCreator(
@@ -156,48 +112,43 @@ export default class LevelOneScene extends Phaser.Scene {
     this.enemyArray.concat(
       enemyCreator(
         objects2,
-        "python-walk",
-        Python,
+        "monitor-walk",
+        Monitor,
         this,
         collisionArray,
         50,
-        "python-hurt"
-      )
-    );
-    this.enemyArray.concat(
-      enemyCreator(
-        objects3,
-        "bat-fly",
-        Bat,
-        this,
-        collisionArray,
-        50,
-        "bat-hurt"
+        "monitor-hurt"
       )
     );
 
+
     //set up collision for the level
-    this.scaffoldingLayer.setCollisionByProperty({ collides: true });
     this.groundLayer.setCollisionByProperty({ collides: true });
     this.enemyWalls.setCollisionByProperty({ collides: true });
     this.physics.world.setBoundsCollision(true, true, true, false);
     this.physics.world.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
 
     //sets up collision for the player
-    const scaffoldingCollider = this.physics.world.addCollider(
-      this.player.sprite,
-      this.scaffoldingLayer
-    );
     const groundCollider = this.physics.world.addCollider(
       this.player.sprite,
       this.groundLayer
     );
     this.player.sprite.body.collideWorldBounds = true;
 
+    this.physics.add.overlap(this.player.sprite, zone, () => {
+      this.physics.world.disable(zone);
+      console.log("You hit the door!");
+      this.scene.start('LevelTwoScene', { score: score, life: life })
+      // this.scene.start('InformationScene')
+      this.scene.stop('LevelOneScene')
+      // portalCallback(player, tile, this, data);
+    });
+
     //set up camera to have bounds on the level and follow the player
     this.cameras.main.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
     this.cameraDolly = new Phaser.Geom.Point(this.player.x, this.player.y);
     this.cameras.main.startFollow(this.cameraDolly);
+    
 
     //creates score text at the top of the screen
     scoreText = this.add
@@ -227,7 +178,7 @@ export default class LevelOneScene extends Phaser.Scene {
       .setScrollFactor(0);
 
     const item = "gem";
-    const layerArray = [this.groundLayer, this.scaffoldingLayer];
+    const layerArray = [this.groundLayer];
     const physics = this.physics;
     const playerSprite = this.player.sprite;
     createItem(
