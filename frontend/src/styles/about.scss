@@ -10,8 +10,6 @@
   z-index: 1000;
   transition: 200ms ease-in-out;
   
-  
-  
   &__header {
     font-size: 2em;
     display: flex;
@@ -69,6 +67,7 @@
   background-color: rgba(247, 243, 243, 0.5);
   pointer-events: none;
   transition: 200ms ease-in-out;
+  
 }
 
 #overlay.active {
@@ -79,3 +78,4 @@
 .about.active{
   transform: translate(-50%, -50%) scale(1);
 }
+

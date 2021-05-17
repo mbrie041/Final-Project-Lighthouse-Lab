@@ -45,6 +45,11 @@ export default class IntroScene extends Phaser.Scene {
       "src/assets/spritesheets/Monitor.png",
       "src/assets/spritesheets/Monitor.json"
     );
+    this.load.atlas(
+      "roach",
+      "src/assets/spritesheets/Roach.png",
+      "src/assets/spritesheets/Roach.json"
+    );
     //images for level one scene
     //load tileset images for layers
     this.load.image("labTiles", "src/assets/tilesets/prop pack.png");
@@ -64,7 +69,22 @@ export default class IntroScene extends Phaser.Scene {
       "invisibleWalls",
       "src/assets/tilesets/Blocks (16 x 16).png"
     );
-
+    this.load.image(
+      "closeDaySky",
+      "src/assets/tilesets/Day Close.png"
+    );
+    this.load.image(
+      "midDaySky",
+      "src/assets/tilesets/Day Mid.png"
+    );
+    this.load.image(
+      "farDaySky",
+      "src/assets/tilesets/Day Far.png"
+    );
+    this.load.image(
+      "cloudyDaySky",
+      "src/assets/tilesets/Day Far.png"
+    );
     //load map from Json file
     this.load.tilemapTiledJSON("level1map", "src/assets/tilemaps/Level1.json");
 
@@ -82,9 +102,28 @@ export default class IntroScene extends Phaser.Scene {
       "scaffoldingTiles",
       "src/assets/tilesets/Scaffolding_and_BG_Parts (16 x 16).png"
     );
-
     //load map from Json file
     this.load.tilemapTiledJSON("level2map", "src/assets/tilemaps/Level2.json");
+
+    //images for level three scene
+    this.load.image(
+      "darkLabTiles",
+      "src/assets/tilesets/DarkLab.png"
+    );
+    this.load.image(
+      "closeNightSky",
+      "src/assets/tilesets/Night Close.png"
+    );
+    this.load.image(
+      "farNightSky",
+      "src/assets/tilesets/Night Far.png"
+    );
+    this.load.image(
+      "moonNightSky",
+      "src/assets/tilesets/NightSky.png"
+    );
+       //load map from Json file
+       this.load.tilemapTiledJSON("level3map", "src/assets/tilemaps/Level3.json");
   }
   create(data) {
     this.cameras.main.fadeIn(3000);

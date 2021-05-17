@@ -1,48 +1,45 @@
 @import "~bootstrap/scss/bootstrap";
 
-.app::-webkit-scrollbar{
-  width: .7em;
-  height: 1em;
-}
+// .app::-webkit-scrollbar{
+//   width: .7em;
+//   height: 1em;
+// }
 
-.app::-webkit-scrollbar-thumb {
-  background-color: rgb(103, 91, 103);
-}
+// .app::-webkit-scrollbar-thumb {
+//   background-color: rgb(103, 91, 103);
+// }
 
-.app::-webkit-resixer{
-  height: 5em;
-}
+// .app::-webkit-resixer{
+//   height: 5em;
+// }
 
 .app {
-  padding: 2em 0 0 3em;
-  height: 300px;
-  width: 400px;
-  border: rgb(207, 203, 203) solid;
-  border-radius: 10px;
-  overflow: scroll;
-  background-color: #2e2935;
+  display:flex;
+  margin-bottom: 2em;
+  // overflow: scroll;
+  justify-content: space-evenly;
+
+  .leaderboard {
+    border: white solid;
+    background-color: rgba(50, 43, 50, 0.791);
+  }
+
   .leaderboard-title{
-    font-size: 3em;
-    // text-align: center;
+    font-size: 2em;
+    text-align: center;
+    padding-top:.2em;
   }
   
-  .leaderboard {
-    // margin-left: 7em;
-    margin-top: 2em;
-    
-    thead {
-      font-size: 2em;
-    }
-    .board-results {
-      font-size: 1em;
-
-      .scores {
-        padding: 1.2em;
-      }
-
-    
+  thead {
+    font-size: 2em;
     }
 
+  .board-results {
+    font-size: 1em;
+
+    .scores {
+      padding: 1em;
+    }
   }
 
 
@@ -52,5 +49,49 @@
   }
 
   
+}
+
+
+tbody, td, tfoot, th, tr {
+  padding: .7em;
+}
+
+div.col-sm-6 {
+  align-items: center;
+}
+
+.chatbox {
+  width: 50%;
+  border: solid white;
+  background-color: rgba(50, 43, 50, 0.791);
+
+  ::-webkit-scrollbar{
+    width: .7em;
+    height: 1em;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background-color: rgb(103, 91, 103);
+  }
+  
+ ::-webkit-resixer{
+    height: 5em;
+  }
+  
+  .chat-title {
+    font-size: 2em;
+    // text-align: center;
+    padding-left: 1em;
+  }
+  
+  #chat-transcript {
+    font-size: .5em;
+    margin: 5em;
+    overflow: scroll;
+  }
+
+  .input-box{
+    padding:0 2em 2em 2em;
+  }
 }
 
