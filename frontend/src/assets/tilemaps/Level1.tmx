@@ -440,16 +440,6 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <objectgroup id="12" name="Enemies">
-  <object id="3" name="Robot1" x="433.5" y="192.75" width="13.5" height="14"/>
-  <object id="6" name="Monitor" x="768" y="192" width="13.5" height="14"/>
-  <object id="24" name="Robot1" x="960" y="96" width="13.5" height="14"/>
-  <object id="34" name="Monitor" x="1265" y="192" width="13.5" height="14"/>
-  <object id="35" name="Monitor" x="1360" y="192" width="13.5" height="14"/>
-  <object id="37" name="Robot1" x="1505.5" y="192.75" width="13.5" height="14"/>
-  <object id="38" name="Robot1" x="1601.5" y="112.75" width="13.5" height="14"/>
-  <object id="39" name="Monitor" x="1792" y="192" width="13.5" height="14"/>
- </objectgroup>
  <objectgroup id="15" name="Gems">
   <object id="8" name="gemSpawn" x="496" y="128" width="3.8419" height="5.76679"/>
   <object id="10" name="gemSpawn" x="512" y="128" width="3.8419" height="5.76679"/>
@@ -499,6 +489,16 @@
   <object id="66" name="gemSpawn" x="1968" y="112" width="3.8419" height="5.76679"/>
   <object id="67" name="gemSpawn" x="1728" y="176" width="3.8419" height="5.76679"/>
   <object id="68" name="gemSpawn" x="1776" y="176" width="3.8419" height="5.76679"/>
+ </objectgroup>
+ <objectgroup id="12" name="Enemies">
+  <object id="3" name="Robot1" x="433.5" y="192.75" width="13.5" height="14"/>
+  <object id="6" name="Monitor" x="768" y="192" width="13.5" height="14"/>
+  <object id="24" name="Robot1" x="960" y="96" width="13.5" height="14"/>
+  <object id="34" name="Monitor" x="1265" y="192" width="13.5" height="14"/>
+  <object id="35" name="Monitor" x="1360" y="192" width="13.5" height="14"/>
+  <object id="37" name="Robot1" x="1505.5" y="192.75" width="13.5" height="14"/>
+  <object id="38" name="Robot1" x="1601.5" y="112.75" width="13.5" height="14"/>
+  <object id="39" name="Monitor" x="1792" y="192" width="13.5" height="14"/>
  </objectgroup>
  <objectgroup id="14" name="Objects">
   <object id="5" name="Spawn Point" x="16" y="208">

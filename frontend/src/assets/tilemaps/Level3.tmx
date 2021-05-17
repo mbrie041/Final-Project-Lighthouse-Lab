@@ -510,7 +510,7 @@
 </data>
  </layer>
  <objectgroup id="18" name="Objects">
-  <object id="4" name="Spawn Point" x="64" y="192">
+  <object id="4" name="Spawn Point" x="16" y="208">
    <point/>
   </object>
   <object id="5" name="Finish Point" x="2032" y="176" width="30.5" height="40"/>
