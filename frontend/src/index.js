@@ -5,7 +5,6 @@ import App from "./components/App.jsx";
 import PlatformerScene from "./phaser/platformer-scene";
 import LevelTwoScene from "./phaser/leveltwo-scene";
 import LevelOneScene from "./phaser/levelone-scene";
-import InformationScene from "./phaser/information-scene";
 import IntroScene from "./phaser/_intro-scene";
 import "./styles/index.scss"
 import GameOverScene from "./phaser/gameover-scene";
@@ -38,28 +37,6 @@ export const config = {
 };
 
 export const game = new Phaser.Game(config);
-
-if (navigator.geolocation) {
-  navigator.geolocation.getCurrentPosition(position => {
-    if (!position.coords || !position.coords.longitude) {
-      position.coords.latitude = 0;
-      position.coords.longitude = 0;
-    }
-    global.latitude = parseFloat(position.coords.longitude.toFixed(1));
-    global.longitude = parseFloat(position.coords.latitude.toFixed(1));
-    //   game.scene.start("PlatformerScene", {
-    //     location: {
-    //       type: "Point",
-    //       coordinates: [
-    //         parseFloat(position.coords.longitude.toFixed(1)),
-    //         parseFloat(position.coords.latitude.toFixed(1))
-    //       ]
-    //     }
-    //   })
-  });
-} else {
-  console.error("Geolocation is not supported by this browser!");
-}
 
 ReactDOM.render(
   <App />,
