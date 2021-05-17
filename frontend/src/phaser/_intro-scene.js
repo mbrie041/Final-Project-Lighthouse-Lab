@@ -1,6 +1,4 @@
 import Phaser from "phaser";
-import { ThemeProvider } from "react-bootstrap";
-
 
 let introText = `blah blah blah blah 
 blah blah blah blah blah blah blah blah 
@@ -168,8 +166,7 @@ export default class IntroScene extends Phaser.Scene {
         this.start.setInteractive();
         
         this.start.on("pointerdown", () => {
-          this.time.destroy();
-          this.scene.start("LevelOneScene");
+          this.scene.start("TransitionL1Scene");
         });
 
 

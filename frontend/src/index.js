@@ -8,6 +8,7 @@ import LevelTwoScene from "./phaser/leveltwo-scene";
 import LevelOneScene from "./phaser/levelone-scene";
 import InformationScene from "./phaser/information-scene";
 import IntroScene from "./phaser/_intro-scene";
+import TransitionL1Scene from "./phaser/transitionL1-scene.js";
 import "./styles/index.scss"
 import GameOverScene from "./phaser/gameover-scene";
 
@@ -24,6 +25,7 @@ export const config = {
   },
   scene: [
     IntroScene,
+    TransitionL1Scene,
     PlatformerScene,
     LevelOneScene,
     LevelTwoScene,
