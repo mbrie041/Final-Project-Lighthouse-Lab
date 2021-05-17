@@ -97,9 +97,28 @@ export default class IntroScene extends Phaser.Scene {
       "scaffoldingTiles",
       "src/assets/tilesets/Scaffolding_and_BG_Parts (16 x 16).png"
     );
-
     //load map from Json file
     this.load.tilemapTiledJSON("level2map", "src/assets/tilemaps/Level2.json");
+
+    //images for level three scene
+    this.load.image(
+      "darkLabTiles",
+      "src/assets/tilesets/DarkLab.png"
+    );
+    this.load.image(
+      "closeNightSky",
+      "src/assets/tilesets/Night Close.png"
+    );
+    this.load.image(
+      "farNightSky",
+      "src/assets/tilesets/Night Far.png"
+    );
+    this.load.image(
+      "moonNightSky",
+      "src/assets/tilesets/NightSky.png"
+    );
+       //load map from Json file
+       this.load.tilemapTiledJSON("level3map", "src/assets/tilemaps/Level3.json");
   }
   create(data) {
     this.cameras.main.fadeIn(3000);

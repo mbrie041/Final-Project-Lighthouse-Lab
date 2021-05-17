@@ -35,34 +35,39 @@ export default class LevelThreeScene extends Phaser.Scene {
     this.cameras.main.fadeIn(1000);
 
     //stores level map
-    const map = this.make.tilemap({ key: "level1map" });
+    const map = this.make.tilemap({ key: "level3map" });
 
     //store values for tiles that require collision
     const invisibleTiles = map.addTilesetImage(
       "Blocks (16 x 16)",
       "invisibleWalls"
     );
-    const groundTiles = map.addTilesetImage(
+    const labTiles = map.addTilesetImage(
       "prop pack",
       "labTiles"
     );
+    const platformTiles = map.addTilesetImage("DarkLab","darkLabTiles")
     const exitDoorTiles = map.addTilesetImage(
       "House (Outside And Inside) Tileset",
       "exitDoorTiles"
     );
-    const windowTiles = map.addTilesetImage("background-tiles","windowTiles");
-    const backgroundTiles = map.addTilesetImage("0x72-industrial-tileset-32px-extruded","darkIndustrialTiles");
-
+    const closeNightSkyTiles = map.addTilesetImage("Night Close","closeNightSky");
+    const farNightSkyTiles = map.addTilesetImage("Night Far","farNightSky");
+    const moonNightSkyTiles = map.addTilesetImage("NightSky","moonNightSky");    
 
     //create layers from tiled names
-    map.createLayer("Background", backgroundTiles);
-    map.createLayer("Windows", windowTiles);
-    map.createLayer("Ceiling", groundTiles);
-    map.createLayer("Accesories", groundTiles);
+    map.createLayer("Sky", moonNightSkyTiles);
+    map.createLayer("NightFar", farNightSkyTiles);
+    map.createLayer("Moon", moonNightSkyTiles);
+    map.createLayer("NightMid", closeNightSkyTiles);
+    map.createLayer("NightClosest", farNightSkyTiles);
+    map.createLayer("LabLayer", labTiles);
+    map.createLayer("Signs", labTiles);
+    map.createLayer("ExitSign", labTiles);
     map.createLayer("ExitDoor", exitDoorTiles);
     this.enemyWalls = map.createLayer("InvisibleWalls", invisibleTiles);
     this.enemyWalls.visible = false;
-    this.groundLayer = map.createLayer("Ground", groundTiles);
+    this.groundLayer = map.createLayer("Platforms", platformTiles);
 
     //set up player start point
     const spawnPoint = map.findObject(

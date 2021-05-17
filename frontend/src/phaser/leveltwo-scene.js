@@ -65,6 +65,18 @@ export default class LevelTwoScene extends Phaser.Scene {
       "Objects",
       (obj) => obj.name === "Spawn Point"
     );
+    const finishPoint = map.findObject(
+      "Objects",
+      (obj) => obj.name === "Finish Point"
+    );
+  //sets up exit door zone
+    zone = this.add
+    .zone(finishPoint.x, finishPoint.y)
+    .setSize(finishPoint.width, finishPoint.height);
+  this.physics.world.enable(zone);
+  zone.body.setAllowGravity(false);
+  zone.body.moves = false;
+
 
     //Initialize player and start them at spawn point.
     this.player = new Player(this, spawnPoint.x, spawnPoint.y);
@@ -136,6 +148,16 @@ export default class LevelTwoScene extends Phaser.Scene {
       this.groundLayer
     );
     this.player.sprite.body.collideWorldBounds = true;
+
+        //set up collision with player and exit door
+        this.physics.add.overlap(this.player.sprite, zone, () => {
+          this.physics.world.disable(zone);
+          console.log("You hit the door!");
+          this.scene.start("LevelThreeScene", { score: score, life: life });
+          // this.scene.start('InformationScene')
+          this.scene.stop("LevelTwoScene");
+          // portalCallback(player, tile, this, data);
+        });
 
     //set up camera to have bounds on the level and follow the player
     this.cameras.main.setBounds(0, 0, map.widthInPixels, map.heightInPixels);

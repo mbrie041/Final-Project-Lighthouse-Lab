@@ -18,7 +18,6 @@ let timeText;
 global.elapsedTime;
 global.life = 3;
 
-
 export default class LevelOneScene extends Phaser.Scene {
   constructor() {
     super("LevelOneScene");
@@ -26,7 +25,7 @@ export default class LevelOneScene extends Phaser.Scene {
     this.enemyArray = []; //holds all the enemies created through the enemyCreator function
   }
   preload() {
-    //moved everything to Intro Scenes preload 
+    //moved everything to Intro Scenes preload
   }
 
   create() {
@@ -42,21 +41,16 @@ export default class LevelOneScene extends Phaser.Scene {
       "Blocks (16 x 16)",
       "invisibleWalls"
     );
-    const groundTiles = map.addTilesetImage(
-      "prop pack",
-      "labTiles"
-    );
+    const groundTiles = map.addTilesetImage("prop pack", "labTiles");
     const exitDoorTiles = map.addTilesetImage(
       "House (Outside And Inside) Tileset",
       "exitDoorTiles"
     );
-    const windowTiles = map.addTilesetImage("background-tiles","windowTiles");
-    const closeDaySkyTiles = map.addTilesetImage("Day Close","closeDaySky");
-    const midDaySkyTiles = map.addTilesetImage("Day Mid","midDaySky");
-    const farDaySkyTiles = map.addTilesetImage("Day Far","farDaySky");
-    const cloudyDaySkyTiles = map.addTilesetImage("Day Sky","cloudyDaySky");
-
-
+    const windowTiles = map.addTilesetImage("background-tiles", "windowTiles");
+    const closeDaySkyTiles = map.addTilesetImage("Day Close", "closeDaySky");
+    const midDaySkyTiles = map.addTilesetImage("Day Mid", "midDaySky");
+    const farDaySkyTiles = map.addTilesetImage("Day Far", "farDaySky");
+    const cloudyDaySkyTiles = map.addTilesetImage("Day Sky", "cloudyDaySky");
 
     //create layers from tiled names
     map.createLayer("Clouds", cloudyDaySkyTiles);
@@ -77,26 +71,23 @@ export default class LevelOneScene extends Phaser.Scene {
       (obj) => obj.name === "Spawn Point"
     );
 
-        //Bring finish point in from Json file
-        const finishPoint = map.findObject(
-          "Objects",
-          (obj) => obj.name === "Finish Point"
-        );
-        zone = this.add
-        .zone(finishPoint.x, finishPoint.y)
-        .setSize(finishPoint.width, finishPoint.height);
-      this.physics.world.enable(zone);
-      zone.body.setAllowGravity(false);
-      zone.body.moves = false;
+    //Bring finish point in from Json file
+    const finishPoint = map.findObject(
+      "Objects",
+      (obj) => obj.name === "Finish Point"
+    );
+    zone = this.add
+      .zone(finishPoint.x, finishPoint.y)
+      .setSize(finishPoint.width, finishPoint.height);
+    this.physics.world.enable(zone);
+    zone.body.setAllowGravity(false);
+    zone.body.moves = false;
 
     //Initialize player and start them at spawn point.
     this.player = new Player(this, spawnPoint.x, spawnPoint.y);
 
     //Array containing walls that the enemies needs to collide with
-    const collisionArray = [
-      this.enemyWalls,
-      this.groundLayer,
-    ];
+    const collisionArray = [this.enemyWalls, this.groundLayer];
     const objects1 = map
       .getObjectLayer("Enemies")
       .objects.filter((obj) => obj.name === "Robot1");
@@ -128,7 +119,6 @@ export default class LevelOneScene extends Phaser.Scene {
       )
     );
 
-
     //set up collision for the level
     this.groundLayer.setCollisionByProperty({ collides: true });
     this.enemyWalls.setCollisionByProperty({ collides: true });
@@ -142,12 +132,13 @@ export default class LevelOneScene extends Phaser.Scene {
     );
     this.player.sprite.body.collideWorldBounds = true;
 
+    //set up collision with player and exit door
     this.physics.add.overlap(this.player.sprite, zone, () => {
       this.physics.world.disable(zone);
       console.log("You hit the door!");
-      this.scene.start('LevelTwoScene', { score: score, life: life })
+      this.scene.start("LevelTwoScene", { score: score, life: life });
       // this.scene.start('InformationScene')
-      this.scene.stop('LevelOneScene')
+      this.scene.stop("LevelOneScene");
       // portalCallback(player, tile, this, data);
     });
 
@@ -155,7 +146,6 @@ export default class LevelOneScene extends Phaser.Scene {
     this.cameras.main.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
     this.cameraDolly = new Phaser.Geom.Point(this.player.x, this.player.y);
     this.cameras.main.startFollow(this.cameraDolly);
-    
 
     //creates score text at the top of the screen
     scoreText = this.add
@@ -208,8 +198,10 @@ export default class LevelOneScene extends Phaser.Scene {
       global.life -= 1;
       this.player.sprite.setFlipY(true);
       this.player.sprite.setVelocityX(0);
-      this.player.sprite.anims.play("player-death")
-      this.player.sprite.on(Phaser.Animations.Events.ANIMATION_COMPLETE,()=>this.player.destroy())
+      this.player.sprite.anims.play("player-death");
+      this.player.sprite.on(Phaser.Animations.Events.ANIMATION_COMPLETE, () =>
+        this.player.destroy()
+      );
 
       if (global.life === 0) {
         global.finalTimer = global.elapsedTime;
@@ -226,7 +218,6 @@ export default class LevelOneScene extends Phaser.Scene {
 
       this.state = transitioning;
     } else if (this.state === transitioning) {
-
       // console.log("we're transitioning")
     } else if (this.state === alive) {
       //calls the player update on alive
