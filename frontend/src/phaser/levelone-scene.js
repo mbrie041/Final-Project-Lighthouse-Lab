@@ -1,9 +1,7 @@
 import Phaser from "phaser";
 import Player from "./characters/player.js";
 import Robot from "./characters/robot1.js";
-import Python from "./characters/python.js";
 import Monitor from "./characters/monitor";
-import Bat from "./characters/bat.js";
 import enemyCreator from "./helpers/enemy-creator.js";
 import createItem from "./helpers/item-creator";
 // import { collectItem, displayTimeElapsed } from "./helpers/dataHelpers"
@@ -94,30 +92,8 @@ export default class LevelOneScene extends Phaser.Scene {
     const objects2 = map
       .getObjectLayer("Enemies")
       .objects.filter((obj) => obj.name === "Monitor");
-
     //Enemy creating function calls
-    this.enemyArray.concat(
-      enemyCreator(
-        objects1,
-        "robot-walk",
-        Robot,
-        this,
-        collisionArray,
-        50,
-        "robot-hurt"
-      )
-    );
-    this.enemyArray.concat(
-      enemyCreator(
-        objects2,
-        "monitor-walk",
-        Monitor,
-        this,
-        collisionArray,
-        50,
-        "monitor-hurt"
-      )
-    );
+
 
     //set up collision for the level
     this.groundLayer.setCollisionByProperty({ collides: true });
@@ -186,6 +162,30 @@ export default class LevelOneScene extends Phaser.Scene {
       layerArray,
       playerSprite
     );
+
+    this.enemyArray.concat(
+      enemyCreator(
+        objects1,
+        "robot-walk",
+        Robot,
+        this,
+        collisionArray,
+        50,
+        "robot-hurt"
+      )
+    );
+    this.enemyArray.concat(
+      enemyCreator(
+        objects2,
+        "monitor-walk",
+        Monitor,
+        this,
+        collisionArray,
+        50,
+        "monitor-hurt"
+      )
+    );
+
   }
 
   update(time, delta) {

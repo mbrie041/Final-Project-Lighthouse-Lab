@@ -4,6 +4,7 @@ import ReactDOM from "react-dom";
 import App from "./components/App.jsx";
 import Nav from "./components/Nav.jsx";
 import PlatformerScene from "./phaser/platformer-scene";
+import LevelFourScene from "./phaser/levelfour-scene";
 import LevelThreeScene from "./phaser/levelthree-scene";
 import LevelTwoScene from "./phaser/leveltwo-scene";
 import LevelOneScene from "./phaser/levelone-scene";
@@ -29,6 +30,7 @@ export const config = {
     LevelOneScene,
     LevelTwoScene,
     LevelThreeScene,
+    LevelFourScene,
     GameOverScene
   ],
   physics: {
