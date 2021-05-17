@@ -150,7 +150,7 @@ export default function Chatroom() {
         onKeyPress={messageInputEnterHandler} />);
     } else {
       return (<input type='text'
-        placeholder='Enter you name to chat.'
+        placeholder='Enter your name to chat.'
         onKeyPress={userInputEnterHandler} />);
     }
   }
