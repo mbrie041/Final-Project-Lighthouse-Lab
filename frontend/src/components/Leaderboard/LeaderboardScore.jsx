@@ -1,6 +1,5 @@
 import React from "react";
 
-
 export default function LeaderboardScore(props) {
   return (
     <tr className="board-results">
