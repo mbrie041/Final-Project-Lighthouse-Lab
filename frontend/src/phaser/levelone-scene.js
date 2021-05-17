@@ -63,8 +63,6 @@ export default class LevelOneScene extends Phaser.Scene {
     map.createLayer("FarSky", farDaySkyTiles);
     map.createLayer("MidSky", midDaySkyTiles);
     map.createLayer("CloseSky", closeDaySkyTiles);
-
-
     map.createLayer("Windows", windowTiles);
     map.createLayer("Ceiling", groundTiles);
     map.createLayer("Accesories", groundTiles);
