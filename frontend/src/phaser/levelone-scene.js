@@ -4,13 +4,17 @@ import Robot from "./characters/robot1.js";
 import Monitor from "./characters/monitor";
 import enemyCreator from "./helpers/enemy-creator.js";
 import createItem from "./helpers/item-creator";
-import { playerDied } from "./helpers/player-death"
-import { collectItem, displayTimeElapsed, finalTimeSetter }from "./helpers/interface-managers";
+import { playerDied } from "./helpers/player-death";
+import {
+  collectItem,
+  displayTimeElapsed,
+  finalTimeSetter,
+} from "./helpers/interface-managers";
 
 const alive = "alive";
 const dead = "dead";
 const transitioning = "transitioning";
-
+const victory = "victory";
 let zone;
 global.score = 0;
 let scoreText;
@@ -28,6 +32,7 @@ export default class LevelOneScene extends Phaser.Scene {
     this.timeText;
     this.playerDeathSFX;
     this.enemyDeathSFX;
+    this.fanfareSFX;
   }
   preload() {
     //moved everything to Intro Scenes preload
@@ -36,9 +41,10 @@ export default class LevelOneScene extends Phaser.Scene {
     this.sound.remove(this.sceneOneTheme);
     this.sceneOneTheme = this.sound.add("level1", { loop: true });
     this.jumpSFX = this.sound.add("jump");
-    this.playerDeathSFX = this.sound.add ("playerDeath");
+    this.playerDeathSFX = this.sound.add("playerDeath");
     this.gemSFX = this.sound.add("gem");
-    this.enemyDeathSFX = this.sound.add ("enemyDeath")
+    this.enemyDeathSFX = this.sound.add("enemyDeath");
+    this.fanfareSFX = this.sound.add("fanfare");
     this.sceneOneTheme.play();
     //sets state machine
     this.state = alive;
@@ -123,9 +129,7 @@ export default class LevelOneScene extends Phaser.Scene {
     //set up collision with player and exit door
     this.physics.add.overlap(this.player.sprite, zone, () => {
       this.physics.world.disable(zone);
-      this.sceneOneTheme.stop();
-      this.scene.start("LevelTwoScene", { score: score, life: life });
-      this.scene.stop("LevelOneScene");
+      this.state = victory;
     });
 
     //set up camera to have bounds on the level and follow the player
@@ -210,7 +214,7 @@ export default class LevelOneScene extends Phaser.Scene {
       this.sceneOneTheme.stop();
 
       global.life -= 1;
-      this.playerDeathSFX.play()
+      this.playerDeathSFX.play();
       playerDied(this.player);
 
       if (global.life === 0) {
@@ -220,13 +224,28 @@ export default class LevelOneScene extends Phaser.Scene {
           this.scene.start("GameOverScene");
         });
       } else {
-        this.cameras.main.once("camerafadeoutcomplete", () => 
+        this.cameras.main.once("camerafadeoutcomplete", () =>
           this.scene.restart()
         );
       }
 
       this.state = transitioning;
     } else if (this.state === transitioning) {
+    } else if (this.state === victory) {
+      this.sceneOneTheme.stop();
+      this.fanfareSFX.play();
+      this.input.keyboard.enabled = false;
+      this.player.sprite.setVelocityX(0);
+      this.player.sprite.setAccelerationX(0);
+      this.player.sprite.setAccelerationY(0);
+      this.player.sprite.setDrag(0);
+      this.player.sprite.anims.play("player-victory");
+      this.cameras.main.fadeOut(2000);
+      this.cameras.main.once("camerafadeoutcomplete", () => {
+        this.scene.start("LevelTwoScene");
+        this.scene.stop("LevelOneScene");
+      })
+      this.state = transitioning
     } else if (this.state === alive) {
       //calls the player update on alive
       this.player.update();
@@ -241,6 +260,4 @@ export default class LevelOneScene extends Phaser.Scene {
       displayTimeElapsed(delta, this.timeText);
     }
   }
-
-
 }

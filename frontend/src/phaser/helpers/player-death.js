@@ -9,3 +9,4 @@ function playerDied(player) {
 export {
   playerDied
 }
+

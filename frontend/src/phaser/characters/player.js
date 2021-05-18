@@ -39,7 +39,7 @@ export default class Player {
       key: "player-victory",
       frames: anims.generateFrameNames("player", { prefix: "Tommy-pose", suffix: '.png', start: 1, end: 11 }),
       frameRate: 10,
-      repeat: 1
+      repeat: 0
     });
 
 

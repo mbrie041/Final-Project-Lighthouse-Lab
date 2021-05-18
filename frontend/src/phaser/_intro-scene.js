@@ -131,7 +131,7 @@ export default class IntroScene extends Phaser.Scene {
     this.load.audio("jump", "src/assets/audio/Jump.mp3")
     this.load.audio("playerDeath", "src/assets/audio/Player Death.mp3")
     this.load.audio("enemyDeath", "src/assets/audio/Enemy Death.mp3")
-
+    this.load.audio("fanfare", "src/assets/audio/Fanfare.mp3")
 
     //Sound for Gems
     this.load.audio("gem", "src/assets/audio/Gem.mp3")
