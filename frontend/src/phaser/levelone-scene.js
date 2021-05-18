@@ -15,9 +15,7 @@ const alive = "alive";
 const dead = "dead";
 const transitioning = "transitioning";
 const victory = "victory";
-let zone;
 global.score = 0;
-let scoreText;
 global.elapsedTime;
 global.life = 3;
 
@@ -26,25 +24,30 @@ export default class LevelOneScene extends Phaser.Scene {
     super("LevelOneScene");
     this.state = alive; //sets up state machine
     this.enemyArray = []; //holds all the enemies created through the enemyCreator function
+    this.finishZone
+    //Sound variables
     this.sceneOneTheme;
     this.jumpSFX;
     this.gemSFX;
-    this.timeText;
     this.playerDeathSFX;
     this.enemyDeathSFX;
     this.fanfareSFX;
+    //UI variables
+    this.timeText;
+    this.scoreText;
+    this.lifeText;
   }
   preload() {
     //moved everything to Intro Scenes preload
   }
   create() {
     this.sound.remove(this.sceneOneTheme);
-    this.sceneOneTheme = this.sound.add("level1", { loop: true });
     this.jumpSFX = this.sound.add("jump");
-    this.playerDeathSFX = this.sound.add("playerDeath");
     this.gemSFX = this.sound.add("gem");
-    this.enemyDeathSFX = this.sound.add("enemyDeath");
     this.fanfareSFX = this.sound.add("fanfare");
+    this.playerDeathSFX = this.sound.add("playerDeath");
+    this.enemyDeathSFX = this.sound.add("enemyDeath");
+    this.sceneOneTheme = this.sound.add("level1", { loop: true });
     this.sceneOneTheme.play();
     //sets state machine
     this.state = alive;
@@ -93,12 +96,12 @@ export default class LevelOneScene extends Phaser.Scene {
       "Objects",
       (obj) => obj.name === "Finish Point"
     );
-    zone = this.add
+    this.finishZone = this.add
       .zone(finishPoint.x, finishPoint.y)
       .setSize(finishPoint.width, finishPoint.height);
-    this.physics.world.enable(zone);
-    zone.body.setAllowGravity(false);
-    zone.body.moves = false;
+    this.physics.world.enable(this.finishZone);
+    this.finishZone.body.setAllowGravity(false);
+    this.finishZone.body.moves = false;
 
     //Initialize player and start them at spawn point.
     this.player = new Player(this, spawnPoint.x, spawnPoint.y);
@@ -127,8 +130,8 @@ export default class LevelOneScene extends Phaser.Scene {
     this.player.sprite.body.collideWorldBounds = true;
 
     //set up collision with player and exit door
-    this.physics.add.overlap(this.player.sprite, zone, () => {
-      this.physics.world.disable(zone);
+    this.physics.add.overlap(this.player.sprite, this.finishZone, () => {
+      this.physics.world.disable(this.finishZone);
       this.state = victory;
     });
 
@@ -138,7 +141,7 @@ export default class LevelOneScene extends Phaser.Scene {
     this.cameras.main.startFollow(this.cameraDolly);
 
     //creates score text at the top of the screen
-    scoreText = this.add
+    this.scoreText = this.add
       .text(20, 5, `Score: ${global.score}`, {
         fontSize: "10px",
         fill: "#ffffff",
@@ -147,7 +150,7 @@ export default class LevelOneScene extends Phaser.Scene {
       .setScrollFactor(0);
 
     // Life text at the top of the screen
-    const lifeText = this.add
+    this.lifeText = this.add
       .text(150, 5, `Life: ${global.life}`, {
         fontSize: "10px",
         fill: "#ffffff",
@@ -206,7 +209,7 @@ export default class LevelOneScene extends Phaser.Scene {
   update(time, delta) {
     this.cameraDolly.x = Math.floor(this.player.sprite.x);
     this.cameraDolly.y = Math.floor(this.player.sprite.y);
-    scoreText.setText("Score: " + global.score);
+    this.scoreText.setText("Score: " + global.score);
 
     //state update check
     if (this.state === dead) {
