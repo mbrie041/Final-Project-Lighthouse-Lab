@@ -15,7 +15,7 @@ export default function Chatroom() {
 
   return (
     <div className="chatbox">
-      <p className="chat-title">chatbox</p>
+      <p className="chat-title">CHATROOM</p>
       <ChatHistory chatHistory={chatHistory} />
       <ChatInput chatUser={chatUser}
         setChatUser={setChatUser}

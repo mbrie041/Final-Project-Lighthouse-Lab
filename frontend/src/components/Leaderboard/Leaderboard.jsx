@@ -10,19 +10,21 @@ export default function Leaderboard() {
   return (
     <>
       <div className="leaderboard">
-        <h2 className="leaderboard-title">High Scores</h2>
+        <h2 className="leaderboard-title">HIGH SCORES</h2>
         <table className="css-serial">
           <thead>
             <tr>
-              <th>rank</th>
-              <th>name</th>
-              <th>score</th>
-              <th>time</th>
+              <th>RANK</th>
+              <th>NAME</th>
+              <th>SCORE</th>
+              <th>TIME</th>
             </tr>
           </thead>
+          {/* <div className="results-body"> */}
           <tbody>
             <LeaderboardScoreList stats={stats} />
           </tbody>
+          {/* </div> */}
         </table>
       </div>
     </>

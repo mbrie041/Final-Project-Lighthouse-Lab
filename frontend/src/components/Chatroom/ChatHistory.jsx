@@ -18,11 +18,11 @@ export default function ChatHistory({ chatHistory }) {
       return chatHistory.map((chatMsg, i) => {
         if (chatMsg.type === chatMessageType.newUser) {
           return (
-            <p key={i} >User <b style={{ color: chatMsg.user.color }}>{chatMsg.user.name}</b> joined! 🎉</p>
+            <p className="new-user" key={i} >User <b style={{ color: chatMsg.user.color }}>{chatMsg.user.name}</b> joined! 🎉</p>
           )
         } else {
           return (
-            <p key={i} >
+            <p className="chat-messages" key={i} >
               <b style={{ color: chatMsg.user.color }}>{chatMsg.user.name}</b>: {chatMsg.message}
             </p>
           )
