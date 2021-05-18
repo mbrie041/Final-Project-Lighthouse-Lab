@@ -9,12 +9,14 @@ const alive = "alive";
 const dead = "dead";
 const transitioning = "transitioning";
 
+
+
 let zone;
 global.score = 0;
 let scoreText;
 let timeText;
 global.elapsedTime;
-global.life = 999;
+global.life = 10;
 
 export default class LevelOneScene extends Phaser.Scene {
   constructor() {
@@ -194,7 +196,7 @@ export default class LevelOneScene extends Phaser.Scene {
 
     //state update check
     if (this.state === dead) {
-      this.cameras.main.fadeOut(3000);
+      this.cameras.main.fadeOut(1000);
       global.life -= 1;
       this.player.sprite.setFlipY(true);
       this.player.sprite.setVelocityX(0);
@@ -240,8 +242,8 @@ export default class LevelOneScene extends Phaser.Scene {
       if (this.player.sprite.y > this.groundLayer.height) {
         this.state = dead;
       }
+      displayTimeElapsed(delta);
     }
-    displayTimeElapsed(time);
   }
 }
 
@@ -253,7 +255,7 @@ function collectItem(player, item) {
 }
 
 function displayTimeElapsed(time) {
-  global.elapsedTime = time * 0.001;
+  global.elapsedTime += time * 0.001;
   let min = Math.floor(global.elapsedTime / 60);
   let sec = (global.elapsedTime % 60).toFixed(2);
 
