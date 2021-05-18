@@ -4,7 +4,6 @@ let introText = `blah blah blah blah
 blah blah blah blah blah blah blah blah 
 blah blah blah 
  `;
-
 export default class IntroScene extends Phaser.Scene {
   constructor() {
     super("IntroScene");

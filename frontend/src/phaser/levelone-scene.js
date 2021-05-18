@@ -47,16 +47,19 @@ export default class LevelOneScene extends Phaser.Scene {
       "exitDoorTiles"
     );
     const windowTiles = map.addTilesetImage("background-tiles", "windowTiles");
+
+
+
     const closeDaySkyTiles = map.addTilesetImage("Day Close", "closeDaySky");
     const midDaySkyTiles = map.addTilesetImage("Day Mid", "midDaySky");
     const farDaySkyTiles = map.addTilesetImage("Day Far", "farDaySky");
     const cloudyDaySkyTiles = map.addTilesetImage("Day Sky", "cloudyDaySky");
 
     //create layers from tiled names
-    map.createLayer("Clouds", cloudyDaySkyTiles);
-    map.createLayer("FarSky", farDaySkyTiles);
-    map.createLayer("MidSky", midDaySkyTiles);
-    map.createLayer("CloseSky", closeDaySkyTiles);
+    // map.createLayer("Clouds", cloudyDaySkyTiles)
+    // map.createLayer("FarSky", farDaySkyTiles)
+    // map.createLayer("MidSky", midDaySkyTiles)
+    // map.createLayer("CloseSky", closeDaySkyTiles)
     map.createLayer("Windows", windowTiles);
     map.createLayer("Ceiling", groundTiles);
     map.createLayer("Accesories", groundTiles);
@@ -64,7 +67,11 @@ export default class LevelOneScene extends Phaser.Scene {
     this.enemyWalls = map.createLayer("InvisibleWalls", invisibleTiles);
     this.enemyWalls.visible = false;
     this.groundLayer = map.createLayer("Ground", groundTiles);
-
+    //Here is what you need to implement scrolling. Make sure you delete the layers in tiled first and set up large images.
+    this.add.image(this.scale.width, this.scale.height, "cloudyDaySky")
+    .setOrigin(1.5,1.5)
+    .setDepth(-1)
+    .setScrollFactor(1.1)
     //set up player start point
     const spawnPoint = map.findObject(
       "Objects",
