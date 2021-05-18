@@ -29,6 +29,8 @@ export default class LevelOneScene extends Phaser.Scene {
   }
 
   create() {
+    const sceneOneTheme = this.sound.add("level1", {loop:true})
+    sceneOneTheme.play()
     //sets state machine
     this.state = alive;
     this.cameras.main.fadeIn(1000);

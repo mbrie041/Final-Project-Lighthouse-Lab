@@ -129,8 +129,18 @@ export default class IntroScene extends Phaser.Scene {
     this.load.image("blueSkyTiles", "src/assets/tilesets/5 - Sky_color.png");
 
     this.load.tilemapTiledJSON("level4map", "src/assets/tilemaps/Level4.json");
+
+    //Sound for title screen
+    this.load.audio("start-menu", "src/assets/audio/Start Menu.mp3")
+
+    //Sound for level 1
+    this.load.audio("level1", "src/assets/audio/Level1.mp3")
+
   }
   create(data) {
+    const music1 =  this.sound.add("start-menu", {loop:true})
+
+    music1.play()
     this.cameras.main.fadeIn(3000);
     let lighthouse = this.add.image(0, 0, "lighthouseIntro").setOrigin(0, 0);
 
@@ -171,6 +181,7 @@ export default class IntroScene extends Phaser.Scene {
     this.start.on("pointerdown", () => {
       global.elapsedTime = 0;
       this.scene.start("LevelOneScene");
+      music1.stop()
     });
   }
 }
