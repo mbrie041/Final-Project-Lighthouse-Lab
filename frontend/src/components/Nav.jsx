@@ -15,7 +15,7 @@ export default function Nav() {
         <div id="navbarNavAltMarkup">
           <div className="navbar-nav">
 
-            <button data-modal-target="#popup" className="nav-link">About</button>
+            <button data-modal-target="#popup" className="nav-link">About Us</button>
 
           </div>
         </div>
