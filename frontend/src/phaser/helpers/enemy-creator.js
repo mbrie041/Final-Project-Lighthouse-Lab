@@ -21,6 +21,7 @@ export default function enemyCreator(
   collisionArray,
   enemySpeed,
   deathAnnimationName,
+  deathSFX
 ) {
   const enemyArray = [];
   for (let obj of objects) {
@@ -32,7 +33,8 @@ export default function enemyCreator(
       enemyArray,
       annimationName,
       collisionArray,
-      deathAnnimationName
+      deathAnnimationName,
+      deathSFX
     );
   }
   return enemyArray;
@@ -45,7 +47,8 @@ function createEnemy(
   enemyArray,
   annimationName,
   collisionArray,
-  deathAnnimationName
+  deathAnnimationName,
+  deathSFX
 ) {
   let enemyAlive = true;
   const createdEnemy = new enemyName(enemySpeed, scene, obj.x, obj.y);
@@ -86,6 +89,7 @@ function createEnemy(
           enemy.setFlipY(true);
           enemy.setVelocityX(0);
           enemy.anims.play(deathAnnimationName)
+          deathSFX.play()
           enemy.on(Phaser.Animations.Events.ANIMATION_COMPLETE,()=>enemy.destroy());
         } else {
           if (scene.state === alive) {

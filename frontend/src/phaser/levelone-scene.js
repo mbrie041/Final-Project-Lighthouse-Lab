@@ -27,6 +27,7 @@ export default class LevelOneScene extends Phaser.Scene {
     this.gemSFX;
     this.timeText;
     this.playerDeathSFX;
+    this.enemyDeathSFX;
   }
   preload() {
     //moved everything to Intro Scenes preload
@@ -37,6 +38,7 @@ export default class LevelOneScene extends Phaser.Scene {
     this.jumpSFX = this.sound.add("jump");
     this.playerDeathSFX = this.sound.add ("playerDeath");
     this.gemSFX = this.sound.add("gem");
+    this.enemyDeathSFX = this.sound.add ("enemyDeath")
     this.sceneOneTheme.play();
     //sets state machine
     this.state = alive;
@@ -179,7 +181,8 @@ export default class LevelOneScene extends Phaser.Scene {
         this,
         collisionArray,
         50,
-        "robot-hurt"
+        "robot-hurt",
+        this.enemyDeathSFX
       )
     );
     this.enemyArray.concat(
@@ -190,7 +193,8 @@ export default class LevelOneScene extends Phaser.Scene {
         this,
         collisionArray,
         50,
-        "monitor-hurt"
+        "monitor-hurt",
+        this.enemyDeathSFX
       )
     );
   }
