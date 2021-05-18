@@ -11,7 +11,7 @@ export default function ChatInput({ chatUser, setChatUser, setChatMessage }) {
   const messageInputEnterHandler = (event) => {
     if (event.charCode === 13) {
       const msg = event.target.value;
-      console.log(`Sending message: ${msg}`);
+      // console.log(`Sending message: ${msg}`);
       setChatMessage(msg);
       event.target.value = '';
     }
@@ -22,7 +22,7 @@ export default function ChatInput({ chatUser, setChatUser, setChatMessage }) {
       const userName = event.target.value;
       if (userName.length < 0) return;
 
-      console.log(`Creating user: ${userName}`);
+      // console.log(`Creating user: ${userName}`);
       setChatUser({
         name: userName,
         color: generateRandomColor()

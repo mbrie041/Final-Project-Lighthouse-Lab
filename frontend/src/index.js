@@ -12,7 +12,6 @@ import IntroScene from "./phaser/_intro-scene";
 import "./styles/index.scss"
 import GameOverScene from "./phaser/gameover-scene";
 
-
 export const config = {
   type: Phaser.AUTO,
   width: 400,
@@ -25,13 +24,13 @@ export const config = {
     createContainer: true
   },
   scene: [
-    GameOverScene,
     IntroScene,
     PlatformerScene,
     LevelOneScene,
     LevelTwoScene,
     LevelThreeScene,
-    LevelFourScene
+    LevelFourScene,
+    GameOverScene
   ],
   physics: {
     default: "arcade",
@@ -56,11 +55,8 @@ ReactDOM.render(
   <Nav />,
   document.getElementById("nav") || document.createElement("div")
 );
-
 ReactDOM.render(
-
   <App />,
   document.getElementById("root") || document.createElement("div")
-
 );
 
