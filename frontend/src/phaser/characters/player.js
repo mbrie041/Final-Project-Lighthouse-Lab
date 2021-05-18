@@ -35,6 +35,12 @@ export default class Player {
       frameRate: 20,
       repeat: 1
     });
+    anims.create({
+      key: "player-victory",
+      frames: anims.generateFrameNames("player", { prefix: "Tommy-pose", suffix: '.png', start: 1, end: 11 }),
+      frameRate: 10,
+      repeat: 1
+    });
 
 
     // Create the physics-based sprite that we will move around and animate

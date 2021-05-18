@@ -9,12 +9,12 @@
 	"sourceSize": {"w":20,"h":29}
 },
 {
-	"filename": "Tommy-hurt2.png",
-	"frame": {"x":100,"y":0,"w":20,"h":29},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":20,"h":29},
-	"sourceSize": {"w":20,"h":29}
+"filename": "Tommy-hurt2.png",
+"frame": {"x":100,"y":0,"w":20,"h":29},
+"rotated": false,
+"trimmed": false,
+"spriteSourceSize": {"x":0,"y":0,"w":20,"h":29},
+"sourceSize": {"w":20,"h":29}
 },
 {
 	"filename": "Tommy-idle1.png",
@@ -73,15 +73,7 @@
 	"sourceSize": {"w":20,"h":29}
 },
 {
-	"filename": "Tommy-run1.png",
-	"frame": {"x":140,"y":0,"w":20,"h":29},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":20,"h":29},
-	"sourceSize": {"w":20,"h":29}
-},
-{
-	"filename": "Tommy-run2.png",
+	"filename": "Tommy-pose1.png",
 	"frame": {"x":160,"y":0,"w":20,"h":29},
 	"rotated": false,
 	"trimmed": false,
@@ -89,7 +81,7 @@
 	"sourceSize": {"w":20,"h":29}
 },
 {
-	"filename": "Tommy-run3.png",
+	"filename": "Tommy-pose2.png",
 	"frame": {"x":180,"y":0,"w":20,"h":29},
 	"rotated": false,
 	"trimmed": false,
@@ -97,7 +89,7 @@
 	"sourceSize": {"w":20,"h":29}
 },
 {
-	"filename": "Tommy-run4.png",
+	"filename": "Tommy-pose3.png",
 	"frame": {"x":200,"y":0,"w":20,"h":29},
 	"rotated": false,
 	"trimmed": false,
@@ -105,7 +97,7 @@
 	"sourceSize": {"w":20,"h":29}
 },
 {
-	"filename": "Tommy-run5.png",
+	"filename": "Tommy-pose4.png",
 	"frame": {"x":220,"y":0,"w":20,"h":29},
 	"rotated": false,
 	"trimmed": false,
@@ -113,7 +105,7 @@
 	"sourceSize": {"w":20,"h":29}
 },
 {
-	"filename": "Tommy-run6.png",
+	"filename": "Tommy-pose5.png",
 	"frame": {"x":240,"y":0,"w":20,"h":29},
 	"rotated": false,
 	"trimmed": false,
@@ -121,7 +113,7 @@
 	"sourceSize": {"w":20,"h":29}
 },
 {
-	"filename": "Tommy-run7.png",
+	"filename": "Tommy-pose6.png",
 	"frame": {"x":260,"y":0,"w":20,"h":29},
 	"rotated": false,
 	"trimmed": false,
@@ -129,8 +121,104 @@
 	"sourceSize": {"w":20,"h":29}
 },
 {
-	"filename": "Tommy-run8.png",
+	"filename": "Tommy-pose7.png",
 	"frame": {"x":280,"y":0,"w":20,"h":29},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":20,"h":29},
+	"sourceSize": {"w":20,"h":29}
+},
+{
+	"filename": "Tommy-pose8.png",
+	"frame": {"x":300,"y":0,"w":20,"h":29},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":20,"h":29},
+	"sourceSize": {"w":20,"h":29}
+},
+{
+	"filename": "Tommy-pose9.png",
+	"frame": {"x":300,"y":0,"w":20,"h":29},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":20,"h":29},
+	"sourceSize": {"w":20,"h":29}
+},
+{
+	"filename": "Tommy-pose10.png",
+	"frame": {"x":300,"y":0,"w":20,"h":29},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":20,"h":29},
+	"sourceSize": {"w":20,"h":29}
+},
+{
+	"filename": "Tommy-pose11.png",
+	"frame": {"x":320,"y":0,"w":20,"h":29},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":20,"h":29},
+	"sourceSize": {"w":20,"h":29}
+},
+{
+	"filename": "Tommy-run1.png",
+	"frame": {"x":340,"y":0,"w":20,"h":29},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":20,"h":29},
+	"sourceSize": {"w":20,"h":29}
+},
+{
+	"filename": "Tommy-run2.png",
+	"frame": {"x":360,"y":0,"w":20,"h":29},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":20,"h":29},
+	"sourceSize": {"w":20,"h":29}
+},
+{
+	"filename": "Tommy-run3.png",
+	"frame": {"x":380,"y":0,"w":20,"h":29},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":20,"h":29},
+	"sourceSize": {"w":20,"h":29}
+},
+{
+	"filename": "Tommy-run4.png",
+	"frame": {"x":400,"y":0,"w":20,"h":29},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":20,"h":29},
+	"sourceSize": {"w":20,"h":29}
+},
+{
+	"filename": "Tommy-run5.png",
+	"frame": {"x":420,"y":0,"w":20,"h":29},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":20,"h":29},
+	"sourceSize": {"w":20,"h":29}
+},
+{
+	"filename": "Tommy-run6.png",
+	"frame": {"x":440,"y":0,"w":20,"h":29},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":20,"h":29},
+	"sourceSize": {"w":20,"h":29}
+},
+{
+	"filename": "Tommy-run7.png",
+	"frame": {"x":460,"y":0,"w":20,"h":29},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":20,"h":29},
+	"sourceSize": {"w":20,"h":29}
+},
+{
+	"filename": "Tommy-run8.png",
+	"frame": {"x":480,"y":0,"w":20,"h":29},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":20,"h":29},
@@ -141,8 +229,8 @@
 	"version": "1.0",
 	"image": "Tommy.png",
 	"format": "RGBA8888",
-	"size": {"w":300,"h":29},
+	"size": {"w":500,"h":29},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:aa193df889f7b1a63044dfd22c53de5b:144b0463c854fa7d6edc515cff84422d:6d116eb07f821fc584b7a706459b6be2$"
+	"smartupdate": "$TexturePacker:SmartUpdate:fc69c9cff87c090a817691ac9572aec1:769b6af27a3528c81fc1b1ec10c9a577:6d116eb07f821fc584b7a706459b6be2$"
 }
 }
