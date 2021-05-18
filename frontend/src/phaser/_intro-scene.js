@@ -140,7 +140,8 @@ export default class IntroScene extends Phaser.Scene {
     this.load.audio("start-menu", "src/assets/audio/Start Menu.mp3")
     //Sound for Story screen
     this.load.audio("story", "src/assets/audio/Story.mp3")
-
+    //Sound for Game Over
+    this.load.audio("gameOver", "src/assets/audio/Game Over.mp3")
     //Sound for level 1
     this.load.audio("level1", "src/assets/audio/Level1.mp3")
 
