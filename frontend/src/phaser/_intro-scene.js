@@ -50,6 +50,7 @@ export default class IntroScene extends Phaser.Scene {
       "src/assets/spritesheets/Tweeter.png",
       "src/assets/spritesheets/Tweeter.json"
     );
+    //images for story scene
     //images for level one scene
     //load tileset images for layers
     this.load.image("labTiles", "src/assets/tilesets/prop pack.png");
@@ -128,12 +129,15 @@ export default class IntroScene extends Phaser.Scene {
 
     //Sound for Sprites
     this.load.audio("jump", "src/assets/audio/Jump.mp3")
+    this.load.audio("playerDeath", "src/assets/audio/Player Death.mp3")
 
     //Sound for Gems
     this.load.audio("gem", "src/assets/audio/Gem.mp3")
 
     //Sound for title screen
     this.load.audio("start-menu", "src/assets/audio/Start Menu.mp3")
+    //Sound for Story screen
+    this.load.audio("story", "src/assets/audio/Story.mp3")
 
     //Sound for level 1
     this.load.audio("level1", "src/assets/audio/Level1.mp3")
@@ -144,7 +148,7 @@ export default class IntroScene extends Phaser.Scene {
 
     music1.play()
     this.cameras.main.fadeIn(3000);
-    let lighthouse = this.add.image(0, 0, "lighthouseIntro").setOrigin(0, 0);
+    // let lighthouse = this.add.image(0, 0, "lighthouseIntro").setOrigin(0, 0);
 
 
     let image = this.add.image(
@@ -152,6 +156,7 @@ export default class IntroScene extends Phaser.Scene {
       this.cameras.main.height / 2,
       "lighthouseIntro"
       );
+
       let scaleX = this.cameras.main.width / image.width;
       let scaleY = this.cameras.main.height / image.height;
       let scale = Math.max(scaleX, scaleY);
@@ -183,8 +188,9 @@ export default class IntroScene extends Phaser.Scene {
 
     this.start.on("pointerdown", () => {
       global.elapsedTime = 0;
-      this.scene.start("LevelOneScene");
       music1.stop()
+      this.scene.start("StoryScene");
+      this.scene.stop("IntroScene")
     });
   }
 }

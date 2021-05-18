@@ -8,6 +8,7 @@ import LevelThreeScene from "./phaser/levelthree-scene";
 import LevelTwoScene from "./phaser/leveltwo-scene";
 import LevelOneScene from "./phaser/levelone-scene";
 import IntroScene from "./phaser/_intro-scene";
+import StoryScene from "./phaser/story-scene";
 import TransitionL1Scene from "./phaser/L1-transition-scene";
 import TransitionL2Scene from "./phaser/L2-transition-scene";
 import TransitionL3Scene from "./phaser/L3-transition-scene";
@@ -28,6 +29,7 @@ export const config = {
   },
   scene: [
     IntroScene,
+    StoryScene,
     TransitionL1Scene,
     LevelOneScene,
     TransitionL2Scene,

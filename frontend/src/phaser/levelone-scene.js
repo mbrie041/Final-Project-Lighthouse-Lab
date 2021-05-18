@@ -15,7 +15,7 @@ let zone;
 global.score = 0;
 let scoreText;
 global.elapsedTime;
-global.life = 1;
+global.life = 3;
 
 export default class LevelOneScene extends Phaser.Scene {
   constructor() {
@@ -26,13 +26,16 @@ export default class LevelOneScene extends Phaser.Scene {
     this.jumpSFX;
     this.gemSFX;
     this.timeText;
+    this.playerDeathSFX;
   }
   preload() {
     //moved everything to Intro Scenes preload
   }
   create() {
+    this.sound.remove(this.sceneOneTheme);
     this.sceneOneTheme = this.sound.add("level1", { loop: true });
     this.jumpSFX = this.sound.add("jump");
+    this.playerDeathSFX = this.sound.add ("playerDeath");
     this.gemSFX = this.sound.add("gem");
     this.sceneOneTheme.play();
     //sets state machine
@@ -118,12 +121,9 @@ export default class LevelOneScene extends Phaser.Scene {
     //set up collision with player and exit door
     this.physics.add.overlap(this.player.sprite, zone, () => {
       this.physics.world.disable(zone);
-      console.log("You hit the door!");
-      this.scene.start("LevelTwoScene", { score: score, life: life });
-      // this.scene.start('InformationScene')
-      this.scene.stop("LevelOneScene");
       this.sceneOneTheme.stop();
-      // portalCallback(player, tile, this, data);
+      this.scene.start("LevelTwoScene", { score: score, life: life });
+      this.scene.stop("LevelOneScene");
     });
 
     //set up camera to have bounds on the level and follow the player
@@ -203,26 +203,26 @@ export default class LevelOneScene extends Phaser.Scene {
     //state update check
     if (this.state === dead) {
       this.cameras.main.fadeOut(1000);
+      this.sceneOneTheme.stop();
+
       global.life -= 1;
+      this.playerDeathSFX.play()
       playerDied(this.player);
 
       if (global.life === 0) {
         finalTimeSetter();
         this.cameras.main.once("camerafadeoutcomplete", () => {
-          this.sceneOneTheme.stop();
-          this.scene.start("GameOverScene");
           this.scene.stop("LevelOneScene");
+          this.scene.start("GameOverScene");
         });
       } else {
-        this.cameras.main.once("camerafadeoutcomplete", () => {
-          this.sceneOneTheme.stop();
-          this.scene.restart();
-        });
+        this.cameras.main.once("camerafadeoutcomplete", () => 
+          this.scene.restart()
+        );
       }
 
       this.state = transitioning;
     } else if (this.state === transitioning) {
-      // console.log("we're transitioning")
     } else if (this.state === alive) {
       //calls the player update on alive
       this.player.update();

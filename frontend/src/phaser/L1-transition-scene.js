@@ -38,14 +38,6 @@ export default class TransitionL1Scene extends Phaser.Scene {
 
       this.typewriteText('blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah ');
 
-  
-      // this.label.setInteractive();
-        
-      // this.label.on("pointerdown", () => {
-      //     this.scene.start("LevelOneScene");
-      //   });
-
-      //transition scene when return key is entered
       this.returnKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ENTER);
       this.returnKey.on("down", event => {
           this.scene.start("LevelOneScene");
