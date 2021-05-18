@@ -4,7 +4,9 @@ import Robot from "./characters/robot1.js";
 import Monitor from "./characters/monitor";
 import enemyCreator from "./helpers/enemy-creator.js";
 import createItem from "./helpers/item-creator";
-// import { collectItem, displayTimeElapsed } from "./helpers/dataHelpers"
+import { playerDied } from "./helpers/player-death"
+import { collectItem, displayTimeElapsed, finalTimeSetter }from "./helpers/interface-managers";
+
 const alive = "alive";
 const dead = "dead";
 const transitioning = "transitioning";
@@ -12,27 +14,26 @@ const transitioning = "transitioning";
 let zone;
 global.score = 0;
 let scoreText;
-let timeText;
 global.elapsedTime;
-global.life = 10;
+global.life = 1;
 
 export default class LevelOneScene extends Phaser.Scene {
   constructor() {
     super("LevelOneScene");
     this.state = alive; //sets up state machine
     this.enemyArray = []; //holds all the enemies created through the enemyCreator function
-    this.sceneOneTheme
-    this.jumpSFX
+    this.sceneOneTheme;
+    this.jumpSFX;
     this.gemSFX;
+    this.timeText;
   }
   preload() {
     //moved everything to Intro Scenes preload
   }
-  
   create() {
     this.sceneOneTheme = this.sound.add("level1", { loop: true });
     this.jumpSFX = this.sound.add("jump");
-    this.gemSFX =this.sound.add("gem");
+    this.gemSFX = this.sound.add("gem");
     this.sceneOneTheme.play();
     //sets state machine
     this.state = alive;
@@ -149,7 +150,7 @@ export default class LevelOneScene extends Phaser.Scene {
       .setScrollFactor(0);
 
     //timer text at the top of the screen
-    timeText = this.add
+    this.timeText = this.add
       .text(250, 5, `Time: ${global.elaspedTime}`, {
         fontSize: "10px",
         fill: "#ffffff",
@@ -164,7 +165,7 @@ export default class LevelOneScene extends Phaser.Scene {
     createItem(
       map.getObjectLayer("Gems").objects,
       item,
-      collectItem,
+      (player, item) => collectItem(player, item, this.gemSFX),
       physics,
       layerArray,
       playerSprite
@@ -195,44 +196,26 @@ export default class LevelOneScene extends Phaser.Scene {
   }
 
   update(time, delta) {
-
     this.cameraDolly.x = Math.floor(this.player.sprite.x);
     this.cameraDolly.y = Math.floor(this.player.sprite.y);
+    scoreText.setText("Score: " + global.score);
 
     //state update check
     if (this.state === dead) {
       this.cameras.main.fadeOut(1000);
       global.life -= 1;
-      this.player.sprite.setFlipY(true);
-      this.player.sprite.setVelocityX(0);
-      this.player.sprite.anims.play("player-death");
-      this.player.sprite.on(Phaser.Animations.Events.ANIMATION_COMPLETE, () =>
-        this.player.destroy()
-      );
+      playerDied(this.player);
 
       if (global.life === 0) {
-        global.finalTimer = global.elapsedTime;
-        //format timer
-        let min = Math.floor(global.finalTimer / 60);
-        let sec = (global.finalTimer % 60).toFixed(2);
-        if (min < 10) {
-          min = "0" + min;
-        }
-        if (sec < 10) {
-          sec = "0" + sec;
-        }
-        global.finalTimer = `${min}:${sec}`;
-        global.aboutToChange = 1;
+        finalTimeSetter();
         this.cameras.main.once("camerafadeoutcomplete", () => {
-          this.scene.start("GameOverScene");
           this.sceneOneTheme.stop();
-
+          this.scene.start("GameOverScene");
           this.scene.stop("LevelOneScene");
         });
       } else {
         this.cameras.main.once("camerafadeoutcomplete", () => {
           this.sceneOneTheme.stop();
-
           this.scene.restart();
         });
       }
@@ -251,32 +234,9 @@ export default class LevelOneScene extends Phaser.Scene {
       if (this.player.sprite.y > this.groundLayer.height) {
         this.state = dead;
       }
-      displayTimeElapsed(delta);
+      displayTimeElapsed(delta, this.timeText);
     }
   }
-}
-function collectItem(player, item) {
-  console.log("COLLISION WITH ITEM!");
-  item.disableBody(`${item}`, `${item}`);
-  global.score += 10;
-  scoreText.setText("Score: " + global.score);
-}
 
 
-function displayTimeElapsed(time) {
-  global.elapsedTime += time * 0.001;
-  let min = Math.floor(global.elapsedTime / 60);
-  let sec = (global.elapsedTime % 60).toFixed(0);
-  let mili = (((global.elapsedTime % 60) % 1) * 100).toFixed(0);
-
-  if (min < 10) {
-    min = "0" + min;
-  }
-  if (sec < 10) {
-    sec = "0" + sec;
-  }
-  if (mili < 10) {
-    mili = "0" + mili;
-  }
-  timeText.setText("Time: " + min + ":" + sec + ":" + mili);
 }
