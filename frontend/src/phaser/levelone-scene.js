@@ -4,7 +4,7 @@ import Robot from "./characters/robot1.js";
 import Monitor from "./characters/monitor";
 import enemyCreator from "./helpers/enemy-creator.js";
 import createItem from "./helpers/item-creator";
-import { playerDied } from "./helpers/player-death";
+import { playerDied, playerFinish } from "./helpers/player-states";
 import {
   collectItem,
   displayTimeElapsed,
@@ -235,17 +235,13 @@ export default class LevelOneScene extends Phaser.Scene {
       this.sceneOneTheme.stop();
       this.fanfareSFX.play();
       this.input.keyboard.enabled = false;
-      this.player.sprite.setVelocityX(0);
-      this.player.sprite.setAccelerationX(0);
-      this.player.sprite.setAccelerationY(0);
-      this.player.sprite.setDrag(0);
-      this.player.sprite.anims.play("player-victory");
+      playerFinish(this.player.sprite);
       this.cameras.main.fadeOut(2000);
       this.cameras.main.once("camerafadeoutcomplete", () => {
         this.scene.start("LevelTwoScene");
         this.scene.stop("LevelOneScene");
-      })
-      this.state = transitioning
+      });
+      this.state = transitioning;
     } else if (this.state === alive) {
       //calls the player update on alive
       this.player.update();
