@@ -77,3 +77,10 @@ ReactDOM.render(
 
 );
 
+ReactDOM.render(
+
+  <Nav />,
+  document.getElementById("nav") || document.createElement("div")
+
+);
+
