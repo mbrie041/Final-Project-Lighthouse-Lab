@@ -15,6 +15,7 @@
       
       .app {
         display:flex;
+        direction: column;
         margin-bottom: 2em;
         // overflow: scroll;
         justify-content: space-evenly;

@@ -25,13 +25,13 @@ export const config = {
     createContainer: true
   },
   scene: [
+    GameOverScene,
     IntroScene,
     PlatformerScene,
     LevelOneScene,
     LevelTwoScene,
     LevelThreeScene,
-    LevelFourScene,
-    GameOverScene
+    LevelFourScene
   ],
   physics: {
     default: "arcade",
