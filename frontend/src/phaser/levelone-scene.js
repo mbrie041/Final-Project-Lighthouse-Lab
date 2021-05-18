@@ -9,8 +9,6 @@ const alive = "alive";
 const dead = "dead";
 const transitioning = "transitioning";
 
-
-
 let zone;
 global.score = 0;
 let scoreText;
@@ -23,14 +21,15 @@ export default class LevelOneScene extends Phaser.Scene {
     super("LevelOneScene");
     this.state = alive; //sets up state machine
     this.enemyArray = []; //holds all the enemies created through the enemyCreator function
+    this.sceneOneTheme
   }
   preload() {
     //moved everything to Intro Scenes preload
   }
 
   create() {
-    const sceneOneTheme = this.sound.add("level1", {loop:true})
-    sceneOneTheme.play()
+    this.sceneOneTheme = this.sound.add("level1", { loop: true });
+    this.sceneOneTheme.play();
     //sets state machine
     this.state = alive;
     this.cameras.main.fadeIn(1000);
@@ -98,7 +97,6 @@ export default class LevelOneScene extends Phaser.Scene {
       .objects.filter((obj) => obj.name === "Monitor");
     //Enemy creating function calls
 
-
     //set up collision for the level
     this.groundLayer.setCollisionByProperty({ collides: true });
     this.enemyWalls.setCollisionByProperty({ collides: true });
@@ -119,6 +117,7 @@ export default class LevelOneScene extends Phaser.Scene {
       this.scene.start("LevelTwoScene", { score: score, life: life });
       // this.scene.start('InformationScene')
       this.scene.stop("LevelOneScene");
+      this.sceneOneTheme.stop();
       // portalCallback(player, tile, this, data);
     });
 
@@ -189,7 +188,6 @@ export default class LevelOneScene extends Phaser.Scene {
         "monitor-hurt"
       )
     );
-
   }
 
   update(time, delta) {
@@ -213,19 +211,23 @@ export default class LevelOneScene extends Phaser.Scene {
         let min = Math.floor(global.finalTimer / 60);
         let sec = (global.finalTimer % 60).toFixed(2);
         if (min < 10) {
-          min = '0' + min;
+          min = "0" + min;
         }
         if (sec < 10) {
-          sec = '0' + sec;
+          sec = "0" + sec;
         }
-        global.finalTimer =`${min}:${sec}`
+        global.finalTimer = `${min}:${sec}`;
         global.aboutToChange = 1;
         this.cameras.main.once("camerafadeoutcomplete", () => {
           this.scene.start("GameOverScene");
+          this.sceneOneTheme.stop();
+
           this.scene.stop("LevelOneScene");
         });
       } else {
         this.cameras.main.once("camerafadeoutcomplete", () => {
+          this.sceneOneTheme.stop();
+
           this.scene.restart();
         });
       }
