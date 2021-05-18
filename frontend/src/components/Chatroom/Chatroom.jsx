@@ -1,5 +1,5 @@
 import React from "react";
-import useChat from './useChat';
+import useChatData from '../../hooks/useChatData';
 import ChatHistory from './ChatHistory.jsx';
 import ChatInput from "./ChatInput.jsx";
 
@@ -9,26 +9,9 @@ import ChatInput from "./ChatInput.jsx";
 // };9
 // useEffect(scrollToBottom, [message]);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 export default function Chatroom() {
 
-  const { chatHistory, chatUser, setChatUser, setChatMessage } = useChat();
-
-  const dummyfunction = () => {
-    return "long string";
-  }
+  const { chatHistory, chatUser, setChatUser, setChatMessage } = useChatData();
 
   return (
     <div className="chatbox">

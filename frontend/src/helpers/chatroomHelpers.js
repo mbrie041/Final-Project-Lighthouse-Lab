@@ -1,18 +1,16 @@
-// export default function chatroomHelpers() {
+// export function chatroomHelpers() {
 
+//   const chatUserKeyInStorage = 'lighthouse-laboratory-user';
 
 //   const generateRandomColor = () => {
 //     var randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
 //     return randomColor;
 //   }
 
+//   const getChatUserFromStorage = () => {
 
-//   /** TODO: need to make sure the below function only called once */
-//   const getUserFromStorage = () => {
-//     const userKeyInStorage = 'lighthouse-laboratory-user';
-
-//     window.localStorage.removeItem(userKeyInStorage, null);
-//     const user = window.localStorage.getItem(userKeyInStorage);
+//     window.localStorage.removeItem('lighthouse-laboratory-user', null);
+//     const user = window.localStorage.getItem('lighthouse-laboratory-user');
 //     if (user) {
 //       console.log(`Existing user found in storage: ${user}`);
 //       return JSON.parse(user);
@@ -22,8 +20,13 @@
 //     }
 //   }
 
+//   const saveChatUserToStorage = (user) => {
+//     window.localStorage.setItem('lighthouse-laboratory-user', JSON.stringify(user));
+//   };
+
 //   return {
 //     generateRandomColor,
-//     getUserFromStorage
+//     getChatUserFromStorage,
+//     saveChatUserToStorage
 //   }
 // };

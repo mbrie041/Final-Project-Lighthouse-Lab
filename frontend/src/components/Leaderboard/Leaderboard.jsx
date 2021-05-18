@@ -1,11 +1,11 @@
 import React from "react";
 import LeaderboardScoreList from "./LeaderboardScoreList.jsx";
-import useApplicationData from "../../hooks/useApplicationData";
+import useApplicationData from "../../hooks/useLeaderboardData";
 import { Table } from 'react-bootstrap';
 
 
 export default function Leaderboard() {
-  const { state } = useApplicationData();
+  const { stats } = useApplicationData();
 
   return (
     <>
@@ -21,7 +21,7 @@ export default function Leaderboard() {
             </tr>
           </thead>
           <tbody>
-            <LeaderboardScoreList stats={state.stats} />
+            <LeaderboardScoreList stats={stats} />
           </tbody>
         </table>
       </div>

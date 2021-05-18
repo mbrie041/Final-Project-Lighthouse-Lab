@@ -7,10 +7,10 @@ const getChatUserFromStorage = () => {
   window.localStorage.removeItem(chatUserKeyInStorage, null);
   const user = window.localStorage.getItem(chatUserKeyInStorage);
   if (user) {
-    console.log(`Existing user found in storage: ${user}`);
+    // console.log(`Existing user found in storage: ${user}`);
     return JSON.parse(user);
   } else {
-    console.log('No user found from storage.');
+    // console.log('No user found from storage.');
     return user;
   }
 }
@@ -20,17 +20,15 @@ const saveChatUserToStorage = (user) => {
 };
 /** ---- */
 
-
 const eventTypes = {
   fullChatHistory: 'fullChatHistory',
   newMessage: 'newMessage',
   newUser: 'newUser'
 };
 
-export default function useChat() {
+export default function useChatData() {
   const initChatUser = getChatUserFromStorage();
 
-  /** Chat user */
   const [chatUser, setChatUser] = useState(initChatUser);
   const [chatMessage, setChatMessage] = useState('');
   const [chatHistory, setChatHistory] = useState([]);
