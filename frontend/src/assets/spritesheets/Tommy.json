@@ -1,0 +1,148 @@
+{"frames": [
+
+{
+	"filename": "Tommy-hurt1.png",
+	"frame": {"x":0,"y":0,"w":20,"h":29},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":20,"h":29},
+	"sourceSize": {"w":20,"h":29}
+},
+{
+	"filename": "Tommy-hurt2.png",
+	"frame": {"x":100,"y":0,"w":20,"h":29},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":20,"h":29},
+	"sourceSize": {"w":20,"h":29}
+},
+{
+	"filename": "Tommy-idle1.png",
+	"frame": {"x":20,"y":0,"w":20,"h":29},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":20,"h":29},
+	"sourceSize": {"w":20,"h":29}
+},
+{
+	"filename": "Tommy-idle2.png",
+	"frame": {"x":40,"y":0,"w":20,"h":29},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":20,"h":29},
+	"sourceSize": {"w":20,"h":29}
+},
+{
+	"filename": "Tommy-idle3.png",
+	"frame": {"x":60,"y":0,"w":20,"h":29},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":20,"h":29},
+	"sourceSize": {"w":20,"h":29}
+},
+{
+	"filename": "Tommy-idle4.png",
+	"frame": {"x":80,"y":0,"w":20,"h":29},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":20,"h":29},
+	"sourceSize": {"w":20,"h":29}
+},
+{
+	"filename": "Tommy-jump1.png",
+	"frame": {"x":100,"y":0,"w":20,"h":29},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":20,"h":29},
+	"sourceSize": {"w":20,"h":29}
+},
+{
+	"filename": "Tommy-jump2.png",
+	"frame": {"x":120,"y":0,"w":20,"h":29},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":20,"h":29},
+	"sourceSize": {"w":20,"h":29}
+},
+{
+	"filename": "Tommy-jump3.png",
+	"frame": {"x":140,"y":0,"w":20,"h":29},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":20,"h":29},
+	"sourceSize": {"w":20,"h":29}
+},
+{
+	"filename": "Tommy-run1.png",
+	"frame": {"x":140,"y":0,"w":20,"h":29},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":20,"h":29},
+	"sourceSize": {"w":20,"h":29}
+},
+{
+	"filename": "Tommy-run2.png",
+	"frame": {"x":160,"y":0,"w":20,"h":29},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":20,"h":29},
+	"sourceSize": {"w":20,"h":29}
+},
+{
+	"filename": "Tommy-run3.png",
+	"frame": {"x":180,"y":0,"w":20,"h":29},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":20,"h":29},
+	"sourceSize": {"w":20,"h":29}
+},
+{
+	"filename": "Tommy-run4.png",
+	"frame": {"x":200,"y":0,"w":20,"h":29},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":20,"h":29},
+	"sourceSize": {"w":20,"h":29}
+},
+{
+	"filename": "Tommy-run5.png",
+	"frame": {"x":220,"y":0,"w":20,"h":29},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":20,"h":29},
+	"sourceSize": {"w":20,"h":29}
+},
+{
+	"filename": "Tommy-run6.png",
+	"frame": {"x":240,"y":0,"w":20,"h":29},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":20,"h":29},
+	"sourceSize": {"w":20,"h":29}
+},
+{
+	"filename": "Tommy-run7.png",
+	"frame": {"x":260,"y":0,"w":20,"h":29},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":20,"h":29},
+	"sourceSize": {"w":20,"h":29}
+},
+{
+	"filename": "Tommy-run8.png",
+	"frame": {"x":280,"y":0,"w":20,"h":29},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":20,"h":29},
+	"sourceSize": {"w":20,"h":29}
+}],
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "Tommy.png",
+	"format": "RGBA8888",
+	"size": {"w":300,"h":29},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:aa193df889f7b1a63044dfd22c53de5b:144b0463c854fa7d6edc515cff84422d:6d116eb07f821fc584b7a706459b6be2$"
+}
+}

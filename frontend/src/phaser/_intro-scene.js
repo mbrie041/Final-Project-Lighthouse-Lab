@@ -18,12 +18,11 @@ export default class IntroScene extends Phaser.Scene {
     );
     this.load.image("lighthouseColor", "src/assets/images/lighthouseColor.png");
 
-
     //load sprite sheets for level characters
     this.load.atlas(
       "player",
-      "src/assets/spritesheets/Agent_Mike.png",
-      "src/assets/spritesheets/Agent_Mike.json"
+      "src/assets/spritesheets/Tommy.png",
+      "src/assets/spritesheets/Tommy.json"
     );
     this.load.atlas(
       "robot",
@@ -74,28 +73,16 @@ export default class IntroScene extends Phaser.Scene {
       "invisibleWalls",
       "src/assets/tilesets/Blocks (16 x 16).png"
     );
-    this.load.image(
-      "closeDaySky",
-      "src/assets/tilesets/Day Close.png"
-    );
-    this.load.image(
-      "midDaySky",
-      "src/assets/tilesets/Day Mid.png"
-    );
-    this.load.image(
-      "farDaySky",
-      "src/assets/tilesets/Day Far.png"
-    );
-    this.load.image(
-      "cloudyDaySky",
-      "src/assets/tilesets/Day Far.png"
-    );
+    this.load.image("closeDaySky", "src/assets/tilesets/Day Close.png");
+    this.load.image("midDaySky", "src/assets/tilesets/Day Mid.png");
+    this.load.image("farDaySky", "src/assets/tilesets/Day Far.png");
+    this.load.image("cloudyDaySky", "src/assets/tilesets/Day Far.png");
     //load map from Json file
     this.load.tilemapTiledJSON("level1map", "src/assets/tilemaps/Level1.json");
 
-    //placeholer for score increasing item
+    //score increasing items
     this.load.image("gem", "src/assets/images/gem.png");
-
+    this.load.image("ruby", "src/assets/images/ruby.png");
     //images for level two scene
 
     //load tileset images for layers
@@ -111,24 +98,12 @@ export default class IntroScene extends Phaser.Scene {
     this.load.tilemapTiledJSON("level2map", "src/assets/tilemaps/Level2.json");
 
     //images for level three scene
-    this.load.image(
-      "darkLabTiles",
-      "src/assets/tilesets/DarkLab.png"
-    );
-    this.load.image(
-      "closeNightSky",
-      "src/assets/tilesets/Night Close.png"
-    );
-    this.load.image(
-      "farNightSky",
-      "src/assets/tilesets/Night Far.png"
-    );
-    this.load.image(
-      "moonNightSky",
-      "src/assets/tilesets/NightSky.png"
-    );
-       //load map from Json file
-       this.load.tilemapTiledJSON("level3map", "src/assets/tilemaps/Level3.json");
+    this.load.image("darkLabTiles", "src/assets/tilesets/DarkLab.png");
+    this.load.image("closeNightSky", "src/assets/tilesets/Night Close.png");
+    this.load.image("farNightSky", "src/assets/tilesets/Night Far.png");
+    this.load.image("moonNightSky", "src/assets/tilesets/NightSky.png");
+    //load map from Json file
+    this.load.tilemapTiledJSON("level3map", "src/assets/tilemaps/Level3.json");
     //images for level four scene
     this.load.image(
       "lightBrownTiles",
@@ -142,10 +117,7 @@ export default class IntroScene extends Phaser.Scene {
       "foregroundTreeTiles",
       "src/assets/tilesets/1 - Foreground_scenery.png"
     );
-    this.load.image(
-      "greenHillTiles",
-      "src/assets/tilesets/2 - Hills.png"
-    );
+    this.load.image("greenHillTiles", "src/assets/tilesets/2 - Hills.png");
     this.load.image(
       "largeCloudTiles",
       "src/assets/tilesets/4 - Cloud_cover_2.png"
@@ -154,13 +126,9 @@ export default class IntroScene extends Phaser.Scene {
       "smallCloudTiles",
       "src/assets/tilesets/3 - Cloud_cover_1.png"
     );
-    this.load.image(
-      "blueSkyTiles",
-      "src/assets/tilesets/5 - Sky_color.png"
-    );
+    this.load.image("blueSkyTiles", "src/assets/tilesets/5 - Sky_color.png");
 
     this.load.tilemapTiledJSON("level4map", "src/assets/tilemaps/Level4.json");
-
   }
   create(data) {
     this.cameras.main.fadeIn(3000);
@@ -201,6 +169,7 @@ export default class IntroScene extends Phaser.Scene {
     this.start.setInteractive();
 
     this.start.on("pointerdown", () => {
+      global.elapsedTime = 0;
       this.scene.start("LevelOneScene");
     });
   }

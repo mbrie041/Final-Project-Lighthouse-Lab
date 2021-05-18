@@ -45,20 +45,24 @@ export default class LevelFourScene extends Phaser.Scene {
     );
     const labTiles = map.addTilesetImage("prop pack", "labTiles");
     const platformTiles = map.addTilesetImage("DarkLab", "darkLabTiles");
-    const fenceTiles = map.addTilesetImage("Grassland_entities (16 x 16)", "fenceTiles");
+    const fenceTiles = map.addTilesetImage(
+      "Grassland_entities (16 x 16)",
+      "fenceTiles"
+    );
     const foregroundTreeTiles = map.addTilesetImage(
       "1 - Foreground_scenery",
       "foregroundTreeTiles"
     );
-    const greenHillTiles = map.addTilesetImage(
-      "2 - Hills",
-      "greenHillTiles"
+    const greenHillTiles = map.addTilesetImage("2 - Hills", "greenHillTiles");
+    const largeCloudTiles = map.addTilesetImage(
+      "4 - Cloud_cover_2",
+      "largeCloudTiles"
     );
-    const largeCloudTiles = map.addTilesetImage("4 - Cloud_cover_2", "largeCloudTiles");
-    const smallCloudTiles = map.addTilesetImage("3 - Cloud_cover_1", "smallCloudTiles");
+    const smallCloudTiles = map.addTilesetImage(
+      "3 - Cloud_cover_1",
+      "smallCloudTiles"
+    );
     const blueSkyTiles = map.addTilesetImage("5 - Sky_color", "blueSkyTiles");
-
-
 
     //create layers from tiled names
     map.createLayer("Sky", blueSkyTiles);
@@ -101,8 +105,8 @@ export default class LevelFourScene extends Phaser.Scene {
     //Array containing walls that the enemies needs to collide with
     const collisionArray = [this.enemyWalls, this.groundLayer];
     const objects1 = map
-    .getObjectLayer("Enemies")
-    .objects.filter((obj) => obj.name === "Tweeter");
+      .getObjectLayer("Enemies")
+      .objects.filter((obj) => obj.name === "Tweeter");
 
     //Enemy creating function calls
     this.enemyArray.concat(
@@ -170,7 +174,7 @@ export default class LevelFourScene extends Phaser.Scene {
       })
       .setScrollFactor(0);
 
-    const item = "gem";
+    const item = "ruby";
     const layerArray = [this.groundLayer];
     const physics = this.physics;
     const playerSprite = this.player.sprite;
@@ -226,8 +230,8 @@ export default class LevelFourScene extends Phaser.Scene {
       if (this.player.sprite.y > this.groundLayer.height) {
         this.state = dead;
       }
+      displayTimeElapsed(delta);
     }
-    displayTimeElapsed(time);
   }
 }
 
@@ -239,7 +243,7 @@ function collectItem(player, item) {
 }
 
 function displayTimeElapsed(time) {
-  global.elapsedTime = time * 0.001;
+  global.elapsedTime += time * 0.001;
   let min = Math.floor(global.elapsedTime / 60);
   let sec = (global.elapsedTime % 60).toFixed(2);
 

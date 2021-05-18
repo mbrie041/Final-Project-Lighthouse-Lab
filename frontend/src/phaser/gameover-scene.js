@@ -87,7 +87,7 @@ export default class GameOverScene extends Phaser.Scene {
             global.life = 3;
             global.score = 0;
             global.time = 0;
-            this.scene.start('LevelOneScene');
+            this.scene.start('IntroScene');
             this.scene.stop('GameOverScene');
           })
           .catch((error) => {
