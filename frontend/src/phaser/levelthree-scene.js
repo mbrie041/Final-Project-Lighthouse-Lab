@@ -91,10 +91,22 @@ export default class LevelThreeScene extends Phaser.Scene {
     const objects1 = map
       .getObjectLayer("Enemies")
       .objects.filter((obj) => obj.name === "JumpRoach");
-      const objects2 = map
+    const objects2 = map
       .getObjectLayer("Enemies")
       .objects.filter((obj) => obj.name === "Roach");
 
+    const item = "gem";
+    const layerArray = [this.groundLayer];
+    const physics = this.physics;
+    const playerSprite = this.player.sprite;
+    createItem(
+      map.getObjectLayer("Gems").objects,
+      item,
+      collectItem,
+      physics,
+      layerArray,
+      playerSprite
+    );
     //Enemy creating function calls
     this.enemyArray.concat(
       jumpEnemyCreator(
@@ -171,19 +183,6 @@ export default class LevelThreeScene extends Phaser.Scene {
         fontFamily: ' "Press Start 2P" ',
       })
       .setScrollFactor(0);
-
-    const item = "gem";
-    const layerArray = [this.groundLayer];
-    const physics = this.physics;
-    const playerSprite = this.player.sprite;
-    createItem(
-      map.getObjectLayer("Gems").objects,
-      item,
-      collectItem,
-      physics,
-      layerArray,
-      playerSprite
-    );
   }
 
   update(time, delta) {
@@ -228,8 +227,8 @@ export default class LevelThreeScene extends Phaser.Scene {
       if (this.player.sprite.y > this.groundLayer.height) {
         this.state = dead;
       }
+      displayTimeElapsed(delta);
     }
-    displayTimeElapsed(time);
   }
 }
 
@@ -241,7 +240,7 @@ function collectItem(player, item) {
 }
 
 function displayTimeElapsed(time) {
-  global.elapsedTime = time * 0.001;
+  global.elapsedTime += time * 0.001;
   let min = Math.floor(global.elapsedTime / 60);
   let sec = (global.elapsedTime % 60).toFixed(2);
 

@@ -247,8 +247,8 @@ export default class LevelTwoScene extends Phaser.Scene {
       if (this.player.sprite.y > this.groundLayer.height) {
         this.state = dead;
       }
+      displayTimeElapsed(delta);
     }
-    displayTimeElapsed(time);
   }
 }
 
@@ -260,7 +260,7 @@ function collectItem(player, item) {
 }
 
 function displayTimeElapsed(time) {
-  global.elapsedTime = time * 0.001;
+  global.elapsedTime += time * 0.001;
   let min = Math.floor(global.elapsedTime / 60);
   let sec = (global.elapsedTime % 60).toFixed(2);
 
