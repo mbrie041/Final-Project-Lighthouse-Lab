@@ -205,6 +205,19 @@ export default class LevelFourScene extends Phaser.Scene {
 
       if (global.life === 0) {
         global.finalTimer = global.elapsedTime;
+        let min = Math.floor(global.finalTimer / 60);
+        let sec = (global.finalTimer % 60).toFixed(0);
+        let mili = (((global.finalTimer % 60) % 1) * 100).toFixed(0);
+        if (min < 10) {
+          min = "0" + min;
+        }
+        if (sec < 10) {
+          sec = "0" + sec;
+        }
+        if (mili < 10) {
+          mili = "0" + mili;
+        }
+        global.finalTimer = `${min}:${sec}:${mili} `;
         global.aboutToChange = 1;
         this.cameras.main.once("camerafadeoutcomplete", () => {
           this.scene.start("GameOverScene");
@@ -245,7 +258,8 @@ function collectItem(player, item) {
 function displayTimeElapsed(time) {
   global.elapsedTime += time * 0.001;
   let min = Math.floor(global.elapsedTime / 60);
-  let sec = (global.elapsedTime % 60).toFixed(2);
+  let sec = (global.elapsedTime % 60).toFixed(0);
+  let mili = (((global.elapsedTime % 60) % 1) * 100).toFixed(0);
 
   if (min < 10) {
     min = "0" + min;
@@ -253,5 +267,8 @@ function displayTimeElapsed(time) {
   if (sec < 10) {
     sec = "0" + sec;
   }
-  timeText.setText("Time: " + min + ":" + sec);
+  if (mili < 10) {
+    mili = "0" + mili;
+  }
+  timeText.setText("Time: " + min + ":" + sec + ":" + mili);
 }

@@ -27,10 +27,10 @@ export default class LevelOneScene extends Phaser.Scene {
   preload() {
     //moved everything to Intro Scenes preload
   }
-  
+
   create() {
 
-   
+
     //sets state machine
     this.state = alive;
     this.cameras.main.fadeIn(1000);
@@ -210,16 +210,19 @@ export default class LevelOneScene extends Phaser.Scene {
 
       if (global.life === 0) {
         global.finalTimer = global.elapsedTime;
-        //format timer
         let min = Math.floor(global.finalTimer / 60);
-        let sec = (global.finalTimer % 60).toFixed(2);
+        let sec = (global.finalTimer % 60).toFixed(0);
+        let mili = (((global.finalTimer % 60) % 1) * 100).toFixed(0);
         if (min < 10) {
-          min = '0' + min;
+          min = "0" + min;
         }
         if (sec < 10) {
-          sec = '0' + sec;
+          sec = "0" + sec;
         }
-        global.finalTimer =`${min}:${sec}`
+        if (mili < 10) {
+          mili = "0" + mili;
+        }
+        global.finalTimer = `${min}:${sec}:${mili} `;
         global.aboutToChange = 1;
         this.cameras.main.once("camerafadeoutcomplete", () => {
           this.scene.start("GameOverScene");

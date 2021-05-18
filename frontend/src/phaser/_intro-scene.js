@@ -135,13 +135,13 @@ export default class IntroScene extends Phaser.Scene {
       this.cameras.main.width / 2,
       this.cameras.main.height / 2,
       "lighthouseIntro"
-      );
-      let scaleX = this.cameras.main.width / image.width;
-      let scaleY = this.cameras.main.height / image.height;
-      let scale = Math.max(scaleX, scaleY);
-      image.setScale(scale).setScrollFactor(0);
-      
-      this.logo = this.add
+    );
+    let scaleX = this.cameras.main.width / image.width;
+    let scaleY = this.cameras.main.height / image.height;
+    let scale = Math.max(scaleX, scaleY);
+    image.setScale(scale).setScrollFactor(0);
+
+    this.logo = this.add
       .text(30, 50, "Lighthouse Labs", {
         fontSize: "20px",
         fill: "#ffffff",
