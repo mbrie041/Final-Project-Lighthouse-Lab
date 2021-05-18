@@ -58,7 +58,7 @@
 },
 {
 	"filename": "Tommy-jump2.png",
-	"frame": {"x":120,"y":0,"w":20,"h":29},
+	"frame": {"x":100,"y":0,"w":20,"h":29},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":20,"h":29},
@@ -66,7 +66,7 @@
 },
 {
 	"filename": "Tommy-jump3.png",
-	"frame": {"x":140,"y":0,"w":20,"h":29},
+	"frame": {"x":100,"y":0,"w":20,"h":29},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":20,"h":29},

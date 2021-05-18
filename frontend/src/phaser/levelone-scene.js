@@ -22,6 +22,7 @@ export default class LevelOneScene extends Phaser.Scene {
     this.state = alive; //sets up state machine
     this.enemyArray = []; //holds all the enemies created through the enemyCreator function
     this.sceneOneTheme
+    this.jumpSFX
   }
   preload() {
     //moved everything to Intro Scenes preload
@@ -29,6 +30,7 @@ export default class LevelOneScene extends Phaser.Scene {
 
   create() {
     this.sceneOneTheme = this.sound.add("level1", { loop: true });
+    this.jumpSFX = this.sound.add("jump");
     this.sceneOneTheme.play();
     //sets state machine
     this.state = alive;

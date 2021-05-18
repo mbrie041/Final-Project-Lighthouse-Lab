@@ -130,6 +130,9 @@ export default class IntroScene extends Phaser.Scene {
 
     this.load.tilemapTiledJSON("level4map", "src/assets/tilemaps/Level4.json");
 
+    //Sound for Sprites
+    this.load.audio("jump", "src/assets/audio/Jump.mp3")
+
     //Sound for title screen
     this.load.audio("start-menu", "src/assets/audio/Start Menu.mp3")
 

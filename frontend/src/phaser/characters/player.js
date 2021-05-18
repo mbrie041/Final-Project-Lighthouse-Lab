@@ -8,7 +8,7 @@ import Phaser, { Textures } from "phaser";
 export default class Player {
   constructor(scene, x, y) {
     this.scene = scene;
-
+    this.jumpSFX;
     // Create the animations we need from the player spritesheet
     const anims = scene.anims;
     anims.create({
@@ -78,6 +78,7 @@ export default class Player {
     // Only allow the player to jump if they are on the ground
     if (onGround && (keys.up.isDown || keys.w.isDown)) {
       sprite.setVelocityY(-500);
+      this.scene.jumpSFX.play()
     }
 
     // Update the animation/texture based on the state of the player
