@@ -1,9 +1,7 @@
 import Phaser from "phaser";
 import Player from "./characters/player.js";
 import Robot from "./characters/robot1.js";
-import Python from "./characters/python.js";
 import Monitor from "./characters/monitor";
-import Bat from "./characters/bat.js";
 import enemyCreator from "./helpers/enemy-creator.js";
 import createItem from "./helpers/item-creator";
 // import { collectItem, displayTimeElapsed } from "./helpers/dataHelpers"
@@ -11,12 +9,14 @@ const alive = "alive";
 const dead = "dead";
 const transitioning = "transitioning";
 
+
+
 let zone;
 global.score = 0;
 let scoreText;
 let timeText;
-global.life = 999;
-global.elapsedTime = 0;
+global.elapsedTime;
+global.life = 10;
 
 export default class LevelOneScene extends Phaser.Scene {
   constructor() {
@@ -96,30 +96,8 @@ export default class LevelOneScene extends Phaser.Scene {
     const objects2 = map
       .getObjectLayer("Enemies")
       .objects.filter((obj) => obj.name === "Monitor");
-
     //Enemy creating function calls
-    this.enemyArray.concat(
-      enemyCreator(
-        objects1,
-        "robot-walk",
-        Robot,
-        this,
-        collisionArray,
-        50,
-        "robot-hurt"
-      )
-    );
-    this.enemyArray.concat(
-      enemyCreator(
-        objects2,
-        "monitor-walk",
-        Monitor,
-        this,
-        collisionArray,
-        50,
-        "monitor-hurt"
-      )
-    );
+
 
     //set up collision for the level
     this.groundLayer.setCollisionByProperty({ collides: true });
@@ -188,6 +166,30 @@ export default class LevelOneScene extends Phaser.Scene {
       layerArray,
       playerSprite
     );
+
+    this.enemyArray.concat(
+      enemyCreator(
+        objects1,
+        "robot-walk",
+        Robot,
+        this,
+        collisionArray,
+        50,
+        "robot-hurt"
+      )
+    );
+    this.enemyArray.concat(
+      enemyCreator(
+        objects2,
+        "monitor-walk",
+        Monitor,
+        this,
+        collisionArray,
+        50,
+        "monitor-hurt"
+      )
+    );
+
   }
 
   update(time, delta) {
@@ -197,7 +199,7 @@ export default class LevelOneScene extends Phaser.Scene {
 
     //state update check
     if (this.state === dead) {
-      this.cameras.main.fadeOut(3000);
+      this.cameras.main.fadeOut(1000);
       global.life -= 1;
       this.player.sprite.setFlipY(true);
       this.player.sprite.setVelocityX(0);
@@ -243,9 +245,8 @@ export default class LevelOneScene extends Phaser.Scene {
       if (this.player.sprite.y > this.groundLayer.height) {
         this.state = dead;
       }
+      displayTimeElapsed(delta);
     }
-   
-    displayTimeElapsed(time);
   }
 }
 
@@ -257,7 +258,7 @@ function collectItem(player, item) {
 }
 
 function displayTimeElapsed(time) {
-  global.elapsedTime = time * 0.001;
+  global.elapsedTime += time * 0.001;
   let min = Math.floor(global.elapsedTime / 60);
   let sec = (global.elapsedTime % 60).toFixed(0);
   let mili = (((global.elapsedTime % 60) % 1) * 100).toFixed(0);

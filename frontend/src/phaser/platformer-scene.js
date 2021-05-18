@@ -9,7 +9,6 @@ let player;
 global.score = 0;
 let scoreText;
 let timeText;
-global.elapsedTime;
 global.life = 3;
 
 

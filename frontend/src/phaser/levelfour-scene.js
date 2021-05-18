@@ -1,9 +1,7 @@
 import Phaser from "phaser";
 import Player from "./characters/player.js";
-import JumpRoach from "./characters/jumpRoach.js";
-import Roach from "./characters/roach.js";
-import enemyCreator from "./helpers/enemy-creator.js";
-import jumpEnemyCreator from "./helpers/jump-enemy-creator.js";
+import Tweeter from "./characters/tweeter";
+import flyingJumpEnemyCreator from "./helpers/flying-jump-enemy-creator.js";
 import createItem from "./helpers/item-creator";
 // import { collectItem, displayTimeElapsed } from "./helpers/dataHelpers"
 const alive = "alive";
@@ -14,9 +12,9 @@ let zone;
 let scoreText;
 let timeText;
 
-export default class LevelThreeScene extends Phaser.Scene {
+export default class LevelFourScene extends Phaser.Scene {
   constructor() {
-    super("LevelThreeScene");
+    super("LevelFourScene");
     this.state = alive; //sets up state machine
     this.enemyArray = []; //holds all the enemies created through the enemyCreator function
   }
@@ -30,40 +28,58 @@ export default class LevelThreeScene extends Phaser.Scene {
     this.cameras.main.fadeIn(1000);
 
     //stores level map
-    const map = this.make.tilemap({ key: "level3map" });
+    const map = this.make.tilemap({ key: "level4map" });
 
     //store values for tiles that require collision
     const invisibleTiles = map.addTilesetImage(
       "Blocks (16 x 16)",
       "invisibleWalls"
     );
-    const labTiles = map.addTilesetImage("prop pack", "labTiles");
-    const platformTiles = map.addTilesetImage("DarkLab", "darkLabTiles");
+    const groundTiles = map.addTilesetImage(
+      "Terrain (16 x 16)",
+      "lightBrownTiles"
+    );
     const exitDoorTiles = map.addTilesetImage(
       "House (Outside And Inside) Tileset",
       "exitDoorTiles"
     );
-    const closeNightSkyTiles = map.addTilesetImage(
-      "Night Close",
-      "closeNightSky"
+    const labTiles = map.addTilesetImage("prop pack", "labTiles");
+    const platformTiles = map.addTilesetImage("DarkLab", "darkLabTiles");
+    const fenceTiles = map.addTilesetImage(
+      "Grassland_entities (16 x 16)",
+      "fenceTiles"
     );
-    const farNightSkyTiles = map.addTilesetImage("Night Far", "farNightSky");
-    const moonNightSkyTiles = map.addTilesetImage("NightSky", "moonNightSky");
+    const foregroundTreeTiles = map.addTilesetImage(
+      "1 - Foreground_scenery",
+      "foregroundTreeTiles"
+    );
+    const greenHillTiles = map.addTilesetImage("2 - Hills", "greenHillTiles");
+    const largeCloudTiles = map.addTilesetImage(
+      "4 - Cloud_cover_2",
+      "largeCloudTiles"
+    );
+    const smallCloudTiles = map.addTilesetImage(
+      "3 - Cloud_cover_1",
+      "smallCloudTiles"
+    );
+    const blueSkyTiles = map.addTilesetImage("5 - Sky_color", "blueSkyTiles");
 
     //create layers from tiled names
-    map.createLayer("Sky", moonNightSkyTiles);
-    map.createLayer("NightFar", farNightSkyTiles);
-    map.createLayer("Moon", moonNightSkyTiles);
-    map.createLayer("NightMid", closeNightSkyTiles);
-    map.createLayer("NightClosest", farNightSkyTiles);
-    map.createLayer("LabLayer", labTiles);
+    map.createLayer("Sky", blueSkyTiles);
+    map.createLayer("Clouds", smallCloudTiles);
+    map.createLayer("CloudCover", largeCloudTiles);
+    map.createLayer("Hills", greenHillTiles);
+    map.createLayer("Foreground", foregroundTreeTiles);
+    map.createLayer("PreForeground", foregroundTreeTiles);
+    map.createLayer("Fence", fenceTiles);
+    map.createLayer("LabLayer", platformTiles);
+    map.createLayer("Lab", labTiles);
     map.createLayer("Signs", labTiles);
-    map.createLayer("ExitSign", labTiles);
-    map.createLayer("EntryTiles", platformTiles);
+    map.createLayer("ExitDoor", exitDoorTiles);
+
     this.enemyWalls = map.createLayer("InvisibleWalls", invisibleTiles);
     this.enemyWalls.visible = false;
-    this.groundLayer = map.createLayer("Platforms", platformTiles);
-    map.createLayer("ExitDoor", exitDoorTiles);
+    this.groundLayer = map.createLayer("Ground", groundTiles);
 
     //set up player start point
     const spawnPoint = map.findObject(
@@ -90,44 +106,18 @@ export default class LevelThreeScene extends Phaser.Scene {
     const collisionArray = [this.enemyWalls, this.groundLayer];
     const objects1 = map
       .getObjectLayer("Enemies")
-      .objects.filter((obj) => obj.name === "JumpRoach");
-    const objects2 = map
-      .getObjectLayer("Enemies")
-      .objects.filter((obj) => obj.name === "Roach");
+      .objects.filter((obj) => obj.name === "Tweeter");
 
-    const item = "gem";
-    const layerArray = [this.groundLayer];
-    const physics = this.physics;
-    const playerSprite = this.player.sprite;
-    createItem(
-      map.getObjectLayer("Gems").objects,
-      item,
-      collectItem,
-      physics,
-      layerArray,
-      playerSprite
-    );
     //Enemy creating function calls
     this.enemyArray.concat(
-      jumpEnemyCreator(
+      flyingJumpEnemyCreator(
         objects1,
-        "roach-jump",
-        JumpRoach,
+        "tweeter-fly",
+        Tweeter,
         this,
         collisionArray,
-        250,
-        "roach-hurt"
-      )
-    );
-    this.enemyArray.concat(
-      enemyCreator(
-        objects2,
-        "roach-jump",
-        Roach,
-        this,
-        collisionArray,
-        50,
-        "roach-hurt"
+        500,
+        "tweeter-hurt"
       )
     );
     //set up collision for the level
@@ -146,9 +136,9 @@ export default class LevelThreeScene extends Phaser.Scene {
     this.physics.add.overlap(this.player.sprite, zone, () => {
       this.physics.world.disable(zone);
       console.log("You hit the door!");
-      this.scene.start("LevelFourScene", { score: score, life: life });
+      this.scene.start("GameOverScene", { score: score, life: life });
       // this.scene.start('InformationScene')
-      this.scene.stop("LevelThreeScene");
+      this.scene.stop("LevelFourScene");
       // portalCallback(player, tile, this, data);
     });
 
@@ -159,7 +149,7 @@ export default class LevelThreeScene extends Phaser.Scene {
 
     //creates score text at the top of the screen
     scoreText = this.add
-      .text(20, 5, `Score: ${global.score}`, {
+      .text(20, 5, "Score: 0", {
         fontSize: "10px",
         fill: "#ffffff",
         fontFamily: ' "Press Start 2P" ',
@@ -183,6 +173,19 @@ export default class LevelThreeScene extends Phaser.Scene {
         fontFamily: ' "Press Start 2P" ',
       })
       .setScrollFactor(0);
+
+    const item = "ruby";
+    const layerArray = [this.groundLayer];
+    const physics = this.physics;
+    const playerSprite = this.player.sprite;
+    createItem(
+      map.getObjectLayer("Gems").objects,
+      item,
+      collectItem,
+      physics,
+      layerArray,
+      playerSprite
+    );
   }
 
   update(time, delta) {
@@ -205,7 +208,7 @@ export default class LevelThreeScene extends Phaser.Scene {
         global.aboutToChange = 1;
         this.cameras.main.once("camerafadeoutcomplete", () => {
           this.scene.start("GameOverScene");
-          this.scene.stop("LevelThreeScene");
+          this.scene.stop("LevelFourScene");
         });
       } else {
         this.cameras.main.once("camerafadeoutcomplete", () => {
@@ -242,8 +245,7 @@ function collectItem(player, item) {
 function displayTimeElapsed(time) {
   global.elapsedTime += time * 0.001;
   let min = Math.floor(global.elapsedTime / 60);
-  let sec = (global.elapsedTime % 60).toFixed(0);
-  let mili = (((global.elapsedTime % 60) % 1) * 100).toFixed(0);
+  let sec = (global.elapsedTime % 60).toFixed(2);
 
   if (min < 10) {
     min = "0" + min;
@@ -251,8 +253,5 @@ function displayTimeElapsed(time) {
   if (sec < 10) {
     sec = "0" + sec;
   }
-  if (mili < 10) {
-    mili = "0" + mili;
-  }
-  timeText.setText("Time: " + min + ":" + sec + ":" + mili);
+  timeText.setText("Time: " + min + ":" + sec);
 }

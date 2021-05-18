@@ -1,15 +1,15 @@
 import Phaser from "phaser";
 
-export default class Roach {
+export default class Tweeter {
   constructor(speed, scene, x, y) {
     this.scene = scene;
 
     const anims = scene.anims;
 
     anims.create({
-      key: "roach-jump",
-      frames: anims.generateFrameNames("roach", {
-        prefix: "Roach-jump",
+      key: "tweeter-fly",
+      frames: anims.generateFrameNames("tweeter", {
+        prefix: "Tweeter-Fly",
         suffix: ".png",
         start: 1,
         end: 3,
@@ -18,21 +18,23 @@ export default class Roach {
       repeat: -1,
     });
     anims.create({
-      key: "roach-hurt",
-      frames: anims.generateFrameNames("roach", {
-        prefix: "Roach-jump",
+      key: "tweeter-hurt",
+      frames: anims.generateFrameNames("tweeter", {
+        prefix: "Tweeter-Hurt",
         suffix: ".png",
         start: 1,
-        end: 3,
+        end: 2,
       }),
       frameRate: 20,
       repeat: 3,
     });
 
-    this.sprite = scene.physics.add.sprite(x, y, "roach", 0).setFlipX(true);
-    this.sprite.setVelocityX(speed);
+    this.sprite = scene.physics.add.sprite(x, y, "tweeter", 0)
+    this.sprite.setVelocityY(speed);
   }
-  update() {}
+  update() {
+  this.scene.sprite.setVelocityX(10);
+  }
   destroy() {
     this.sprite.destroy();
   }
