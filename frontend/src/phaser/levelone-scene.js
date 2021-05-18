@@ -23,14 +23,16 @@ export default class LevelOneScene extends Phaser.Scene {
     this.enemyArray = []; //holds all the enemies created through the enemyCreator function
     this.sceneOneTheme
     this.jumpSFX
+    this.gemSFX;
   }
   preload() {
     //moved everything to Intro Scenes preload
   }
-
+  
   create() {
     this.sceneOneTheme = this.sound.add("level1", { loop: true });
     this.jumpSFX = this.sound.add("jump");
+    this.gemSFX =this.sound.add("gem");
     this.sceneOneTheme.play();
     //sets state machine
     this.state = alive;
@@ -130,7 +132,7 @@ export default class LevelOneScene extends Phaser.Scene {
 
     //creates score text at the top of the screen
     scoreText = this.add
-      .text(20, 5, "Score: 0", {
+      .text(20, 5, `Score: ${global.score}`, {
         fontSize: "10px",
         fill: "#ffffff",
         fontFamily: ' "Press Start 2P" ',
@@ -193,6 +195,7 @@ export default class LevelOneScene extends Phaser.Scene {
   }
 
   update(time, delta) {
+
     this.cameraDolly.x = Math.floor(this.player.sprite.x);
     this.cameraDolly.y = Math.floor(this.player.sprite.y);
 
@@ -252,7 +255,6 @@ export default class LevelOneScene extends Phaser.Scene {
     }
   }
 }
-
 function collectItem(player, item) {
   console.log("COLLISION WITH ITEM!");
   item.disableBody(`${item}`, `${item}`);
@@ -260,10 +262,12 @@ function collectItem(player, item) {
   scoreText.setText("Score: " + global.score);
 }
 
+
 function displayTimeElapsed(time) {
   global.elapsedTime += time * 0.001;
   let min = Math.floor(global.elapsedTime / 60);
-  let sec = (global.elapsedTime % 60).toFixed(2);
+  let sec = (global.elapsedTime % 60).toFixed(0);
+  let mili = (((global.elapsedTime % 60) % 1) * 100).toFixed(0);
 
   if (min < 10) {
     min = "0" + min;
@@ -271,5 +275,8 @@ function displayTimeElapsed(time) {
   if (sec < 10) {
     sec = "0" + sec;
   }
-  timeText.setText("Time: " + min + ":" + sec);
+  if (mili < 10) {
+    mili = "0" + mili;
+  }
+  timeText.setText("Time: " + min + ":" + sec + ":" + mili);
 }

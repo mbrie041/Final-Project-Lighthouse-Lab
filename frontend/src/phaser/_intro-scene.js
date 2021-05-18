@@ -1,9 +1,5 @@
 import Phaser from "phaser";
 
-let introText = `blah blah blah blah 
-blah blah blah blah blah blah blah blah 
-blah blah blah 
- `;
 
 export default class IntroScene extends Phaser.Scene {
   constructor() {
@@ -133,6 +129,9 @@ export default class IntroScene extends Phaser.Scene {
     //Sound for Sprites
     this.load.audio("jump", "src/assets/audio/Jump.mp3")
 
+    //Sound for Gems
+    this.load.audio("gem", "src/assets/audio/Gem.mp3")
+
     //Sound for title screen
     this.load.audio("start-menu", "src/assets/audio/Start Menu.mp3")
 
@@ -147,17 +146,18 @@ export default class IntroScene extends Phaser.Scene {
     this.cameras.main.fadeIn(3000);
     let lighthouse = this.add.image(0, 0, "lighthouseIntro").setOrigin(0, 0);
 
+
     let image = this.add.image(
       this.cameras.main.width / 2,
       this.cameras.main.height / 2,
       "lighthouseIntro"
-    );
-    let scaleX = this.cameras.main.width / image.width;
-    let scaleY = this.cameras.main.height / image.height;
-    let scale = Math.max(scaleX, scaleY);
-    image.setScale(scale).setScrollFactor(0);
-
-    this.logo = this.add
+      );
+      let scaleX = this.cameras.main.width / image.width;
+      let scaleY = this.cameras.main.height / image.height;
+      let scale = Math.max(scaleX, scaleY);
+      image.setScale(scale).setScrollFactor(0);
+      
+      this.logo = this.add
       .text(30, 50, "Lighthouse Labs", {
         fontSize: "20px",
         fill: "#ffffff",

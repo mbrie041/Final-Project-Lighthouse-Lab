@@ -1,16 +1,19 @@
 import Phaser from "phaser";
-import React from "react";
+import React, { Fragment } from "react";
 import ReactDOM from "react-dom";
 import App from "./components/App.jsx";
+import Nav from "./components/Nav.jsx";
 import PlatformerScene from "./phaser/platformer-scene";
-import LevelFourScene from "./phaser/levelfour-scene";
 import LevelThreeScene from "./phaser/levelthree-scene";
 import LevelTwoScene from "./phaser/leveltwo-scene";
 import LevelOneScene from "./phaser/levelone-scene";
-import InformationScene from "./phaser/information-scene";
 import IntroScene from "./phaser/_intro-scene";
+import TransitionL1Scene from "./phaser/L1-transition-scene";
+import TransitionL2Scene from "./phaser/L2-transition-scene";
+import TransitionL3Scene from "./phaser/L3-transition-scene";
 import "./styles/index.scss"
 import GameOverScene from "./phaser/gameover-scene";
+
 
 export const config = {
   type: Phaser.AUTO,
@@ -25,11 +28,12 @@ export const config = {
   },
   scene: [
     IntroScene,
-    PlatformerScene,
+    TransitionL1Scene,
     LevelOneScene,
+    TransitionL2Scene,
     LevelTwoScene,
+    TransitionL3Scene,
     LevelThreeScene,
-    LevelFourScene,
     GameOverScene
   ],
   physics: {
@@ -42,6 +46,7 @@ export const config = {
 };
 
 const game = new Phaser.Game(config);
+
 
 if (navigator.geolocation) {
   navigator.geolocation.getCurrentPosition(position => {
@@ -66,7 +71,16 @@ if (navigator.geolocation) {
 }
 
 ReactDOM.render(
+
   <App />,
   document.getElementById("root") || document.createElement("div")
+
+);
+
+ReactDOM.render(
+
+  <Nav />,
+  document.getElementById("nav") || document.createElement("div")
+
 );
 
