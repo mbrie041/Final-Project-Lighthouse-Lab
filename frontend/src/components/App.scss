@@ -1,26 +1,9 @@
 @import "~bootstrap/scss/bootstrap";
 
-// .app::-webkit-scrollbar{
-  //   width: .7em;
-  //   height: 1em;
-  // }
-  
-  // .app::-webkit-scrollbar-thumb {
-    //   background-color: rgb(103, 91, 103);
-    // }
-    
-    // .app::-webkit-resixer{
-      //   height: 5em;
-      // }
-      
 .app {
   display:flex;
   flex-direction: column;
   margin-bottom: 2em;
-  // font-family: 'Chakra Petch', sans-serif;
-  // overflow: scroll;
-  // align-content: space-between;
-  // justify-content: space-evenly;
   align-items: center;
 
   .chatbox {
@@ -29,30 +12,24 @@
     margin-top: 2em;
     width: 50em;
     height: 30em;
-    // border: solid rgb(116, 112, 112);
     border-radius: 10px;
     background-color: rgba(44, 38, 44, 0.791);
     
-
-    // overflow: scroll;
-    // position: relative;
-
-    ::-webkit-scrollbar{
-      width: .7em;
-      height: .4em;
-    }
+    // ::-webkit-scrollbar{
+    //   width: .7em;
+    //   height: .4em;
+    // }
   
-    ::-webkit-scrollbar-thumb {
-      background-color: rgb(103, 91, 103);
-    }
+    // ::-webkit-scrollbar-thumb {
+    //   background-color: rgb(103, 91, 103);
+    // }
   
-    ::-webkit-resixer{
-      height: 5em;
-    }
+    // ::-webkit-resixer{
+    //   height: 5em;
+    // }
   
     .chat-title {
       font-family: 'Press Start 2P', sans-serif;
-      // border-radius: 10px;
       border-top-right-radius: 10px;
       border-top-left-radius: 10px;
       font-size: 2em;
@@ -61,7 +38,6 @@
       padding-top: .4em;
       padding-bottom: .2em;
       background-color: #190929;
-      // position: absolute;
     }
     
     #chat-transcript {
@@ -71,13 +47,12 @@
       overflow: scroll;
 
     }
+
     .chat-messages {
       margin-bottom: .3em;
-      // border: solid rgba(175, 163, 171, 0.811);
       border-radius: 5px;
-      // background-color: rgba(96, 56, 129, 0.5);
-
     }
+
     .input-box{
       padding: 0em 1em 1em 1em;
       width: 100%;
@@ -108,14 +83,16 @@
     width: 50em;
     height: 30em;
     background-color: rgba(44, 38, 44, 0.791);
+
+    .table-body {
+      overflow: auto; 
+    }
+
     .css-serial {
-      margin: 0em 5em;
+      margin: 0em 3em;
       align-self: center;
     }
   }
-  // tbody {
-  //   overflow: scroll;
-  // }
 
   .leaderboard-title{
     font-size: 2em;
@@ -127,18 +104,15 @@
     background-color: #190929;
   }
   
-  
   thead {
     font-size: 1.5em;
     }
 
   .board-results {
-    font-size: 1.2em;
-    
+    font-size: 1.2em; 
 
     .scores {
       padding: 1em;
-      // overflow: scroll;
     }
   }
 
@@ -155,5 +129,3 @@ tbody, td, tfoot, th, tr {
 div.col-sm-6 {
   align-items: center;
 }
-
-
