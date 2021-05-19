@@ -1,10 +1,10 @@
 import Phaser from "phaser";
 import Player from "./characters/player.js";
 
-export default class GameOverScene extends Phaser.Scene {
+export default class GameWinScene extends Phaser.Scene {
   constructor() {
-    super("GameOverScene");
-    this.gameOverTheme
+    super("GameWinScene");
+    this.gameWinTheme
   }
   // init(data) {
   //   this.location = data.location;
@@ -14,9 +14,8 @@ export default class GameOverScene extends Phaser.Scene {
   }
   create() {
     this.sound.remove(this.gameOverTheme);
-    this.gameOverTheme = this.sound.add("gameOver");
-    this.gameOverTheme.play();
-    console.log("GameOver Scene")
+    this.gameWinTheme = this.sound.add("gameWin");
+    this.gameWinTheme.play();
 
     // Display Score
     this.add
@@ -46,7 +45,7 @@ export default class GameOverScene extends Phaser.Scene {
       .setScrollFactor(0);
   
     this.nameInput = this.add.dom(410, 340).createFromCache("form");
-    this.message = this.add.text(130, 100, "GAME OVER!", {
+    this.message = this.add.text(130, 100, "Congratulations!", {
       color: "#FFFFFF",
       fontSize: "25px",
       fontStyle: "bold",
@@ -70,7 +69,7 @@ export default class GameOverScene extends Phaser.Scene {
     this.returnKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ENTER);
 
     this.returnKey.on("down", event => {
-      this.gameOverTheme.stop()
+      this.gameWinTheme.stop()
       let name = this.nameInput.getChildByName("name");
       if (name.value != "" && global.aboutToChange === 1) {
         global.aboutToChange = 0;
@@ -89,7 +88,7 @@ export default class GameOverScene extends Phaser.Scene {
             global.score = 0;
             global.time = 0;
             this.scene.start('IntroScene');
-            this.scene.stop('GameOverScene');
+            this.scene.stop('GameWinScene');
           })
           .catch((error) => {
             console.error('Error:', error);

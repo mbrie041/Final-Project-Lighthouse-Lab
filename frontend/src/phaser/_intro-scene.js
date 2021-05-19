@@ -144,8 +144,10 @@ export default class IntroScene extends Phaser.Scene {
     this.load.audio("story", "src/assets/audio/Story.mp3");
     //Sound for Transition screens
     this.load.audio("transition", "src/assets/audio/Transition.mp3");
-    //Sound for Game Over
+    //Sound for Game Over screen
     this.load.audio("gameOver", "src/assets/audio/Game Over.mp3");
+    //Sound for Game Win screen
+    this.load.audio("gameWin", "src/assets/audio/Game Win.mp3");
     //Sound for level 1
     this.load.audio("level1", "src/assets/audio/Level1.mp3");
     //Sound for level 2

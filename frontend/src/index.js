@@ -15,7 +15,7 @@ import TransitionL3Scene from "./phaser/L3-transition-scene";
 import TransitionL4Scene from "./phaser/L4-transition-scene";
 import "./styles/index.scss"
 import GameOverScene from "./phaser/gameover-scene";
-
+import GameWinScene from "./phaser/gamewin-scene";
 
 export const config = {
   type: Phaser.AUTO,
@@ -39,7 +39,8 @@ export const config = {
     LevelThreeScene,
     TransitionL4Scene,
     LevelFourScene,
-    GameOverScene
+    GameOverScene,
+    GameWinScene
   ],
   physics: {
     default: "arcade",
