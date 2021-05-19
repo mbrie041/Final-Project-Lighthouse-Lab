@@ -47,28 +47,13 @@ export const config = {
 
 const game = new Phaser.Game(config);
 
+$("#phaser").mouseenter(function () {
+  game.input.keyboard.enabled = true;
+});
 
-if (navigator.geolocation) {
-  navigator.geolocation.getCurrentPosition(position => {
-    if (!position.coords || !position.coords.longitude) {
-      position.coords.latitude = 0;
-      position.coords.longitude = 0;
-    }
-    global.latitude = parseFloat(position.coords.longitude.toFixed(1));
-    global.longitude = parseFloat(position.coords.latitude.toFixed(1));
-    //   game.scene.start("PlatformerScene", {
-    //     location: {
-    //       type: "Point",
-    //       coordinates: [
-    //         parseFloat(position.coords.longitude.toFixed(1)),
-    //         parseFloat(position.coords.latitude.toFixed(1))
-    //       ]
-    //     }
-    //   })
-  });
-} else {
-  console.error("Geolocation is not supported by this browser!");
-}
+$("#phaser").mouseleave(function () {
+  game.input.keyboard.enabled = false;
+});
 
 ReactDOM.render(
 
