@@ -16,6 +16,7 @@
   background-position: top;
   background-image: url("../assets/images/lighthouse-intro.png");
   height: 100vh;
+  overflow: auto;
 
 }
 body {
@@ -81,15 +82,36 @@ canvas {
 
 
 // Small devices (landscape phones, 576px and up)
-@media (min-width: 576px) {  }
+@media (max-width: 1000px) {  
+  #phaser {
+  width: 400px;
+  height: 260;
+  position: relative;
+} 
 
-// Medium devices (tablets, 768px and up)
-@media (min-width: 768px) {  }
+#phaser > div, canvas {
+  border: rgba(136, 135, 143, 0.791) solid;
+  border-radius: 10px;
+  display:block;
+  margin: 0;
+  width: 400px !important;
+  height: 260px !important;
+  position: absolute;
+  top: 50%;
+  left: 20%;
+  transform: translate(-50%, -50%) !important;
+}
+}
 
-// Large devices (desktops, 992px and up)
-@media (min-width: 992px) {  }
 
-// Extra large devices (large desktops, 1200px and up)
-@media (min-width: 1200px) {  }
+// // Medium devices (tablets, 768px and up)
+// @media (min-width: 768px) { }
+
+
+// // Large devices (desktops, 992px and up)
+// @media (min-width: 992px) {  }
+
+// // Extra large devices (large desktops, 1200px and up)
+// @media (min-width: 1200px) {  }
 
 
