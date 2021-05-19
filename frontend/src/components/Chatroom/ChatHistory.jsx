@@ -5,11 +5,7 @@ const chatMessageType = {
   newUser: 'newUser'
 };
 
-export default function ChatHistory({ chatHistory }) {
-  // const divRef = useRef(null);
-  // useEffect(() => {
-  //   divRef.current.scrollIntoView({ behavior: 'smooth' });
-  // });
+export default function ChatHistory({ chatHistory, messagesEndRef }) {
 
   const renderChatHistory = () => {
     if (chatHistory.length === 0) {
@@ -34,6 +30,7 @@ export default function ChatHistory({ chatHistory }) {
   return (
     <div id='chat-transcript'>
       {renderChatHistory()}
+      <div ref={messagesEndRef} />
     </div>
   )
 }
