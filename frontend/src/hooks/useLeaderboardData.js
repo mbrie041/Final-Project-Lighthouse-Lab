@@ -7,7 +7,7 @@ export default function userApplicationData() {
 
   // Get scores to display on Leaderboard
   useEffect(() => {
-    const getStats = axios.get('http://localhost:3001/api/stats');
+    const getStats = axios.get('https://3c02e36472d8.ngrok.io/api/stats');
     getStats
       .then(response => {
         setStats(response.data);
