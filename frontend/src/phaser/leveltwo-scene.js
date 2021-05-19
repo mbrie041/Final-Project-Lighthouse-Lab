@@ -76,15 +76,22 @@ export default class LevelTwoScene extends Phaser.Scene {
     );
 
     //create layers from tiled names
-    map.createLayer("Background", scaffoldingTiles);
-    map.createLayer("LightPosts", scaffoldingTiles);
-    map.createLayer("Hillside", scaffoldingTiles);
+    // map.createLayer("Background", scaffoldingTiles);
+    // map.createLayer("LightPosts", scaffoldingTiles);
+    // map.createLayer("Hillside", scaffoldingTiles);
     map.createLayer("ExitDoor", exitDoorTiles);
     map.createLayer("ExitSign", exitSignTiles);
     this.enemyWalls = map.createLayer("InvisibleWalls", invisibleTiles);
     this.enemyWalls.visible = false;
     this.scaffoldingLayer = map.createLayer("Scaffolding", scaffoldingTiles);
     this.groundLayer = map.createLayer("Ground", groundTiles);
+
+        //parallax
+        this.add
+        .image(this.width, this.height, "Level2Background")
+        .setOrigin(0, 0)
+        .setDepth(-1)
+        .setScrollFactor(1.15);
 
     //set up player start point
     const spawnPoint = map.findObject(

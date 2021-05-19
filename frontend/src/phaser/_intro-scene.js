@@ -134,6 +134,9 @@ export default class IntroScene extends Phaser.Scene {
     this.load.image("Level1FarSky", "src/assets/images/Level1/Level1FarSky.png");
     this.load.image("Level1Clouds", "src/assets/images/Level1/Level1Clouds.png");
 
+    //images for level two Parallax backgrounds
+    this.load.image("Level2Background", "src/assets/images/Level2/Level2Background.png");
+
     //Sound for Sprites
     this.load.audio("jump", "src/assets/audio/Jump.mp3");
     this.load.audio("playerDeath", "src/assets/audio/Player Death.mp3");
