@@ -1,5 +1,5 @@
 import Phaser from "phaser";
-import React, { Fragment } from "react";
+import React from "react";
 import ReactDOM from "react-dom";
 import App from "./components/App.jsx";
 import Nav from "./components/Nav.jsx";
@@ -62,16 +62,11 @@ $("#phaser").mouseleave(function () {
 });
 
 ReactDOM.render(
-
-  <App />,
-  document.getElementById("root") || document.createElement("div")
-
+  <Nav />,
+  document.getElementById("nav") || document.createElement("div")
 );
 
 ReactDOM.render(
-
-  <Nav />,
-  document.getElementById("nav") || document.createElement("div")
-
+  <App />,
+  document.getElementById("root") || document.createElement("div")
 );
-
