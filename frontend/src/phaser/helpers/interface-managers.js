@@ -28,13 +28,17 @@ function finalTimeSetter() {
   //format timer
   let min = Math.floor(global.finalTimer / 60);
   let sec = (global.finalTimer % 60).toFixed(2);
+  let mili = (((global.finalTimer % 60) % 1) * 100).toFixed(0);
   if (min < 10) {
     min = "0" + min;
   }
   if (sec < 10) {
     sec = "0" + sec;
   }
-  global.finalTimer = `${min}:${sec}`;
+  if (mili < 10) {
+    mili = "0" + mili;
+  }
+  global.finalTimer = `${min}:${sec}:${mili}`;
   global.aboutToChange = 1;
 }
 
