@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300;600&display=swap');
-@import 'navbar';
-@import 'about';
+
 
 
 * {
@@ -17,6 +16,7 @@
   background-position: top;
   background-image: url("../assets/images/lighthouse-intro.png");
   height: 100vh;
+  overflow: auto;
 
 }
 body {
@@ -24,8 +24,6 @@ body {
   font-size: .6em;
   background-color: #19061e;
   color: white;
-  
-  // background-image: url("../assets/images/lighthouseColor.png");
 }
 
 .container {
@@ -53,7 +51,6 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%) !important;
-  // z-index: 0;
 }
 
 #phaser > div, #phaser > div > div {
@@ -84,16 +81,28 @@ canvas {
 }
 
 
-// Small devices (landscape phones, 576px and up)
-@media (min-width: 576px) {  }
 
-// Medium devices (tablets, 768px and up)
-@media (min-width: 768px) {  }
+@media (max-width: 1000px) {  
+  #phaser {
+  width: 400px;
+  height: 260;
+  position: relative;
+} 
 
-// Large devices (desktops, 992px and up)
-@media (min-width: 992px) {  }
+#phaser > div, canvas {
+  border: rgba(136, 135, 143, 0.791) solid;
+  border-radius: 10px;
+  display:block;
+  margin: 0;
+  width: 400px !important;
+  height: 260px !important;
+  position: absolute;
+  top: 50%;
+  left: 20%;
+  transform: translate(-50%, -50%) !important;
+  }
+}
 
-// Extra large devices (large desktops, 1200px and up)
-@media (min-width: 1200px) {  }
+
 
 
