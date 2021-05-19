@@ -1,4 +1,3 @@
 [build]
   base    = "frontend"
   publish = "dist/"
-  command = "npm run build && cp -r src/assets src/assets"
