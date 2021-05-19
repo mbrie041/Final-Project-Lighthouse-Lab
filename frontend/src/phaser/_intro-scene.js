@@ -128,6 +128,11 @@ export default class IntroScene extends Phaser.Scene {
     this.load.image("blueSkyTiles", "src/assets/tilesets/5 - Sky_color.png");
 
     this.load.tilemapTiledJSON("level4map", "src/assets/tilemaps/Level4.json");
+    //images for level one Parallax backgrounds
+    this.load.image("Level1CloseSky", "src/assets/images/Level1/Level1CloseSky.png");
+    this.load.image("Level1MidSky", "src/assets/images/Level1/Level1MidSky.png");
+    this.load.image("Level1FarSky", "src/assets/images/Level1/Level1FarSky.png");
+    this.load.image("Level1Clouds", "src/assets/images/Level1/Level1Clouds.png");
 
     //Sound for Sprites
     this.load.audio("jump", "src/assets/audio/Jump.mp3");
