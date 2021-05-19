@@ -1,24 +1,5 @@
-import React, { useState, useEffect } from "react";
-
-/** TODO: consider to abstract the below functions to separate file */
-const chatUserKeyInStorage = 'lighthouse-laboratory-user';
-const getChatUserFromStorage = () => {
-
-  window.localStorage.removeItem(chatUserKeyInStorage, null);
-  const user = window.localStorage.getItem(chatUserKeyInStorage);
-  if (user) {
-    // console.log(`Existing user found in storage: ${user}`);
-    return JSON.parse(user);
-  } else {
-    // console.log('No user found from storage.');
-    return user;
-  }
-}
-
-const saveChatUserToStorage = (user) => {
-  window.localStorage.setItem(chatUserKeyInStorage, JSON.stringify(user));
-};
-/** ---- */
+import React, { useState, useEffect, useRef } from "react";
+import { getChatUserFromStorage, saveChatUserToStorage } from "../helpers/chatroomHelpers";
 
 const eventTypes = {
   fullChatHistory: 'fullChatHistory',
@@ -33,6 +14,7 @@ export default function useChatData() {
   const [chatMessage, setChatMessage] = useState('');
   const [chatHistory, setChatHistory] = useState([]);
   const [wsConn, setWsConn] = useState(null);
+  const messagesEndRef = useRef(null);
 
   useEffect(() => {
     const ws = new WebSocket('ws://localhost:3002');
@@ -90,9 +72,14 @@ export default function useChatData() {
     }
   }, [chatUser]);
 
+  useEffect(() => {
+    messagesEndRef.current.scrollIntoView({ behavior: "smooth" })
+  }, [chatHistory]);
+
   return {
     chatHistory,
     chatUser,
+    messagesEndRef,
     setChatUser,
     setChatMessage
   }

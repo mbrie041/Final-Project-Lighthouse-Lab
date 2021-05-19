@@ -178,7 +178,15 @@ export default class IntroScene extends Phaser.Scene {
     image.setScale(scale).setScrollFactor(0);
 
     this.logo = this.add
-      .text(30, 50, "Lighthouse Labs", {
+      .text(40, 40, "Lighthouse", {
+        fontSize: "20px",
+        fill: "#ffffff",
+        fontFamily: ' "Press Start 2P" ',
+      })
+      .setOrigin(0, 0);
+    
+      this.logo = this.add
+      .text(90, 80, "Laboratory", {
         fontSize: "20px",
         fill: "#ffffff",
         fontFamily: ' "Press Start 2P" ',
