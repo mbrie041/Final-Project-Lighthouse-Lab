@@ -83,13 +83,11 @@ export default class LevelOneScene extends Phaser.Scene {
       .image(this.width, this.height, "Level1Clouds")
       .setOrigin(0, 0)
       .setDepth(-1);
-    //parallax
     this.add
       .image(this.width, this.height, "Level1FarSky")
       .setOrigin(0, 0)
       .setDepth(-1)
       .setScrollFactor(1.03);
-    //parallax
     this.add
       .image(this.width, this.height, "Level1MidSky")
       .setOrigin(0, 0)
