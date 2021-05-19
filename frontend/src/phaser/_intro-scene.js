@@ -144,6 +144,14 @@ export default class IntroScene extends Phaser.Scene {
     this.load.image("Level3Moon", "src/assets/images/Level3/Level3Moon.png");
     this.load.image("Level3Sky", "src/assets/images/Level3/Level3Sky.png");
     
+    //images for level four Parallax backgrounds
+    this.load.image("Level4Cloudcover", "src/assets/images/Level4/Level4Cloudcover.png");
+    this.load.image("Level4Clouds", "src/assets/images/Level4/Level4Clouds.png");
+    this.load.image("Level4Foreground", "src/assets/images/Level4/Level4Foreground.png");
+    this.load.image("Level4Hills", "src/assets/images/Level4/Level4Hills.png");
+    this.load.image("Level4Preforeground", "src/assets/images/Level4/Level4Preforeground.png");
+    this.load.image("Level4Sky", "src/assets/images/Level4/Level4Sky.png");
+
     //Sound for Sprites
     this.load.audio("jump", "src/assets/audio/Jump.mp3");
     this.load.audio("playerDeath", "src/assets/audio/Player Death.mp3");
