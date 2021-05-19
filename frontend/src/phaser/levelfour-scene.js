@@ -72,28 +72,8 @@ export default class LevelFourScene extends Phaser.Scene {
       "Grassland_entities (16 x 16)",
       "fenceTiles"
     );
-    // const foregroundTreeTiles = map.addTilesetImage(
-    //   "1 - Foreground_scenery",
-    //   "foregroundTreeTiles"
-    // );
-    // const greenHillTiles = map.addTilesetImage("2 - Hills", "greenHillTiles");
-    // const largeCloudTiles = map.addTilesetImage(
-    //   "4 - Cloud_cover_2",
-    //   "largeCloudTiles"
-    // );
-    // const smallCloudTiles = map.addTilesetImage(
-    //   "3 - Cloud_cover_1",
-    //   "smallCloudTiles"
-    // );
-    // const blueSkyTiles = map.addTilesetImage("5 - Sky_color", "blueSkyTiles");
 
     //create layers from tiled names
-    // map.createLayer("Sky", blueSkyTiles);
-    // map.createLayer("Clouds", smallCloudTiles);
-    // map.createLayer("CloudCover", largeCloudTiles);
-    // map.createLayer("Hills", greenHillTiles);
-    // map.createLayer("Foreground", foregroundTreeTiles);
-    // map.createLayer("PreForeground", foregroundTreeTiles);
     map.createLayer("Fence", fenceTiles);
     map.createLayer("LabLayer", platformTiles);
     map.createLayer("Lab", labTiles);
