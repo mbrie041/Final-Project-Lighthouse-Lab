@@ -40,7 +40,7 @@ export default class TransitionL2Scene extends Phaser.Scene {
 
       this.typewriteText(`
            Level Two: 
-       Basement Dwellers
+       Basement Dwelling
           Data Miners!
 
 
