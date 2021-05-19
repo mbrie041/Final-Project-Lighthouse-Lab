@@ -16,7 +16,7 @@ export default function userApplicationData() {
 
   // Update scores to leaderboard upon gameover scene
   useEffect(() => {
-    const socket = new WebSocket('ws://3c02e36472d8.ngrok.io');
+    const socket = new WebSocket('wss://3c02e36472d8.ngrok.io');
     socket.addEventListener('open', (event) => {
       console.log("connected to server");
     });
