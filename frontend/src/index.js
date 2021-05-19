@@ -55,13 +55,16 @@ export const config = {
 };
 
 const game = new Phaser.Game(config);
-
-$("#phaser").mouseenter(function () {
-  game.input.keyboard.enabled = true;
-});
-
-$("#phaser").mouseleave(function () {
+$(document).ready(function () {
   game.input.keyboard.enabled = false;
+
+  $("#phaser").mouseenter(function () {
+    game.input.keyboard.enabled = true;
+  });
+
+  $("#phaser").mouseleave(function () {
+    game.input.keyboard.enabled = false;
+  });
 });
 
 ReactDOM.render(
