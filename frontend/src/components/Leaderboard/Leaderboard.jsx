@@ -1,8 +1,6 @@
 import React from "react";
 import LeaderboardScoreList from "./LeaderboardScoreList.jsx";
 import useApplicationData from "../../hooks/useLeaderboardData";
-import { Table } from 'react-bootstrap';
-
 
 export default function Leaderboard() {
   const { stats } = useApplicationData();

@@ -1,7 +1,8 @@
 import React from "react";
 import Leaderboard from "./Leaderboard/Leaderboard.jsx";
 import Chatroom from "./Chatroom/Chatroom.jsx";
-import "./App.scss"
+import './Leaderboard/Leaderboard.scss'
+import "./Chatroom/Chat.scss"
 
 function App() {
 	return (

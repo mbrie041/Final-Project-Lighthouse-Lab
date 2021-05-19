@@ -1,0 +1,50 @@
+.leaderboard {
+  font-family: 'Press Start 2P', sans-serif;
+  display: flex;
+  flex-direction: column;
+  width: 50em;
+  height: 30em;
+  background-color: rgba(44, 38, 44, 0.791);
+  border-radius: 10px;
+
+  .table-body {
+    overflow: auto; 
+  }
+
+  .css-serial {
+    margin: 0em 6em;
+    align-self: center;
+  }
+
+
+.leaderboard-title{
+  font-size: 2em;
+  text-align: center;
+  padding-top:.5em;
+  padding-bottom: .3em;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  background-color: #190929;
+}
+
+thead {
+  font-size: 1.5em;
+  }
+
+.board-results {
+  font-size: 1.2em; 
+
+  .scores {
+    padding: 1em;
+  }
+}
+
+ul {
+  padding: .5em;
+  list-style-type: none;
+}
+
+tbody, td, tfoot, th, tr {
+  padding: .7em;
+}
+}

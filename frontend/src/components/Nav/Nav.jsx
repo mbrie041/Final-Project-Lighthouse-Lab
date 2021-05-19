@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
-import Popup from "./Popup.jsx";
+import Popup from "../Popup/Popup.jsx";
+import "../App.scss";
+import "./navbar.scss";
 
 export default function Nav() {
 
@@ -21,14 +23,11 @@ export default function Nav() {
         </button>
         <div id="navbarNavAltMarkup">
           <div className="navbar-nav">
-
-            <button data-modal-target="#popup" className="nav-link">About Us</button>
-
+            <button onClick={togglePopup}>About us</button>
           </div>
         </div>
       </div>
       <div>
-        <button onClick={togglePopup}>show popup</button>
       </div>
       {showPopup ?
         <Popup
@@ -37,13 +36,6 @@ export default function Nav() {
         />
         : null
       }
-      {/* <form className="d-flex">
-        <div className="input-group">
-          <span className="input-group-text" id="basic-addon1">@</span>
-          <input type="text" className="form-control" placeholder="Username" aria-label="Username"
-            aria-describedby="basic-addon1">
-			</div>
-		</form> */}
     </nav>
   )
 }
