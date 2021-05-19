@@ -1,6 +1,13 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import Popup from "./Popup.jsx";
 
 export default function Nav() {
+
+  const [showPopup, setShowPopup] = useState(false);
+
+  const togglePopup = () => {
+    setShowPopup(!showPopup);
+  }
 
   return (
     <nav className="navbar fixed-top navbar-expand-sm">
@@ -20,6 +27,16 @@ export default function Nav() {
           </div>
         </div>
       </div>
+      <div>
+        <button onClick={togglePopup}>show popup</button>
+      </div>
+      {showPopup ?
+        <Popup
+          text='Close Me'
+          closePopup={togglePopup}
+        />
+        : null
+      }
       {/* <form className="d-flex">
         <div className="input-group">
           <span className="input-group-text" id="basic-addon1">@</span>
