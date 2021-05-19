@@ -56,7 +56,7 @@ export default class StoryScene extends Phaser.Scene {
 
       Oh No! You're trapped inside the lighthouse! The only way to escape is to power through...
       
-      Press Enter to start!`);
+      Press Enter to Start!`);
 
       this.returnKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ENTER);
       this.returnKey.on("down", event => {
