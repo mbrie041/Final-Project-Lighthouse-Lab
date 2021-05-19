@@ -48,10 +48,10 @@ function updateLeaderboard(id, name, score, time) {
   });
 }
 
-serverHelper.startServer(server, 'stats', port);
+// serverHelper.startServer(server, 'stats', port);
 
-// module.exports = {
-//   server,
-//   port
-// };
+module.exports = {
+  server,
+  port
+};
 

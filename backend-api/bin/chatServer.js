@@ -103,10 +103,10 @@ function handleNewUser(socket, user) {
 }
 
 
-serverHelper.startServer(server, 'chat', port);
+// serverHelper.startServer(server, 'chat', port);
 
-// module.exports = {
-//   server,
-//   port
-// };
+module.exports = {
+  server,
+  port
+};
 
