@@ -49,10 +49,7 @@ export default class Player {
       left: LEFT,
       right: RIGHT,
       up: UP,
-      SPACE: SPACE,
-      w: W,
-      a: A,
-      d: D
+      SPACE: SPACE
     });
   }
 
@@ -64,12 +61,12 @@ export default class Player {
     const acceleration = onGround ? 600 : 200;
 
     // Apply horizontal acceleration when left/a or right/d are applied
-    if (keys.left.isDown || keys.a.isDown) {
+    if (keys.left.isDown) {
       sprite.setAccelerationX(-acceleration);
       // No need to have a separate set of graphics for running to the left & to the right. Instead
       // we can just mirror the sprite.
       sprite.setFlipX(true);
-    } else if (keys.right.isDown || keys.d.isDown) {
+    } else if (keys.right.isDown) {
       sprite.setAccelerationX(acceleration);
       sprite.setFlipX(false);
     } else {
@@ -77,7 +74,7 @@ export default class Player {
     }
 
     // Only allow the player to jump if they are on the ground
-    if (onGround && (keys.up.isDown || keys.w.isDown || keys.SPACE.isDown)) {
+    if (onGround && (keys.up.isDown || keys.SPACE.isDown)) {
       sprite.setVelocityY(-500);
     }
 
