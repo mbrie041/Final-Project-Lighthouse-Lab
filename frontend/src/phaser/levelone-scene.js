@@ -115,7 +115,6 @@ export default class LevelOneScene extends Phaser.Scene {
     const objects2 = map
       .getObjectLayer("Enemies")
       .objects.filter((obj) => obj.name === "Monitor");
-    //Enemy creating function calls
 
     //set up collision for the level
     this.groundLayer.setCollisionByProperty({ collides: true });
@@ -172,6 +171,7 @@ export default class LevelOneScene extends Phaser.Scene {
     const layerArray = [this.groundLayer];
     const physics = this.physics;
     const playerSprite = this.player.sprite;
+    
     createItem(
       map.getObjectLayer("Gems").objects,
       item,
@@ -181,6 +181,7 @@ export default class LevelOneScene extends Phaser.Scene {
       playerSprite
     );
 
+    //Enemy creating function calls
     this.enemyArray.concat(
       enemyCreator(
         objects1,

@@ -154,6 +154,8 @@ export default class IntroScene extends Phaser.Scene {
     this.load.audio("level2", "src/assets/audio/Level2.mp3");
     //Sound for level 3
     this.load.audio("level3", "src/assets/audio/Level3.mp3");
+    //Sound for level 4
+    this.load.audio("level4", "src/assets/audio/Level4.mp3");
   }
   create(data) {
     this.sound.remove(this.introMusic);
