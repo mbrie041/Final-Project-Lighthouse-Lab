@@ -46,7 +46,7 @@ export default class GameWinScene extends Phaser.Scene {
 
     this.nameInput = this.add.dom(410, 340).createFromCache("form");
     this.message = this.add
-      .text(130, 100, "You Win!", {
+      .text(145, 100, "You Win!", {
         color: "#FFFFFF",
         fontSize: "25px",
         fontStyle: "bold",

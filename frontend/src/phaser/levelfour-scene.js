@@ -240,6 +240,7 @@ export default class LevelFourScene extends Phaser.Scene {
       this.state = transitioning;
     } else if (this.state === transitioning) {
     } else if (this.state === victory) {
+      finalTimeSetter();
       this.sceneFourTheme.stop();
       this.fanfareSFX.play();
       this.input.keyboard.enabled = false;
