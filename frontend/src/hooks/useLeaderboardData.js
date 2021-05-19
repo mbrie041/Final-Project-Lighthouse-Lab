@@ -23,7 +23,6 @@ export default function userApplicationData() {
 
     socket.addEventListener('message', (event) => {
       const statsObj = JSON.parse(event.data);
-      // console.log("message from server ", statsObj);
 
       if (statsObj.type === "UPDATE_LEADERBOARD") {
         setStats(prev => ([...prev, statsObj]));

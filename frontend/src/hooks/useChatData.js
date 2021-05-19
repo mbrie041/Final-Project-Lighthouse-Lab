@@ -16,6 +16,7 @@ export default function useChatData() {
   const [wsConn, setWsConn] = useState(null);
   const messagesEndRef = useRef(null);
 
+  // Establish websocket connection and listen to message to load/send/create user
   useEffect(() => {
     const ws = new WebSocket('ws://localhost:3002');
 
@@ -49,6 +50,7 @@ export default function useChatData() {
     return () => socket.close();
   }, []);
 
+  // Send chat message object to websocket
   useEffect(() => {
     if (chatMessage.length > 0) {
       const eventData = {
@@ -62,6 +64,7 @@ export default function useChatData() {
     }
   }, [chatMessage, wsConn]);
 
+  // Send new user object to websocket
   useEffect(() => {
     if (chatUser) {
       const eventData = {
@@ -72,6 +75,7 @@ export default function useChatData() {
     }
   }, [chatUser]);
 
+  // Autoscroll on chatbox to bottom
   useEffect(() => {
     messagesEndRef.current.scrollIntoView({ behavior: "smooth" })
   }, [chatHistory]);
