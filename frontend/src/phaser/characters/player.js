@@ -8,7 +8,7 @@ import Phaser, { Textures } from "phaser";
 export default class Player {
   constructor(scene, x, y) {
     this.scene = scene;
-
+    this.jumpSFX;
     // Create the animations we need from the player spritesheet
     const anims = scene.anims;
     anims.create({
@@ -34,6 +34,12 @@ export default class Player {
       frames: anims.generateFrameNames("player", { prefix: "Tommy-hurt", suffix: '.png', start: 1, end: 2 }),
       frameRate: 20,
       repeat: 1
+    });
+    anims.create({
+      key: "player-victory",
+      frames: anims.generateFrameNames("player", { prefix: "Tommy-pose", suffix: '.png', start: 1, end: 11 }),
+      frameRate: 10,
+      repeat: 0
     });
 
 
@@ -76,6 +82,7 @@ export default class Player {
     // Only allow the player to jump if they are on the ground
     if (onGround && (keys.up.isDown || keys.SPACE.isDown)) {
       sprite.setVelocityY(-500);
+      this.scene.jumpSFX.play()
     }
 
     // Update the animation/texture based on the state of the player

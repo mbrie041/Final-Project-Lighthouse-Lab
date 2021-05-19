@@ -1,12 +1,10 @@
 import Phaser from "phaser";
 import Player from "./characters/player.js";
-// global.score = 0;
-// global.score = 99;
-
 
 export default class GameOverScene extends Phaser.Scene {
   constructor() {
     super("GameOverScene");
+    this.gameOverTheme
   }
   // init(data) {
   //   this.location = data.location;
@@ -15,6 +13,9 @@ export default class GameOverScene extends Phaser.Scene {
     this.load.html("form", "src/assets/form.html");
   }
   create() {
+    this.sound.remove(this.gameOverTheme);
+    this.gameOverTheme = this.sound.add("gameOver");
+    this.gameOverTheme.play();
     console.log("GameOver Scene")
 
     // Display Score
@@ -69,7 +70,7 @@ export default class GameOverScene extends Phaser.Scene {
     this.returnKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ENTER);
 
     this.returnKey.on("down", event => {
-
+      this.gameOverTheme.stop()
       let name = this.nameInput.getChildByName("name");
       if (name.value != "" && global.aboutToChange === 1) {
         global.aboutToChange = 0;
@@ -97,22 +98,3 @@ export default class GameOverScene extends Phaser.Scene {
     });
   }
 };
-
-
-function displayTimeElapsed(time) {
-  global.elapsedTime = time * 0.001;
-  let min = Math.floor(global.elapsedTime / 60);
-  let sec = (global.elapsedTime % 60).toFixed(0);
-  let mili = (((global.elapsedTime % 60) % 1) * 100).toFixed(0);
-
-  if (min < 10) {
-    min = "0" + min;
-  }
-  if (sec < 10) {
-    sec = "0" + sec;
-  }
-  if (mili < 10) {
-    mili = "0" + mili;
-  }
-  timeText.setText("Time: " + min + ":" + sec + ":" + mili);
-}

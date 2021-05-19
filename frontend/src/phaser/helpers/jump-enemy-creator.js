@@ -1,4 +1,3 @@
-import Robot from "../characters/robot1.js";
 import Phaser from "phaser";
 const dead = "dead";
 const alive = "alive";
@@ -21,6 +20,7 @@ export default function jumpEnemyCreator(
   collisionArray,
   enemySpeed,
   deathAnnimationName,
+  deathSFX
 ) {
   const enemyArray = [];
   for (let obj of objects) {
@@ -32,7 +32,8 @@ export default function jumpEnemyCreator(
       enemyArray,
       annimationName,
       collisionArray,
-      deathAnnimationName
+      deathAnnimationName,
+      deathSFX
     );
   }
   return enemyArray;
@@ -45,12 +46,13 @@ function createEnemy(
   enemyArray,
   annimationName,
   collisionArray,
-  deathAnnimationName
+  deathAnnimationName,
+  deathSFX
 ) {
   let enemyAlive = true;
   const createdEnemy = new enemyName(enemySpeed, scene, obj.x, obj.y);
   enemyArray.push(createdEnemy);
-  createdEnemy.sprite.setVelocityY(-500)
+  createdEnemy.sprite.setVelocityY(-500);
   createdEnemy.sprite.anims.play(annimationName, true);
   createdEnemy.sprite.body.collideWorldBounds = true;
 
@@ -63,7 +65,7 @@ function createEnemy(
           sprite.setFlipX(true);
           sprite.anims.play(annimationName, true);
           sprite.setVelocityY(-enemySpeed);
-        } 
+        }
       })
     );
   }
@@ -81,8 +83,11 @@ function createEnemy(
           }
           enemy.setFlipY(true);
           enemy.setVelocityY(0);
-          enemy.anims.play(deathAnnimationName)
-          enemy.on(Phaser.Animations.Events.ANIMATION_COMPLETE,()=>enemy.destroy());
+          enemy.anims.play(deathAnnimationName);
+          deathSFX.play();
+          enemy.on(Phaser.Animations.Events.ANIMATION_COMPLETE, () =>
+            enemy.destroy()
+          );
         } else {
           if (scene.state === alive) {
             scene.state = dead;
