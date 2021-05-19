@@ -70,13 +70,13 @@ export default class LevelTwoScene extends Phaser.Scene {
       "Objects",
       (obj) => obj.name === "Finish Point"
     );
-  //sets up exit door zone
+    //sets up exit door zone
     zone = this.add
-    .zone(finishPoint.x, finishPoint.y)
-    .setSize(finishPoint.width, finishPoint.height);
-  this.physics.world.enable(zone);
-  zone.body.setAllowGravity(false);
-  zone.body.moves = false;
+      .zone(finishPoint.x, finishPoint.y)
+      .setSize(finishPoint.width, finishPoint.height);
+    this.physics.world.enable(zone);
+    zone.body.setAllowGravity(false);
+    zone.body.moves = false;
 
 
     //Initialize player and start them at spawn point.
@@ -150,15 +150,15 @@ export default class LevelTwoScene extends Phaser.Scene {
     );
     this.player.sprite.body.collideWorldBounds = true;
 
-        //set up collision with player and exit door
-        this.physics.add.overlap(this.player.sprite, zone, () => {
-          this.physics.world.disable(zone);
-          console.log("You hit the door!");
-          this.scene.start("LevelThreeScene", { score: score, life: life });
-          // this.scene.start('InformationScene')
-          this.scene.stop("LevelTwoScene");
-          // portalCallback(player, tile, this, data);
-        });
+    //set up collision with player and exit door
+    this.physics.add.overlap(this.player.sprite, zone, () => {
+      this.physics.world.disable(zone);
+      console.log("You hit the door!");
+      this.scene.start("LevelThreeScene", { score: score, life: life });
+      // this.scene.start('InformationScene')
+      this.scene.stop("LevelTwoScene");
+      // portalCallback(player, tile, this, data);
+    });
 
     //set up camera to have bounds on the level and follow the player
     this.cameras.main.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
@@ -217,10 +217,23 @@ export default class LevelTwoScene extends Phaser.Scene {
       this.player.sprite.setFlipY(true);
       this.player.sprite.setVelocityX(0);
       this.player.sprite.anims.play("player-death")
-      this.player.sprite.on(Phaser.Animations.Events.ANIMATION_COMPLETE,()=>this.player.destroy())
+      this.player.sprite.on(Phaser.Animations.Events.ANIMATION_COMPLETE, () => this.player.destroy())
 
       if (global.life === 0) {
         global.finalTimer = global.elapsedTime;
+        let min = Math.floor(global.finalTimer / 60);
+        let sec = (global.finalTimer % 60).toFixed(0);
+        let mili = (((global.finalTimer % 60) % 1) * 100).toFixed(0);
+        if (min < 10) {
+          min = "0" + min;
+        }
+        if (sec < 10) {
+          sec = "0" + sec;
+        }
+        if (mili < 10) {
+          mili = "0" + mili;
+        }
+        global.finalTimer = `${min}:${sec}:${mili} `;
         global.aboutToChange = 1;
         this.cameras.main.once("camerafadeoutcomplete", () => {
           this.scene.start("GameOverScene");

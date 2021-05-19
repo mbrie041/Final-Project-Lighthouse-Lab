@@ -6,9 +6,8 @@ export default function Nav() {
     <nav className="navbar fixed-top navbar-expand-sm">
       <div className="container-fluid">
         <a className="navbar-brand" href="#">
-          <img src="src/styles/nav-image.png" />
-				Lighthouse Laboratory
-				<img src="src/styles/nav-image.png" /></a>
+          Lighthouse Laboratory
+				</a>
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
           aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
@@ -16,7 +15,7 @@ export default function Nav() {
         <div id="navbarNavAltMarkup">
           <div className="navbar-nav">
 
-            <button data-modal-target="#popup" className="nav-link">About</button>
+            <button data-modal-target="#popup" className="nav-link">About Us</button>
 
           </div>
         </div>

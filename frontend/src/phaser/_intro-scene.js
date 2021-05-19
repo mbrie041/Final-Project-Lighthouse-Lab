@@ -1,6 +1,5 @@
 import Phaser from "phaser";
 
-
 export default class IntroScene extends Phaser.Scene {
   constructor() {
     super("IntroScene");
@@ -8,6 +7,8 @@ export default class IntroScene extends Phaser.Scene {
 
   preload() {
     //images for intro scene
+    this.load.image("play", "src/assets/images/play.png");
+
     this.load.image(
       "lighthouseIntro",
       "src/assets/images/lighthouse-intro.png"
@@ -128,44 +129,44 @@ export default class IntroScene extends Phaser.Scene {
     this.load.tilemapTiledJSON("level4map", "src/assets/tilemaps/Level4.json");
 
     //Sound for Sprites
-    this.load.audio("jump", "src/assets/audio/Jump.mp3")
-    this.load.audio("playerDeath", "src/assets/audio/Player Death.mp3")
-    this.load.audio("enemyDeath", "src/assets/audio/Enemy Death.mp3")
-    this.load.audio("fanfare", "src/assets/audio/Fanfare.mp3")
+    this.load.audio("jump", "src/assets/audio/Jump.mp3");
+    this.load.audio("playerDeath", "src/assets/audio/Player Death.mp3");
+    this.load.audio("enemyDeath", "src/assets/audio/Enemy Death.mp3");
+    this.load.audio("fanfare", "src/assets/audio/Fanfare.mp3");
 
     //Sound for Gems
-    this.load.audio("gem", "src/assets/audio/Gem.mp3")
+    this.load.audio("gem", "src/assets/audio/Gem.mp3");
 
     //Sound for title screen
-    this.load.audio("start-menu", "src/assets/audio/Start Menu.mp3")
+    this.load.audio("start-menu", "src/assets/audio/Start Menu.mp3");
     //Sound for Story screen
-    this.load.audio("story", "src/assets/audio/Story.mp3")
+    this.load.audio("story", "src/assets/audio/Story.mp3");
+    //Sound for Transition screens
+    this.load.audio("transition", "src/assets/audio/Transition.mp3");
     //Sound for Game Over
-    this.load.audio("gameOver", "src/assets/audio/Game Over.mp3")
+    this.load.audio("gameOver", "src/assets/audio/Game Over.mp3");
     //Sound for level 1
-    this.load.audio("level1", "src/assets/audio/Level1.mp3")
-
+    this.load.audio("level1", "src/assets/audio/Level1.mp3");
   }
   create(data) {
-    const music1 =  this.sound.add("start-menu", {loop:true})
+    const music1 = this.sound.add("start-menu", { loop: true });
 
-    music1.play()
+    music1.play();
     this.cameras.main.fadeIn(3000);
     // let lighthouse = this.add.image(0, 0, "lighthouseIntro").setOrigin(0, 0);
-
 
     let image = this.add.image(
       this.cameras.main.width / 2,
       this.cameras.main.height / 2,
       "lighthouseIntro"
-      );
+    );
 
-      let scaleX = this.cameras.main.width / image.width;
-      let scaleY = this.cameras.main.height / image.height;
-      let scale = Math.max(scaleX, scaleY);
-      image.setScale(scale).setScrollFactor(0);
-      
-      this.logo = this.add
+    let scaleX = this.cameras.main.width / image.width;
+    let scaleY = this.cameras.main.height / image.height;
+    let scale = Math.max(scaleX, scaleY);
+    image.setScale(scale).setScrollFactor(0);
+
+    this.logo = this.add
       .text(30, 50, "Lighthouse Labs", {
         fontSize: "20px",
         fill: "#ffffff",
@@ -173,27 +174,24 @@ export default class IntroScene extends Phaser.Scene {
       })
       .setOrigin(0, 0);
 
-    // this.introText = this.add.text(0, 100, introText, {
-    //   fontSize: '10px',
-    //   fill: '#ffffff',
-    //   fontFamily: ' "Press Start 2P" '
-    // }).setOrigin(0,0);
+    this.playButton = this.add.image(200, 140, "play").setScale(1.5);
 
-    this.start = this.add
-      .text(150, 150, "Start", {
-        fontSize: "20px",
-        fill: "#ffffff",
-        fontFamily: ' "Press Start 2P" ',
-      })
-      .setOrigin(0, 0);
+    this.playButton.setInteractive();
 
-    this.start.setInteractive();
-
-    this.start.on("pointerdown", () => {
+    this.playButton.on("pointerdown", () => {
       global.elapsedTime = 0;
-      music1.stop()
+      music1.stop();
       this.scene.start("StoryScene");
-      this.scene.stop("IntroScene")
+      this.scene.stop("IntroScene");
+    });
+
+    this.returnKey = this.input.keyboard.addKey(
+      Phaser.Input.Keyboard.KeyCodes.ENTER
+    );
+    this.returnKey.on("down", (event) => {
+      music1.stop();
+      this.scene.start("StoryScene");
+      this.scene.stop("IntroScene");
     });
   }
 }

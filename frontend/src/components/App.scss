@@ -13,83 +13,140 @@
       //   height: 5em;
       // }
       
-      .app {
-        display:flex;
-        direction: column;
-        margin-bottom: 2em;
-        // overflow: scroll;
-        justify-content: space-evenly;
-        
-        .chatbox {
-          width: 50%;
-          height: 30em;
-          border: solid white;
-          background-color: rgba(50, 43, 50, 0.791);
-          overflow: scroll;
-        
-          ::-webkit-scrollbar{
-            width: .7em;
-            height: 1em;
-          }
-          
-          ::-webkit-scrollbar-thumb {
-            background-color: rgb(103, 91, 103);
-          }
-          
-         ::-webkit-resixer{
-            height: 5em;
-          }
-          
-          .chat-title {
-            font-size: 2em;
-            text-align: center;
-            padding-left: 1em;
-            position: absolute;
-          }
-          
-          #chat-transcript {
-            font-size: .5em;
-            margin: 5em;
-            overflow: scroll;
-          }
-        
-          .input-box{
-            padding:0 2em 2em 2em;
-          }
-        }
+.app {
+  display:flex;
+  flex-direction: column;
+  margin-bottom: 2em;
+  // font-family: 'Chakra Petch', sans-serif;
+  // overflow: scroll;
+  // align-content: space-between;
+  // justify-content: space-evenly;
+  align-items: center;
+
+  .chatbox {
+    display: flex;
+    flex-direction: column;
+    margin-top: 2em;
+    width: 50em;
+    height: 30em;
+    // border: solid rgb(116, 112, 112);
+    border-radius: 10px;
+    background-color: rgba(44, 38, 44, 0.791);
+    
+
+    // overflow: scroll;
+    // position: relative;
+
+    ::-webkit-scrollbar{
+      width: .7em;
+      height: .4em;
+    }
+  
+    ::-webkit-scrollbar-thumb {
+      background-color: rgb(103, 91, 103);
+    }
+  
+    ::-webkit-resixer{
+      height: 5em;
+    }
+  
+    .chat-title {
+      font-family: 'Press Start 2P', sans-serif;
+      // border-radius: 10px;
+      border-top-right-radius: 10px;
+      border-top-left-radius: 10px;
+      font-size: 2em;
+      text-align: center;
+      margin-bottom: 0;
+      padding-top: .4em;
+      padding-bottom: .2em;
+      background-color: #190929;
+      // position: absolute;
+    }
+    
+    #chat-transcript {
+      font-family: 'Chakra Petch', sans-serif;
+      font-size: 1.5em;
+      margin: 0.3em .3em .3em 1em;
+      overflow: scroll;
+
+    }
+    .chat-messages {
+      margin-bottom: .3em;
+      // border: solid rgba(175, 163, 171, 0.811);
+      border-radius: 5px;
+      // background-color: rgba(96, 56, 129, 0.5);
+
+    }
+    .input-box{
+      padding: 0em 1em 1em 1em;
+      width: 100%;
+      margin-top: auto;
+      box-sizing: border-box;
+
+      input {
+        font-family: 'Chakra Petch', sans-serif;
+        font-size: 1.5em;
+        width: 100%;
+        height: 90%;
+        padding: .3em;
+        max-height: fit-content;
+        border-radius: 5px;
+        border: 1px solid #eee;
+        transition: .3s border-color;
+      }
+      input:hover {
+        border: 1px solid #aaa;
+      }
+    }
+  }
 
   .leaderboard {
-    border: white solid;
-    background-color: rgba(50, 43, 50, 0.791);
+    font-family: 'Press Start 2P', sans-serif;
+    display: flex;
+    flex-direction: column;
+    width: 50em;
+    height: 30em;
+    background-color: rgba(44, 38, 44, 0.791);
+    .css-serial {
+      margin: 0em 5em;
+      align-self: center;
+    }
   }
+  // tbody {
+  //   overflow: scroll;
+  // }
 
   .leaderboard-title{
     font-size: 2em;
     text-align: center;
-    padding-top:.2em;
+    padding-top:.5em;
+    padding-bottom: .3em;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    background-color: #190929;
   }
   
+  
   thead {
-    font-size: 2em;
+    font-size: 1.5em;
     }
 
   .board-results {
-    font-size: 1em;
+    font-size: 1.2em;
+    
 
     .scores {
       padding: 1em;
+      overflow: scroll;
     }
   }
-
 
   ul {
     padding: .5em;
     list-style-type: none;
   }
-
-  
 }
-
 
 tbody, td, tfoot, th, tr {
   padding: .7em;

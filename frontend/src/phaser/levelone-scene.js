@@ -241,7 +241,7 @@ export default class LevelOneScene extends Phaser.Scene {
       playerFinish(this.player.sprite);
       this.cameras.main.fadeOut(2000);
       this.cameras.main.once("camerafadeoutcomplete", () => {
-        this.scene.start("LevelTwoScene");
+        this.scene.start("TransitionL2Scene");
         this.scene.stop("LevelOneScene");
       });
       this.state = transitioning;
