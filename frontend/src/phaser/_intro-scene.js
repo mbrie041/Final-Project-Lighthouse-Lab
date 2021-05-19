@@ -128,6 +128,29 @@ export default class IntroScene extends Phaser.Scene {
     this.load.image("blueSkyTiles", "src/assets/tilesets/5 - Sky_color.png");
 
     this.load.tilemapTiledJSON("level4map", "src/assets/tilemaps/Level4.json");
+    //images for level one Parallax backgrounds
+    this.load.image("Level1CloseSky", "src/assets/images/Level1/Level1CloseSky.png");
+    this.load.image("Level1MidSky", "src/assets/images/Level1/Level1MidSky.png");
+    this.load.image("Level1FarSky", "src/assets/images/Level1/Level1FarSky.png");
+    this.load.image("Level1Clouds", "src/assets/images/Level1/Level1Clouds.png");
+
+    //images for level two Parallax backgrounds
+    this.load.image("Level2Background", "src/assets/images/Level2/Level2Background.png");
+  
+    //images for level three Parallax backgrounds
+    this.load.image("Level3Close", "src/assets/images/Level3/Level3Close.png");
+    this.load.image("Level3Far", "src/assets/images/Level3/Level3Far.png");
+    this.load.image("Level3Mid", "src/assets/images/Level3/Level3Mid.png");
+    this.load.image("Level3Moon", "src/assets/images/Level3/Level3Moon.png");
+    this.load.image("Level3Sky", "src/assets/images/Level3/Level3Sky.png");
+    
+    //images for level four Parallax backgrounds
+    this.load.image("Level4Cloudcover", "src/assets/images/Level4/Level4Cloudcover.png");
+    this.load.image("Level4Clouds", "src/assets/images/Level4/Level4Clouds.png");
+    this.load.image("Level4Foreground", "src/assets/images/Level4/Level4Foreground.png");
+    this.load.image("Level4Hills", "src/assets/images/Level4/Level4Hills.png");
+    this.load.image("Level4Preforeground", "src/assets/images/Level4/Level4Preforeground.png");
+    this.load.image("Level4Sky", "src/assets/images/Level4/Level4Sky.png");
 
     //Sound for Sprites
     this.load.audio("jump", "src/assets/audio/Jump.mp3");
