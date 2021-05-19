@@ -29,7 +29,7 @@ export default class TransitionL3Scene extends Phaser.Scene {
   }
 
   create(data) {
-    this.transitionSFX = this.sound.add("transition");
+    this.transitionSFX = this.sound.add("transition", {volume: 0.5});
     this.transitionSFX.play();
     this.cameras.main.fadeIn(1000);
 

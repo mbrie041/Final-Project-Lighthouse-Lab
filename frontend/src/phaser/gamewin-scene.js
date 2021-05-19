@@ -14,7 +14,7 @@ export default class GameWinScene extends Phaser.Scene {
   }
   create() {
     this.sound.remove(this.gameOverTheme);
-    this.gameWinTheme = this.sound.add("gameWin");
+    this.gameWinTheme = this.sound.add("gameWin", {volume: 0.5});
     this.gameWinTheme.play();
 
     // Display Score
@@ -73,7 +73,7 @@ export default class GameWinScene extends Phaser.Scene {
       if (name.value != "" && global.aboutToChange === 1) {
         global.aboutToChange = 0;
         // post score and username to database
-        fetch("https://3c02e36472d8.ngrok.io/api/stats", {
+        fetch("http://localhost:3001/api/stats", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

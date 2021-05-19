@@ -31,7 +31,7 @@ export default class StoryScene extends Phaser.Scene {
     }
 
     create(data) {
-    this.storyMusic =  this.sound.add("story", {loop:false})
+    this.storyMusic =  this.sound.add("story", {volume: 0.5, loop:false})
     this.storyMusic.play()
       this.cameras.main.fadeIn(3000);
       let image = this.add.image(

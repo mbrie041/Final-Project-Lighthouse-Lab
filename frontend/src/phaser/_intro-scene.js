@@ -183,7 +183,7 @@ export default class IntroScene extends Phaser.Scene {
   create(data) {
     this.sound.remove(this.introMusic);
 
-    this.introMusic = this.sound.add("start-menu", { loop: true });
+    this.introMusic = this.sound.add("start-menu", { volume: 0.5, loop: true });
 
     this.introMusic.play();
     this.cameras.main.fadeIn(3000);

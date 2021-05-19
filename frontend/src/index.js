@@ -24,6 +24,9 @@ export const config = {
   parent: "phaser",
   pixelArt: true,
   roundPixels: true,
+  Audio: {
+    noAudio: true
+  },
   backgroundColor: "#1d212d",
   dom: {
     createContainer: true

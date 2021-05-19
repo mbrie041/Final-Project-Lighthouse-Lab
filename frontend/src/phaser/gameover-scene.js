@@ -14,9 +14,8 @@ export default class GameOverScene extends Phaser.Scene {
   }
   create() {
     this.sound.remove(this.gameOverTheme);
-    this.gameOverTheme = this.sound.add("gameOver");
+    this.gameOverTheme = this.sound.add("gameOver", {volume: 0.5});
     this.gameOverTheme.play();
-    console.log("GameOver Scene")
 
     // Display Score
     this.add

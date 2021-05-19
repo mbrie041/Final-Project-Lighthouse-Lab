@@ -43,12 +43,12 @@ export default class LevelOneScene extends Phaser.Scene {
   create() {
     this.input.keyboard.enabled = true;
     this.sound.remove(this.sceneOneTheme);
-    this.jumpSFX = this.sound.add("jump");
-    this.gemSFX = this.sound.add("gem");
-    this.fanfareSFX = this.sound.add("fanfare");
-    this.playerDeathSFX = this.sound.add("playerDeath");
-    this.enemyDeathSFX = this.sound.add("enemyDeath");
-    this.sceneOneTheme = this.sound.add("level1", { loop: true });
+    this.jumpSFX = this.sound.add("jump", {volume: 0.5});
+    this.gemSFX = this.sound.add("gem", {volume: 0.5});
+    this.fanfareSFX = this.sound.add("fanfare", {volume: 0.5});
+    this.playerDeathSFX = this.sound.add("playerDeath", {volume: 0.5});
+    this.enemyDeathSFX = this.sound.add("enemyDeath", {volume: 0.5});
+    this.sceneOneTheme = this.sound.add("level1", { volume: 0.5, loop: true });
     this.sceneOneTheme.play();
     //sets state machine
     this.state = alive;

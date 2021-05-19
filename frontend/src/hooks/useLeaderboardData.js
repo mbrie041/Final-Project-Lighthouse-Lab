@@ -7,7 +7,7 @@ export default function userApplicationData() {
 
   // Get scores to display on Leaderboard
   useEffect(() => {
-    const getStats = axios.get('https://3c02e36472d8.ngrok.io/api/stats');
+    const getStats = axios.get('http://localhost:3001/api/stats');
     getStats
       .then(response => {
         setStats(response.data);
@@ -16,7 +16,7 @@ export default function userApplicationData() {
 
   // Update scores to leaderboard upon gameover scene
   useEffect(() => {
-    const socket = new WebSocket('wss://3c02e36472d8.ngrok.io');
+    const socket = new WebSocket('ws://localhost:3001');
     socket.addEventListener('open', (event) => {
       console.log("connected to server");
     });
