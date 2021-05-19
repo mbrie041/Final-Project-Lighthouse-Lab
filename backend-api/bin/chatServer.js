@@ -1,9 +1,4 @@
-#!/usr/bin/env node
-
-/**
- * Module dependencies.
- */
-
+// const serverHelper = require('../helpers/serverHelpers');
 const chatApp = require('../app').chatApp;
 const serverHelper = require('../helpers/serverHelpers');
 const http = require('http');
@@ -107,8 +102,11 @@ function handleNewUser(socket, user) {
   });
 }
 
-module.exports = {
-  server,
-  port
-};
+
+serverHelper.startServer(server, 'chat', port);
+
+// module.exports = {
+//   server,
+//   port
+// };
 
