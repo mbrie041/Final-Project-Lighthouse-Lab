@@ -125,6 +125,8 @@ export default class IntroScene extends Phaser.Scene {
     this.load.image("blueSkyTiles", "src/assets/tilesets/5 - Sky_color.png");
 
     this.load.tilemapTiledJSON("level4map", "src/assets/tilemaps/Level4.json");
+
+    this.load.image("play", "src/assets/images/play.png");
   }
   create(data) {
     this.cameras.main.fadeIn(3000);
@@ -142,32 +144,35 @@ export default class IntroScene extends Phaser.Scene {
     image.setScale(scale).setScrollFactor(0);
 
     this.logo = this.add
-      .text(30, 50, "Lighthouse Labs", {
+      .text(40, 40, "Lighthouse", {
+        fontSize: "20px",
+        fill: "#ffffff",
+        fontFamily: ' "Press Start 2P" ',
+      })
+      .setOrigin(0, 0);
+    
+      this.logo = this.add
+      .text(90, 80, "Laboratory", {
         fontSize: "20px",
         fill: "#ffffff",
         fontFamily: ' "Press Start 2P" ',
       })
       .setOrigin(0, 0);
 
-    // this.introText = this.add.text(0, 100, introText, {
-    //   fontSize: '10px',
-    //   fill: '#ffffff',
-    //   fontFamily: ' "Press Start 2P" '
-    // }).setOrigin(0,0);
 
-    this.start = this.add
-      .text(150, 150, "Start", {
-        fontSize: "20px",
-        fill: "#ffffff",
-        fontFamily: ' "Press Start 2P" ',
-      })
-      .setOrigin(0, 0);
+    this.playButton = this.add.image(200, 140, 'play').setScale(1.5);
 
-    this.start.setInteractive();
 
-    this.start.on("pointerdown", () => {
+    this.playButton.setInteractive();
+
+    this.playButton.on("pointerdown", () => {
       global.elapsedTime = 0;
       this.scene.start("LevelOneScene");
     });
+
+    this.returnKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ENTER);
+    this.returnKey.on("down", event => {
+        this.scene.start("LevelOneScene");
+      });
   }
 }
