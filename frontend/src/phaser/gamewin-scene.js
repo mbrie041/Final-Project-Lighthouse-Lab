@@ -1,14 +1,11 @@
 import Phaser from "phaser";
-import Player from "./characters/player.js";
 
 export default class GameWinScene extends Phaser.Scene {
   constructor() {
     super("GameWinScene");
     this.gameWinTheme;
   }
-  // init(data) {
-  //   this.location = data.location;
-  // }
+
   preload() {
     this.load.html("form", "src/assets/form.html");
   }

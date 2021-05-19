@@ -1,19 +1,19 @@
 import Phaser from "phaser";
-import Player from "./characters/player.js";
 
 export default class GameOverScene extends Phaser.Scene {
   constructor() {
     super("GameOverScene");
     this.gameOverTheme
   }
-  // init(data) {
-  //   this.location = data.location;
-  // }
+
   preload() {
+    //loads the submit form
     this.load.html("form", "src/assets/form.html");
   }
   create() {
+    //remove sound carryover from previous game
     this.sound.remove(this.gameOverTheme);
+    //sets the scene music
     this.gameOverTheme = this.sound.add("gameOver", {volume: 0.5});
     this.gameOverTheme.play();
 
@@ -35,7 +35,6 @@ export default class GameOverScene extends Phaser.Scene {
       .setScrollFactor(0);
 
     // Display Timer
-  
     this.add
       .text(250, 5, `Time: ${global.finalTimer}`, {
         fontSize: "10px",
@@ -44,6 +43,7 @@ export default class GameOverScene extends Phaser.Scene {
       })
       .setScrollFactor(0);
   
+      //set up values for scoreboard submission
     this.nameInput = this.add.dom(410, 340).createFromCache("form");
     this.message = this.add.text(130, 100, "GAME OVER!", {
       color: "#FFFFFF",
@@ -56,18 +56,9 @@ export default class GameOverScene extends Phaser.Scene {
       fontSize: "10px",
       align: "center"
     }).setOrigin(0);
-    // Display GEO location data
-    // this.locationText = this.add.text(200, 300,
-    // `[${this.location.coordinates[1]}, ${this.location.coordinates[0]}]`,
-    // {
-    // color: "#FFFFFF",
-    // fontSize: 20
-    // }
-    // ).setOrigin(0.5);
-    console.log(`geolocation data = [${global.latitude}, ${global.longitude}]`);
 
+    //scene stop on and database submission on button push or click
     this.returnKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ENTER);
-
     this.returnKey.on("down", event => {
       this.gameOverTheme.stop()
       let name = this.nameInput.getChildByName("name");
@@ -82,6 +73,7 @@ export default class GameOverScene extends Phaser.Scene {
           'body': JSON.stringify({ 'score': global.score, 'name': name.value, 'time': global.finalTimer, 'geolocation': global.latitude })
         })
           .then(response => response.json())
+          //restart the game after submission
           .then(data => {
             console.log('Success:', data);
             global.life = 3;
