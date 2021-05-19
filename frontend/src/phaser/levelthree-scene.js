@@ -22,7 +22,7 @@ export default class LevelThreeScene extends Phaser.Scene {
     super("LevelThreeScene");
     this.state = alive; //sets up state machine
     this.enemyArray = []; //holds all the enemies created through the enemyCreator function
-    this.finishZone
+    this.finishZone;
     //Sound variables
     this.sceneThreeTheme;
     this.jumpSFX;
@@ -67,19 +67,8 @@ export default class LevelThreeScene extends Phaser.Scene {
       "House (Outside And Inside) Tileset",
       "exitDoorTiles"
     );
-    const closeNightSkyTiles = map.addTilesetImage(
-      "Night Close",
-      "closeNightSky"
-    );
-    const farNightSkyTiles = map.addTilesetImage("Night Far", "farNightSky");
-    const moonNightSkyTiles = map.addTilesetImage("NightSky", "moonNightSky");
 
     //create layers from tiled names
-    map.createLayer("Sky", moonNightSkyTiles);
-    map.createLayer("NightFar", farNightSkyTiles);
-    map.createLayer("Moon", moonNightSkyTiles);
-    map.createLayer("NightMid", closeNightSkyTiles);
-    map.createLayer("NightClosest", farNightSkyTiles);
     map.createLayer("LabLayer", labTiles);
     map.createLayer("Signs", labTiles);
     map.createLayer("ExitSign", labTiles);
@@ -88,6 +77,32 @@ export default class LevelThreeScene extends Phaser.Scene {
     this.enemyWalls.visible = false;
     this.groundLayer = map.createLayer("Platforms", platformTiles);
     map.createLayer("ExitDoor", exitDoorTiles);
+
+    //parallax
+    this.add
+      .image(this.width, this.height, "Level3Sky")
+      .setOrigin(0, 0)
+      .setDepth(-1);
+    this.add
+      .image(this.width, this.height, "Level3Moon")
+      .setOrigin(0, 0)
+      .setDepth(-1)
+      .setScrollFactor(1.03);
+    this.add
+      .image(this.width, this.height, "Level3Far")
+      .setOrigin(0, 0)
+      .setDepth(-1)
+      .setScrollFactor(1.03);
+    this.add
+      .image(this.width, this.height, "Level3Mid")
+      .setOrigin(0, 0)
+      .setDepth(-1)
+      .setScrollFactor(1.08);
+    this.add
+      .image(this.width, this.height, "Level3Close")
+      .setOrigin(0, 0)
+      .setDepth(-1)
+      .setScrollFactor(1.15);
 
     //set up player start point
     const spawnPoint = map.findObject(
@@ -119,8 +134,6 @@ export default class LevelThreeScene extends Phaser.Scene {
       .getObjectLayer("Enemies")
       .objects.filter((obj) => obj.name === "Roach");
 
-
-    
     //set up collision for the level
     this.groundLayer.setCollisionByProperty({ collides: true });
     this.enemyWalls.setCollisionByProperty({ collides: true });
@@ -144,72 +157,70 @@ export default class LevelThreeScene extends Phaser.Scene {
     this.cameraDolly = new Phaser.Geom.Point(this.player.x, this.player.y);
     this.cameras.main.startFollow(this.cameraDolly);
 
- //creates score text at the top of the screen
- this.scoreText = this.add
- .text(20, 5, `Score: ${global.score}`, {
-   fontSize: "10px",
-   fill: "#ffffff",
-   fontFamily: ' "Press Start 2P" ',
- })
- .setScrollFactor(0);
+    //creates score text at the top of the screen
+    this.scoreText = this.add
+      .text(20, 5, `Score: ${global.score}`, {
+        fontSize: "10px",
+        fill: "#ffffff",
+        fontFamily: ' "Press Start 2P" ',
+      })
+      .setScrollFactor(0);
 
-// Life text at the top of the screen
-this.lifeText = this.add
- .text(150, 5, `Life: ${global.life}`, {
-   fontSize: "10px",
-   fill: "#ffffff",
-   fontFamily: ' "Press Start 2P" ',
- })
- .setScrollFactor(0);
+    // Life text at the top of the screen
+    this.lifeText = this.add
+      .text(150, 5, `Life: ${global.life}`, {
+        fontSize: "10px",
+        fill: "#ffffff",
+        fontFamily: ' "Press Start 2P" ',
+      })
+      .setScrollFactor(0);
 
-//timer text at the top of the screen
-this.timeText = this.add
- .text(250, 5, `Time: ${global.elaspedTime}`, {
-   fontSize: "10px",
-   fill: "#ffffff",
-   fontFamily: ' "Press Start 2P" ',
- })
- .setScrollFactor(0);
+    //timer text at the top of the screen
+    this.timeText = this.add
+      .text(250, 5, `Time: ${global.elaspedTime}`, {
+        fontSize: "10px",
+        fill: "#ffffff",
+        fontFamily: ' "Press Start 2P" ',
+      })
+      .setScrollFactor(0);
 
-      const item = "gem";
-      const layerArray = [this.groundLayer];
-      const physics = this.physics;
-      const playerSprite = this.player.sprite;
-      createItem(
-        map.getObjectLayer("Gems").objects,
-        item,
+    const item = "gem";
+    const layerArray = [this.groundLayer];
+    const physics = this.physics;
+    const playerSprite = this.player.sprite;
+    createItem(
+      map.getObjectLayer("Gems").objects,
+      item,
       (player, item) => collectItem(player, item, this.gemSFX),
-        physics,
-        layerArray,
-        playerSprite
-      );
-      //Enemy creating function calls
-      this.enemyArray.concat(
-        jumpEnemyCreator(
-          objects1,
-          "roach-jump",
-          JumpRoach,
-          this,
-          collisionArray,
-          250,
-          "roach-hurt",
+      physics,
+      layerArray,
+      playerSprite
+    );
+    //Enemy creating function calls
+    this.enemyArray.concat(
+      jumpEnemyCreator(
+        objects1,
+        "roach-jump",
+        JumpRoach,
+        this,
+        collisionArray,
+        250,
+        "roach-hurt",
         this.enemyDeathSFX
-
-        )
-      );
-      this.enemyArray.concat(
-        enemyCreator(
-          objects2,
-          "roach-jump",
-          Roach,
-          this,
-          collisionArray,
-          50,
-          "roach-hurt",
+      )
+    );
+    this.enemyArray.concat(
+      enemyCreator(
+        objects2,
+        "roach-jump",
+        Roach,
+        this,
+        collisionArray,
+        50,
+        "roach-hurt",
         this.enemyDeathSFX
-
-        )
-      );
+      )
+    );
   }
 
   update(time, delta) {

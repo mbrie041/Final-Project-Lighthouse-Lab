@@ -24,7 +24,7 @@ export default class LevelOneScene extends Phaser.Scene {
     super("LevelOneScene");
     this.state = alive; //sets up state machine
     this.enemyArray = []; //holds all the enemies created through the enemyCreator function
-    this.finishZone
+    this.finishZone;
     //Sound variables
     this.sceneOneTheme;
     this.jumpSFX;
@@ -68,16 +68,8 @@ export default class LevelOneScene extends Phaser.Scene {
       "exitDoorTiles"
     );
     const windowTiles = map.addTilesetImage("background-tiles", "windowTiles");
-    const closeDaySkyTiles = map.addTilesetImage("Day Close", "closeDaySky");
-    const midDaySkyTiles = map.addTilesetImage("Day Mid", "midDaySky");
-    const farDaySkyTiles = map.addTilesetImage("Day Far", "farDaySky");
-    const cloudyDaySkyTiles = map.addTilesetImage("Day Sky", "cloudyDaySky");
 
     //create layers from tiled names
-    map.createLayer("Clouds", cloudyDaySkyTiles);
-    map.createLayer("FarSky", farDaySkyTiles);
-    map.createLayer("MidSky", midDaySkyTiles);
-    map.createLayer("CloseSky", closeDaySkyTiles);
     map.createLayer("Windows", windowTiles);
     map.createLayer("Ceiling", groundTiles);
     map.createLayer("Accesories", groundTiles);
@@ -85,6 +77,27 @@ export default class LevelOneScene extends Phaser.Scene {
     this.enemyWalls = map.createLayer("InvisibleWalls", invisibleTiles);
     this.enemyWalls.visible = false;
     this.groundLayer = map.createLayer("Ground", groundTiles);
+
+    //parallax
+    this.add
+      .image(this.width, this.height, "Level1Clouds")
+      .setOrigin(0, 0)
+      .setDepth(-1);
+    this.add
+      .image(this.width, this.height, "Level1FarSky")
+      .setOrigin(0, 0)
+      .setDepth(-1)
+      .setScrollFactor(1.03);
+    this.add
+      .image(this.width, this.height, "Level1MidSky")
+      .setOrigin(0, 0)
+      .setDepth(-1)
+      .setScrollFactor(1.08);
+    this.add
+      .image(this.width, this.height, "Level1CloseSky")
+      .setOrigin(0, 0)
+      .setDepth(-1)
+      .setScrollFactor(1.15);
 
     //set up player start point
     const spawnPoint = map.findObject(
@@ -171,7 +184,7 @@ export default class LevelOneScene extends Phaser.Scene {
     const layerArray = [this.groundLayer];
     const physics = this.physics;
     const playerSprite = this.player.sprite;
-    
+
     createItem(
       map.getObjectLayer("Gems").objects,
       item,

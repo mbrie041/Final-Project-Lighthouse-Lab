@@ -72,28 +72,8 @@ export default class LevelFourScene extends Phaser.Scene {
       "Grassland_entities (16 x 16)",
       "fenceTiles"
     );
-    const foregroundTreeTiles = map.addTilesetImage(
-      "1 - Foreground_scenery",
-      "foregroundTreeTiles"
-    );
-    const greenHillTiles = map.addTilesetImage("2 - Hills", "greenHillTiles");
-    const largeCloudTiles = map.addTilesetImage(
-      "4 - Cloud_cover_2",
-      "largeCloudTiles"
-    );
-    const smallCloudTiles = map.addTilesetImage(
-      "3 - Cloud_cover_1",
-      "smallCloudTiles"
-    );
-    const blueSkyTiles = map.addTilesetImage("5 - Sky_color", "blueSkyTiles");
 
     //create layers from tiled names
-    map.createLayer("Sky", blueSkyTiles);
-    map.createLayer("Clouds", smallCloudTiles);
-    map.createLayer("CloudCover", largeCloudTiles);
-    map.createLayer("Hills", greenHillTiles);
-    map.createLayer("Foreground", foregroundTreeTiles);
-    map.createLayer("PreForeground", foregroundTreeTiles);
     map.createLayer("Fence", fenceTiles);
     map.createLayer("LabLayer", platformTiles);
     map.createLayer("Lab", labTiles);
@@ -103,6 +83,37 @@ export default class LevelFourScene extends Phaser.Scene {
     this.enemyWalls = map.createLayer("InvisibleWalls", invisibleTiles);
     this.enemyWalls.visible = false;
     this.groundLayer = map.createLayer("Ground", groundTiles);
+    
+    //parallax
+    this.add
+      .image(this.width, this.height, "Level4Sky")
+      .setOrigin(0, 0)
+      .setDepth(-1);
+    this.add
+      .image(this.width, this.height, "Level4Clouds")
+      .setOrigin(0, 0)
+      .setDepth(-1)
+      .setScrollFactor(1.03);
+    this.add
+      .image(this.width, this.height, "Level4Cloudcover")
+      .setOrigin(0, 0)
+      .setDepth(-1)
+      .setScrollFactor(1.03);
+    this.add
+      .image(this.width, this.height, "Level4Hills")
+      .setOrigin(0, 0)
+      .setDepth(-1)
+      .setScrollFactor(1.08);
+    this.add
+      .image(this.width, this.height, "Level4Foreground")
+      .setOrigin(0, 0)
+      .setDepth(-1)
+      .setScrollFactor(1.15);
+      this.add
+      .image(this.width, this.height, "Level4Preforeground")
+      .setOrigin(0, 0)
+      .setDepth(-1)
+      .setScrollFactor(1.2);
 
     //set up player start point
     const spawnPoint = map.findObject(

@@ -21,7 +21,7 @@ export default class LevelTwoScene extends Phaser.Scene {
     super("LevelTwoScene");
     this.state = alive; //sets up state machine
     this.enemyArray = []; //holds all the enemies created through the enemyCreator function
-    this.finishZone
+    this.finishZone;
     //Sound variables
     this.sceneTwoTheme;
     this.jumpSFX;
@@ -34,9 +34,7 @@ export default class LevelTwoScene extends Phaser.Scene {
     this.scoreText;
     this.lifeText;
   }
-  preload() {
-
-  }
+  preload() {}
 
   create() {
     this.input.keyboard.enabled = true;
@@ -48,7 +46,6 @@ export default class LevelTwoScene extends Phaser.Scene {
     this.enemyDeathSFX = this.sound.add("enemyDeath");
     this.sceneTwoTheme = this.sound.add("level2", { loop: true });
     this.sceneTwoTheme.play();
-    //sets state machine
     //sets state machine
     this.state = alive;
     this.cameras.main.fadeIn(1000);
@@ -76,8 +73,6 @@ export default class LevelTwoScene extends Phaser.Scene {
     );
 
     //create layers from tiled names
-    map.createLayer("Background", scaffoldingTiles);
-    map.createLayer("LightPosts", scaffoldingTiles);
     map.createLayer("Hillside", scaffoldingTiles);
     map.createLayer("ExitDoor", exitDoorTiles);
     map.createLayer("ExitSign", exitSignTiles);
@@ -85,6 +80,13 @@ export default class LevelTwoScene extends Phaser.Scene {
     this.enemyWalls.visible = false;
     this.scaffoldingLayer = map.createLayer("Scaffolding", scaffoldingTiles);
     this.groundLayer = map.createLayer("Ground", groundTiles);
+
+    //parallax
+    this.add
+      .image(this.width, this.height, "Level2Background")
+      .setOrigin(0, 0)
+      .setDepth(-1)
+      .setScrollFactor(1.10);
 
     //set up player start point
     const spawnPoint = map.findObject(
@@ -102,7 +104,6 @@ export default class LevelTwoScene extends Phaser.Scene {
     this.physics.world.enable(this.finishZone);
     this.finishZone.body.setAllowGravity(false);
     this.finishZone.body.moves = false;
-
 
     //Initialize player and start them at spawn point.
     this.player = new Player(this, spawnPoint.x, spawnPoint.y);
@@ -123,7 +124,6 @@ export default class LevelTwoScene extends Phaser.Scene {
       .getObjectLayer("Enemies")
       .objects.filter((obj) => obj.name === "Bat");
     //Enemy creating function calls
-
 
     //set up collision for the level
     this.scaffoldingLayer.setCollisionByProperty({ collides: true });
