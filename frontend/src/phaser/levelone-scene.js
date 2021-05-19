@@ -17,7 +17,7 @@ const transitioning = "transitioning";
 const victory = "victory";
 global.score = 0;
 global.elapsedTime;
-global.life = 10;
+global.life = 5;
 
 export default class LevelOneScene extends Phaser.Scene {
   constructor() {
