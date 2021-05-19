@@ -1,6 +1,8 @@
 import Phaser from "phaser";
 const dead = "dead";
 const alive = "alive";
+
+const enemyType = "ground" || "flyer" || "both"
 //Function that creates enemies
 //Takes the following params:
 //1. (String) Name of the object layer that the enemies are on from tiled
