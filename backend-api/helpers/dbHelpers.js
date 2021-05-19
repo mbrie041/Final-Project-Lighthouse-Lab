@@ -1,7 +1,7 @@
 module.exports = (db) => {
   const getStats = () => {
     const query = {
-      text: 'select id, upper(name) as name, score, time from game_stats ORDER BY score LIMIT 5',
+      text: 'select id, upper(name) as name, score, time from game_stats ORDER BY score',
     };
 
     return db
