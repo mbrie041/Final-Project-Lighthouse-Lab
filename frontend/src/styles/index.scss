@@ -23,8 +23,6 @@ body {
   font-size: .6em;
   background-color: #19061e;
   color: white;
-  
-  // background-image: url("../assets/images/lighthouseColor.png");
 }
 
 .container {
@@ -52,7 +50,6 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%) !important;
-  // z-index: 0;
 }
 
 #phaser > div, #phaser > div > div {
