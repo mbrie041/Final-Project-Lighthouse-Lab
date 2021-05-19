@@ -3,6 +3,7 @@ import Phaser from "phaser";
 export default class IntroScene extends Phaser.Scene {
   constructor() {
     super("IntroScene");
+    this.introMusic;
   }
 
   preload() {
@@ -147,11 +148,17 @@ export default class IntroScene extends Phaser.Scene {
     this.load.audio("gameOver", "src/assets/audio/Game Over.mp3");
     //Sound for level 1
     this.load.audio("level1", "src/assets/audio/Level1.mp3");
+    //Sound for level 2
+    this.load.audio("level2", "src/assets/audio/Level2.mp3");
+    //Sound for level 3
+    this.load.audio("level3", "src/assets/audio/Level3.mp3");
   }
   create(data) {
-    const music1 = this.sound.add("start-menu", { loop: true });
+    this.sound.remove(this.introMusic);
 
-    music1.play();
+    this.introMusic = this.sound.add("start-menu", { loop: true });
+
+    this.introMusic.play();
     this.cameras.main.fadeIn(3000);
     // let lighthouse = this.add.image(0, 0, "lighthouseIntro").setOrigin(0, 0);
 
@@ -180,7 +187,7 @@ export default class IntroScene extends Phaser.Scene {
 
     this.playButton.on("pointerdown", () => {
       global.elapsedTime = 0;
-      music1.stop();
+      this.introMusic.stop();
       this.scene.start("StoryScene");
       this.scene.stop("IntroScene");
     });
@@ -189,7 +196,7 @@ export default class IntroScene extends Phaser.Scene {
       Phaser.Input.Keyboard.KeyCodes.ENTER
     );
     this.returnKey.on("down", (event) => {
-      music1.stop();
+      this.introMusic.stop();
       this.scene.start("StoryScene");
       this.scene.stop("IntroScene");
     });

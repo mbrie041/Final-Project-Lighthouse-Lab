@@ -39,11 +39,11 @@ export default class TransitionL1Scene extends Phaser.Scene {
       this.label = this.add.text(50, 50, '').setWordWrapWidth(300);
 
       this.typewriteText(`
-      Level One: 
+        Level One: 
       Lighthouse Lobby
       Welcome to the Lab!
 
-      
+
       Press Enter To Start!`);
 
       this.returnKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ENTER);
