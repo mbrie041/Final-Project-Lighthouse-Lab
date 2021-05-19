@@ -1,4 +1,3 @@
-import Robot from "../characters/robot1.js";
 import Phaser from "phaser";
 const dead = "dead";
 const alive = "alive";

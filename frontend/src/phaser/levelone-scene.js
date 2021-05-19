@@ -17,7 +17,7 @@ const transitioning = "transitioning";
 const victory = "victory";
 global.score = 0;
 global.elapsedTime;
-global.life = 3;
+global.life = 300;
 
 export default class LevelOneScene extends Phaser.Scene {
   constructor() {
@@ -41,6 +41,7 @@ export default class LevelOneScene extends Phaser.Scene {
     //moved everything to Intro Scenes preload
   }
   create() {
+    this.input.keyboard.enabled = true;
     this.sound.remove(this.sceneOneTheme);
     this.jumpSFX = this.sound.add("jump");
     this.gemSFX = this.sound.add("gem");

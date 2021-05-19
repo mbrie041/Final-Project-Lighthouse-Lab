@@ -5,26 +5,50 @@ import Roach from "./characters/roach.js";
 import enemyCreator from "./helpers/enemy-creator.js";
 import jumpEnemyCreator from "./helpers/jump-enemy-creator.js";
 import createItem from "./helpers/item-creator";
+import { playerDied, playerFinish } from "./helpers/player-states";
+import {
+  collectItem,
+  displayTimeElapsed,
+  finalTimeSetter,
+} from "./helpers/interface-managers";
 // import { collectItem, displayTimeElapsed } from "./helpers/dataHelpers"
 const alive = "alive";
 const dead = "dead";
 const transitioning = "transitioning";
-
-let zone;
-let scoreText;
-let timeText;
+const victory = "victory";
 
 export default class LevelThreeScene extends Phaser.Scene {
   constructor() {
     super("LevelThreeScene");
     this.state = alive; //sets up state machine
     this.enemyArray = []; //holds all the enemies created through the enemyCreator function
+    this.finishZone
+    //Sound variables
+    this.sceneThreeTheme;
+    this.jumpSFX;
+    this.gemSFX;
+    this.playerDeathSFX;
+    this.enemyDeathSFX;
+    this.fanfareSFX;
+    //UI variables
+    this.timeText;
+    this.scoreText;
+    this.lifeText;
   }
   preload() {
     //moved everything to Intro Scenes preload
   }
 
   create() {
+    this.input.keyboard.enabled = true;
+    this.sound.remove(this.sceneThreeTheme);
+    this.jumpSFX = this.sound.add("jump");
+    this.gemSFX = this.sound.add("gem");
+    this.fanfareSFX = this.sound.add("fanfare");
+    this.playerDeathSFX = this.sound.add("playerDeath");
+    this.enemyDeathSFX = this.sound.add("enemyDeath");
+    this.sceneThreeTheme = this.sound.add("level3", { loop: true });
+    this.sceneThreeTheme.play();
     //sets state machine
     this.state = alive;
     this.cameras.main.fadeIn(1000);
@@ -76,12 +100,12 @@ export default class LevelThreeScene extends Phaser.Scene {
       "Objects",
       (obj) => obj.name === "Finish Point"
     );
-    zone = this.add
+    this.finishZone = this.add
       .zone(finishPoint.x, finishPoint.y)
       .setSize(finishPoint.width, finishPoint.height);
-    this.physics.world.enable(zone);
-    zone.body.setAllowGravity(false);
-    zone.body.moves = false;
+    this.physics.world.enable(this.finishZone);
+    this.finishZone.body.setAllowGravity(false);
+    this.finishZone.body.moves = false;
 
     //Initialize player and start them at spawn point.
     this.player = new Player(this, spawnPoint.x, spawnPoint.y);
@@ -95,41 +119,8 @@ export default class LevelThreeScene extends Phaser.Scene {
       .getObjectLayer("Enemies")
       .objects.filter((obj) => obj.name === "Roach");
 
-    const item = "gem";
-    const layerArray = [this.groundLayer];
-    const physics = this.physics;
-    const playerSprite = this.player.sprite;
-    createItem(
-      map.getObjectLayer("Gems").objects,
-      item,
-      collectItem,
-      physics,
-      layerArray,
-      playerSprite
-    );
-    //Enemy creating function calls
-    this.enemyArray.concat(
-      jumpEnemyCreator(
-        objects1,
-        "roach-jump",
-        JumpRoach,
-        this,
-        collisionArray,
-        250,
-        "roach-hurt"
-      )
-    );
-    this.enemyArray.concat(
-      enemyCreator(
-        objects2,
-        "roach-jump",
-        Roach,
-        this,
-        collisionArray,
-        50,
-        "roach-hurt"
-      )
-    );
+
+    
     //set up collision for the level
     this.groundLayer.setCollisionByProperty({ collides: true });
     this.enemyWalls.setCollisionByProperty({ collides: true });
@@ -143,13 +134,9 @@ export default class LevelThreeScene extends Phaser.Scene {
     );
     this.player.sprite.body.collideWorldBounds = true;
 
-    this.physics.add.overlap(this.player.sprite, zone, () => {
-      this.physics.world.disable(zone);
-      console.log("You hit the door!");
-      this.scene.start("LevelFourScene", { score: score, life: life });
-      // this.scene.start('InformationScene')
-      this.scene.stop("LevelThreeScene");
-      // portalCallback(player, tile, this, data);
+    this.physics.add.overlap(this.player.sprite, this.finishZone, () => {
+      this.physics.world.disable(this.finishZone);
+      this.state = victory;
     });
 
     //set up camera to have bounds on the level and follow the player
@@ -157,68 +144,93 @@ export default class LevelThreeScene extends Phaser.Scene {
     this.cameraDolly = new Phaser.Geom.Point(this.player.x, this.player.y);
     this.cameras.main.startFollow(this.cameraDolly);
 
-    //creates score text at the top of the screen
-    scoreText = this.add
-      .text(20, 5, `Score: ${global.score}`, {
-        fontSize: "10px",
-        fill: "#ffffff",
-        fontFamily: ' "Press Start 2P" ',
-      })
-      .setScrollFactor(0);
+ //creates score text at the top of the screen
+ this.scoreText = this.add
+ .text(20, 5, `Score: ${global.score}`, {
+   fontSize: "10px",
+   fill: "#ffffff",
+   fontFamily: ' "Press Start 2P" ',
+ })
+ .setScrollFactor(0);
 
-    // Life text at the top of the screen
-    const lifeText = this.add
-      .text(150, 5, `Life: ${global.life}`, {
-        fontSize: "10px",
-        fill: "#ffffff",
-        fontFamily: ' "Press Start 2P" ',
-      })
-      .setScrollFactor(0);
+// Life text at the top of the screen
+this.lifeText = this.add
+ .text(150, 5, `Life: ${global.life}`, {
+   fontSize: "10px",
+   fill: "#ffffff",
+   fontFamily: ' "Press Start 2P" ',
+ })
+ .setScrollFactor(0);
 
-    //timer text at the top of the screen
-    timeText = this.add
-      .text(250, 5, `Time: ${global.elaspedTime}`, {
-        fontSize: "10px",
-        fill: "#ffffff",
-        fontFamily: ' "Press Start 2P" ',
-      })
-      .setScrollFactor(0);
+//timer text at the top of the screen
+this.timeText = this.add
+ .text(250, 5, `Time: ${global.elaspedTime}`, {
+   fontSize: "10px",
+   fill: "#ffffff",
+   fontFamily: ' "Press Start 2P" ',
+ })
+ .setScrollFactor(0);
+
+      const item = "gem";
+      const layerArray = [this.groundLayer];
+      const physics = this.physics;
+      const playerSprite = this.player.sprite;
+      createItem(
+        map.getObjectLayer("Gems").objects,
+        item,
+      (player, item) => collectItem(player, item, this.gemSFX),
+        physics,
+        layerArray,
+        playerSprite
+      );
+      //Enemy creating function calls
+      this.enemyArray.concat(
+        jumpEnemyCreator(
+          objects1,
+          "roach-jump",
+          JumpRoach,
+          this,
+          collisionArray,
+          250,
+          "roach-hurt",
+        this.enemyDeathSFX
+
+        )
+      );
+      this.enemyArray.concat(
+        enemyCreator(
+          objects2,
+          "roach-jump",
+          Roach,
+          this,
+          collisionArray,
+          50,
+          "roach-hurt",
+        this.enemyDeathSFX
+
+        )
+      );
   }
 
   update(time, delta) {
     this.cameraDolly.x = Math.floor(this.player.sprite.x);
     this.cameraDolly.y = Math.floor(this.player.sprite.y);
+    this.scoreText.setText("Score: " + global.score);
 
     //state update check
     if (this.state === dead) {
-      this.cameras.main.fadeOut(3000);
+      this.cameras.main.fadeOut(1000);
+      this.sceneThreeTheme.stop();
+
       global.life -= 1;
-      this.player.sprite.setFlipY(true);
-      this.player.sprite.setVelocityX(0);
-      this.player.sprite.anims.play("player-death");
-      this.player.sprite.on(Phaser.Animations.Events.ANIMATION_COMPLETE, () =>
-        this.player.destroy()
-      );
+      this.playerDeathSFX.play();
+      playerDied(this.player);
 
       if (global.life === 0) {
-        global.finalTimer = global.elapsedTime;
-        let min = Math.floor(global.finalTimer / 60);
-        let sec = (global.finalTimer % 60).toFixed(0);
-        let mili = (((global.finalTimer % 60) % 1) * 100).toFixed(0);
-        if (min < 10) {
-          min = "0" + min;
-        }
-        if (sec < 10) {
-          sec = "0" + sec;
-        }
-        if (mili < 10) {
-          mili = "0" + mili;
-        }
-        global.finalTimer = `${min}:${sec}:${mili} `;
-        global.aboutToChange = 1;
+        finalTimeSetter();
         this.cameras.main.once("camerafadeoutcomplete", () => {
-          this.scene.start("GameOverScene");
           this.scene.stop("LevelThreeScene");
+          this.scene.start("GameOverScene");
         });
       } else {
         this.cameras.main.once("camerafadeoutcomplete", () => {
@@ -228,7 +240,17 @@ export default class LevelThreeScene extends Phaser.Scene {
 
       this.state = transitioning;
     } else if (this.state === transitioning) {
-      // console.log("we're transitioning")
+    } else if (this.state === victory) {
+      this.sceneThreeTheme.stop();
+      this.fanfareSFX.play();
+      this.input.keyboard.enabled = false;
+      playerFinish(this.player.sprite);
+      this.cameras.main.fadeOut(2000);
+      this.cameras.main.once("camerafadeoutcomplete", () => {
+        this.scene.stop("LevelThreeScene");
+        this.scene.start("TransitionL4Scene");
+      });
+      this.state = transitioning;
     } else if (this.state === alive) {
       //calls the player update on alive
       this.player.update();
@@ -240,32 +262,7 @@ export default class LevelThreeScene extends Phaser.Scene {
       if (this.player.sprite.y > this.groundLayer.height) {
         this.state = dead;
       }
-      displayTimeElapsed(delta);
+      displayTimeElapsed(delta, this.timeText);
     }
   }
-}
-
-function collectItem(player, item) {
-  console.log("COLLISION WITH ITEM!");
-  item.disableBody(`${item}`, `${item}`);
-  global.score += 10;
-  scoreText.setText("Score: " + global.score);
-}
-
-function displayTimeElapsed(time) {
-  global.elapsedTime += time * 0.001;
-  let min = Math.floor(global.elapsedTime / 60);
-  let sec = (global.elapsedTime % 60).toFixed(0);
-  let mili = (((global.elapsedTime % 60) % 1) * 100).toFixed(0);
-
-  if (min < 10) {
-    min = "0" + min;
-  }
-  if (sec < 10) {
-    sec = "0" + sec;
-  }
-  if (mili < 10) {
-    mili = "0" + mili;
-  }
-  timeText.setText("Time: " + min + ":" + sec + ":" + mili);
 }

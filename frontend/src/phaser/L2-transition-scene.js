@@ -39,9 +39,9 @@ export default class TransitionL2Scene extends Phaser.Scene {
       this.label = this.add.text(50, 50, '').setWordWrapWidth(300);
 
       this.typewriteText(`
-        Level Two: 
-      Basement Dwellers
-      Data Miners!
+           Level Two: 
+       Basement Dwellers
+          Data Miners!
 
 
       Press Enter To Start!`);

@@ -1,8 +1,8 @@
 import Phaser from "phaser";
 
-export default class TransitionL1Scene extends Phaser.Scene {
+export default class TransitionL4Scene extends Phaser.Scene {
   constructor() {
-    super("TransitionL1Scene");
+    super("TransitionL4Scene");
     this.transitionSFX;
   }
 
@@ -37,9 +37,9 @@ export default class TransitionL1Scene extends Phaser.Scene {
     this.label = this.add.text(50, 50, "").setWordWrapWidth(300);
 
     this.typewriteText(`
-            Level One: 
-        Lighthouse Lobby
-       Welcome to the Lab!
+          Level Four: 
+       Tweeter Sanctuary
+  Don't Forget to get outside!
 
 
       Press Enter To Start!`);
@@ -49,8 +49,8 @@ export default class TransitionL1Scene extends Phaser.Scene {
     );
     this.returnKey.on("down", (event) => {
       this.transitionSFX.stop();
-      this.scene.start("LevelOneScene");
-      this.scene.stop("TransitionL1Scene");
+      this.scene.start("LevelFourScene");
+      this.scene.stop("TransitionL4Scene");
     });
   }
 }
