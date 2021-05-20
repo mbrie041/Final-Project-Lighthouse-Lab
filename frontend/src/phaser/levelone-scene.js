@@ -42,9 +42,8 @@ export default class LevelOneScene extends Phaser.Scene {
     this.scoreText;
     this.lifeText;
   }
-  preload() {
-    //moved everything to Intro Scenes preload
-  }
+  preload() {}
+
   create() {
     //adds controls that were removed in previous game
     this.input.keyboard.enabled = true;
@@ -135,6 +134,8 @@ export default class LevelOneScene extends Phaser.Scene {
 
     //Array containing walls that the enemies needs to collide with
     const collisionArray = [this.enemyWalls, this.groundLayer];
+
+    //creates and array of enemy objects for their locations
     const objects1 = map
       .getObjectLayer("Enemies")
       .objects.filter((obj) => obj.name === "Robot1");
@@ -281,7 +282,7 @@ export default class LevelOneScene extends Phaser.Scene {
         this.scene.start("TransitionL2Scene");
         this.scene.stop("LevelOneScene");
       });
-      //sets the state to transitioning at the end so you don't loop in dead state
+      //sets the state to transitioning at the end so you don't loop in state
       this.state = transitioning;
     } else if (this.state === alive) {
       //the game state for when a player is alive
