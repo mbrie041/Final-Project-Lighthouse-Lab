@@ -10,10 +10,8 @@ export function getChatUserFromStorage() {
   window.localStorage.removeItem(chatUserKeyInStorage, null);
   const user = window.localStorage.getItem(chatUserKeyInStorage);
   if (user) {
-    // console.log(`Existing user found in storage: ${user}`);
     return JSON.parse(user);
   } else {
-    // console.log('No user found from storage.');
     return user;
   }
 };
