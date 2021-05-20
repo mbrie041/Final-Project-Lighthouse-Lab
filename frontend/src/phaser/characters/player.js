@@ -1,47 +1,70 @@
-import Phaser, { Textures } from "phaser";
+import Phaser from "phaser";
 
-/**
- * A class that wraps up our 2D platforming player logic. It creates, animates and moves a sprite in
- * response to WASD/arrow keys. Call its update method from the scene's update and call its destroy
- * method when you're done with the player.
- */
 export default class Player {
   constructor(scene, x, y) {
+    //when initialized, you need to pass the scene in that the sprite is generated on
     this.scene = scene;
+
+    //player sound effect defined in the scene
     this.jumpSFX;
+
     // Create the animations we need from the player spritesheet
     const anims = scene.anims;
     anims.create({
       key: "player-idle",
-      frames: anims.generateFrameNames("player", { prefix: "Tommy-idle", suffix: '.png', start: 1, end: 4 }),
+      frames: anims.generateFrameNames("player", {
+        prefix: "Tommy-idle",
+        suffix: ".png",
+        start: 1,
+        end: 4,
+      }),
       frameRate: 1,
-      repeat: -1
+      repeat: -1,
     });
     anims.create({
       key: "player-run",
-      frames: anims.generateFrameNames("player", { prefix: "Tommy-run", suffix: '.png', start: 1, end: 8 }),
+      frames: anims.generateFrameNames("player", {
+        prefix: "Tommy-run",
+        suffix: ".png",
+        start: 1,
+        end: 8,
+      }),
       frameRate: 16,
-      repeat: -1
+      repeat: -1,
     });
     anims.create({
       key: "player-falling",
-      frames: anims.generateFrameNames("player", { prefix: "Tommy-jump", suffix: '.png', start: 1, end: 3 }),
+      frames: anims.generateFrameNames("player", {
+        prefix: "Tommy-jump",
+        suffix: ".png",
+        start: 1,
+        end: 3,
+      }),
       frameRate: 10,
-      repeat: -1
+      repeat: -1,
     });
     anims.create({
       key: "player-death",
-      frames: anims.generateFrameNames("player", { prefix: "Tommy-hurt", suffix: '.png', start: 1, end: 2 }),
+      frames: anims.generateFrameNames("player", {
+        prefix: "Tommy-hurt",
+        suffix: ".png",
+        start: 1,
+        end: 2,
+      }),
       frameRate: 20,
-      repeat: 1
+      repeat: 1,
     });
     anims.create({
       key: "player-victory",
-      frames: anims.generateFrameNames("player", { prefix: "Tommy-pose", suffix: '.png', start: 1, end: 11 }),
+      frames: anims.generateFrameNames("player", {
+        prefix: "Tommy-pose",
+        suffix: ".png",
+        start: 1,
+        end: 11,
+      }),
       frameRate: 10,
-      repeat: 0
+      repeat: 0,
     });
-
 
     // Create the physics-based sprite that we will move around and animate
     this.sprite = scene.physics.add
@@ -55,12 +78,12 @@ export default class Player {
       left: LEFT,
       right: RIGHT,
       up: UP,
-      SPACE: SPACE
+      SPACE: SPACE,
     });
   }
 
   update() {
-
+    //short cut variables
     const keys = this.keys;
     const sprite = this.sprite;
     const onGround = sprite.body.blocked.down;
@@ -82,10 +105,10 @@ export default class Player {
     // Only allow the player to jump if they are on the ground
     if (onGround && (keys.up.isDown || keys.SPACE.isDown)) {
       sprite.setVelocityY(-500);
-      this.scene.jumpSFX.play()
+      this.scene.jumpSFX.play();
     }
 
-    // Update the animation/texture based on the state of the player
+    // Update the animation based on the state of the player
     if (onGround) {
       if (sprite.body.velocity.x !== 0) sprite.anims.play("player-run", true);
       else sprite.anims.play("player-idle", true);
@@ -95,7 +118,7 @@ export default class Player {
   }
 
   destroy() {
-    console.log("Player is destroyed")
+    //when sprite destory is called, the following gets called
     this.sprite.destroy();
   }
 }
