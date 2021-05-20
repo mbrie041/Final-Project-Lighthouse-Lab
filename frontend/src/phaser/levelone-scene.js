@@ -240,6 +240,8 @@ export default class LevelOneScene extends Phaser.Scene {
     //Fix for phaser pixel line issue
     this.cameraDolly.x = Math.floor(this.player.sprite.x);
     this.cameraDolly.y = Math.floor(this.player.sprite.y);
+
+    //updates the play score
     this.scoreText.setText("Score: " + global.score);
 
     //state update check

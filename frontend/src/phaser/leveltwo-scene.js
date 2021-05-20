@@ -48,12 +48,12 @@ export default class LevelTwoScene extends Phaser.Scene {
     this.sound.remove(this.sceneTwoTheme);
 
     //sets the scene music
-    this.jumpSFX = this.sound.add("jump", {volume: 0.5});
-    this.gemSFX = this.sound.add("gem", {volume: 0.5});
-    this.fanfareSFX = this.sound.add("fanfare", {volume: 0.5});
-    this.playerDeathSFX = this.sound.add("playerDeath", {volume: 0.5});
-    this.enemyDeathSFX = this.sound.add("enemyDeath", {volume: 0.5});
-    this.sceneTwoTheme = this.sound.add("level2", {volume: 0.5, loop: true });
+    this.jumpSFX = this.sound.add("jump", { volume: 0.5 });
+    this.gemSFX = this.sound.add("gem", { volume: 0.5 });
+    this.fanfareSFX = this.sound.add("fanfare", { volume: 0.5 });
+    this.playerDeathSFX = this.sound.add("playerDeath", { volume: 0.5 });
+    this.enemyDeathSFX = this.sound.add("enemyDeath", { volume: 0.5 });
+    this.sceneTwoTheme = this.sound.add("level2", { volume: 0.5, loop: true });
     this.sceneTwoTheme.play();
 
     //sets state machine
@@ -97,7 +97,7 @@ export default class LevelTwoScene extends Phaser.Scene {
       .image(this.width, this.height, "Level2Background")
       .setOrigin(0, 0)
       .setDepth(-1)
-      .setScrollFactor(1.10);
+      .setScrollFactor(1.1);
 
     //set up player start point
     const spawnPoint = map.findObject(
@@ -138,7 +138,6 @@ export default class LevelTwoScene extends Phaser.Scene {
     const objects3 = map
       .getObjectLayer("Enemies")
       .objects.filter((obj) => obj.name === "Bat");
-    //Enemy creating function calls
 
     //set up collision for the level
     this.scaffoldingLayer.setCollisionByProperty({ collides: true });
@@ -254,6 +253,8 @@ export default class LevelTwoScene extends Phaser.Scene {
     //Fix for phaser pixel line issue
     this.cameraDolly.x = Math.floor(this.player.sprite.x);
     this.cameraDolly.y = Math.floor(this.player.sprite.y);
+
+    //updates the play score
     this.scoreText.setText("Score: " + global.score);
 
     //state update check
@@ -299,7 +300,6 @@ export default class LevelTwoScene extends Phaser.Scene {
       //sets the state to transitioning at the end so you don't loop in state
       this.state = transitioning;
     } else if (this.state === alive) {
-      //calls the player update on alive
       this.player.update();
       //calls the update on every enemy created and stored in enemyArray
       for (let enemy of this.enemyArray) {
