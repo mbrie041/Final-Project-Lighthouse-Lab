@@ -65,7 +65,7 @@ export default class GameOverScene extends Phaser.Scene {
       if (name.value != "" && global.aboutToChange === 1) {
         global.aboutToChange = 0;
         // post score and username to database
-        fetch('http://localhost:3001/api/stats', {
+        fetch('https://5be549b49cb6.ngrok.io/api/stats', {
           'method': 'POST',
           headers: {
             'Content-Type': 'application/json'
