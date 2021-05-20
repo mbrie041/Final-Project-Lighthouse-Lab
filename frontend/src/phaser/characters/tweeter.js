@@ -2,10 +2,11 @@ import Phaser from "phaser";
 
 export default class Tweeter {
   constructor(speed, scene, x, y) {
+    //when initialized, you need to pass the scene in that the sprite is generated on
     this.scene = scene;
 
+    //set up character animations
     const anims = scene.anims;
-
     anims.create({
       key: "tweeter-fly",
       frames: anims.generateFrameNames("tweeter", {
@@ -29,13 +30,17 @@ export default class Tweeter {
       repeat: 3,
     });
 
-    this.sprite = scene.physics.add.sprite(x, y, "tweeter", 0)
+    //sets up the sprite position when initialized
+    this.sprite = scene.physics.add.sprite(x, y, "tweeter", 0);
+    //set ups height and initial speed
     this.sprite.setVelocityY(speed);
   }
   update() {
-  this.scene.sprite.setVelocityX(10);
+    //when sprite update gets called, updates height
+    this.scene.sprite.setVelocityX(10);
   }
   destroy() {
+    //when sprite destory is called, the following gets called
     this.sprite.destroy();
   }
 }
