@@ -39,10 +39,10 @@ export default class TransitionL3Scene extends Phaser.Scene {
     this.label = this.add.text(50, 50, "").setWordWrapWidth(300);
 
     this.typewriteText(`
-           Level Three: 
-          Rooftop Rumble
-       Late Night Squashing 
-              Bugs!
+          Level Three: 
+         Rooftop Rumble
+      Late Night Squashing 
+             Bugs!
 
 
       Press Enter To Start!`);

@@ -44,7 +44,7 @@ export default class TransitionL4Scene extends Phaser.Scene {
   Don't Forget to get outside!
 
 
-      Press Enter To Start!`);
+    Press Enter To Start!`);
 
     //scene stop and change on button push
     this.returnKey = this.input.keyboard.addKey(

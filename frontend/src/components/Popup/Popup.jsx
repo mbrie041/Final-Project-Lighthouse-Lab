@@ -21,7 +21,7 @@ export default function Popup(props) {
                 <a href="https://github.com/jacquelinel33">Github: jacquelinel33 </a>
                 <a href="https://www.linkedin.com/in/jacquelinelee3/">Linkedin: jacquelinelee3 </a>
                 <a href="mailto:jlee4332@gmail.com">Email: jlee4332@gmail.com</a>
-                <p>I like to code and stuff and pls gib me job</p>
+                <p>Front end lead. Fashion designer turned CSS Queen!</p>
               </div>
               <div className="info col-sm-4">
                 <p className="sub-heading">Mike Brierly</p>
@@ -29,7 +29,7 @@ export default function Popup(props) {
                 <a href="https://github.com/mbrie041">Github: mbrie041</a>
                 <a href="https://www.linkedin.com/in/michael-brierley-b9a5b1126/">Linkedin: michael-brierley-b9a5b1126 </a>
                 <a href="mailto:mbrie041@gmail.com">Email: mbrie041@gmail.com</a>
-                <p>I like to code and stuff and pls gib me job</p>
+                <p>Lead game designer. If you can't beat level 4, hire me and I'll show you how!</p>
               </div>
               <div className="info col-sm-4">
                 <p className="sub-heading">Ruowen Tang</p>
@@ -37,7 +37,7 @@ export default function Popup(props) {
                 <a href="https://github.com/ruowent">Github: ruowent </a>
                 <a href="https://www.linkedin.com/in/ruowen-tang/">Linkedin: ruowen-tang </a>
                 <a href="mailto:ruowen.tang@gmail.com">Email: ruowen.tang@gmail.com</a>
-                <p>I like to code and stuff and pls gib me job</p>
+                <p>Back end lead. IT network specialist turned web developer... specialist! </p>
               </div>
             </div>
           </div>
