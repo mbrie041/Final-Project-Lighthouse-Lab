@@ -10,7 +10,7 @@ export default function Popup(props) {
         <section>
           <div className="about__header">
             <p>Thanks for playing!</p>
-            <button onClick={props.closePopup}>close me</button>
+            <button onClick={props.closePopup}>X</button>
           </div>
           <div className="about__body">
             <div className="about__body-header col-sm-12">Our Team</div>

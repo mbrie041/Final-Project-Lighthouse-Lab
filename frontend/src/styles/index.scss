@@ -15,7 +15,6 @@
   background-image: url("../assets/images/lighthouse-intro.png");
   height: 100vh;
   overflow: auto;
-
 }
 body {
   font-family: 'Press Start 2P', sans-serif;
@@ -80,8 +79,6 @@ canvas {
   counter-increment: serial-number;  /* Increment the serial number counter */
   content: counter(serial-number);  /* Display the counter */
 }
-
-
 
 @media (max-width: 1000px) {  
   #phaser {
