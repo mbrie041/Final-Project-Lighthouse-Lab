@@ -1,4 +1,5 @@
 function playerDied(player) {
+  //runs the player death annimation event and then kills the player
   player.sprite.setFlipY(true);
   player.sprite.setVelocityX(0);
   player.sprite.anims.play("player-death");
@@ -6,6 +7,7 @@ function playerDied(player) {
   );
 }
 function playerFinish(player) {
+  //runs the player victory annimation event
   player.setVelocityX(0);
   player.setAccelerationX(0);
   player.setAccelerationY(0);
