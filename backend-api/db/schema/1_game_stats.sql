@@ -3,6 +3,5 @@ CREATE TABLE game_stats(
     id SERIAL PRIMARY KEY NOT NULL,
     name VARCHAR(50),
     score INTEGER,
-    time VARCHAR,
-    geolocation VARCHAR
+    time VARCHAR(8)
 );
