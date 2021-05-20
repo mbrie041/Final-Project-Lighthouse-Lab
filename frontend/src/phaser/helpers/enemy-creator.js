@@ -31,7 +31,7 @@ export default function enemyCreator(
       deathSFX
     );
   }
-  //Need to return all of the created enemies objects to the scene to perform update()
+  //need to return all of the created enemies objects to the scene to perform update()
   return enemyArray;
 }
 //function to create the enemies.
@@ -76,7 +76,6 @@ function createEnemy(
           sprite.setFlipX(true);
           sprite.anims.play(animationName, true);
           sprite.setVelocityX(-enemySpeed);
-
           //checks to see if the enemy is touching left against a wall and tells it to turn around
         } else if (sprite.body.touching.left || sprite.body.blocked.left) {
           sprite.setFlipX(false);
