@@ -1,0 +1,52 @@
+{"frames": [
+
+{
+	"filename": "Monitor-hurt1.png",
+	"frame": {"x":0,"y":0,"w":22,"h":23},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":22,"h":23},
+	"sourceSize": {"w":22,"h":23}
+},
+{
+	"filename": "Monitor-hurt2.png",
+	"frame": {"x":66,"y":0,"w":22,"h":23},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":22,"h":23},
+	"sourceSize": {"w":22,"h":23}
+},
+{
+	"filename": "Monitor1.png",
+	"frame": {"x":22,"y":0,"w":22,"h":23},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":22,"h":23},
+	"sourceSize": {"w":22,"h":23}
+},
+{
+	"filename": "Monitor2.png",
+	"frame": {"x":44,"y":0,"w":22,"h":23},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":22,"h":23},
+	"sourceSize": {"w":22,"h":23}
+},
+{
+	"filename": "Monitor3.png",
+	"frame": {"x":66,"y":0,"w":22,"h":23},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":22,"h":23},
+	"sourceSize": {"w":22,"h":23}
+}],
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "Monitor.png",
+	"format": "RGBA8888",
+	"size": {"w":88,"h":23},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:93accea4880a0e753eda5b991f0eef11:5d9ef74359d619e4c8b464d3aaca5120:9aa922c4707e121128b3cea0200d759a$"
+}
+}
