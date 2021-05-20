@@ -1,6 +1,5 @@
 import Phaser from "phaser";
 
-
 export default class Bat {
   constructor(speed, scene, x, y) {
     this.scene = scene;
@@ -31,17 +30,11 @@ export default class Bat {
       repeat: 3,
     });
 
-    this.sprite = scene.physics.add
-      .sprite(x, y, "bat", 0)
-      this.sprite.body.setAllowGravity(false)
-      // .setDrag(1000, 0)
-      // .setMaxVelocity(300, 400);
+    this.sprite = scene.physics.add.sprite(x, y, "bat", 0);
+    this.sprite.body.setAllowGravity(false);
     this.sprite.setVelocityX(speed);
-    
   }
-  update() {
-
-  }
+  update() {}
   destroy() {
     this.sprite.destroy();
   }
