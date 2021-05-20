@@ -1,13 +1,14 @@
-// const serverHelper = require('../helpers/serverHelpers');
 const chatApp = require('../app').chatApp;
 const serverHelper = require('../helpers/serverHelpers');
 const http = require('http');
 
 const port = serverHelper.normalizePort(process.env.CHAT_APP_PORT || '3002');
 
+// Create chat server on port 3002
 chatApp.set('port', port);
 const server = http.createServer(chatApp);
 
+// Create websocket server using same port
 const WebSocket = require("ws");
 const wss = new WebSocket.Server({ server });
 
@@ -22,40 +23,22 @@ const eventTypes = {
   newUser: 'newUser'
 };
 
-wss.on("connection", socket => {
-  handleNewConnection(socket);
-
-  socket.onmessage = event => {
-    console.log(`Message Received: ${JSON.stringify(event.data)}`);
-    const data = JSON.parse(event.data);
-    switch (data.type) {
-      case eventTypes.newMessage:
-        handleNewMessage(data.message);
-        break;
-      case eventTypes.newUser:
-        handleNewUser(socket, data.user);
-        break;
-      default:
-        console.log(`Unknown message type: ${data.type}`);
-    }
-  };
-});
-
-function handleNewConnection(socket) {
+// Upon new client connection, send chat history
+const handleNewConnection = (socket) => {
   const msg = {
     type: eventTypes.fullChatHistory,
     eventData: {
       chatHistory
     }
   };
-
-  console.log(`A new client connected, sending chat history ${JSON.stringify(msg)}`);
+  console.log('A new client connected, sending chat history');
   socket.send(JSON.stringify(msg));
 }
 
-function handleNewMessage(message) {
+// Save new message to chat history and broadcast new message to all connected clients
+const handleNewMessage = (message) => {
   chatHistory.push(message);
-  console.log(`Updated Chat History: \n${JSON.stringify(chatHistory)}`);
+  console.log('Updated Chat History');
 
   const newMsgData = {
     type: eventTypes.newMessage,
@@ -64,7 +47,7 @@ function handleNewMessage(message) {
     }
   };
 
-  console.log(`Broadcasting new message: ${JSON.stringify(newMsgData)}`);
+  console.log('Broadcasting new message');
   wss.clients.forEach(function each(client) {
     if (client.readyState === WebSocket.OPEN) {
       client.send(JSON.stringify(newMsgData));
@@ -72,7 +55,8 @@ function handleNewMessage(message) {
   });
 }
 
-function handleNewUser(socket, user) {
+// Send new user connection ackowledgement to all clients
+const handleNewUser = (socket, user) => {
   const newUserData = {
     type: eventTypes.newUser,
     eventData: {
@@ -102,8 +86,24 @@ function handleNewUser(socket, user) {
   });
 }
 
+// Upon connection to websocket server, send ackowledgment and handle user and message input
+wss.on("connection", socket => {
+  handleNewConnection(socket);
 
-// serverHelper.startServer(server, 'chat', port);
+  socket.onmessage = event => {
+    const data = JSON.parse(event.data);
+    switch (data.type) {
+      case eventTypes.newMessage:
+        handleNewMessage(data.message);
+        break;
+      case eventTypes.newUser:
+        handleNewUser(socket, data.user);
+        break;
+      default:
+        console.log(`Unknown message type: ${data.type}`);
+    }
+  };
+});
 
 module.exports = {
   server,
