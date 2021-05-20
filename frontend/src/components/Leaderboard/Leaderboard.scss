@@ -10,6 +10,7 @@
 
   .table-body {
     overflow: auto; 
+    margin: 0em .2em;
   }
   
   .css-serial {
@@ -43,21 +44,21 @@
   ul {
     padding: .5em;
   list-style-type: none;
-}
+  }
 
-tbody, td, tfoot, th, tr {
-  padding: .7em;
-}
-::-webkit-scrollbar{
-  width: .7em;
-  height: .4em;
-}
+  tbody, td, tfoot, th, tr {
+    padding: .7em;
+  }
+  ::-webkit-scrollbar{
+    width: .6em;
+    height: .4em;
+  }
 
-::-webkit-scrollbar-thumb {
-  background-color: rgb(103, 91, 103);
-}
+  ::-webkit-scrollbar-thumb {
+    background-color: rgb(103, 91, 103);
+  }
 
-::-webkit-resixer{
-  height: 5em;
-}
+  ::-webkit-resixer{
+    height: 5em;
+  }
 }
