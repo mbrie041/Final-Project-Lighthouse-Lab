@@ -18,7 +18,7 @@ export default function useChatData() {
 
   // Establish websocket connection and listen to message to load/send/create user
   useEffect(() => {
-    const ws = new WebSocket('wss://4641288bc007.ngrok.io/');
+    const ws = new WebSocket('wss://61d4c5b4637e.ngrok.io/');
 
     ws.addEventListener('open', function (event) {
       console.log("Connected to Chat server");
