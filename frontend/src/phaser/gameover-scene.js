@@ -14,7 +14,7 @@ export default class GameOverScene extends Phaser.Scene {
     //remove sound carryover from previous game
     this.sound.remove(this.gameOverTheme);
     //sets the scene music
-    this.gameOverTheme = this.sound.add("gameOver", {volume: 0.5});
+    this.gameOverTheme = this.sound.add("gameOver", { volume: 0.5 });
     this.gameOverTheme.play();
 
     // Display Score
@@ -42,8 +42,8 @@ export default class GameOverScene extends Phaser.Scene {
         fontFamily: ' "Press Start 2P" '
       })
       .setScrollFactor(0);
-  
-      //set up values for scoreboard submission
+
+    //set up values for scoreboard submission
     this.nameInput = this.add.dom(410, 340).createFromCache("form");
     this.message = this.add.text(130, 100, "GAME OVER!", {
       color: "#FFFFFF",
@@ -65,12 +65,12 @@ export default class GameOverScene extends Phaser.Scene {
       if (name.value != "" && global.aboutToChange === 1) {
         global.aboutToChange = 0;
         // post score and username to database
-        fetch('https://3c02e36472d8.ngrok.io/api/stats', {
+        fetch('http://localhost:3001/api/stats', {
           'method': 'POST',
           headers: {
             'Content-Type': 'application/json'
           },
-          'body': JSON.stringify({ 'score': global.score, 'name': name.value, 'time': global.finalTimer, 'geolocation': global.latitude })
+          'body': JSON.stringify({ 'score': global.score, 'name': name.value, 'time': global.finalTimer })
         })
           .then(response => response.json())
           //restart the game after submission

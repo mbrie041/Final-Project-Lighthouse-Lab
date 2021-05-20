@@ -79,8 +79,7 @@ export default class GameWinScene extends Phaser.Scene {
           body: JSON.stringify({
             score: global.score,
             name: name.value,
-            time: global.finalTimer,
-            geolocation: global.latitude,
+            time: global.finalTimer
           }),
         })
           .then((response) => response.json())

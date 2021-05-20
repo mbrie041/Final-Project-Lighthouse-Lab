@@ -1,5 +1,5 @@
 INSERT INTO
-game_stats(name, score, time, geolocation)
+game_stats(name, score, time)
 VALUES
   ('LABBER', 660, '03:10:14'),
   ('WEBDEV', 340, '05:03:20'),

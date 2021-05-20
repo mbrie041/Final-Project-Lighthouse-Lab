@@ -15,7 +15,7 @@ wss.on("connection", socket => {
 });
 
 /* Define updateLeaderboard function */
-const updateLeaderboard = (id, name, score, time) => {
+function updateLeaderboard(id, name, score, time) {
   wss.clients.forEach(function eachClient(client) {
     if (client.readyState === WebSocket.OPEN) {
       client.send(

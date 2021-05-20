@@ -12,10 +12,12 @@ module.exports = (db) => {
   };
 
   // Add records to the game_stats table
-  const addStats = (name, score, time, geolocation) => {
+  const addStats = (name, score, time) => {
+    const nameUpper = name.toUpperCase();
+    console.log(nameUpper);
     const query = {
-      text: `INSERT INTO game_stats (name, score, time, geolocation) VALUES ($1, $2, $3, $4) RETURNING *`,
-      values: [name, score, time, geolocation]
+      text: `INSERT INTO game_stats (name, score, time) VALUES ($1, $2, $3) RETURNING *`,
+      values: [nameUpper, score, time]
     }
 
     return db.query(query)

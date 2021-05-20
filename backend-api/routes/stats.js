@@ -18,9 +18,10 @@ module.exports = ({
 
     // Post request to /api/stats
     router.post('/', (req, res) => {
-        const { name, score, time, geolocation } = req.body;
-        return addStats(name, score, time, geolocation)
+        const { name, score, time } = req.body;
+        return addStats(name, score, time)
             .then(dbres => {
+                console.log(dbres)
                 updateLeaderboard(dbres.id, dbres.name, dbres.score, dbres.time);
                 res.json('Game Stats added!')
             })
