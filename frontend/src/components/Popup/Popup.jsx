@@ -24,7 +24,7 @@ export default function Popup(props) {
                 <p>Front end lead. Fashion designer turned CSS Queen!</p>
               </div>
               <div className="info col-sm-4">
-                <p className="sub-heading">Mike Brierly</p>
+                <p className="sub-heading">Mike Brierley</p>
                 <img src="./src/assets/images/mike.png" />
                 <a href="https://github.com/mbrie041">Github: mbrie041</a>
                 <a href="https://www.linkedin.com/in/michael-brierley-b9a5b1126/">Linkedin: michael-brierley-b9a5b1126 </a>
