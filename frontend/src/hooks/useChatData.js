@@ -26,18 +26,15 @@ export default function useChatData() {
 
     ws.addEventListener('message', function (event) {
       const data = JSON.parse(event.data);
-      // console.log('data ', data);
+
       switch (data.type) {
         case eventTypes.newMessage:
-          // console.log(`Received new message: ${JSON.stringify(data.eventData.message)}`);
           setChatHistory(prevChatHistory => [...prevChatHistory, data.eventData.message]);
           break;
         case eventTypes.fullChatHistory:
-          // console.log(`Received full chat history: ${data.eventData.chatHistory}`);
           setChatHistory(data.eventData.chatHistory);
           break;
         case eventTypes.newUser:
-          // console.log(`TODO: New user created, saving to storage: ${JSON.stringify(data.eventData.user)}`);
           saveChatUserToStorage(data.eventData.user);
           break;
         default:
