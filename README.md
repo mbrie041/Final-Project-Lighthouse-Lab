@@ -13,12 +13,12 @@ This game was inspired by our time as web development students at Lighthouse Lab
 
 ## Screenshots
 ---
-![App](start.png)
-![Level 1](L1.png)
-![Level 2](L2.png)
-![Level 3](L3.png)
-![Level 4](L4.png)
-![Gameover](gameover.png)
+![App](https://github.com/mbrie041/Final-Project-Lighthouse-Lab/blob/main/frontend/src/assets/images/screenshots/start.png)
+![Level 1](https://github.com/mbrie041/Final-Project-Lighthouse-Lab/blob/main/frontend/src/assets/images/screenshots/L1.png)
+![Level 2](https://github.com/mbrie041/Final-Project-Lighthouse-Lab/blob/main/frontend/src/assets/images/screenshots/L2.png)
+![Level 3](https://github.com/mbrie041/Final-Project-Lighthouse-Lab/blob/main/frontend/src/assets/images/screenshots/L3.png)
+![Level 4](https://github.com/mbrie041/Final-Project-Lighthouse-Lab/blob/main/frontend/src/assets/images/screenshots/L4.png)
+![Gameover](https://github.com/mbrie041/Final-Project-Lighthouse-Lab/blob/main/frontend/src/assets/images/screenshots/gameover.png)
 
 
 ## Tech/Frameworks used
