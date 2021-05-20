@@ -4,7 +4,7 @@
 ---
 Lighthouse Laboratory is a 2D platformer game where users can move through levels and increase their score by collecting items while avoiding bugs and robots! Can you make it onto the leaderboard with the highest score and time? Live chat with friends as you play!
 
-Created by [Mike Brierley](https://github.com/mbrie041), [Ruowen Tank](https://github.com/ruowent), and [Jacqueline Lee](https://github.com/jacquelinel33). 
+Created by [Mike Brierley](https://github.com/mbrie041), [Ruowen Tang](https://github.com/ruowent), and [Jacqueline Lee](https://github.com/jacquelinel33). 
 
 ## Motivation
 ---
