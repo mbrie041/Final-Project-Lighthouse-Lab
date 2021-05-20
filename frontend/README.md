@@ -2,21 +2,22 @@
 
 ## Description
 ---
-Lighthouse Laboratory is a 2D platformer game where users can move through levels, collect items while avoiding bugs and robots! Can you make it onto the leaderboard with the highest score and time? Live chat with friends as you play!
+Lighthouse Laboratory is a 2D platformer game where users can move through levels and increase their score by collect items while avoiding bugs and robots! Can you make it onto the leaderboard with the highest score and time? Live chat with friends as you play!
 
 Created by [Mike Brierley](https://github.com/mbrie041), [Ruowen Tank](https://github.com/ruowent), and [Jacqueline Lee](https://github.com/jacquelinel33). 
 
 ## Motivation
 ---
-This game was inspired by our time as web development students at Lighthouse Labs. We wanted to showcase our skills in learning a new library(Phaser), using a new API(WebSocket), as well as building upon our skills on Javascript and React. Many elements in the game such as squashing bugs, avoiding covid bats, collecting Rubys, escaping a dark basement give ode to our months of hard work as web developers. 
+This game was inspired by our time as web development students at Lighthouse Labs. We wanted to showcase our skills in learning a new library(Phaser), using a new API(WebSocket), as well as building upon our skills on Javascript and React. Many elements in the game such as squashing bugs, avoiding covid bats, collecting Rubys, escaping a dark basement give ode to our months of hard work in becoming web developers. 
 
 ## Screenshots
 ---
-![App]()
-![Level 1]()
-![Level 2]()
-![Level 3]()
-![Level 4]()
+![App](start.png)
+![Level 1](L1.png)
+![Level 2](L2.png)
+![Level 3](L3.png)
+![Level 4](L4.png)
+![Gameover](gameover.png)
 
 
 ## Tech/Frameworks used
