@@ -1,12 +1,17 @@
  function collectItem(player, item, soundEffect) {
-  console.log("COLLISION WITH ITEM!");
+   //when the player collides with the enemy, remove it from the scene
   item.disableBody(`${item}`, `${item}`);
+   //plays the collect sound on collision
   soundEffect.play();
+  //increase the global score on collision
   global.score += 10;
 }
 
 function displayTimeElapsed(time, passedTimeText) {
+  //updates the time ui with the current game clock
   global.elapsedTime += time * 0.001;
+
+  //formatting time to display
   let min = Math.floor(global.elapsedTime / 60);
   let sec = (global.elapsedTime % 60).toFixed(0);
   let mili = (((global.elapsedTime % 60) % 1) * 100).toFixed(0);
@@ -20,12 +25,15 @@ function displayTimeElapsed(time, passedTimeText) {
   if (mili < 10) {
     mili = "0" + mili;
   }
+  //places the formated time on the screen
   passedTimeText.setText(`Time: ${min}:${sec}:${mili}`);
 }
 
 function finalTimeSetter() {
+  //saves the time when the player runs out of lives
   global.finalTimer = global.elapsedTime;
-  //format timer
+
+  //formatting time to display
   let min = Math.floor(global.finalTimer / 60);
   let sec = (global.elapsedTime % 60).toFixed(0);
   let mili = (((global.elapsedTime % 60) % 1) * 100).toFixed(0);
@@ -38,6 +46,7 @@ function finalTimeSetter() {
   if (mili < 10) {
     mili = "0" + mili;
   }
+  //adds the final timer and sets up a placeholder value to pass it to the database
   global.finalTimer = `${min}:${sec}:${mili}`;
   global.aboutToChange = 1;
 }
