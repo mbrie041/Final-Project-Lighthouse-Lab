@@ -1,0 +1,60 @@
+{"frames": [
+
+{
+	"filename": "Robot-hurt1.png",
+	"frame": {"x":0,"y":0,"w":21,"h":18},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":21,"h":18},
+	"sourceSize": {"w":21,"h":18}
+},
+{
+	"filename": "Robot-hurt2.png",
+	"frame": {"x":21,"y":0,"w":19,"h":18},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":19,"h":18},
+	"sourceSize": {"w":19,"h":18}
+},
+{
+	"filename": "Robot-walk1.png",
+	"frame": {"x":21,"y":0,"w":19,"h":18},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":19,"h":18},
+	"sourceSize": {"w":19,"h":18}
+},
+{
+	"filename": "Robot-walk2.png",
+	"frame": {"x":40,"y":0,"w":19,"h":18},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":19,"h":18},
+	"sourceSize": {"w":19,"h":18}
+},
+{
+	"filename": "Robot-walk3.png",
+	"frame": {"x":59,"y":0,"w":19,"h":18},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":19,"h":18},
+	"sourceSize": {"w":19,"h":18}
+},
+{
+	"filename": "Robot-walk4.png",
+	"frame": {"x":78,"y":0,"w":19,"h":18},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":19,"h":18},
+	"sourceSize": {"w":19,"h":18}
+}],
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "Robot-sprites.png",
+	"format": "RGBA8888",
+	"size": {"w":97,"h":18},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:b9f9dea7aaa609f85a31a9fa8b1b2b81:3c8c7d34378bf08b0d1dac1fae34858d:9e49d6ade8962b733e7d68307edb5995$"
+}
+}

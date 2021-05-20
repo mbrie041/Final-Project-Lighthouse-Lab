@@ -76,7 +76,7 @@ export default class GameOverScene extends Phaser.Scene {
           //restart the game after submission
           .then(data => {
             console.log('Success:', data);
-            global.life = 3;
+            global.life = 5;
             global.score = 0;
             global.time = 0;
             this.scene.start('IntroScene');
