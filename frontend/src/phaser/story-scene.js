@@ -61,7 +61,7 @@ export default class StoryScene extends Phaser.Scene {
       this.returnKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ENTER);
       this.returnKey.on("down", event => {
           this.storyMusic.stop()
-          this.scene.start("TransitionL1Scene");
+          this.scene.start("LevelThreeScene");
           this.scene.stop("StoryScene")
 
         });
