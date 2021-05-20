@@ -246,13 +246,5 @@ export default class IntroScene extends Phaser.Scene {
       this.scene.start("StoryScene");
       this.scene.stop("IntroScene");
     });
-    this.returnKey = this.input.keyboard.addKey(
-      Phaser.Input.Keyboard.KeyCodes.ENTER
-    );
-    this.returnKey.on("down", (event) => {
-      this.introMusic.stop();
-      this.scene.start("StoryScene");
-      this.scene.stop("IntroScene");
-    });
   }
 }
