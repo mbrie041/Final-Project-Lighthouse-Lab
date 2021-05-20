@@ -1,20 +1,20 @@
 import Phaser from "phaser";
-import Player from "./characters/player.js";
 
 export default class GameWinScene extends Phaser.Scene {
   constructor() {
     super("GameWinScene");
     this.gameWinTheme;
   }
-  // init(data) {
-  //   this.location = data.location;
-  // }
+
   preload() {
+    //loads the submit form
     this.load.html("form", "src/assets/form.html");
   }
   create() {
+    //remove sound carryover from previous game
     this.sound.remove(this.gameOverTheme);
-    this.gameWinTheme = this.sound.add("gameWin", {volume: 0.5});
+    //sets the scene music
+    this.gameWinTheme = this.sound.add("gameWin", { volume: 0.5 });
     this.gameWinTheme.play();
 
     // Display Score
@@ -35,7 +35,6 @@ export default class GameWinScene extends Phaser.Scene {
       .setScrollFactor(0);
 
     // Display Timer
-
     this.add
       .text(250, 5, `Time: ${global.finalTimer}`, {
         fontSize: "10px",
@@ -44,6 +43,7 @@ export default class GameWinScene extends Phaser.Scene {
       })
       .setScrollFactor(0);
 
+    //set up values for scoreboard submission
     this.nameInput = this.add.dom(410, 340).createFromCache("form");
     this.message = this.add
       .text(145, 100, "You Win!", {
@@ -61,12 +61,10 @@ export default class GameWinScene extends Phaser.Scene {
       })
       .setOrigin(0);
 
-    console.log(`geolocation data = [${global.latitude}, ${global.longitude}]`);
-
+    //scene stop on and database submission on button push or click
     this.returnKey = this.input.keyboard.addKey(
       Phaser.Input.Keyboard.KeyCodes.ENTER
     );
-
     this.returnKey.on("down", (event) => {
       this.gameWinTheme.stop();
       let name = this.nameInput.getChildByName("name");
@@ -86,6 +84,7 @@ export default class GameWinScene extends Phaser.Scene {
           }),
         })
           .then((response) => response.json())
+          //restart the game after submission
           .then((data) => {
             console.log("Success:", data);
             global.life = 3;

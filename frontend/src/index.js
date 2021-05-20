@@ -13,10 +13,11 @@ import TransitionL1Scene from "./phaser/L1-transition-scene";
 import TransitionL2Scene from "./phaser/L2-transition-scene";
 import TransitionL3Scene from "./phaser/L3-transition-scene";
 import TransitionL4Scene from "./phaser/L4-transition-scene";
-import "./styles/index.scss"
+import "./styles/index.scss";
 import GameOverScene from "./phaser/gameover-scene";
 import GameWinScene from "./phaser/gamewin-scene";
 
+//game config that's passed through the game.
 export const config = {
   type: Phaser.AUTO,
   width: 400,
@@ -25,13 +26,14 @@ export const config = {
   pixelArt: true,
   roundPixels: true,
   Audio: {
-    noAudio: true
+    noAudio: true,
   },
   backgroundColor: "#1d212d",
   dom: {
-    createContainer: true
+    createContainer: true,
   },
   scene: [
+    //the first scene will be the one that loads unless otherwise called.
     IntroScene,
     StoryScene,
     TransitionL1Scene,
@@ -43,17 +45,18 @@ export const config = {
     TransitionL4Scene,
     LevelFourScene,
     GameOverScene,
-    GameWinScene
+    GameWinScene,
   ],
   physics: {
     default: "arcade",
     arcade: {
       debug: false,
-      gravity: { y: 1000 }
-    }
-  }
+      gravity: { y: 1000 },
+    },
+  },
 };
-
+//disables the use of keys and the mouse when you've clicked off that game box.
+//allows the chat box to work properly.
 const game = new Phaser.Game(config);
 $(document).ready(function () {
   game.input.keyboard.enabled = false;
