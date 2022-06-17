@@ -85,7 +85,7 @@ function createEnemy(
       })
     );
   }
-  //sets up collision between created enemy and player 
+  //sets up collision between created enemy and player
   scene.physics.add.collider(
     scene.player.sprite, //player sprite from the scene
     createdEnemy.sprite, //curent created enemy
@@ -113,7 +113,7 @@ function createEnemy(
           enemy.on(Phaser.Animations.Events.ANIMATION_COMPLETE, () =>
             enemy.destroy()
           );
-        //any other collision between the player and created enemy should result in the players death
+          //any other collision between the player and created enemy should result in the players death
         } else {
           //checks to see if the scene state is alive
           if (scene.state === alive) {
